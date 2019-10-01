@@ -1,6 +1,6 @@
 {
-  "name": "modelcatalog_client",
-  "version": "1.0.0",
+  "name": "@mintproject/modelcatalog_client",
+  "version": "1.0.1",
   "description": "OpenAPI client for modelcatalog_client",
   "author": "OpenAPI-Generator",
   "main": "./dist/index.js",
@@ -14,5 +14,23 @@
   },
   "publishConfig": {
     "registry": "mintproject"
-  }
+  },
+  "dependencies": {
+    "tsc": "^1.20150623.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mintproject/model-catalog-fetch-api-client.git"
+  },
+  "keywords": [
+    "api",
+    "mint",
+    "model",
+    "ia"
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/mintproject/model-catalog-fetch-api-client/issues"
+  },
+  "homepage": "https://github.com/mintproject/model-catalog-fetch-api-client#readme"
 }
