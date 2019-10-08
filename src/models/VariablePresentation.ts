@@ -73,10 +73,10 @@ export interface VariablePresentation {
     id?: string;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof VariablePresentation
      */
-    label?: string | null;
+    label?: Array<string> | null;
     /**
      * 
      * @type {Array<DatasetSpecification>}

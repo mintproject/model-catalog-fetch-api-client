@@ -38,10 +38,10 @@ export interface Organization {
     id?: string;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof Organization
      */
-    label?: string | null;
+    label?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}

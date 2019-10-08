@@ -32,10 +32,10 @@ export interface SampleResource {
     id?: string;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof SampleResource
      */
-    label?: string | null;
+    label?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}

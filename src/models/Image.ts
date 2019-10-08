@@ -67,10 +67,10 @@ export interface Image {
     id?: string;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof Image
      */
-    label?: string | null;
+    label?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}

@@ -50,13 +50,13 @@ export interface SoftwareVersion {
      * @type {Array<string>}
      * @memberof SoftwareVersion
      */
-    hasDocumentation?: Array<string> | null;
+    keywords?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof SoftwareVersion
      */
-    keywords?: Array<string> | null;
+    hasDocumentation?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -86,13 +86,13 @@ export interface SoftwareVersion {
      * @type {Array<string>}
      * @memberof SoftwareVersion
      */
-    referencePublication?: Array<string> | null;
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof SoftwareVersion
      */
-    description?: Array<string> | null;
+    referencePublication?: Array<string> | null;
     /**
      * 
      * @type {Array<Image>}
@@ -131,16 +131,16 @@ export interface SoftwareVersion {
     hasFAQ?: Array<string> | null;
     /**
      * 
-     * @type {Array<Image>}
-     * @memberof SoftwareVersion
-     */
-    logo?: Array<Image> | null;
-    /**
-     * 
      * @type {Array<Person>}
      * @memberof SoftwareVersion
      */
     hasContactPerson?: Array<Person> | null;
+    /**
+     * 
+     * @type {Array<Image>}
+     * @memberof SoftwareVersion
+     */
+    logo?: Array<Image> | null;
     /**
      * 
      * @type {Array<string>}
@@ -164,13 +164,13 @@ export interface SoftwareVersion {
      * @type {Array<string>}
      * @memberof SoftwareVersion
      */
-    identifier?: Array<string> | null;
+    memoryRequirements?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof SoftwareVersion
      */
-    memoryRequirements?: Array<string> | null;
+    identifier?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -209,10 +209,10 @@ export interface SoftwareVersion {
     shortDescription?: Array<string> | null;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof SoftwareVersion
      */
-    label?: string | null;
+    label?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -230,13 +230,13 @@ export interface SoftwareVersion {
      * @type {Array<string>}
      * @memberof SoftwareVersion
      */
-    license?: Array<string> | null;
+    operatingSystems?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof SoftwareVersion
      */
-    operatingSystems?: Array<string> | null;
+    license?: Array<string> | null;
     /**
      * 
      * @type {Array<SourceCode>}
@@ -273,27 +273,27 @@ export function SoftwareVersionFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
+        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : (json['hasVersion'] as Array<any>).map(SoftwareVersionFromJSON),
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
-        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'screenshot': !exists(json, 'screenshot') ? undefined : (json['screenshot'] as Array<any>).map(ImageFromJSON),
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
         'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
-        'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : (json['hasContactPerson'] as Array<any>).map(PersonFromJSON),
+        'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : (json['hasSampleVisualization'] as Array<any>).map(VisualizationFromJSON),
-        'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
+        'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'website': !exists(json, 'website') ? undefined : json['website'],
         'citation': !exists(json, 'citation') ? undefined : json['citation'],
         'hasConfiguration': !exists(json, 'hasConfiguration') ? undefined : (json['hasConfiguration'] as Array<any>).map(SoftwareConfigurationFromJSON),
@@ -303,8 +303,8 @@ export function SoftwareVersionFromJSONTyped(json: any, ignoreDiscriminator: boo
         'label': !exists(json, 'label') ? undefined : json['label'],
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
-        'license': !exists(json, 'license') ? undefined : json['license'],
         'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
+        'license': !exists(json, 'license') ? undefined : json['license'],
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : (json['hasSourceCode'] as Array<any>).map(SourceCodeFromJSON),
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
         'fundingSource': !exists(json, 'fundingSource') ? undefined : (json['fundingSource'] as Array<any>).map(OrganizationFromJSON),
@@ -321,27 +321,27 @@ export function SoftwareVersionToJSON(value?: SoftwareVersion): any {
     }
     return {
         
-        'hasDocumentation': value.hasDocumentation,
         'keywords': value.keywords,
+        'hasDocumentation': value.hasDocumentation,
         'softwareRequirements': value.softwareRequirements,
         'hasVersion': value.hasVersion === undefined ? undefined : (value.hasVersion as Array<any>).map(SoftwareVersionToJSON),
         'hasTypicalDataSource': value.hasTypicalDataSource,
         'hasDownloadURL': value.hasDownloadURL,
-        'referencePublication': value.referencePublication,
         'description': value.description,
+        'referencePublication': value.referencePublication,
         'screenshot': value.screenshot === undefined ? undefined : (value.screenshot as Array<any>).map(ImageToJSON),
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
         'dateCreated': value.dateCreated,
         'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
         'hasFAQ': value.hasFAQ,
-        'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
         'hasContactPerson': value.hasContactPerson === undefined ? undefined : (value.hasContactPerson as Array<any>).map(PersonToJSON),
+        'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
         'hasPurpose': value.hasPurpose,
         'id': value.id,
         'hasSampleVisualization': value.hasSampleVisualization === undefined ? undefined : (value.hasSampleVisualization as Array<any>).map(VisualizationToJSON),
-        'identifier': value.identifier,
         'memoryRequirements': value.memoryRequirements,
+        'identifier': value.identifier,
         'website': value.website,
         'citation': value.citation,
         'hasConfiguration': value.hasConfiguration === undefined ? undefined : (value.hasConfiguration as Array<any>).map(SoftwareConfigurationToJSON),
@@ -351,8 +351,8 @@ export function SoftwareVersionToJSON(value?: SoftwareVersion): any {
         'label': value.label,
         'hasAssumption': value.hasAssumption,
         'datePublished': value.datePublished,
-        'license': value.license,
         'operatingSystems': value.operatingSystems,
+        'license': value.license,
         'hasSourceCode': value.hasSourceCode === undefined ? undefined : (value.hasSourceCode as Array<any>).map(SourceCodeToJSON),
         'publisher': value.publisher,
         'fundingSource': value.fundingSource === undefined ? undefined : (value.fundingSource as Array<any>).map(OrganizationToJSON),

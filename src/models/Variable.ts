@@ -26,10 +26,10 @@ export interface Variable {
     id?: string;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof Variable
      */
-    label?: string | null;
+    label?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}

@@ -76,13 +76,13 @@ export interface EmpiricalModel {
      * @type {Array<string>}
      * @memberof EmpiricalModel
      */
-    referencePublication?: Array<string> | null;
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof EmpiricalModel
      */
-    description?: Array<string> | null;
+    referencePublication?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -160,13 +160,13 @@ export interface EmpiricalModel {
      * @type {Array<string>}
      * @memberof EmpiricalModel
      */
-    identifier?: Array<string> | null;
+    memoryRequirements?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof EmpiricalModel
      */
-    memoryRequirements?: Array<string> | null;
+    identifier?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -199,10 +199,10 @@ export interface EmpiricalModel {
     shortDescription?: Array<string> | null;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof EmpiricalModel
      */
-    label?: string | null;
+    label?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -220,13 +220,13 @@ export interface EmpiricalModel {
      * @type {Array<string>}
      * @memberof EmpiricalModel
      */
-    license?: Array<string> | null;
+    operatingSystems?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof EmpiricalModel
      */
-    operatingSystems?: Array<string> | null;
+    license?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -241,16 +241,16 @@ export interface EmpiricalModel {
     hasExplanationDiagram?: Array<object> | null;
     /**
      * 
-     * @type {Array<Equation>}
-     * @memberof EmpiricalModel
-     */
-    hasEquation?: Array<Equation> | null;
-    /**
-     * 
      * @type {Array<object>}
      * @memberof EmpiricalModel
      */
     publisher?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<Equation>}
+     * @memberof EmpiricalModel
+     */
+    hasEquation?: Array<Equation> | null;
     /**
      * 
      * @type {Array<object>}
@@ -276,8 +276,8 @@ export function EmpiricalModelFromJSONTyped(json: any, ignoreDiscriminator: bool
         'hasVersion': !exists(json, 'hasVersion') ? undefined : json['hasVersion'],
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
-        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'screenshot': !exists(json, 'screenshot') ? undefined : json['screenshot'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
@@ -290,8 +290,8 @@ export function EmpiricalModelFromJSONTyped(json: any, ignoreDiscriminator: bool
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : json['hasSampleVisualization'],
-        'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
+        'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'website': !exists(json, 'website') ? undefined : json['website'],
         'citation': !exists(json, 'citation') ? undefined : json['citation'],
         'author': !exists(json, 'author') ? undefined : json['author'],
@@ -300,12 +300,12 @@ export function EmpiricalModelFromJSONTyped(json: any, ignoreDiscriminator: bool
         'label': !exists(json, 'label') ? undefined : json['label'],
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
-        'license': !exists(json, 'license') ? undefined : json['license'],
         'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
+        'license': !exists(json, 'license') ? undefined : json['license'],
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : json['hasSourceCode'],
         'hasExplanationDiagram': !exists(json, 'hasExplanationDiagram') ? undefined : json['hasExplanationDiagram'],
-        'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
+        'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
         'fundingSource': !exists(json, 'fundingSource') ? undefined : json['fundingSource'],
     };
 }
@@ -326,8 +326,8 @@ export function EmpiricalModelToJSON(value?: EmpiricalModel): any {
         'hasVersion': value.hasVersion,
         'hasTypicalDataSource': value.hasTypicalDataSource,
         'hasDownloadURL': value.hasDownloadURL,
-        'referencePublication': value.referencePublication,
         'description': value.description,
+        'referencePublication': value.referencePublication,
         'screenshot': value.screenshot,
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
@@ -340,8 +340,8 @@ export function EmpiricalModelToJSON(value?: EmpiricalModel): any {
         'hasPurpose': value.hasPurpose,
         'id': value.id,
         'hasSampleVisualization': value.hasSampleVisualization,
-        'identifier': value.identifier,
         'memoryRequirements': value.memoryRequirements,
+        'identifier': value.identifier,
         'website': value.website,
         'citation': value.citation,
         'author': value.author,
@@ -350,12 +350,12 @@ export function EmpiricalModelToJSON(value?: EmpiricalModel): any {
         'label': value.label,
         'hasAssumption': value.hasAssumption,
         'datePublished': value.datePublished,
-        'license': value.license,
         'operatingSystems': value.operatingSystems,
+        'license': value.license,
         'hasSourceCode': value.hasSourceCode,
         'hasExplanationDiagram': value.hasExplanationDiagram,
-        'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
         'publisher': value.publisher,
+        'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
         'fundingSource': value.fundingSource,
     };
 }

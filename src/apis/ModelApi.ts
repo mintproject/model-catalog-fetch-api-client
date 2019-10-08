@@ -21,7 +21,7 @@ import {
 
 export interface ModelsGetRequest {
     username?: string;
-    queryText?: string;
+    label?: string;
 }
 
 export interface ModelsIdDeleteRequest {
@@ -61,8 +61,8 @@ export class ModelApi extends runtime.BaseAPI {
             queryParameters['username'] = requestParameters.username;
         }
 
-        if (requestParameters.queryText !== undefined) {
-            queryParameters['query_text'] = requestParameters.queryText;
+        if (requestParameters.label !== undefined) {
+            queryParameters['label'] = requestParameters.label;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

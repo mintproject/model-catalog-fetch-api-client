@@ -21,7 +21,7 @@ import {
 
 export interface UnitsGetRequest {
     username?: string;
-    queryText?: string;
+    label?: string;
 }
 
 export interface UnitsIdDeleteRequest {
@@ -61,8 +61,8 @@ export class UnitApi extends runtime.BaseAPI {
             queryParameters['username'] = requestParameters.username;
         }
 
-        if (requestParameters.queryText !== undefined) {
-            queryParameters['query_text'] = requestParameters.queryText;
+        if (requestParameters.label !== undefined) {
+            queryParameters['label'] = requestParameters.label;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

@@ -221,16 +221,16 @@ export interface ModelConfiguration {
     hasOutput?: Array<object> | null;
     /**
      * 
-     * @type {Array<object>}
-     * @memberof ModelConfiguration
-     */
-    fundingSource?: Array<object> | null;
-    /**
-     * 
      * @type {Array<TimeInterval>}
      * @memberof ModelConfiguration
      */
     hasOutputTimeInterval?: Array<TimeInterval> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    fundingSource?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -266,13 +266,13 @@ export interface ModelConfiguration {
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    referencePublication?: Array<string> | null;
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    description?: Array<string> | null;
+    referencePublication?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -383,10 +383,10 @@ export interface ModelConfiguration {
     hasSupportScriptLocation?: Array<string> | null;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    label?: string | null;
+    label?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -458,15 +458,15 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'hasExplanationDiagram': !exists(json, 'hasExplanationDiagram') ? undefined : json['hasExplanationDiagram'],
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
         'hasOutput': !exists(json, 'hasOutput') ? undefined : json['hasOutput'],
-        'fundingSource': !exists(json, 'fundingSource') ? undefined : json['fundingSource'],
         'hasOutputTimeInterval': !exists(json, 'hasOutputTimeInterval') ? undefined : (json['hasOutputTimeInterval'] as Array<any>).map(TimeIntervalFromJSON),
+        'fundingSource': !exists(json, 'fundingSource') ? undefined : json['fundingSource'],
         'parameterAssignmentMethod': !exists(json, 'parameterAssignmentMethod') ? undefined : json['parameterAssignmentMethod'],
         'hasComponentLocation': !exists(json, 'hasComponentLocation') ? undefined : json['hasComponentLocation'],
         'hasProcess': !exists(json, 'hasProcess') ? undefined : (json['hasProcess'] as Array<any>).map(ProcessFromJSON),
         'hasVersion': !exists(json, 'hasVersion') ? undefined : json['hasVersion'],
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
-        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'screenshot': !exists(json, 'screenshot') ? undefined : json['screenshot'],
         'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : json['hasModelCategory'],
         'hasSoftwareImage': !exists(json, 'hasSoftwareImage') ? undefined : json['hasSoftwareImage'],
@@ -532,15 +532,15 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'hasExplanationDiagram': value.hasExplanationDiagram,
         'publisher': value.publisher,
         'hasOutput': value.hasOutput,
-        'fundingSource': value.fundingSource,
         'hasOutputTimeInterval': value.hasOutputTimeInterval === undefined ? undefined : (value.hasOutputTimeInterval as Array<any>).map(TimeIntervalToJSON),
+        'fundingSource': value.fundingSource,
         'parameterAssignmentMethod': value.parameterAssignmentMethod,
         'hasComponentLocation': value.hasComponentLocation,
         'hasProcess': value.hasProcess === undefined ? undefined : (value.hasProcess as Array<any>).map(ProcessToJSON),
         'hasVersion': value.hasVersion,
         'hasTypicalDataSource': value.hasTypicalDataSource,
-        'referencePublication': value.referencePublication,
         'description': value.description,
+        'referencePublication': value.referencePublication,
         'screenshot': value.screenshot,
         'hasModelCategory': value.hasModelCategory,
         'hasSoftwareImage': value.hasSoftwareImage,

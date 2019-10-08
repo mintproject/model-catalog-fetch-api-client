@@ -1,6 +1,6 @@
 {
     "npmRepository": "mintproject",
     "npmName": "@mintproject/modelcatalog_client",
-    "npmVersion": "1.0.3-dev"
+    "npmVersion": "1.0.3"
 
 }
