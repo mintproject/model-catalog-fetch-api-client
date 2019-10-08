@@ -21,6 +21,7 @@ import {
 
 export interface EmpiricalmodelsGetRequest {
     username?: string;
+    queryText?: string;
 }
 
 export interface EmpiricalmodelsIdDeleteRequest {
@@ -58,6 +59,10 @@ export class EmpiricalModelApi extends runtime.BaseAPI {
 
         if (requestParameters.username !== undefined) {
             queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.queryText !== undefined) {
+            queryParameters['query_text'] = requestParameters.queryText;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

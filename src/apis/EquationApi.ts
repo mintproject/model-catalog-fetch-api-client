@@ -21,6 +21,7 @@ import {
 
 export interface EquationsGetRequest {
     username?: string;
+    queryText?: string;
 }
 
 export interface EquationsIdDeleteRequest {
@@ -58,6 +59,10 @@ export class EquationApi extends runtime.BaseAPI {
 
         if (requestParameters.username !== undefined) {
             queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.queryText !== undefined) {
+            queryParameters['query_text'] = requestParameters.queryText;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

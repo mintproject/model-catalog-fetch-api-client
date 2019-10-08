@@ -161,16 +161,16 @@ export interface SoftwareConfiguration {
     dateCreated?: Array<string> | null;
     /**
      * 
-     * @type {Array<Software>}
-     * @memberof SoftwareConfiguration
-     */
-    compatibleVisualizationSoftware?: Array<Software> | null;
-    /**
-     * 
      * @type {Array<Person>}
      * @memberof SoftwareConfiguration
      */
     contributor?: Array<Person> | null;
+    /**
+     * 
+     * @type {Array<Software>}
+     * @memberof SoftwareConfiguration
+     */
+    compatibleVisualizationSoftware?: Array<Software> | null;
     /**
      * 
      * @type {Array<string>}
@@ -179,16 +179,16 @@ export interface SoftwareConfiguration {
     hasFAQ?: Array<string> | null;
     /**
      * 
-     * @type {Array<Person>}
-     * @memberof SoftwareConfiguration
-     */
-    hasContactPerson?: Array<Person> | null;
-    /**
-     * 
      * @type {Array<Image>}
      * @memberof SoftwareConfiguration
      */
     logo?: Array<Image> | null;
+    /**
+     * 
+     * @type {Array<Person>}
+     * @memberof SoftwareConfiguration
+     */
+    hasContactPerson?: Array<Person> | null;
     /**
      * 
      * @type {Array<string>}
@@ -308,13 +308,13 @@ export interface SoftwareConfiguration {
      * @type {Array<string>}
      * @memberof SoftwareConfiguration
      */
-    operatingSystems?: Array<string> | null;
+    license?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof SoftwareConfiguration
      */
-    license?: Array<string> | null;
+    operatingSystems?: Array<string> | null;
     /**
      * 
      * @type {Array<SourceCode>}
@@ -372,11 +372,11 @@ export function SoftwareConfigurationFromJSONTyped(json: any, ignoreDiscriminato
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
         'hasSoftwareImage': !exists(json, 'hasSoftwareImage') ? undefined : (json['hasSoftwareImage'] as Array<any>).map(SoftwareImageFromJSON),
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
-        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
         'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
+        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
-        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : (json['hasContactPerson'] as Array<any>).map(PersonFromJSON),
         'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
+        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : (json['hasContactPerson'] as Array<any>).map(PersonFromJSON),
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : (json['hasSampleVisualization'] as Array<any>).map(VisualizationFromJSON),
@@ -396,8 +396,8 @@ export function SoftwareConfigurationFromJSONTyped(json: any, ignoreDiscriminato
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
         'hasParameter': !exists(json, 'hasParameter') ? undefined : (json['hasParameter'] as Array<any>).map(ParameterFromJSON),
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
-        'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'license': !exists(json, 'license') ? undefined : json['license'],
+        'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : (json['hasSourceCode'] as Array<any>).map(SourceCodeFromJSON),
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
         'hasOutput': !exists(json, 'hasOutput') ? undefined : (json['hasOutput'] as Array<any>).map(DatasetSpecificationFromJSON),
@@ -430,11 +430,11 @@ export function SoftwareConfigurationToJSON(value?: SoftwareConfiguration): any 
         'hasInstallationInstructions': value.hasInstallationInstructions,
         'hasSoftwareImage': value.hasSoftwareImage === undefined ? undefined : (value.hasSoftwareImage as Array<any>).map(SoftwareImageToJSON),
         'dateCreated': value.dateCreated,
-        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
         'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
+        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
         'hasFAQ': value.hasFAQ,
-        'hasContactPerson': value.hasContactPerson === undefined ? undefined : (value.hasContactPerson as Array<any>).map(PersonToJSON),
         'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
+        'hasContactPerson': value.hasContactPerson === undefined ? undefined : (value.hasContactPerson as Array<any>).map(PersonToJSON),
         'hasPurpose': value.hasPurpose,
         'id': value.id,
         'hasSampleVisualization': value.hasSampleVisualization === undefined ? undefined : (value.hasSampleVisualization as Array<any>).map(VisualizationToJSON),
@@ -454,8 +454,8 @@ export function SoftwareConfigurationToJSON(value?: SoftwareConfiguration): any 
         'hasAssumption': value.hasAssumption,
         'hasParameter': value.hasParameter === undefined ? undefined : (value.hasParameter as Array<any>).map(ParameterToJSON),
         'datePublished': value.datePublished,
-        'operatingSystems': value.operatingSystems,
         'license': value.license,
+        'operatingSystems': value.operatingSystems,
         'hasSourceCode': value.hasSourceCode === undefined ? undefined : (value.hasSourceCode as Array<any>).map(SourceCodeToJSON),
         'publisher': value.publisher,
         'hasOutput': value.hasOutput === undefined ? undefined : (value.hasOutput as Array<any>).map(DatasetSpecificationToJSON),

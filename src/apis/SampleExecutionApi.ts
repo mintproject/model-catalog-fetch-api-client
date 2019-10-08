@@ -21,6 +21,7 @@ import {
 
 export interface SampleexecutionsGetRequest {
     username?: string;
+    queryText?: string;
 }
 
 export interface SampleexecutionsIdDeleteRequest {
@@ -58,6 +59,10 @@ export class SampleExecutionApi extends runtime.BaseAPI {
 
         if (requestParameters.username !== undefined) {
             queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.queryText !== undefined) {
+            queryParameters['query_text'] = requestParameters.queryText;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

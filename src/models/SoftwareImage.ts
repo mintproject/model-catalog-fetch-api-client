@@ -131,16 +131,16 @@ export interface SoftwareImage {
     hasFAQ?: Array<string> | null;
     /**
      * 
-     * @type {Array<Person>}
-     * @memberof SoftwareImage
-     */
-    hasContactPerson?: Array<Person> | null;
-    /**
-     * 
      * @type {Array<Image>}
      * @memberof SoftwareImage
      */
     logo?: Array<Image> | null;
+    /**
+     * 
+     * @type {Array<Person>}
+     * @memberof SoftwareImage
+     */
+    hasContactPerson?: Array<Person> | null;
     /**
      * 
      * @type {Array<string>}
@@ -230,13 +230,13 @@ export interface SoftwareImage {
      * @type {Array<string>}
      * @memberof SoftwareImage
      */
-    operatingSystems?: Array<string> | null;
+    license?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof SoftwareImage
      */
-    license?: Array<string> | null;
+    operatingSystems?: Array<string> | null;
     /**
      * 
      * @type {Array<SourceCode>}
@@ -281,8 +281,8 @@ export function SoftwareImageFromJSONTyped(json: any, ignoreDiscriminator: boole
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
         'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
-        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : (json['hasContactPerson'] as Array<any>).map(PersonFromJSON),
         'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
+        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : (json['hasContactPerson'] as Array<any>).map(PersonFromJSON),
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : (json['hasSampleVisualization'] as Array<any>).map(VisualizationFromJSON),
@@ -297,8 +297,8 @@ export function SoftwareImageFromJSONTyped(json: any, ignoreDiscriminator: boole
         'hasExecutionCommand': !exists(json, 'hasExecutionCommand') ? undefined : json['hasExecutionCommand'],
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
-        'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'license': !exists(json, 'license') ? undefined : json['license'],
+        'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : (json['hasSourceCode'] as Array<any>).map(SourceCodeFromJSON),
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
         'fundingSource': !exists(json, 'fundingSource') ? undefined : (json['fundingSource'] as Array<any>).map(OrganizationFromJSON),
@@ -328,8 +328,8 @@ export function SoftwareImageToJSON(value?: SoftwareImage): any {
         'dateCreated': value.dateCreated,
         'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
         'hasFAQ': value.hasFAQ,
-        'hasContactPerson': value.hasContactPerson === undefined ? undefined : (value.hasContactPerson as Array<any>).map(PersonToJSON),
         'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
+        'hasContactPerson': value.hasContactPerson === undefined ? undefined : (value.hasContactPerson as Array<any>).map(PersonToJSON),
         'hasPurpose': value.hasPurpose,
         'id': value.id,
         'hasSampleVisualization': value.hasSampleVisualization === undefined ? undefined : (value.hasSampleVisualization as Array<any>).map(VisualizationToJSON),
@@ -344,8 +344,8 @@ export function SoftwareImageToJSON(value?: SoftwareImage): any {
         'hasExecutionCommand': value.hasExecutionCommand,
         'hasAssumption': value.hasAssumption,
         'datePublished': value.datePublished,
-        'operatingSystems': value.operatingSystems,
         'license': value.license,
+        'operatingSystems': value.operatingSystems,
         'hasSourceCode': value.hasSourceCode === undefined ? undefined : (value.hasSourceCode as Array<any>).map(SourceCodeToJSON),
         'publisher': value.publisher,
         'fundingSource': value.fundingSource === undefined ? undefined : (value.fundingSource as Array<any>).map(OrganizationToJSON),

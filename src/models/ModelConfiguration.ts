@@ -50,13 +50,13 @@ export interface ModelConfiguration {
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    parameterAssignmentMethod?: Array<string> | null;
+    keywords?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    hasComponentLocation?: Array<string> | null;
+    hasDocumentation?: Array<string> | null;
     /**
      * 
      * @type {Array<Grid>}
@@ -65,16 +65,22 @@ export interface ModelConfiguration {
     hasGrid?: Array<Grid> | null;
     /**
      * 
-     * @type {Array<Process>}
+     * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    hasProcess?: Array<Process> | null;
+    softwareRequirements?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
     hasImplementationScriptLocation?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    hasDownloadURL?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -92,13 +98,7 @@ export interface ModelConfiguration {
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    hasModelCategory?: Array<string> | null;
-    /**
-     * 
-     * @type {Array<object>}
-     * @memberof ModelConfiguration
-     */
-    hasSoftwareImage?: Array<object> | null;
+    hasInstallationInstructions?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -122,13 +122,19 @@ export interface ModelConfiguration {
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    hasModelResultTable?: Array<string> | null;
+    hasFAQ?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
      * @memberof ModelConfiguration
      */
-    calibrationTargetVariable?: Array<object> | null;
+    logo?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    hasContactPerson?: Array<object> | null;
     /**
      * 
      * @type {string}
@@ -137,22 +143,10 @@ export interface ModelConfiguration {
     id?: string;
     /**
      * 
-     * @type {Array<ModelConfiguration>}
+     * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    hasExpertTunedModel?: Array<ModelConfiguration> | null;
-    /**
-     * 
-     * @type {Array<ModelConfiguration>}
-     * @memberof ModelConfiguration
-     */
-    hasCalibration?: Array<ModelConfiguration> | null;
-    /**
-     * 
-     * @type {Array<CausalDiagram>}
-     * @memberof ModelConfiguration
-     */
-    hasCausalDiagram?: Array<CausalDiagram> | null;
+    identifier?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -167,10 +161,214 @@ export interface ModelConfiguration {
     hasSampleResult?: Array<object> | null;
     /**
      * 
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    author?: Array<object> | null;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
     hasConstraint?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    shortDescription?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    hasExecutionCommand?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    datePublished?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    license?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    hasSourceCode?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    hasExplanationDiagram?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    publisher?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    hasOutput?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    fundingSource?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<TimeInterval>}
+     * @memberof ModelConfiguration
+     */
+    hasOutputTimeInterval?: Array<TimeInterval> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    parameterAssignmentMethod?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    hasComponentLocation?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<Process>}
+     * @memberof ModelConfiguration
+     */
+    hasProcess?: Array<Process> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    hasVersion?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    hasTypicalDataSource?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    referencePublication?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    description?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    screenshot?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    hasModelCategory?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    hasSoftwareImage?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    dateCreated?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    contributor?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    hasModelResultTable?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    calibrationTargetVariable?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    hasPurpose?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<ModelConfiguration>}
+     * @memberof ModelConfiguration
+     */
+    hasExpertTunedModel?: Array<ModelConfiguration> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    hasSampleVisualization?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<ModelConfiguration>}
+     * @memberof ModelConfiguration
+     */
+    hasCalibration?: Array<ModelConfiguration> | null;
+    /**
+     * 
+     * @type {Array<CausalDiagram>}
+     * @memberof ModelConfiguration
+     */
+    hasCausalDiagram?: Array<CausalDiagram> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    memoryRequirements?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    website?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    citation?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    processorRequirements?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -194,7 +392,7 @@ export interface ModelConfiguration {
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    hasExecutionCommand?: Array<string> | null;
+    hasAssumption?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -203,28 +401,16 @@ export interface ModelConfiguration {
     hasParameter?: Array<object> | null;
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    hasExplanationDiagram?: Array<object> | null;
+    operatingSystems?: Array<string> | null;
     /**
      * 
      * @type {Array<Equation>}
      * @memberof ModelConfiguration
      */
     hasEquation?: Array<Equation> | null;
-    /**
-     * 
-     * @type {Array<object>}
-     * @memberof ModelConfiguration
-     */
-    hasOutput?: Array<object> | null;
-    /**
-     * 
-     * @type {Array<TimeInterval>}
-     * @memberof ModelConfiguration
-     */
-    hasOutputTimeInterval?: Array<TimeInterval> | null;
     /**
      * 
      * @type {Array<object>}
@@ -243,36 +429,67 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'parameterAssignmentMethod': !exists(json, 'parameterAssignmentMethod') ? undefined : json['parameterAssignmentMethod'],
-        'hasComponentLocation': !exists(json, 'hasComponentLocation') ? undefined : json['hasComponentLocation'],
+        'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
+        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'hasGrid': !exists(json, 'hasGrid') ? undefined : (json['hasGrid'] as Array<any>).map(GridFromJSON),
-        'hasProcess': !exists(json, 'hasProcess') ? undefined : (json['hasProcess'] as Array<any>).map(ProcessFromJSON),
+        'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'hasImplementationScriptLocation': !exists(json, 'hasImplementationScriptLocation') ? undefined : json['hasImplementationScriptLocation'],
+        'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'calibratedVariable': !exists(json, 'calibratedVariable') ? undefined : json['calibratedVariable'],
-        'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : json['hasModelCategory'],
-        'hasSoftwareImage': !exists(json, 'hasSoftwareImage') ? undefined : json['hasSoftwareImage'],
+        'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
         'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : json['compatibleVisualizationSoftware'],
         'calibrationMethod': !exists(json, 'calibrationMethod') ? undefined : json['calibrationMethod'],
         'hasRegion': !exists(json, 'hasRegion') ? undefined : (json['hasRegion'] as Array<any>).map(RegionFromJSON),
-        'hasModelResultTable': !exists(json, 'hasModelResultTable') ? undefined : json['hasModelResultTable'],
-        'calibrationTargetVariable': !exists(json, 'calibrationTargetVariable') ? undefined : json['calibrationTargetVariable'],
+        'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
+        'logo': !exists(json, 'logo') ? undefined : json['logo'],
+        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'id': !exists(json, 'id') ? undefined : json['id'],
-        'hasExpertTunedModel': !exists(json, 'hasExpertTunedModel') ? undefined : (json['hasExpertTunedModel'] as Array<any>).map(ModelConfigurationFromJSON),
-        'hasCalibration': !exists(json, 'hasCalibration') ? undefined : (json['hasCalibration'] as Array<any>).map(ModelConfigurationFromJSON),
-        'hasCausalDiagram': !exists(json, 'hasCausalDiagram') ? undefined : (json['hasCausalDiagram'] as Array<any>).map(CausalDiagramFromJSON),
+        'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'hasSampleExecution': !exists(json, 'hasSampleExecution') ? undefined : json['hasSampleExecution'],
         'hasSampleResult': !exists(json, 'hasSampleResult') ? undefined : json['hasSampleResult'],
+        'author': !exists(json, 'author') ? undefined : json['author'],
         'hasConstraint': !exists(json, 'hasConstraint') ? undefined : json['hasConstraint'],
+        'shortDescription': !exists(json, 'shortDescription') ? undefined : json['shortDescription'],
+        'hasExecutionCommand': !exists(json, 'hasExecutionCommand') ? undefined : json['hasExecutionCommand'],
+        'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
+        'license': !exists(json, 'license') ? undefined : json['license'],
+        'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : json['hasSourceCode'],
+        'hasExplanationDiagram': !exists(json, 'hasExplanationDiagram') ? undefined : json['hasExplanationDiagram'],
+        'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
+        'hasOutput': !exists(json, 'hasOutput') ? undefined : json['hasOutput'],
+        'fundingSource': !exists(json, 'fundingSource') ? undefined : json['fundingSource'],
+        'hasOutputTimeInterval': !exists(json, 'hasOutputTimeInterval') ? undefined : (json['hasOutputTimeInterval'] as Array<any>).map(TimeIntervalFromJSON),
+        'parameterAssignmentMethod': !exists(json, 'parameterAssignmentMethod') ? undefined : json['parameterAssignmentMethod'],
+        'hasComponentLocation': !exists(json, 'hasComponentLocation') ? undefined : json['hasComponentLocation'],
+        'hasProcess': !exists(json, 'hasProcess') ? undefined : (json['hasProcess'] as Array<any>).map(ProcessFromJSON),
+        'hasVersion': !exists(json, 'hasVersion') ? undefined : json['hasVersion'],
+        'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
+        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
+        'screenshot': !exists(json, 'screenshot') ? undefined : json['screenshot'],
+        'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : json['hasModelCategory'],
+        'hasSoftwareImage': !exists(json, 'hasSoftwareImage') ? undefined : json['hasSoftwareImage'],
+        'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
+        'contributor': !exists(json, 'contributor') ? undefined : json['contributor'],
+        'hasModelResultTable': !exists(json, 'hasModelResultTable') ? undefined : json['hasModelResultTable'],
+        'calibrationTargetVariable': !exists(json, 'calibrationTargetVariable') ? undefined : json['calibrationTargetVariable'],
+        'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
+        'hasExpertTunedModel': !exists(json, 'hasExpertTunedModel') ? undefined : (json['hasExpertTunedModel'] as Array<any>).map(ModelConfigurationFromJSON),
+        'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : json['hasSampleVisualization'],
+        'hasCalibration': !exists(json, 'hasCalibration') ? undefined : (json['hasCalibration'] as Array<any>).map(ModelConfigurationFromJSON),
+        'hasCausalDiagram': !exists(json, 'hasCausalDiagram') ? undefined : (json['hasCausalDiagram'] as Array<any>).map(CausalDiagramFromJSON),
+        'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
+        'website': !exists(json, 'website') ? undefined : json['website'],
+        'citation': !exists(json, 'citation') ? undefined : json['citation'],
+        'processorRequirements': !exists(json, 'processorRequirements') ? undefined : json['processorRequirements'],
         'adjustableParameter': !exists(json, 'adjustableParameter') ? undefined : json['adjustableParameter'],
         'hasSupportScriptLocation': !exists(json, 'hasSupportScriptLocation') ? undefined : json['hasSupportScriptLocation'],
         'label': !exists(json, 'label') ? undefined : json['label'],
-        'hasExecutionCommand': !exists(json, 'hasExecutionCommand') ? undefined : json['hasExecutionCommand'],
+        'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
         'hasParameter': !exists(json, 'hasParameter') ? undefined : json['hasParameter'],
-        'hasExplanationDiagram': !exists(json, 'hasExplanationDiagram') ? undefined : json['hasExplanationDiagram'],
+        'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
-        'hasOutput': !exists(json, 'hasOutput') ? undefined : json['hasOutput'],
-        'hasOutputTimeInterval': !exists(json, 'hasOutputTimeInterval') ? undefined : (json['hasOutputTimeInterval'] as Array<any>).map(TimeIntervalFromJSON),
         'hasInput': !exists(json, 'hasInput') ? undefined : json['hasInput'],
     };
 }
@@ -286,36 +503,67 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
     }
     return {
         
-        'parameterAssignmentMethod': value.parameterAssignmentMethod,
-        'hasComponentLocation': value.hasComponentLocation,
+        'keywords': value.keywords,
+        'hasDocumentation': value.hasDocumentation,
         'hasGrid': value.hasGrid === undefined ? undefined : (value.hasGrid as Array<any>).map(GridToJSON),
-        'hasProcess': value.hasProcess === undefined ? undefined : (value.hasProcess as Array<any>).map(ProcessToJSON),
+        'softwareRequirements': value.softwareRequirements,
         'hasImplementationScriptLocation': value.hasImplementationScriptLocation,
+        'hasDownloadURL': value.hasDownloadURL,
         'type': value.type,
         'calibratedVariable': value.calibratedVariable,
-        'hasModelCategory': value.hasModelCategory,
-        'hasSoftwareImage': value.hasSoftwareImage,
+        'hasInstallationInstructions': value.hasInstallationInstructions,
         'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware,
         'calibrationMethod': value.calibrationMethod,
         'hasRegion': value.hasRegion === undefined ? undefined : (value.hasRegion as Array<any>).map(RegionToJSON),
-        'hasModelResultTable': value.hasModelResultTable,
-        'calibrationTargetVariable': value.calibrationTargetVariable,
+        'hasFAQ': value.hasFAQ,
+        'logo': value.logo,
+        'hasContactPerson': value.hasContactPerson,
         'id': value.id,
-        'hasExpertTunedModel': value.hasExpertTunedModel === undefined ? undefined : (value.hasExpertTunedModel as Array<any>).map(ModelConfigurationToJSON),
-        'hasCalibration': value.hasCalibration === undefined ? undefined : (value.hasCalibration as Array<any>).map(ModelConfigurationToJSON),
-        'hasCausalDiagram': value.hasCausalDiagram === undefined ? undefined : (value.hasCausalDiagram as Array<any>).map(CausalDiagramToJSON),
+        'identifier': value.identifier,
         'hasSampleExecution': value.hasSampleExecution,
         'hasSampleResult': value.hasSampleResult,
+        'author': value.author,
         'hasConstraint': value.hasConstraint,
+        'shortDescription': value.shortDescription,
+        'hasExecutionCommand': value.hasExecutionCommand,
+        'datePublished': value.datePublished,
+        'license': value.license,
+        'hasSourceCode': value.hasSourceCode,
+        'hasExplanationDiagram': value.hasExplanationDiagram,
+        'publisher': value.publisher,
+        'hasOutput': value.hasOutput,
+        'fundingSource': value.fundingSource,
+        'hasOutputTimeInterval': value.hasOutputTimeInterval === undefined ? undefined : (value.hasOutputTimeInterval as Array<any>).map(TimeIntervalToJSON),
+        'parameterAssignmentMethod': value.parameterAssignmentMethod,
+        'hasComponentLocation': value.hasComponentLocation,
+        'hasProcess': value.hasProcess === undefined ? undefined : (value.hasProcess as Array<any>).map(ProcessToJSON),
+        'hasVersion': value.hasVersion,
+        'hasTypicalDataSource': value.hasTypicalDataSource,
+        'referencePublication': value.referencePublication,
+        'description': value.description,
+        'screenshot': value.screenshot,
+        'hasModelCategory': value.hasModelCategory,
+        'hasSoftwareImage': value.hasSoftwareImage,
+        'dateCreated': value.dateCreated,
+        'contributor': value.contributor,
+        'hasModelResultTable': value.hasModelResultTable,
+        'calibrationTargetVariable': value.calibrationTargetVariable,
+        'hasPurpose': value.hasPurpose,
+        'hasExpertTunedModel': value.hasExpertTunedModel === undefined ? undefined : (value.hasExpertTunedModel as Array<any>).map(ModelConfigurationToJSON),
+        'hasSampleVisualization': value.hasSampleVisualization,
+        'hasCalibration': value.hasCalibration === undefined ? undefined : (value.hasCalibration as Array<any>).map(ModelConfigurationToJSON),
+        'hasCausalDiagram': value.hasCausalDiagram === undefined ? undefined : (value.hasCausalDiagram as Array<any>).map(CausalDiagramToJSON),
+        'memoryRequirements': value.memoryRequirements,
+        'website': value.website,
+        'citation': value.citation,
+        'processorRequirements': value.processorRequirements,
         'adjustableParameter': value.adjustableParameter,
         'hasSupportScriptLocation': value.hasSupportScriptLocation,
         'label': value.label,
-        'hasExecutionCommand': value.hasExecutionCommand,
+        'hasAssumption': value.hasAssumption,
         'hasParameter': value.hasParameter,
-        'hasExplanationDiagram': value.hasExplanationDiagram,
+        'operatingSystems': value.operatingSystems,
         'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
-        'hasOutput': value.hasOutput,
-        'hasOutputTimeInterval': value.hasOutputTimeInterval === undefined ? undefined : (value.hasOutputTimeInterval as Array<any>).map(TimeIntervalToJSON),
         'hasInput': value.hasInput,
     };
 }

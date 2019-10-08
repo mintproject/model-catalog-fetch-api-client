@@ -21,6 +21,7 @@ import {
 
 export interface EmulatorsGetRequest {
     username?: string;
+    queryText?: string;
 }
 
 export interface EmulatorsIdDeleteRequest {
@@ -58,6 +59,10 @@ export class EmulatorApi extends runtime.BaseAPI {
 
         if (requestParameters.username !== undefined) {
             queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.queryText !== undefined) {
+            queryParameters['query_text'] = requestParameters.queryText;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

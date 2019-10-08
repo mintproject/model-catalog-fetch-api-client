@@ -20,22 +20,28 @@ import { exists, mapValues } from '../runtime';
 export interface SpatiallyDistributedGrid {
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<number>}
      * @memberof SpatiallyDistributedGrid
      */
-    hasShape?: Array<string> | null;
+    hasDimensionality?: Array<number> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof SpatiallyDistributedGrid
      */
-    hasDimension?: Array<string> | null;
+    hasFormat?: Array<string> | null;
     /**
      * 
-     * @type {string}
+     * @type {object}
      * @memberof SpatiallyDistributedGrid
      */
-    id?: string;
+    hasFileStructure?: object | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof SpatiallyDistributedGrid
+     */
+    hasPresentation?: Array<object> | null;
     /**
      * 
      * @type {string}
@@ -50,6 +56,18 @@ export interface SpatiallyDistributedGrid {
     type?: Array<string> | null;
     /**
      * 
+     * @type {Array<object>}
+     * @memberof SpatiallyDistributedGrid
+     */
+    hasFixedResource?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SpatiallyDistributedGrid
+     */
+    hasCoordinateSystem?: Array<string> | null;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof SpatiallyDistributedGrid
      */
@@ -59,7 +77,25 @@ export interface SpatiallyDistributedGrid {
      * @type {Array<string>}
      * @memberof SpatiallyDistributedGrid
      */
-    hasCoordinateSystem?: Array<string> | null;
+    hasShape?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SpatiallyDistributedGrid
+     */
+    hasDimension?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof SpatiallyDistributedGrid
+     */
+    position?: Array<number> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof SpatiallyDistributedGrid
+     */
+    id?: string;
 }
 
 export function SpatiallyDistributedGridFromJSON(json: any): SpatiallyDistributedGrid {
@@ -72,13 +108,19 @@ export function SpatiallyDistributedGridFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'hasShape': !exists(json, 'hasShape') ? undefined : json['hasShape'],
-        'hasDimension': !exists(json, 'hasDimension') ? undefined : json['hasDimension'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'hasDimensionality': !exists(json, 'hasDimensionality') ? undefined : json['hasDimensionality'],
+        'hasFormat': !exists(json, 'hasFormat') ? undefined : json['hasFormat'],
+        'hasFileStructure': !exists(json, 'hasFileStructure') ? undefined : json['hasFileStructure'],
+        'hasPresentation': !exists(json, 'hasPresentation') ? undefined : json['hasPresentation'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
-        'hasSpatialResolution': !exists(json, 'hasSpatialResolution') ? undefined : json['hasSpatialResolution'],
+        'hasFixedResource': !exists(json, 'hasFixedResource') ? undefined : json['hasFixedResource'],
         'hasCoordinateSystem': !exists(json, 'hasCoordinateSystem') ? undefined : json['hasCoordinateSystem'],
+        'hasSpatialResolution': !exists(json, 'hasSpatialResolution') ? undefined : json['hasSpatialResolution'],
+        'hasShape': !exists(json, 'hasShape') ? undefined : json['hasShape'],
+        'hasDimension': !exists(json, 'hasDimension') ? undefined : json['hasDimension'],
+        'position': !exists(json, 'position') ? undefined : json['position'],
+        'id': !exists(json, 'id') ? undefined : json['id'],
     };
 }
 
@@ -91,13 +133,19 @@ export function SpatiallyDistributedGridToJSON(value?: SpatiallyDistributedGrid)
     }
     return {
         
-        'hasShape': value.hasShape,
-        'hasDimension': value.hasDimension,
-        'id': value.id,
+        'hasDimensionality': value.hasDimensionality,
+        'hasFormat': value.hasFormat,
+        'hasFileStructure': value.hasFileStructure,
+        'hasPresentation': value.hasPresentation,
         'label': value.label,
         'type': value.type,
-        'hasSpatialResolution': value.hasSpatialResolution,
+        'hasFixedResource': value.hasFixedResource,
         'hasCoordinateSystem': value.hasCoordinateSystem,
+        'hasSpatialResolution': value.hasSpatialResolution,
+        'hasShape': value.hasShape,
+        'hasDimension': value.hasDimension,
+        'position': value.position,
+        'id': value.id,
     };
 }
 

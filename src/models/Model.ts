@@ -34,13 +34,13 @@ export interface Model {
      * @type {Array<string>}
      * @memberof Model
      */
-    hasDocumentation?: Array<string> | null;
+    keywords?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Model
      */
-    keywords?: Array<string> | null;
+    hasDocumentation?: Array<string> | null;
     /**
      * 
      * @type {Array<Grid>}
@@ -160,13 +160,13 @@ export interface Model {
      * @type {Array<string>}
      * @memberof Model
      */
-    memoryRequirements?: Array<string> | null;
+    identifier?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Model
      */
-    identifier?: Array<string> | null;
+    memoryRequirements?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -220,13 +220,13 @@ export interface Model {
      * @type {Array<string>}
      * @memberof Model
      */
-    operatingSystems?: Array<string> | null;
+    license?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Model
      */
-    license?: Array<string> | null;
+    operatingSystems?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -269,8 +269,8 @@ export function ModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): Mod
     }
     return {
         
-        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
+        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'hasGrid': !exists(json, 'hasGrid') ? undefined : (json['hasGrid'] as Array<any>).map(GridFromJSON),
         'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : json['hasVersion'],
@@ -290,8 +290,8 @@ export function ModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): Mod
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : json['hasSampleVisualization'],
-        'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
+        'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
         'website': !exists(json, 'website') ? undefined : json['website'],
         'citation': !exists(json, 'citation') ? undefined : json['citation'],
         'author': !exists(json, 'author') ? undefined : json['author'],
@@ -300,8 +300,8 @@ export function ModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): Mod
         'label': !exists(json, 'label') ? undefined : json['label'],
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
-        'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'license': !exists(json, 'license') ? undefined : json['license'],
+        'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : json['hasSourceCode'],
         'hasExplanationDiagram': !exists(json, 'hasExplanationDiagram') ? undefined : json['hasExplanationDiagram'],
         'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
@@ -319,8 +319,8 @@ export function ModelToJSON(value?: Model): any {
     }
     return {
         
-        'hasDocumentation': value.hasDocumentation,
         'keywords': value.keywords,
+        'hasDocumentation': value.hasDocumentation,
         'hasGrid': value.hasGrid === undefined ? undefined : (value.hasGrid as Array<any>).map(GridToJSON),
         'softwareRequirements': value.softwareRequirements,
         'hasVersion': value.hasVersion,
@@ -340,8 +340,8 @@ export function ModelToJSON(value?: Model): any {
         'hasPurpose': value.hasPurpose,
         'id': value.id,
         'hasSampleVisualization': value.hasSampleVisualization,
-        'memoryRequirements': value.memoryRequirements,
         'identifier': value.identifier,
+        'memoryRequirements': value.memoryRequirements,
         'website': value.website,
         'citation': value.citation,
         'author': value.author,
@@ -350,8 +350,8 @@ export function ModelToJSON(value?: Model): any {
         'label': value.label,
         'hasAssumption': value.hasAssumption,
         'datePublished': value.datePublished,
-        'operatingSystems': value.operatingSystems,
         'license': value.license,
+        'operatingSystems': value.operatingSystems,
         'hasSourceCode': value.hasSourceCode,
         'hasExplanationDiagram': value.hasExplanationDiagram,
         'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),

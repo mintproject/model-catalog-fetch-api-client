@@ -31,10 +31,208 @@ import {
 export interface EmpiricalModel {
     /**
      * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    keywords?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    hasDocumentation?: Array<string> | null;
+    /**
+     * 
      * @type {Array<Grid>}
      * @memberof EmpiricalModel
      */
     hasGrid?: Array<Grid> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    softwareRequirements?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof EmpiricalModel
+     */
+    hasVersion?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    hasTypicalDataSource?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    hasDownloadURL?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    referencePublication?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    description?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof EmpiricalModel
+     */
+    screenshot?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    type?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    hasInstallationInstructions?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    hasModelCategory?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    dateCreated?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof EmpiricalModel
+     */
+    contributor?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    hasFAQ?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof EmpiricalModel
+     */
+    logo?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof EmpiricalModel
+     */
+    hasContactPerson?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    hasPurpose?: Array<string> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmpiricalModel
+     */
+    id?: string;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof EmpiricalModel
+     */
+    hasSampleVisualization?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    identifier?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    memoryRequirements?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    website?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    citation?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof EmpiricalModel
+     */
+    author?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    processorRequirements?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    shortDescription?: Array<string> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmpiricalModel
+     */
+    label?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    hasAssumption?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    datePublished?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    license?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    operatingSystems?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof EmpiricalModel
+     */
+    hasSourceCode?: Array<object> | null;
     /**
      * 
      * @type {Array<object>}
@@ -49,28 +247,16 @@ export interface EmpiricalModel {
     hasEquation?: Array<Equation> | null;
     /**
      * 
-     * @type {string}
+     * @type {Array<object>}
      * @memberof EmpiricalModel
      */
-    id?: string;
+    publisher?: Array<object> | null;
     /**
      * 
-     * @type {string}
+     * @type {Array<object>}
      * @memberof EmpiricalModel
      */
-    label?: string | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof EmpiricalModel
-     */
-    type?: Array<string> | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof EmpiricalModel
-     */
-    hasModelCategory?: Array<string> | null;
+    fundingSource?: Array<object> | null;
 }
 
 export function EmpiricalModelFromJSON(json: any): EmpiricalModel {
@@ -83,13 +269,44 @@ export function EmpiricalModelFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
+        'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
+        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'hasGrid': !exists(json, 'hasGrid') ? undefined : (json['hasGrid'] as Array<any>).map(GridFromJSON),
+        'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
+        'hasVersion': !exists(json, 'hasVersion') ? undefined : json['hasVersion'],
+        'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
+        'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
+        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
+        'screenshot': !exists(json, 'screenshot') ? undefined : json['screenshot'],
+        'type': !exists(json, 'type') ? undefined : json['type'],
+        'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
+        'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : json['hasModelCategory'],
+        'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
+        'contributor': !exists(json, 'contributor') ? undefined : json['contributor'],
+        'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
+        'logo': !exists(json, 'logo') ? undefined : json['logo'],
+        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
+        'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
+        'id': !exists(json, 'id') ? undefined : json['id'],
+        'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : json['hasSampleVisualization'],
+        'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
+        'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
+        'website': !exists(json, 'website') ? undefined : json['website'],
+        'citation': !exists(json, 'citation') ? undefined : json['citation'],
+        'author': !exists(json, 'author') ? undefined : json['author'],
+        'processorRequirements': !exists(json, 'processorRequirements') ? undefined : json['processorRequirements'],
+        'shortDescription': !exists(json, 'shortDescription') ? undefined : json['shortDescription'],
+        'label': !exists(json, 'label') ? undefined : json['label'],
+        'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
+        'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
+        'license': !exists(json, 'license') ? undefined : json['license'],
+        'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
+        'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : json['hasSourceCode'],
         'hasExplanationDiagram': !exists(json, 'hasExplanationDiagram') ? undefined : json['hasExplanationDiagram'],
         'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'label': !exists(json, 'label') ? undefined : json['label'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : json['hasModelCategory'],
+        'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
+        'fundingSource': !exists(json, 'fundingSource') ? undefined : json['fundingSource'],
     };
 }
 
@@ -102,13 +319,44 @@ export function EmpiricalModelToJSON(value?: EmpiricalModel): any {
     }
     return {
         
+        'keywords': value.keywords,
+        'hasDocumentation': value.hasDocumentation,
         'hasGrid': value.hasGrid === undefined ? undefined : (value.hasGrid as Array<any>).map(GridToJSON),
+        'softwareRequirements': value.softwareRequirements,
+        'hasVersion': value.hasVersion,
+        'hasTypicalDataSource': value.hasTypicalDataSource,
+        'hasDownloadURL': value.hasDownloadURL,
+        'referencePublication': value.referencePublication,
+        'description': value.description,
+        'screenshot': value.screenshot,
+        'type': value.type,
+        'hasInstallationInstructions': value.hasInstallationInstructions,
+        'hasModelCategory': value.hasModelCategory,
+        'dateCreated': value.dateCreated,
+        'contributor': value.contributor,
+        'hasFAQ': value.hasFAQ,
+        'logo': value.logo,
+        'hasContactPerson': value.hasContactPerson,
+        'hasPurpose': value.hasPurpose,
+        'id': value.id,
+        'hasSampleVisualization': value.hasSampleVisualization,
+        'identifier': value.identifier,
+        'memoryRequirements': value.memoryRequirements,
+        'website': value.website,
+        'citation': value.citation,
+        'author': value.author,
+        'processorRequirements': value.processorRequirements,
+        'shortDescription': value.shortDescription,
+        'label': value.label,
+        'hasAssumption': value.hasAssumption,
+        'datePublished': value.datePublished,
+        'license': value.license,
+        'operatingSystems': value.operatingSystems,
+        'hasSourceCode': value.hasSourceCode,
         'hasExplanationDiagram': value.hasExplanationDiagram,
         'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
-        'id': value.id,
-        'label': value.label,
-        'type': value.type,
-        'hasModelCategory': value.hasModelCategory,
+        'publisher': value.publisher,
+        'fundingSource': value.fundingSource,
     };
 }
 

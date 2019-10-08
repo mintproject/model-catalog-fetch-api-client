@@ -21,6 +21,7 @@ import {
 
 export interface SoftwareversionsGetRequest {
     username?: string;
+    queryText?: string;
 }
 
 export interface SoftwareversionsIdDeleteRequest {
@@ -58,6 +59,10 @@ export class SoftwareVersionApi extends runtime.BaseAPI {
 
         if (requestParameters.username !== undefined) {
             queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.queryText !== undefined) {
+            queryParameters['query_text'] = requestParameters.queryText;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
