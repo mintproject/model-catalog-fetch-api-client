@@ -4,6 +4,7 @@ export * from './DefaultApi';
 export * from './EmpiricalModelApi';
 export * from './EmulatorApi';
 export * from './EquationApi';
+export * from './FundingInformationApi';
 export * from './GeoCoordinatesApi';
 export * from './GeoShapeApi';
 export * from './GridApi';

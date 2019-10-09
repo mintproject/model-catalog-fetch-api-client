@@ -12,63 +12,70 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    Organization,
+    OrganizationFromJSON,
+    OrganizationFromJSONTyped,
+    OrganizationToJSON,
+} from './';
+
 /**
  * 
  * @export
- * @interface SampleExecution
+ * @interface FundingInformation
  */
-export interface SampleExecution {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof SampleExecution
-     */
-    description?: Array<string> | null;
+export interface FundingInformation {
     /**
      * 
      * @type {string}
-     * @memberof SampleExecution
+     * @memberof FundingInformation
      */
     id?: string;
     /**
      * 
      * @type {Array<string>}
-     * @memberof SampleExecution
+     * @memberof FundingInformation
      */
     label?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
-     * @memberof SampleExecution
+     * @memberof FundingInformation
      */
     type?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof SampleExecution
+     * @type {Array<Organization>}
+     * @memberof FundingInformation
      */
-    hasExecutionCommand?: Array<string> | null;
+    fundingSource?: Array<Organization> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof FundingInformation
+     */
+    fundingGrant?: Array<string> | null;
 }
 
-export function SampleExecutionFromJSON(json: any): SampleExecution {
-    return SampleExecutionFromJSONTyped(json, false);
+export function FundingInformationFromJSON(json: any): FundingInformation {
+    return FundingInformationFromJSONTyped(json, false);
 }
 
-export function SampleExecutionFromJSONTyped(json: any, ignoreDiscriminator: boolean): SampleExecution {
+export function FundingInformationFromJSONTyped(json: any, ignoreDiscriminator: boolean): FundingInformation {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
-        'hasExecutionCommand': !exists(json, 'hasExecutionCommand') ? undefined : json['hasExecutionCommand'],
+        'fundingSource': !exists(json, 'fundingSource') ? undefined : (json['fundingSource'] as Array<any>).map(OrganizationFromJSON),
+        'fundingGrant': !exists(json, 'fundingGrant') ? undefined : json['fundingGrant'],
     };
 }
 
-export function SampleExecutionToJSON(value?: SampleExecution): any {
+export function FundingInformationToJSON(value?: FundingInformation): any {
     if (value === undefined) {
         return undefined;
     }
@@ -77,11 +84,11 @@ export function SampleExecutionToJSON(value?: SampleExecution): any {
     }
     return {
         
-        'description': value.description,
         'id': value.id,
         'label': value.label,
         'type': value.type,
-        'hasExecutionCommand': value.hasExecutionCommand,
+        'fundingSource': value.fundingSource === undefined ? undefined : (value.fundingSource as Array<any>).map(OrganizationToJSON),
+        'fundingGrant': value.fundingGrant,
     };
 }
 

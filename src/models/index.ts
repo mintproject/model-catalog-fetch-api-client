@@ -3,6 +3,7 @@ export * from './DatasetSpecification';
 export * from './EmpiricalModel';
 export * from './Emulator';
 export * from './Equation';
+export * from './FundingInformation';
 export * from './GeoCoordinates';
 export * from './GeoShape';
 export * from './Grid';

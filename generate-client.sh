@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-REPO_TAG=1.1.1-dev
+REPO_TAG=1.0.0
 FILE=https://raw.githubusercontent.com/mintproject/model-catalog-api/$REPO_TAG/model-catalog.yaml
 docker run -ti --rm -v ${PWD}:/local openapitools/openapi-generator-cli:v4.1.2 \
      generate  \
@@ -10,4 +10,3 @@ docker run -ti --rm -v ${PWD}:/local openapitools/openapi-generator-cli:v4.1.2 \
      --git-repo-id model-catalog \
      --git-user-id mintproject  \
      --template-dir /local/.openapi-generator/template
-gsed -i "s/api.models.mint.isi.edu/dev.api.models.mint.isi.edu/g" src/runtime.ts
