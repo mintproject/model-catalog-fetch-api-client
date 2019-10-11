@@ -169,7 +169,7 @@ export class TimeIntervalApi extends runtime.BaseAPI {
      * Updates an existing TimeInterval
      * Update a TimeInterval
      */
-    async timeintervalsIdPutRaw(requestParameters: TimeintervalsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async timeintervalsIdPutRaw(requestParameters: TimeintervalsIdPutRequest): Promise<runtime.ApiResponse<TimeInterval>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling timeintervalsIdPut.');
         }
@@ -200,22 +200,23 @@ export class TimeIntervalApi extends runtime.BaseAPI {
             body: TimeIntervalToJSON(requestParameters.timeInterval),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => TimeIntervalFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing TimeInterval
     * Update a TimeInterval
     */
-    async timeintervalsIdPut(requestParameters: TimeintervalsIdPutRequest): Promise<void> {
-        await this.timeintervalsIdPutRaw(requestParameters);
+    async timeintervalsIdPut(requestParameters: TimeintervalsIdPutRequest): Promise<TimeInterval> {
+        const response = await this.timeintervalsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a TimeInterval
      * Create a TimeInterval
      */
-    async timeintervalsPostRaw(requestParameters: TimeintervalsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async timeintervalsPostRaw(requestParameters: TimeintervalsPostRequest): Promise<runtime.ApiResponse<TimeInterval>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling timeintervalsPost.');
         }
@@ -242,15 +243,16 @@ export class TimeIntervalApi extends runtime.BaseAPI {
             body: TimeIntervalToJSON(requestParameters.timeInterval),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => TimeIntervalFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a TimeInterval
     * Create a TimeInterval
     */
-    async timeintervalsPost(requestParameters: TimeintervalsPostRequest): Promise<void> {
-        await this.timeintervalsPostRaw(requestParameters);
+    async timeintervalsPost(requestParameters: TimeintervalsPostRequest): Promise<TimeInterval> {
+        const response = await this.timeintervalsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

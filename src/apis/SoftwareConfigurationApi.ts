@@ -169,7 +169,7 @@ export class SoftwareConfigurationApi extends runtime.BaseAPI {
      * Updates an existing SoftwareConfiguration
      * Update a SoftwareConfiguration
      */
-    async softwareconfigurationsIdPutRaw(requestParameters: SoftwareconfigurationsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async softwareconfigurationsIdPutRaw(requestParameters: SoftwareconfigurationsIdPutRequest): Promise<runtime.ApiResponse<SoftwareConfiguration>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling softwareconfigurationsIdPut.');
         }
@@ -200,22 +200,23 @@ export class SoftwareConfigurationApi extends runtime.BaseAPI {
             body: SoftwareConfigurationToJSON(requestParameters.softwareConfiguration),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SoftwareConfigurationFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing SoftwareConfiguration
     * Update a SoftwareConfiguration
     */
-    async softwareconfigurationsIdPut(requestParameters: SoftwareconfigurationsIdPutRequest): Promise<void> {
-        await this.softwareconfigurationsIdPutRaw(requestParameters);
+    async softwareconfigurationsIdPut(requestParameters: SoftwareconfigurationsIdPutRequest): Promise<SoftwareConfiguration> {
+        const response = await this.softwareconfigurationsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a SoftwareConfiguration
      * Create a SoftwareConfiguration
      */
-    async softwareconfigurationsPostRaw(requestParameters: SoftwareconfigurationsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async softwareconfigurationsPostRaw(requestParameters: SoftwareconfigurationsPostRequest): Promise<runtime.ApiResponse<SoftwareConfiguration>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling softwareconfigurationsPost.');
         }
@@ -242,15 +243,16 @@ export class SoftwareConfigurationApi extends runtime.BaseAPI {
             body: SoftwareConfigurationToJSON(requestParameters.softwareConfiguration),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SoftwareConfigurationFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a SoftwareConfiguration
     * Create a SoftwareConfiguration
     */
-    async softwareconfigurationsPost(requestParameters: SoftwareconfigurationsPostRequest): Promise<void> {
-        await this.softwareconfigurationsPostRaw(requestParameters);
+    async softwareconfigurationsPost(requestParameters: SoftwareconfigurationsPostRequest): Promise<SoftwareConfiguration> {
+        const response = await this.softwareconfigurationsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

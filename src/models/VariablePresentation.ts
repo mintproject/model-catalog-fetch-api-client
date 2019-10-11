@@ -37,18 +37,6 @@ export interface VariablePresentation {
     hasDefaultValue?: Array<object> | null;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof VariablePresentation
-     */
-    hasShortName?: Array<string> | null;
-    /**
-     * 
-     * @type {Array<object>}
-     * @memberof VariablePresentation
-     */
-    hasMinimumAcceptedValue?: Array<object> | null;
-    /**
-     * 
      * @type {Array<StandardVariable>}
      * @memberof VariablePresentation
      */
@@ -67,10 +55,10 @@ export interface VariablePresentation {
     hasConstraint?: Array<string> | null;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof VariablePresentation
      */
-    id?: string;
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -79,28 +67,46 @@ export interface VariablePresentation {
     label?: Array<string> | null;
     /**
      * 
-     * @type {Array<DatasetSpecification>}
-     * @memberof VariablePresentation
-     */
-    partOfDataset?: Array<DatasetSpecification> | null;
-    /**
-     * 
      * @type {Array<string>}
      * @memberof VariablePresentation
      */
     type?: Array<string> | null;
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<string>}
      * @memberof VariablePresentation
      */
-    usesUnit?: Array<object> | null;
+    hasLongName?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof VariablePresentation
      */
-    hasLongName?: Array<string> | null;
+    hasShortName?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof VariablePresentation
+     */
+    hasMinimumAcceptedValue?: Array<object> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof VariablePresentation
+     */
+    id?: string;
+    /**
+     * 
+     * @type {Array<DatasetSpecification>}
+     * @memberof VariablePresentation
+     */
+    partOfDataset?: Array<DatasetSpecification> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof VariablePresentation
+     */
+    usesUnit?: Array<object> | null;
 }
 
 export function VariablePresentationFromJSON(json: any): VariablePresentation {
@@ -114,17 +120,18 @@ export function VariablePresentationFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'hasDefaultValue': !exists(json, 'hasDefaultValue') ? undefined : json['hasDefaultValue'],
-        'hasShortName': !exists(json, 'hasShortName') ? undefined : json['hasShortName'],
-        'hasMinimumAcceptedValue': !exists(json, 'hasMinimumAcceptedValue') ? undefined : json['hasMinimumAcceptedValue'],
         'hasStandardVariable': !exists(json, 'hasStandardVariable') ? undefined : (json['hasStandardVariable'] as Array<any>).map(StandardVariableFromJSON),
         'hasMaximumAcceptedValue': !exists(json, 'hasMaximumAcceptedValue') ? undefined : json['hasMaximumAcceptedValue'],
         'hasConstraint': !exists(json, 'hasConstraint') ? undefined : json['hasConstraint'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'label': !exists(json, 'label') ? undefined : json['label'],
-        'partOfDataset': !exists(json, 'partOfDataset') ? undefined : (json['partOfDataset'] as Array<any>).map(DatasetSpecificationFromJSON),
         'type': !exists(json, 'type') ? undefined : json['type'],
-        'usesUnit': !exists(json, 'usesUnit') ? undefined : json['usesUnit'],
         'hasLongName': !exists(json, 'hasLongName') ? undefined : json['hasLongName'],
+        'hasShortName': !exists(json, 'hasShortName') ? undefined : json['hasShortName'],
+        'hasMinimumAcceptedValue': !exists(json, 'hasMinimumAcceptedValue') ? undefined : json['hasMinimumAcceptedValue'],
+        'id': !exists(json, 'id') ? undefined : json['id'],
+        'partOfDataset': !exists(json, 'partOfDataset') ? undefined : (json['partOfDataset'] as Array<any>).map(DatasetSpecificationFromJSON),
+        'usesUnit': !exists(json, 'usesUnit') ? undefined : json['usesUnit'],
     };
 }
 
@@ -138,17 +145,18 @@ export function VariablePresentationToJSON(value?: VariablePresentation): any {
     return {
         
         'hasDefaultValue': value.hasDefaultValue,
-        'hasShortName': value.hasShortName,
-        'hasMinimumAcceptedValue': value.hasMinimumAcceptedValue,
         'hasStandardVariable': value.hasStandardVariable === undefined ? undefined : (value.hasStandardVariable as Array<any>).map(StandardVariableToJSON),
         'hasMaximumAcceptedValue': value.hasMaximumAcceptedValue,
         'hasConstraint': value.hasConstraint,
-        'id': value.id,
+        'description': value.description,
         'label': value.label,
-        'partOfDataset': value.partOfDataset === undefined ? undefined : (value.partOfDataset as Array<any>).map(DatasetSpecificationToJSON),
         'type': value.type,
-        'usesUnit': value.usesUnit,
         'hasLongName': value.hasLongName,
+        'hasShortName': value.hasShortName,
+        'hasMinimumAcceptedValue': value.hasMinimumAcceptedValue,
+        'id': value.id,
+        'partOfDataset': value.partOfDataset === undefined ? undefined : (value.partOfDataset as Array<any>).map(DatasetSpecificationToJSON),
+        'usesUnit': value.usesUnit,
     };
 }
 

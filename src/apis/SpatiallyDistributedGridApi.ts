@@ -169,7 +169,7 @@ export class SpatiallyDistributedGridApi extends runtime.BaseAPI {
      * Updates an existing SpatiallyDistributedGrid
      * Update a SpatiallyDistributedGrid
      */
-    async spatiallydistributedgridsIdPutRaw(requestParameters: SpatiallydistributedgridsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async spatiallydistributedgridsIdPutRaw(requestParameters: SpatiallydistributedgridsIdPutRequest): Promise<runtime.ApiResponse<SpatiallyDistributedGrid>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling spatiallydistributedgridsIdPut.');
         }
@@ -200,22 +200,23 @@ export class SpatiallyDistributedGridApi extends runtime.BaseAPI {
             body: SpatiallyDistributedGridToJSON(requestParameters.spatiallyDistributedGrid),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SpatiallyDistributedGridFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing SpatiallyDistributedGrid
     * Update a SpatiallyDistributedGrid
     */
-    async spatiallydistributedgridsIdPut(requestParameters: SpatiallydistributedgridsIdPutRequest): Promise<void> {
-        await this.spatiallydistributedgridsIdPutRaw(requestParameters);
+    async spatiallydistributedgridsIdPut(requestParameters: SpatiallydistributedgridsIdPutRequest): Promise<SpatiallyDistributedGrid> {
+        const response = await this.spatiallydistributedgridsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a SpatiallyDistributedGrid
      * Create a SpatiallyDistributedGrid
      */
-    async spatiallydistributedgridsPostRaw(requestParameters: SpatiallydistributedgridsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async spatiallydistributedgridsPostRaw(requestParameters: SpatiallydistributedgridsPostRequest): Promise<runtime.ApiResponse<SpatiallyDistributedGrid>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling spatiallydistributedgridsPost.');
         }
@@ -242,15 +243,16 @@ export class SpatiallyDistributedGridApi extends runtime.BaseAPI {
             body: SpatiallyDistributedGridToJSON(requestParameters.spatiallyDistributedGrid),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SpatiallyDistributedGridFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a SpatiallyDistributedGrid
     * Create a SpatiallyDistributedGrid
     */
-    async spatiallydistributedgridsPost(requestParameters: SpatiallydistributedgridsPostRequest): Promise<void> {
-        await this.spatiallydistributedgridsPostRaw(requestParameters);
+    async spatiallydistributedgridsPost(requestParameters: SpatiallydistributedgridsPostRequest): Promise<SpatiallyDistributedGrid> {
+        const response = await this.spatiallydistributedgridsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

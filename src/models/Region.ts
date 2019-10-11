@@ -26,6 +26,12 @@ export interface Region {
     geo?: Array<object> | null;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof Region
+     */
+    description?: Array<string> | null;
+    /**
+     * 
      * @type {string}
      * @memberof Region
      */
@@ -55,6 +61,7 @@ export function RegionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
     return {
         
         'geo': !exists(json, 'geo') ? undefined : json['geo'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -71,6 +78,7 @@ export function RegionToJSON(value?: Region): any {
     return {
         
         'geo': value.geo,
+        'description': value.description,
         'id': value.id,
         'label': value.label,
         'type': value.type,

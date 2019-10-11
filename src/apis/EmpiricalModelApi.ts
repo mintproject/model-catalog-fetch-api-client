@@ -169,7 +169,7 @@ export class EmpiricalModelApi extends runtime.BaseAPI {
      * Updates an existing EmpiricalModel
      * Update a EmpiricalModel
      */
-    async empiricalmodelsIdPutRaw(requestParameters: EmpiricalmodelsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async empiricalmodelsIdPutRaw(requestParameters: EmpiricalmodelsIdPutRequest): Promise<runtime.ApiResponse<EmpiricalModel>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling empiricalmodelsIdPut.');
         }
@@ -200,22 +200,23 @@ export class EmpiricalModelApi extends runtime.BaseAPI {
             body: EmpiricalModelToJSON(requestParameters.empiricalModel),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmpiricalModelFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing EmpiricalModel
     * Update a EmpiricalModel
     */
-    async empiricalmodelsIdPut(requestParameters: EmpiricalmodelsIdPutRequest): Promise<void> {
-        await this.empiricalmodelsIdPutRaw(requestParameters);
+    async empiricalmodelsIdPut(requestParameters: EmpiricalmodelsIdPutRequest): Promise<EmpiricalModel> {
+        const response = await this.empiricalmodelsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a EmpiricalModel
      * Create a EmpiricalModel
      */
-    async empiricalmodelsPostRaw(requestParameters: EmpiricalmodelsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async empiricalmodelsPostRaw(requestParameters: EmpiricalmodelsPostRequest): Promise<runtime.ApiResponse<EmpiricalModel>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling empiricalmodelsPost.');
         }
@@ -242,15 +243,16 @@ export class EmpiricalModelApi extends runtime.BaseAPI {
             body: EmpiricalModelToJSON(requestParameters.empiricalModel),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmpiricalModelFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a EmpiricalModel
     * Create a EmpiricalModel
     */
-    async empiricalmodelsPost(requestParameters: EmpiricalmodelsPostRequest): Promise<void> {
-        await this.empiricalmodelsPostRaw(requestParameters);
+    async empiricalmodelsPost(requestParameters: EmpiricalmodelsPostRequest): Promise<EmpiricalModel> {
+        const response = await this.empiricalmodelsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

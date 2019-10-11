@@ -169,7 +169,7 @@ export class SoftwareApi extends runtime.BaseAPI {
      * Updates an existing Software
      * Update a Software
      */
-    async softwaresIdPutRaw(requestParameters: SoftwaresIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async softwaresIdPutRaw(requestParameters: SoftwaresIdPutRequest): Promise<runtime.ApiResponse<Software>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling softwaresIdPut.');
         }
@@ -200,22 +200,23 @@ export class SoftwareApi extends runtime.BaseAPI {
             body: SoftwareToJSON(requestParameters.software),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SoftwareFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing Software
     * Update a Software
     */
-    async softwaresIdPut(requestParameters: SoftwaresIdPutRequest): Promise<void> {
-        await this.softwaresIdPutRaw(requestParameters);
+    async softwaresIdPut(requestParameters: SoftwaresIdPutRequest): Promise<Software> {
+        const response = await this.softwaresIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a Software
      * Create a Software
      */
-    async softwaresPostRaw(requestParameters: SoftwaresPostRequest): Promise<runtime.ApiResponse<void>> {
+    async softwaresPostRaw(requestParameters: SoftwaresPostRequest): Promise<runtime.ApiResponse<Software>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling softwaresPost.');
         }
@@ -242,15 +243,16 @@ export class SoftwareApi extends runtime.BaseAPI {
             body: SoftwareToJSON(requestParameters.software),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SoftwareFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a Software
     * Create a Software
     */
-    async softwaresPost(requestParameters: SoftwaresPostRequest): Promise<void> {
-        await this.softwaresPostRaw(requestParameters);
+    async softwaresPost(requestParameters: SoftwaresPostRequest): Promise<Software> {
+        const response = await this.softwaresPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

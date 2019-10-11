@@ -169,7 +169,7 @@ export class GridApi extends runtime.BaseAPI {
      * Updates an existing Grid
      * Update a Grid
      */
-    async gridsIdPutRaw(requestParameters: GridsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async gridsIdPutRaw(requestParameters: GridsIdPutRequest): Promise<runtime.ApiResponse<Grid>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling gridsIdPut.');
         }
@@ -200,22 +200,23 @@ export class GridApi extends runtime.BaseAPI {
             body: GridToJSON(requestParameters.grid),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => GridFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing Grid
     * Update a Grid
     */
-    async gridsIdPut(requestParameters: GridsIdPutRequest): Promise<void> {
-        await this.gridsIdPutRaw(requestParameters);
+    async gridsIdPut(requestParameters: GridsIdPutRequest): Promise<Grid> {
+        const response = await this.gridsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a Grid
      * Create a Grid
      */
-    async gridsPostRaw(requestParameters: GridsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async gridsPostRaw(requestParameters: GridsPostRequest): Promise<runtime.ApiResponse<Grid>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling gridsPost.');
         }
@@ -242,15 +243,16 @@ export class GridApi extends runtime.BaseAPI {
             body: GridToJSON(requestParameters.grid),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => GridFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a Grid
     * Create a Grid
     */
-    async gridsPost(requestParameters: GridsPostRequest): Promise<void> {
-        await this.gridsPostRaw(requestParameters);
+    async gridsPost(requestParameters: GridsPostRequest): Promise<Grid> {
+        const response = await this.gridsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

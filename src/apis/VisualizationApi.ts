@@ -169,7 +169,7 @@ export class VisualizationApi extends runtime.BaseAPI {
      * Updates an existing Visualization
      * Update a Visualization
      */
-    async visualizationsIdPutRaw(requestParameters: VisualizationsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async visualizationsIdPutRaw(requestParameters: VisualizationsIdPutRequest): Promise<runtime.ApiResponse<Visualization>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling visualizationsIdPut.');
         }
@@ -200,22 +200,23 @@ export class VisualizationApi extends runtime.BaseAPI {
             body: VisualizationToJSON(requestParameters.visualization),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => VisualizationFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing Visualization
     * Update a Visualization
     */
-    async visualizationsIdPut(requestParameters: VisualizationsIdPutRequest): Promise<void> {
-        await this.visualizationsIdPutRaw(requestParameters);
+    async visualizationsIdPut(requestParameters: VisualizationsIdPutRequest): Promise<Visualization> {
+        const response = await this.visualizationsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a Visualization
      * Create a Visualization
      */
-    async visualizationsPostRaw(requestParameters: VisualizationsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async visualizationsPostRaw(requestParameters: VisualizationsPostRequest): Promise<runtime.ApiResponse<Visualization>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling visualizationsPost.');
         }
@@ -242,15 +243,16 @@ export class VisualizationApi extends runtime.BaseAPI {
             body: VisualizationToJSON(requestParameters.visualization),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => VisualizationFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a Visualization
     * Create a Visualization
     */
-    async visualizationsPost(requestParameters: VisualizationsPostRequest): Promise<void> {
-        await this.visualizationsPostRaw(requestParameters);
+    async visualizationsPost(requestParameters: VisualizationsPostRequest): Promise<Visualization> {
+        const response = await this.visualizationsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

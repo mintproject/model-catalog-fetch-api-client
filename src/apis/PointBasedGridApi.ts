@@ -169,7 +169,7 @@ export class PointBasedGridApi extends runtime.BaseAPI {
      * Updates an existing PointBasedGrid
      * Update a PointBasedGrid
      */
-    async pointbasedgridsIdPutRaw(requestParameters: PointbasedgridsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async pointbasedgridsIdPutRaw(requestParameters: PointbasedgridsIdPutRequest): Promise<runtime.ApiResponse<PointBasedGrid>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling pointbasedgridsIdPut.');
         }
@@ -200,22 +200,23 @@ export class PointBasedGridApi extends runtime.BaseAPI {
             body: PointBasedGridToJSON(requestParameters.pointBasedGrid),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => PointBasedGridFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing PointBasedGrid
     * Update a PointBasedGrid
     */
-    async pointbasedgridsIdPut(requestParameters: PointbasedgridsIdPutRequest): Promise<void> {
-        await this.pointbasedgridsIdPutRaw(requestParameters);
+    async pointbasedgridsIdPut(requestParameters: PointbasedgridsIdPutRequest): Promise<PointBasedGrid> {
+        const response = await this.pointbasedgridsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a PointBasedGrid
      * Create a PointBasedGrid
      */
-    async pointbasedgridsPostRaw(requestParameters: PointbasedgridsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async pointbasedgridsPostRaw(requestParameters: PointbasedgridsPostRequest): Promise<runtime.ApiResponse<PointBasedGrid>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling pointbasedgridsPost.');
         }
@@ -242,15 +243,16 @@ export class PointBasedGridApi extends runtime.BaseAPI {
             body: PointBasedGridToJSON(requestParameters.pointBasedGrid),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => PointBasedGridFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a PointBasedGrid
     * Create a PointBasedGrid
     */
-    async pointbasedgridsPost(requestParameters: PointbasedgridsPostRequest): Promise<void> {
-        await this.pointbasedgridsPostRaw(requestParameters);
+    async pointbasedgridsPost(requestParameters: PointbasedgridsPostRequest): Promise<PointBasedGrid> {
+        const response = await this.pointbasedgridsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

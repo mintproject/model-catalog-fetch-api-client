@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
 export interface SpatialResolution {
     /**
      * 
+     * @type {Array<string>}
+     * @memberof SpatialResolution
+     */
+    description?: Array<string> | null;
+    /**
+     * 
      * @type {string}
      * @memberof SpatialResolution
      */
@@ -48,6 +54,7 @@ export function SpatialResolutionFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -63,6 +70,7 @@ export function SpatialResolutionToJSON(value?: SpatialResolution): any {
     }
     return {
         
+        'description': value.description,
         'id': value.id,
         'label': value.label,
         'type': value.type,

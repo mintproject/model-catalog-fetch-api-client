@@ -169,7 +169,7 @@ export class GeoCoordinatesApi extends runtime.BaseAPI {
      * Updates an existing GeoCoordinates
      * Update a GeoCoordinates
      */
-    async geocoordinatessIdPutRaw(requestParameters: GeocoordinatessIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async geocoordinatessIdPutRaw(requestParameters: GeocoordinatessIdPutRequest): Promise<runtime.ApiResponse<GeoCoordinates>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling geocoordinatessIdPut.');
         }
@@ -200,22 +200,23 @@ export class GeoCoordinatesApi extends runtime.BaseAPI {
             body: GeoCoordinatesToJSON(requestParameters.geoCoordinates),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => GeoCoordinatesFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing GeoCoordinates
     * Update a GeoCoordinates
     */
-    async geocoordinatessIdPut(requestParameters: GeocoordinatessIdPutRequest): Promise<void> {
-        await this.geocoordinatessIdPutRaw(requestParameters);
+    async geocoordinatessIdPut(requestParameters: GeocoordinatessIdPutRequest): Promise<GeoCoordinates> {
+        const response = await this.geocoordinatessIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a GeoCoordinates
      * Create a GeoCoordinates
      */
-    async geocoordinatessPostRaw(requestParameters: GeocoordinatessPostRequest): Promise<runtime.ApiResponse<void>> {
+    async geocoordinatessPostRaw(requestParameters: GeocoordinatessPostRequest): Promise<runtime.ApiResponse<GeoCoordinates>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling geocoordinatessPost.');
         }
@@ -242,15 +243,16 @@ export class GeoCoordinatesApi extends runtime.BaseAPI {
             body: GeoCoordinatesToJSON(requestParameters.geoCoordinates),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => GeoCoordinatesFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a GeoCoordinates
     * Create a GeoCoordinates
     */
-    async geocoordinatessPost(requestParameters: GeocoordinatessPostRequest): Promise<void> {
-        await this.geocoordinatessPostRaw(requestParameters);
+    async geocoordinatessPost(requestParameters: GeocoordinatessPostRequest): Promise<GeoCoordinates> {
+        const response = await this.geocoordinatessPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

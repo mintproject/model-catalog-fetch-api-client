@@ -169,7 +169,7 @@ export class GeoShapeApi extends runtime.BaseAPI {
      * Updates an existing GeoShape
      * Update a GeoShape
      */
-    async geoshapesIdPutRaw(requestParameters: GeoshapesIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async geoshapesIdPutRaw(requestParameters: GeoshapesIdPutRequest): Promise<runtime.ApiResponse<GeoShape>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling geoshapesIdPut.');
         }
@@ -200,22 +200,23 @@ export class GeoShapeApi extends runtime.BaseAPI {
             body: GeoShapeToJSON(requestParameters.geoShape),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => GeoShapeFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing GeoShape
     * Update a GeoShape
     */
-    async geoshapesIdPut(requestParameters: GeoshapesIdPutRequest): Promise<void> {
-        await this.geoshapesIdPutRaw(requestParameters);
+    async geoshapesIdPut(requestParameters: GeoshapesIdPutRequest): Promise<GeoShape> {
+        const response = await this.geoshapesIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a GeoShape
      * Create a GeoShape
      */
-    async geoshapesPostRaw(requestParameters: GeoshapesPostRequest): Promise<runtime.ApiResponse<void>> {
+    async geoshapesPostRaw(requestParameters: GeoshapesPostRequest): Promise<runtime.ApiResponse<GeoShape>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling geoshapesPost.');
         }
@@ -242,15 +243,16 @@ export class GeoShapeApi extends runtime.BaseAPI {
             body: GeoShapeToJSON(requestParameters.geoShape),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => GeoShapeFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a GeoShape
     * Create a GeoShape
     */
-    async geoshapesPost(requestParameters: GeoshapesPostRequest): Promise<void> {
-        await this.geoshapesPostRaw(requestParameters);
+    async geoshapesPost(requestParameters: GeoshapesPostRequest): Promise<GeoShape> {
+        const response = await this.geoshapesPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

@@ -169,7 +169,7 @@ export class StandardVariableApi extends runtime.BaseAPI {
      * Updates an existing StandardVariable
      * Update a StandardVariable
      */
-    async standardvariablesIdPutRaw(requestParameters: StandardvariablesIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async standardvariablesIdPutRaw(requestParameters: StandardvariablesIdPutRequest): Promise<runtime.ApiResponse<StandardVariable>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling standardvariablesIdPut.');
         }
@@ -200,22 +200,23 @@ export class StandardVariableApi extends runtime.BaseAPI {
             body: StandardVariableToJSON(requestParameters.standardVariable),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => StandardVariableFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing StandardVariable
     * Update a StandardVariable
     */
-    async standardvariablesIdPut(requestParameters: StandardvariablesIdPutRequest): Promise<void> {
-        await this.standardvariablesIdPutRaw(requestParameters);
+    async standardvariablesIdPut(requestParameters: StandardvariablesIdPutRequest): Promise<StandardVariable> {
+        const response = await this.standardvariablesIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a StandardVariable
      * Create a StandardVariable
      */
-    async standardvariablesPostRaw(requestParameters: StandardvariablesPostRequest): Promise<runtime.ApiResponse<void>> {
+    async standardvariablesPostRaw(requestParameters: StandardvariablesPostRequest): Promise<runtime.ApiResponse<StandardVariable>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling standardvariablesPost.');
         }
@@ -242,15 +243,16 @@ export class StandardVariableApi extends runtime.BaseAPI {
             body: StandardVariableToJSON(requestParameters.standardVariable),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => StandardVariableFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a StandardVariable
     * Create a StandardVariable
     */
-    async standardvariablesPost(requestParameters: StandardvariablesPostRequest): Promise<void> {
-        await this.standardvariablesPostRaw(requestParameters);
+    async standardvariablesPost(requestParameters: StandardvariablesPostRequest): Promise<StandardVariable> {
+        const response = await this.standardvariablesPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

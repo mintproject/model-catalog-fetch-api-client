@@ -128,13 +128,13 @@ export interface ModelConfiguration {
      * @type {Array<object>}
      * @memberof ModelConfiguration
      */
-    hasContactPerson?: Array<object> | null;
+    logo?: Array<object> | null;
     /**
      * 
      * @type {Array<object>}
      * @memberof ModelConfiguration
      */
-    logo?: Array<object> | null;
+    hasContactPerson?: Array<object> | null;
     /**
      * 
      * @type {string}
@@ -284,13 +284,13 @@ export interface ModelConfiguration {
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    referencePublication?: Array<string> | null;
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    description?: Array<string> | null;
+    referencePublication?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -466,8 +466,8 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'calibrationMethod': !exists(json, 'calibrationMethod') ? undefined : json['calibrationMethod'],
         'hasRegion': !exists(json, 'hasRegion') ? undefined : (json['hasRegion'] as Array<any>).map(RegionFromJSON),
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
-        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'logo': !exists(json, 'logo') ? undefined : json['logo'],
+        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'hasSampleExecution': !exists(json, 'hasSampleExecution') ? undefined : json['hasSampleExecution'],
@@ -492,8 +492,8 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'hasProcess': !exists(json, 'hasProcess') ? undefined : (json['hasProcess'] as Array<any>).map(ProcessFromJSON),
         'hasVersion': !exists(json, 'hasVersion') ? undefined : json['hasVersion'],
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
-        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'screenshot': !exists(json, 'screenshot') ? undefined : json['screenshot'],
         'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : json['hasModelCategory'],
         'hasSoftwareImage': !exists(json, 'hasSoftwareImage') ? undefined : json['hasSoftwareImage'],
@@ -544,8 +544,8 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'calibrationMethod': value.calibrationMethod,
         'hasRegion': value.hasRegion === undefined ? undefined : (value.hasRegion as Array<any>).map(RegionToJSON),
         'hasFAQ': value.hasFAQ,
-        'hasContactPerson': value.hasContactPerson,
         'logo': value.logo,
+        'hasContactPerson': value.hasContactPerson,
         'id': value.id,
         'identifier': value.identifier,
         'hasSampleExecution': value.hasSampleExecution,
@@ -570,8 +570,8 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'hasProcess': value.hasProcess === undefined ? undefined : (value.hasProcess as Array<any>).map(ProcessToJSON),
         'hasVersion': value.hasVersion,
         'hasTypicalDataSource': value.hasTypicalDataSource,
-        'referencePublication': value.referencePublication,
         'description': value.description,
+        'referencePublication': value.referencePublication,
         'screenshot': value.screenshot,
         'hasModelCategory': value.hasModelCategory,
         'hasSoftwareImage': value.hasSoftwareImage,

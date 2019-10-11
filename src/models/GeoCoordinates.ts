@@ -32,6 +32,12 @@ export interface GeoCoordinates {
     latitude?: Array<string> | null;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof GeoCoordinates
+     */
+    description?: Array<string> | null;
+    /**
+     * 
      * @type {string}
      * @memberof GeoCoordinates
      */
@@ -68,6 +74,7 @@ export function GeoCoordinatesFromJSONTyped(json: any, ignoreDiscriminator: bool
         
         'elevation': !exists(json, 'elevation') ? undefined : json['elevation'],
         'latitude': !exists(json, 'latitude') ? undefined : json['latitude'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -86,6 +93,7 @@ export function GeoCoordinatesToJSON(value?: GeoCoordinates): any {
         
         'elevation': value.elevation,
         'latitude': value.latitude,
+        'description': value.description,
         'id': value.id,
         'label': value.label,
         'type': value.type,

@@ -169,7 +169,7 @@ export class EmulatorApi extends runtime.BaseAPI {
      * Updates an existing Emulator
      * Update a Emulator
      */
-    async emulatorsIdPutRaw(requestParameters: EmulatorsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async emulatorsIdPutRaw(requestParameters: EmulatorsIdPutRequest): Promise<runtime.ApiResponse<Emulator>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling emulatorsIdPut.');
         }
@@ -200,22 +200,23 @@ export class EmulatorApi extends runtime.BaseAPI {
             body: EmulatorToJSON(requestParameters.emulator),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmulatorFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing Emulator
     * Update a Emulator
     */
-    async emulatorsIdPut(requestParameters: EmulatorsIdPutRequest): Promise<void> {
-        await this.emulatorsIdPutRaw(requestParameters);
+    async emulatorsIdPut(requestParameters: EmulatorsIdPutRequest): Promise<Emulator> {
+        const response = await this.emulatorsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a Emulator
      * Create a Emulator
      */
-    async emulatorsPostRaw(requestParameters: EmulatorsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async emulatorsPostRaw(requestParameters: EmulatorsPostRequest): Promise<runtime.ApiResponse<Emulator>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling emulatorsPost.');
         }
@@ -242,15 +243,16 @@ export class EmulatorApi extends runtime.BaseAPI {
             body: EmulatorToJSON(requestParameters.emulator),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmulatorFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a Emulator
     * Create a Emulator
     */
-    async emulatorsPost(requestParameters: EmulatorsPostRequest): Promise<void> {
-        await this.emulatorsPostRaw(requestParameters);
+    async emulatorsPost(requestParameters: EmulatorsPostRequest): Promise<Emulator> {
+        const response = await this.emulatorsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

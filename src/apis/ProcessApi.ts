@@ -169,7 +169,7 @@ export class ProcessApi extends runtime.BaseAPI {
      * Updates an existing Process
      * Update a Process
      */
-    async processsIdPutRaw(requestParameters: ProcesssIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async processsIdPutRaw(requestParameters: ProcesssIdPutRequest): Promise<runtime.ApiResponse<Process>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling processsIdPut.');
         }
@@ -200,22 +200,23 @@ export class ProcessApi extends runtime.BaseAPI {
             body: ProcessToJSON(requestParameters.process),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ProcessFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing Process
     * Update a Process
     */
-    async processsIdPut(requestParameters: ProcesssIdPutRequest): Promise<void> {
-        await this.processsIdPutRaw(requestParameters);
+    async processsIdPut(requestParameters: ProcesssIdPutRequest): Promise<Process> {
+        const response = await this.processsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a Process
      * Create a Process
      */
-    async processsPostRaw(requestParameters: ProcesssPostRequest): Promise<runtime.ApiResponse<void>> {
+    async processsPostRaw(requestParameters: ProcesssPostRequest): Promise<runtime.ApiResponse<Process>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling processsPost.');
         }
@@ -242,15 +243,16 @@ export class ProcessApi extends runtime.BaseAPI {
             body: ProcessToJSON(requestParameters.process),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ProcessFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a Process
     * Create a Process
     */
-    async processsPost(requestParameters: ProcesssPostRequest): Promise<void> {
-        await this.processsPostRaw(requestParameters);
+    async processsPost(requestParameters: ProcesssPostRequest): Promise<Process> {
+        const response = await this.processsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

@@ -169,7 +169,7 @@ export class CausalDiagramApi extends runtime.BaseAPI {
      * Updates an existing CausalDiagram
      * Update a CausalDiagram
      */
-    async causaldiagramsIdPutRaw(requestParameters: CausaldiagramsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async causaldiagramsIdPutRaw(requestParameters: CausaldiagramsIdPutRequest): Promise<runtime.ApiResponse<CausalDiagram>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling causaldiagramsIdPut.');
         }
@@ -200,22 +200,23 @@ export class CausalDiagramApi extends runtime.BaseAPI {
             body: CausalDiagramToJSON(requestParameters.causalDiagram),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => CausalDiagramFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing CausalDiagram
     * Update a CausalDiagram
     */
-    async causaldiagramsIdPut(requestParameters: CausaldiagramsIdPutRequest): Promise<void> {
-        await this.causaldiagramsIdPutRaw(requestParameters);
+    async causaldiagramsIdPut(requestParameters: CausaldiagramsIdPutRequest): Promise<CausalDiagram> {
+        const response = await this.causaldiagramsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a CausalDiagram
      * Create a CausalDiagram
      */
-    async causaldiagramsPostRaw(requestParameters: CausaldiagramsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async causaldiagramsPostRaw(requestParameters: CausaldiagramsPostRequest): Promise<runtime.ApiResponse<CausalDiagram>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling causaldiagramsPost.');
         }
@@ -242,15 +243,16 @@ export class CausalDiagramApi extends runtime.BaseAPI {
             body: CausalDiagramToJSON(requestParameters.causalDiagram),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => CausalDiagramFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a CausalDiagram
     * Create a CausalDiagram
     */
-    async causaldiagramsPost(requestParameters: CausaldiagramsPostRequest): Promise<void> {
-        await this.causaldiagramsPostRaw(requestParameters);
+    async causaldiagramsPost(requestParameters: CausaldiagramsPostRequest): Promise<CausalDiagram> {
+        const response = await this.causaldiagramsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

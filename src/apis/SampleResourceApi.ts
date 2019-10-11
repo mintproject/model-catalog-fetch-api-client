@@ -169,7 +169,7 @@ export class SampleResourceApi extends runtime.BaseAPI {
      * Updates an existing SampleResource
      * Update a SampleResource
      */
-    async sampleresourcesIdPutRaw(requestParameters: SampleresourcesIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async sampleresourcesIdPutRaw(requestParameters: SampleresourcesIdPutRequest): Promise<runtime.ApiResponse<SampleResource>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling sampleresourcesIdPut.');
         }
@@ -200,22 +200,23 @@ export class SampleResourceApi extends runtime.BaseAPI {
             body: SampleResourceToJSON(requestParameters.sampleResource),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SampleResourceFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing SampleResource
     * Update a SampleResource
     */
-    async sampleresourcesIdPut(requestParameters: SampleresourcesIdPutRequest): Promise<void> {
-        await this.sampleresourcesIdPutRaw(requestParameters);
+    async sampleresourcesIdPut(requestParameters: SampleresourcesIdPutRequest): Promise<SampleResource> {
+        const response = await this.sampleresourcesIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a SampleResource
      * Create a SampleResource
      */
-    async sampleresourcesPostRaw(requestParameters: SampleresourcesPostRequest): Promise<runtime.ApiResponse<void>> {
+    async sampleresourcesPostRaw(requestParameters: SampleresourcesPostRequest): Promise<runtime.ApiResponse<SampleResource>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling sampleresourcesPost.');
         }
@@ -242,15 +243,16 @@ export class SampleResourceApi extends runtime.BaseAPI {
             body: SampleResourceToJSON(requestParameters.sampleResource),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SampleResourceFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a SampleResource
     * Create a SampleResource
     */
-    async sampleresourcesPost(requestParameters: SampleresourcesPostRequest): Promise<void> {
-        await this.sampleresourcesPostRaw(requestParameters);
+    async sampleresourcesPost(requestParameters: SampleresourcesPostRequest): Promise<SampleResource> {
+        const response = await this.sampleresourcesPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

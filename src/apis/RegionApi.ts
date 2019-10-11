@@ -169,7 +169,7 @@ export class RegionApi extends runtime.BaseAPI {
      * Updates an existing Region
      * Update a Region
      */
-    async regionsIdPutRaw(requestParameters: RegionsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async regionsIdPutRaw(requestParameters: RegionsIdPutRequest): Promise<runtime.ApiResponse<Region>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling regionsIdPut.');
         }
@@ -200,22 +200,23 @@ export class RegionApi extends runtime.BaseAPI {
             body: RegionToJSON(requestParameters.region),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => RegionFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing Region
     * Update a Region
     */
-    async regionsIdPut(requestParameters: RegionsIdPutRequest): Promise<void> {
-        await this.regionsIdPutRaw(requestParameters);
+    async regionsIdPut(requestParameters: RegionsIdPutRequest): Promise<Region> {
+        const response = await this.regionsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a Region
      * Create a Region
      */
-    async regionsPostRaw(requestParameters: RegionsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async regionsPostRaw(requestParameters: RegionsPostRequest): Promise<runtime.ApiResponse<Region>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling regionsPost.');
         }
@@ -242,15 +243,16 @@ export class RegionApi extends runtime.BaseAPI {
             body: RegionToJSON(requestParameters.region),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => RegionFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a Region
     * Create a Region
     */
-    async regionsPost(requestParameters: RegionsPostRequest): Promise<void> {
-        await this.regionsPostRaw(requestParameters);
+    async regionsPost(requestParameters: RegionsPostRequest): Promise<Region> {
+        const response = await this.regionsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

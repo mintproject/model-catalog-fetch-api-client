@@ -169,7 +169,7 @@ export class DatasetSpecificationApi extends runtime.BaseAPI {
      * Updates an existing DatasetSpecification
      * Update a DatasetSpecification
      */
-    async datasetspecificationsIdPutRaw(requestParameters: DatasetspecificationsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async datasetspecificationsIdPutRaw(requestParameters: DatasetspecificationsIdPutRequest): Promise<runtime.ApiResponse<DatasetSpecification>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling datasetspecificationsIdPut.');
         }
@@ -200,22 +200,23 @@ export class DatasetSpecificationApi extends runtime.BaseAPI {
             body: DatasetSpecificationToJSON(requestParameters.datasetSpecification),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => DatasetSpecificationFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing DatasetSpecification
     * Update a DatasetSpecification
     */
-    async datasetspecificationsIdPut(requestParameters: DatasetspecificationsIdPutRequest): Promise<void> {
-        await this.datasetspecificationsIdPutRaw(requestParameters);
+    async datasetspecificationsIdPut(requestParameters: DatasetspecificationsIdPutRequest): Promise<DatasetSpecification> {
+        const response = await this.datasetspecificationsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a DatasetSpecification
      * Create a DatasetSpecification
      */
-    async datasetspecificationsPostRaw(requestParameters: DatasetspecificationsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async datasetspecificationsPostRaw(requestParameters: DatasetspecificationsPostRequest): Promise<runtime.ApiResponse<DatasetSpecification>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling datasetspecificationsPost.');
         }
@@ -242,15 +243,16 @@ export class DatasetSpecificationApi extends runtime.BaseAPI {
             body: DatasetSpecificationToJSON(requestParameters.datasetSpecification),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => DatasetSpecificationFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a DatasetSpecification
     * Create a DatasetSpecification
     */
-    async datasetspecificationsPost(requestParameters: DatasetspecificationsPostRequest): Promise<void> {
-        await this.datasetspecificationsPostRaw(requestParameters);
+    async datasetspecificationsPost(requestParameters: DatasetspecificationsPostRequest): Promise<DatasetSpecification> {
+        const response = await this.datasetspecificationsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

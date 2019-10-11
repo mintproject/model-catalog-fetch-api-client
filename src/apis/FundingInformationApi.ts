@@ -169,7 +169,7 @@ export class FundingInformationApi extends runtime.BaseAPI {
      * Updates an existing FundingInformation
      * Update a FundingInformation
      */
-    async fundinginformationsIdPutRaw(requestParameters: FundinginformationsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async fundinginformationsIdPutRaw(requestParameters: FundinginformationsIdPutRequest): Promise<runtime.ApiResponse<FundingInformation>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling fundinginformationsIdPut.');
         }
@@ -200,22 +200,23 @@ export class FundingInformationApi extends runtime.BaseAPI {
             body: FundingInformationToJSON(requestParameters.fundingInformation),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => FundingInformationFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing FundingInformation
     * Update a FundingInformation
     */
-    async fundinginformationsIdPut(requestParameters: FundinginformationsIdPutRequest): Promise<void> {
-        await this.fundinginformationsIdPutRaw(requestParameters);
+    async fundinginformationsIdPut(requestParameters: FundinginformationsIdPutRequest): Promise<FundingInformation> {
+        const response = await this.fundinginformationsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a FundingInformation
      * Create a FundingInformation
      */
-    async fundinginformationsPostRaw(requestParameters: FundinginformationsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async fundinginformationsPostRaw(requestParameters: FundinginformationsPostRequest): Promise<runtime.ApiResponse<FundingInformation>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling fundinginformationsPost.');
         }
@@ -242,15 +243,16 @@ export class FundingInformationApi extends runtime.BaseAPI {
             body: FundingInformationToJSON(requestParameters.fundingInformation),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => FundingInformationFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a FundingInformation
     * Create a FundingInformation
     */
-    async fundinginformationsPost(requestParameters: FundinginformationsPostRequest): Promise<void> {
-        await this.fundinginformationsPostRaw(requestParameters);
+    async fundinginformationsPost(requestParameters: FundinginformationsPostRequest): Promise<FundingInformation> {
+        const response = await this.fundinginformationsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

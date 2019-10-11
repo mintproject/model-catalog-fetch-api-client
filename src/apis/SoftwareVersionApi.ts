@@ -169,7 +169,7 @@ export class SoftwareVersionApi extends runtime.BaseAPI {
      * Updates an existing SoftwareVersion
      * Update a SoftwareVersion
      */
-    async softwareversionsIdPutRaw(requestParameters: SoftwareversionsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async softwareversionsIdPutRaw(requestParameters: SoftwareversionsIdPutRequest): Promise<runtime.ApiResponse<SoftwareVersion>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling softwareversionsIdPut.');
         }
@@ -200,22 +200,23 @@ export class SoftwareVersionApi extends runtime.BaseAPI {
             body: SoftwareVersionToJSON(requestParameters.softwareVersion),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SoftwareVersionFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing SoftwareVersion
     * Update a SoftwareVersion
     */
-    async softwareversionsIdPut(requestParameters: SoftwareversionsIdPutRequest): Promise<void> {
-        await this.softwareversionsIdPutRaw(requestParameters);
+    async softwareversionsIdPut(requestParameters: SoftwareversionsIdPutRequest): Promise<SoftwareVersion> {
+        const response = await this.softwareversionsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a SoftwareVersion
      * Create a SoftwareVersion
      */
-    async softwareversionsPostRaw(requestParameters: SoftwareversionsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async softwareversionsPostRaw(requestParameters: SoftwareversionsPostRequest): Promise<runtime.ApiResponse<SoftwareVersion>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling softwareversionsPost.');
         }
@@ -242,15 +243,16 @@ export class SoftwareVersionApi extends runtime.BaseAPI {
             body: SoftwareVersionToJSON(requestParameters.softwareVersion),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SoftwareVersionFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a SoftwareVersion
     * Create a SoftwareVersion
     */
-    async softwareversionsPost(requestParameters: SoftwareversionsPostRequest): Promise<void> {
-        await this.softwareversionsPostRaw(requestParameters);
+    async softwareversionsPost(requestParameters: SoftwareversionsPostRequest): Promise<SoftwareVersion> {
+        const response = await this.softwareversionsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

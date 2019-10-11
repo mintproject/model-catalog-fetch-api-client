@@ -27,6 +27,12 @@ import {
 export interface FundingInformation {
     /**
      * 
+     * @type {Array<string>}
+     * @memberof FundingInformation
+     */
+    description?: Array<string> | null;
+    /**
+     * 
      * @type {string}
      * @memberof FundingInformation
      */
@@ -67,6 +73,7 @@ export function FundingInformationFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -84,6 +91,7 @@ export function FundingInformationToJSON(value?: FundingInformation): any {
     }
     return {
         
+        'description': value.description,
         'id': value.id,
         'label': value.label,
         'type': value.type,

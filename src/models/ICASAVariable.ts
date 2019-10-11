@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
 export interface ICASAVariable {
     /**
      * 
+     * @type {Array<string>}
+     * @memberof ICASAVariable
+     */
+    description?: Array<string> | null;
+    /**
+     * 
      * @type {string}
      * @memberof ICASAVariable
      */
@@ -48,6 +54,7 @@ export function ICASAVariableFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -63,6 +70,7 @@ export function ICASAVariableToJSON(value?: ICASAVariable): any {
     }
     return {
         
+        'description': value.description,
         'id': value.id,
         'label': value.label,
         'type': value.type,

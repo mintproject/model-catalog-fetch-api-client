@@ -169,7 +169,7 @@ export class VariableApi extends runtime.BaseAPI {
      * Updates an existing Variable
      * Update a Variable
      */
-    async variablesIdPutRaw(requestParameters: VariablesIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async variablesIdPutRaw(requestParameters: VariablesIdPutRequest): Promise<runtime.ApiResponse<Variable>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling variablesIdPut.');
         }
@@ -200,22 +200,23 @@ export class VariableApi extends runtime.BaseAPI {
             body: VariableToJSON(requestParameters.variable),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => VariableFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing Variable
     * Update a Variable
     */
-    async variablesIdPut(requestParameters: VariablesIdPutRequest): Promise<void> {
-        await this.variablesIdPutRaw(requestParameters);
+    async variablesIdPut(requestParameters: VariablesIdPutRequest): Promise<Variable> {
+        const response = await this.variablesIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a Variable
      * Create a Variable
      */
-    async variablesPostRaw(requestParameters: VariablesPostRequest): Promise<runtime.ApiResponse<void>> {
+    async variablesPostRaw(requestParameters: VariablesPostRequest): Promise<runtime.ApiResponse<Variable>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling variablesPost.');
         }
@@ -242,15 +243,16 @@ export class VariableApi extends runtime.BaseAPI {
             body: VariableToJSON(requestParameters.variable),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => VariableFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a Variable
     * Create a Variable
     */
-    async variablesPost(requestParameters: VariablesPostRequest): Promise<void> {
-        await this.variablesPostRaw(requestParameters);
+    async variablesPost(requestParameters: VariablesPostRequest): Promise<Variable> {
+        const response = await this.variablesPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

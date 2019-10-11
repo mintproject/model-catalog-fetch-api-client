@@ -169,7 +169,7 @@ export class ModelApi extends runtime.BaseAPI {
      * Updates an existing Model
      * Update a Model
      */
-    async modelsIdPutRaw(requestParameters: ModelsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async modelsIdPutRaw(requestParameters: ModelsIdPutRequest): Promise<runtime.ApiResponse<Model>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling modelsIdPut.');
         }
@@ -200,22 +200,23 @@ export class ModelApi extends runtime.BaseAPI {
             body: ModelToJSON(requestParameters.model),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing Model
     * Update a Model
     */
-    async modelsIdPut(requestParameters: ModelsIdPutRequest): Promise<void> {
-        await this.modelsIdPutRaw(requestParameters);
+    async modelsIdPut(requestParameters: ModelsIdPutRequest): Promise<Model> {
+        const response = await this.modelsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a Model
      * Create a Model
      */
-    async modelsPostRaw(requestParameters: ModelsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async modelsPostRaw(requestParameters: ModelsPostRequest): Promise<runtime.ApiResponse<Model>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling modelsPost.');
         }
@@ -242,15 +243,16 @@ export class ModelApi extends runtime.BaseAPI {
             body: ModelToJSON(requestParameters.model),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a Model
     * Create a Model
     */
-    async modelsPost(requestParameters: ModelsPostRequest): Promise<void> {
-        await this.modelsPostRaw(requestParameters);
+    async modelsPost(requestParameters: ModelsPostRequest): Promise<Model> {
+        const response = await this.modelsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

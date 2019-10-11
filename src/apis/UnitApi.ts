@@ -169,7 +169,7 @@ export class UnitApi extends runtime.BaseAPI {
      * Updates an existing Unit
      * Update a Unit
      */
-    async unitsIdPutRaw(requestParameters: UnitsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async unitsIdPutRaw(requestParameters: UnitsIdPutRequest): Promise<runtime.ApiResponse<Unit>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling unitsIdPut.');
         }
@@ -200,22 +200,23 @@ export class UnitApi extends runtime.BaseAPI {
             body: UnitToJSON(requestParameters.unit),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => UnitFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing Unit
     * Update a Unit
     */
-    async unitsIdPut(requestParameters: UnitsIdPutRequest): Promise<void> {
-        await this.unitsIdPutRaw(requestParameters);
+    async unitsIdPut(requestParameters: UnitsIdPutRequest): Promise<Unit> {
+        const response = await this.unitsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a Unit
      * Create a Unit
      */
-    async unitsPostRaw(requestParameters: UnitsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async unitsPostRaw(requestParameters: UnitsPostRequest): Promise<runtime.ApiResponse<Unit>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling unitsPost.');
         }
@@ -242,15 +243,16 @@ export class UnitApi extends runtime.BaseAPI {
             body: UnitToJSON(requestParameters.unit),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => UnitFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a Unit
     * Create a Unit
     */
-    async unitsPost(requestParameters: UnitsPostRequest): Promise<void> {
-        await this.unitsPostRaw(requestParameters);
+    async unitsPost(requestParameters: UnitsPostRequest): Promise<Unit> {
+        const response = await this.unitsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

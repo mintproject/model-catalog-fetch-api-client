@@ -82,13 +82,13 @@ export interface TheoryGuidedModel {
      * @type {Array<string>}
      * @memberof TheoryGuidedModel
      */
-    referencePublication?: Array<string> | null;
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof TheoryGuidedModel
      */
-    description?: Array<string> | null;
+    referencePublication?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -124,13 +124,13 @@ export interface TheoryGuidedModel {
      * @type {Array<object>}
      * @memberof TheoryGuidedModel
      */
-    compatibleVisualizationSoftware?: Array<object> | null;
+    contributor?: Array<object> | null;
     /**
      * 
      * @type {Array<object>}
      * @memberof TheoryGuidedModel
      */
-    contributor?: Array<object> | null;
+    compatibleVisualizationSoftware?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -142,13 +142,13 @@ export interface TheoryGuidedModel {
      * @type {Array<object>}
      * @memberof TheoryGuidedModel
      */
-    hasContactPerson?: Array<object> | null;
+    logo?: Array<object> | null;
     /**
      * 
      * @type {Array<object>}
      * @memberof TheoryGuidedModel
      */
-    logo?: Array<object> | null;
+    hasContactPerson?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -238,13 +238,13 @@ export interface TheoryGuidedModel {
      * @type {Array<string>}
      * @memberof TheoryGuidedModel
      */
-    operatingSystems?: Array<string> | null;
+    license?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof TheoryGuidedModel
      */
-    license?: Array<string> | null;
+    operatingSystems?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -265,16 +265,16 @@ export interface TheoryGuidedModel {
     hasExample?: Array<string> | null;
     /**
      * 
-     * @type {Array<object>}
-     * @memberof TheoryGuidedModel
-     */
-    publisher?: Array<object> | null;
-    /**
-     * 
      * @type {Array<Equation>}
      * @memberof TheoryGuidedModel
      */
     hasEquation?: Array<Equation> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof TheoryGuidedModel
+     */
+    publisher?: Array<object> | null;
 }
 
 export function TheoryGuidedModelFromJSON(json: any): TheoryGuidedModel {
@@ -295,18 +295,18 @@ export function TheoryGuidedModelFromJSONTyped(json: any, ignoreDiscriminator: b
         'hasVersion': !exists(json, 'hasVersion') ? undefined : json['hasVersion'],
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
-        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'screenshot': !exists(json, 'screenshot') ? undefined : json['screenshot'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
         'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : json['hasModelCategory'],
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
-        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : json['compatibleVisualizationSoftware'],
         'contributor': !exists(json, 'contributor') ? undefined : json['contributor'],
+        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : json['compatibleVisualizationSoftware'],
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
-        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'logo': !exists(json, 'logo') ? undefined : json['logo'],
+        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : json['hasSampleVisualization'],
@@ -321,13 +321,13 @@ export function TheoryGuidedModelFromJSONTyped(json: any, ignoreDiscriminator: b
         'label': !exists(json, 'label') ? undefined : json['label'],
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
-        'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'license': !exists(json, 'license') ? undefined : json['license'],
+        'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : json['hasSourceCode'],
         'hasExplanationDiagram': !exists(json, 'hasExplanationDiagram') ? undefined : json['hasExplanationDiagram'],
         'hasExample': !exists(json, 'hasExample') ? undefined : json['hasExample'],
-        'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
         'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
+        'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
     };
 }
 
@@ -348,18 +348,18 @@ export function TheoryGuidedModelToJSON(value?: TheoryGuidedModel): any {
         'hasVersion': value.hasVersion,
         'hasTypicalDataSource': value.hasTypicalDataSource,
         'hasDownloadURL': value.hasDownloadURL,
-        'referencePublication': value.referencePublication,
         'description': value.description,
+        'referencePublication': value.referencePublication,
         'screenshot': value.screenshot,
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
         'hasModelCategory': value.hasModelCategory,
         'dateCreated': value.dateCreated,
-        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware,
         'contributor': value.contributor,
+        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware,
         'hasFAQ': value.hasFAQ,
-        'hasContactPerson': value.hasContactPerson,
         'logo': value.logo,
+        'hasContactPerson': value.hasContactPerson,
         'hasPurpose': value.hasPurpose,
         'id': value.id,
         'hasSampleVisualization': value.hasSampleVisualization,
@@ -374,13 +374,13 @@ export function TheoryGuidedModelToJSON(value?: TheoryGuidedModel): any {
         'label': value.label,
         'hasAssumption': value.hasAssumption,
         'datePublished': value.datePublished,
-        'operatingSystems': value.operatingSystems,
         'license': value.license,
+        'operatingSystems': value.operatingSystems,
         'hasSourceCode': value.hasSourceCode,
         'hasExplanationDiagram': value.hasExplanationDiagram,
         'hasExample': value.hasExample,
-        'publisher': value.publisher,
         'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
+        'publisher': value.publisher,
     };
 }
 

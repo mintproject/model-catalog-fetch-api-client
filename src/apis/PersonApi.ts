@@ -169,7 +169,7 @@ export class PersonApi extends runtime.BaseAPI {
      * Updates an existing Person
      * Update a Person
      */
-    async personsIdPutRaw(requestParameters: PersonsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async personsIdPutRaw(requestParameters: PersonsIdPutRequest): Promise<runtime.ApiResponse<Person>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling personsIdPut.');
         }
@@ -200,22 +200,23 @@ export class PersonApi extends runtime.BaseAPI {
             body: PersonToJSON(requestParameters.person),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => PersonFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing Person
     * Update a Person
     */
-    async personsIdPut(requestParameters: PersonsIdPutRequest): Promise<void> {
-        await this.personsIdPutRaw(requestParameters);
+    async personsIdPut(requestParameters: PersonsIdPutRequest): Promise<Person> {
+        const response = await this.personsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a Person
      * Create a Person
      */
-    async personsPostRaw(requestParameters: PersonsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async personsPostRaw(requestParameters: PersonsPostRequest): Promise<runtime.ApiResponse<Person>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling personsPost.');
         }
@@ -242,15 +243,16 @@ export class PersonApi extends runtime.BaseAPI {
             body: PersonToJSON(requestParameters.person),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => PersonFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a Person
     * Create a Person
     */
-    async personsPost(requestParameters: PersonsPostRequest): Promise<void> {
-        await this.personsPostRaw(requestParameters);
+    async personsPost(requestParameters: PersonsPostRequest): Promise<Person> {
+        const response = await this.personsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

@@ -169,7 +169,7 @@ export class SoftwareImageApi extends runtime.BaseAPI {
      * Updates an existing SoftwareImage
      * Update a SoftwareImage
      */
-    async softwareimagesIdPutRaw(requestParameters: SoftwareimagesIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async softwareimagesIdPutRaw(requestParameters: SoftwareimagesIdPutRequest): Promise<runtime.ApiResponse<SoftwareImage>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling softwareimagesIdPut.');
         }
@@ -200,22 +200,23 @@ export class SoftwareImageApi extends runtime.BaseAPI {
             body: SoftwareImageToJSON(requestParameters.softwareImage),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SoftwareImageFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing SoftwareImage
     * Update a SoftwareImage
     */
-    async softwareimagesIdPut(requestParameters: SoftwareimagesIdPutRequest): Promise<void> {
-        await this.softwareimagesIdPutRaw(requestParameters);
+    async softwareimagesIdPut(requestParameters: SoftwareimagesIdPutRequest): Promise<SoftwareImage> {
+        const response = await this.softwareimagesIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a SoftwareImage
      * Create a SoftwareImage
      */
-    async softwareimagesPostRaw(requestParameters: SoftwareimagesPostRequest): Promise<runtime.ApiResponse<void>> {
+    async softwareimagesPostRaw(requestParameters: SoftwareimagesPostRequest): Promise<runtime.ApiResponse<SoftwareImage>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling softwareimagesPost.');
         }
@@ -242,15 +243,16 @@ export class SoftwareImageApi extends runtime.BaseAPI {
             body: SoftwareImageToJSON(requestParameters.softwareImage),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SoftwareImageFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a SoftwareImage
     * Create a SoftwareImage
     */
-    async softwareimagesPost(requestParameters: SoftwareimagesPostRequest): Promise<void> {
-        await this.softwareimagesPostRaw(requestParameters);
+    async softwareimagesPost(requestParameters: SoftwareimagesPostRequest): Promise<SoftwareImage> {
+        const response = await this.softwareimagesPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

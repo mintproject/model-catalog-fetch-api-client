@@ -169,7 +169,7 @@ export class ParameterApi extends runtime.BaseAPI {
      * Updates an existing Parameter
      * Update a Parameter
      */
-    async parametersIdPutRaw(requestParameters: ParametersIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async parametersIdPutRaw(requestParameters: ParametersIdPutRequest): Promise<runtime.ApiResponse<Parameter>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling parametersIdPut.');
         }
@@ -200,22 +200,23 @@ export class ParameterApi extends runtime.BaseAPI {
             body: ParameterToJSON(requestParameters.parameter),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ParameterFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing Parameter
     * Update a Parameter
     */
-    async parametersIdPut(requestParameters: ParametersIdPutRequest): Promise<void> {
-        await this.parametersIdPutRaw(requestParameters);
+    async parametersIdPut(requestParameters: ParametersIdPutRequest): Promise<Parameter> {
+        const response = await this.parametersIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a Parameter
      * Create a Parameter
      */
-    async parametersPostRaw(requestParameters: ParametersPostRequest): Promise<runtime.ApiResponse<void>> {
+    async parametersPostRaw(requestParameters: ParametersPostRequest): Promise<runtime.ApiResponse<Parameter>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling parametersPost.');
         }
@@ -242,15 +243,16 @@ export class ParameterApi extends runtime.BaseAPI {
             body: ParameterToJSON(requestParameters.parameter),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ParameterFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a Parameter
     * Create a Parameter
     */
-    async parametersPost(requestParameters: ParametersPostRequest): Promise<void> {
-        await this.parametersPostRaw(requestParameters);
+    async parametersPost(requestParameters: ParametersPostRequest): Promise<Parameter> {
+        const response = await this.parametersPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

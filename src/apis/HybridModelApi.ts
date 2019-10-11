@@ -169,7 +169,7 @@ export class HybridModelApi extends runtime.BaseAPI {
      * Updates an existing HybridModel
      * Update a HybridModel
      */
-    async hybridmodelsIdPutRaw(requestParameters: HybridmodelsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async hybridmodelsIdPutRaw(requestParameters: HybridmodelsIdPutRequest): Promise<runtime.ApiResponse<HybridModel>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling hybridmodelsIdPut.');
         }
@@ -200,22 +200,23 @@ export class HybridModelApi extends runtime.BaseAPI {
             body: HybridModelToJSON(requestParameters.hybridModel),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => HybridModelFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing HybridModel
     * Update a HybridModel
     */
-    async hybridmodelsIdPut(requestParameters: HybridmodelsIdPutRequest): Promise<void> {
-        await this.hybridmodelsIdPutRaw(requestParameters);
+    async hybridmodelsIdPut(requestParameters: HybridmodelsIdPutRequest): Promise<HybridModel> {
+        const response = await this.hybridmodelsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a HybridModel
      * Create a HybridModel
      */
-    async hybridmodelsPostRaw(requestParameters: HybridmodelsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async hybridmodelsPostRaw(requestParameters: HybridmodelsPostRequest): Promise<runtime.ApiResponse<HybridModel>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling hybridmodelsPost.');
         }
@@ -242,15 +243,16 @@ export class HybridModelApi extends runtime.BaseAPI {
             body: HybridModelToJSON(requestParameters.hybridModel),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => HybridModelFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a HybridModel
     * Create a HybridModel
     */
-    async hybridmodelsPost(requestParameters: HybridmodelsPostRequest): Promise<void> {
-        await this.hybridmodelsPostRaw(requestParameters);
+    async hybridmodelsPost(requestParameters: HybridmodelsPostRequest): Promise<HybridModel> {
+        const response = await this.hybridmodelsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

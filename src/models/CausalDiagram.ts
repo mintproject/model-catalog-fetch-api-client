@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
 export interface CausalDiagram {
     /**
      * 
+     * @type {Array<string>}
+     * @memberof CausalDiagram
+     */
+    description?: Array<string> | null;
+    /**
+     * 
      * @type {string}
      * @memberof CausalDiagram
      */
@@ -54,6 +60,7 @@ export function CausalDiagramFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -70,6 +77,7 @@ export function CausalDiagramToJSON(value?: CausalDiagram): any {
     }
     return {
         
+        'description': value.description,
         'id': value.id,
         'label': value.label,
         'type': value.type,

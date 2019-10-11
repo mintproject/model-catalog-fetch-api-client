@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
 export interface StandardVariable {
     /**
      * 
+     * @type {Array<string>}
+     * @memberof StandardVariable
+     */
+    description?: Array<string> | null;
+    /**
+     * 
      * @type {string}
      * @memberof StandardVariable
      */
@@ -48,6 +54,7 @@ export function StandardVariableFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -63,6 +70,7 @@ export function StandardVariableToJSON(value?: StandardVariable): any {
     }
     return {
         
+        'description': value.description,
         'id': value.id,
         'label': value.label,
         'type': value.type,

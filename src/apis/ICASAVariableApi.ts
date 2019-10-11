@@ -169,7 +169,7 @@ export class ICASAVariableApi extends runtime.BaseAPI {
      * Updates an existing ICASAVariable
      * Update a ICASAVariable
      */
-    async icasavariablesIdPutRaw(requestParameters: IcasavariablesIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async icasavariablesIdPutRaw(requestParameters: IcasavariablesIdPutRequest): Promise<runtime.ApiResponse<ICASAVariable>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling icasavariablesIdPut.');
         }
@@ -200,22 +200,23 @@ export class ICASAVariableApi extends runtime.BaseAPI {
             body: ICASAVariableToJSON(requestParameters.iCASAVariable),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ICASAVariableFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing ICASAVariable
     * Update a ICASAVariable
     */
-    async icasavariablesIdPut(requestParameters: IcasavariablesIdPutRequest): Promise<void> {
-        await this.icasavariablesIdPutRaw(requestParameters);
+    async icasavariablesIdPut(requestParameters: IcasavariablesIdPutRequest): Promise<ICASAVariable> {
+        const response = await this.icasavariablesIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a ICASAVariable
      * Create a ICASAVariable
      */
-    async icasavariablesPostRaw(requestParameters: IcasavariablesPostRequest): Promise<runtime.ApiResponse<void>> {
+    async icasavariablesPostRaw(requestParameters: IcasavariablesPostRequest): Promise<runtime.ApiResponse<ICASAVariable>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling icasavariablesPost.');
         }
@@ -242,15 +243,16 @@ export class ICASAVariableApi extends runtime.BaseAPI {
             body: ICASAVariableToJSON(requestParameters.iCASAVariable),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ICASAVariableFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a ICASAVariable
     * Create a ICASAVariable
     */
-    async icasavariablesPost(requestParameters: IcasavariablesPostRequest): Promise<void> {
-        await this.icasavariablesPostRaw(requestParameters);
+    async icasavariablesPost(requestParameters: IcasavariablesPostRequest): Promise<ICASAVariable> {
+        const response = await this.icasavariablesPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

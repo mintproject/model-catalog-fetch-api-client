@@ -169,7 +169,7 @@ export class OrganizationApi extends runtime.BaseAPI {
      * Updates an existing Organization
      * Update a Organization
      */
-    async organizationsIdPutRaw(requestParameters: OrganizationsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async organizationsIdPutRaw(requestParameters: OrganizationsIdPutRequest): Promise<runtime.ApiResponse<Organization>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling organizationsIdPut.');
         }
@@ -200,22 +200,23 @@ export class OrganizationApi extends runtime.BaseAPI {
             body: OrganizationToJSON(requestParameters.organization),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrganizationFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing Organization
     * Update a Organization
     */
-    async organizationsIdPut(requestParameters: OrganizationsIdPutRequest): Promise<void> {
-        await this.organizationsIdPutRaw(requestParameters);
+    async organizationsIdPut(requestParameters: OrganizationsIdPutRequest): Promise<Organization> {
+        const response = await this.organizationsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a Organization
      * Create a Organization
      */
-    async organizationsPostRaw(requestParameters: OrganizationsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async organizationsPostRaw(requestParameters: OrganizationsPostRequest): Promise<runtime.ApiResponse<Organization>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling organizationsPost.');
         }
@@ -242,15 +243,16 @@ export class OrganizationApi extends runtime.BaseAPI {
             body: OrganizationToJSON(requestParameters.organization),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrganizationFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a Organization
     * Create a Organization
     */
-    async organizationsPost(requestParameters: OrganizationsPostRequest): Promise<void> {
-        await this.organizationsPostRaw(requestParameters);
+    async organizationsPost(requestParameters: OrganizationsPostRequest): Promise<Organization> {
+        const response = await this.organizationsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

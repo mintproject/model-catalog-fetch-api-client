@@ -169,7 +169,7 @@ export class SpatialResolutionApi extends runtime.BaseAPI {
      * Updates an existing SpatialResolution
      * Update a SpatialResolution
      */
-    async spatialresolutionsIdPutRaw(requestParameters: SpatialresolutionsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async spatialresolutionsIdPutRaw(requestParameters: SpatialresolutionsIdPutRequest): Promise<runtime.ApiResponse<SpatialResolution>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling spatialresolutionsIdPut.');
         }
@@ -200,22 +200,23 @@ export class SpatialResolutionApi extends runtime.BaseAPI {
             body: SpatialResolutionToJSON(requestParameters.spatialResolution),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SpatialResolutionFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing SpatialResolution
     * Update a SpatialResolution
     */
-    async spatialresolutionsIdPut(requestParameters: SpatialresolutionsIdPutRequest): Promise<void> {
-        await this.spatialresolutionsIdPutRaw(requestParameters);
+    async spatialresolutionsIdPut(requestParameters: SpatialresolutionsIdPutRequest): Promise<SpatialResolution> {
+        const response = await this.spatialresolutionsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a SpatialResolution
      * Create a SpatialResolution
      */
-    async spatialresolutionsPostRaw(requestParameters: SpatialresolutionsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async spatialresolutionsPostRaw(requestParameters: SpatialresolutionsPostRequest): Promise<runtime.ApiResponse<SpatialResolution>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling spatialresolutionsPost.');
         }
@@ -242,15 +243,16 @@ export class SpatialResolutionApi extends runtime.BaseAPI {
             body: SpatialResolutionToJSON(requestParameters.spatialResolution),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SpatialResolutionFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a SpatialResolution
     * Create a SpatialResolution
     */
-    async spatialresolutionsPost(requestParameters: SpatialresolutionsPostRequest): Promise<void> {
-        await this.spatialresolutionsPostRaw(requestParameters);
+    async spatialresolutionsPost(requestParameters: SpatialresolutionsPostRequest): Promise<SpatialResolution> {
+        const response = await this.spatialresolutionsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

@@ -169,7 +169,7 @@ export class EquationApi extends runtime.BaseAPI {
      * Updates an existing Equation
      * Update a Equation
      */
-    async equationsIdPutRaw(requestParameters: EquationsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async equationsIdPutRaw(requestParameters: EquationsIdPutRequest): Promise<runtime.ApiResponse<Equation>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling equationsIdPut.');
         }
@@ -200,22 +200,23 @@ export class EquationApi extends runtime.BaseAPI {
             body: EquationToJSON(requestParameters.equation),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => EquationFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing Equation
     * Update a Equation
     */
-    async equationsIdPut(requestParameters: EquationsIdPutRequest): Promise<void> {
-        await this.equationsIdPutRaw(requestParameters);
+    async equationsIdPut(requestParameters: EquationsIdPutRequest): Promise<Equation> {
+        const response = await this.equationsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a Equation
      * Create a Equation
      */
-    async equationsPostRaw(requestParameters: EquationsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async equationsPostRaw(requestParameters: EquationsPostRequest): Promise<runtime.ApiResponse<Equation>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling equationsPost.');
         }
@@ -242,15 +243,16 @@ export class EquationApi extends runtime.BaseAPI {
             body: EquationToJSON(requestParameters.equation),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => EquationFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a Equation
     * Create a Equation
     */
-    async equationsPost(requestParameters: EquationsPostRequest): Promise<void> {
-        await this.equationsPostRaw(requestParameters);
+    async equationsPost(requestParameters: EquationsPostRequest): Promise<Equation> {
+        const response = await this.equationsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

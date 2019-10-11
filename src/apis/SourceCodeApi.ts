@@ -169,7 +169,7 @@ export class SourceCodeApi extends runtime.BaseAPI {
      * Updates an existing SourceCode
      * Update a SourceCode
      */
-    async sourcecodesIdPutRaw(requestParameters: SourcecodesIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async sourcecodesIdPutRaw(requestParameters: SourcecodesIdPutRequest): Promise<runtime.ApiResponse<SourceCode>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling sourcecodesIdPut.');
         }
@@ -200,22 +200,23 @@ export class SourceCodeApi extends runtime.BaseAPI {
             body: SourceCodeToJSON(requestParameters.sourceCode),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SourceCodeFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing SourceCode
     * Update a SourceCode
     */
-    async sourcecodesIdPut(requestParameters: SourcecodesIdPutRequest): Promise<void> {
-        await this.sourcecodesIdPutRaw(requestParameters);
+    async sourcecodesIdPut(requestParameters: SourcecodesIdPutRequest): Promise<SourceCode> {
+        const response = await this.sourcecodesIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a SourceCode
      * Create a SourceCode
      */
-    async sourcecodesPostRaw(requestParameters: SourcecodesPostRequest): Promise<runtime.ApiResponse<void>> {
+    async sourcecodesPostRaw(requestParameters: SourcecodesPostRequest): Promise<runtime.ApiResponse<SourceCode>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling sourcecodesPost.');
         }
@@ -242,15 +243,16 @@ export class SourceCodeApi extends runtime.BaseAPI {
             body: SourceCodeToJSON(requestParameters.sourceCode),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SourceCodeFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a SourceCode
     * Create a SourceCode
     */
-    async sourcecodesPost(requestParameters: SourcecodesPostRequest): Promise<void> {
-        await this.sourcecodesPostRaw(requestParameters);
+    async sourcecodesPost(requestParameters: SourcecodesPostRequest): Promise<SourceCode> {
+        const response = await this.sourcecodesPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

@@ -169,7 +169,7 @@ export class TheoryGuidedModelApi extends runtime.BaseAPI {
      * Updates an existing Theory-GuidedModel
      * Update a Theory-GuidedModel
      */
-    async theoryGuidedmodelsIdPutRaw(requestParameters: TheoryGuidedmodelsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async theoryGuidedmodelsIdPutRaw(requestParameters: TheoryGuidedmodelsIdPutRequest): Promise<runtime.ApiResponse<TheoryGuidedModel>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling theoryGuidedmodelsIdPut.');
         }
@@ -200,22 +200,23 @@ export class TheoryGuidedModelApi extends runtime.BaseAPI {
             body: TheoryGuidedModelToJSON(requestParameters.theoryGuidedModel),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => TheoryGuidedModelFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing Theory-GuidedModel
     * Update a Theory-GuidedModel
     */
-    async theoryGuidedmodelsIdPut(requestParameters: TheoryGuidedmodelsIdPutRequest): Promise<void> {
-        await this.theoryGuidedmodelsIdPutRaw(requestParameters);
+    async theoryGuidedmodelsIdPut(requestParameters: TheoryGuidedmodelsIdPutRequest): Promise<TheoryGuidedModel> {
+        const response = await this.theoryGuidedmodelsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a Theory-GuidedModel
      * Create a Theory-GuidedModel
      */
-    async theoryGuidedmodelsPostRaw(requestParameters: TheoryGuidedmodelsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async theoryGuidedmodelsPostRaw(requestParameters: TheoryGuidedmodelsPostRequest): Promise<runtime.ApiResponse<TheoryGuidedModel>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling theoryGuidedmodelsPost.');
         }
@@ -242,15 +243,16 @@ export class TheoryGuidedModelApi extends runtime.BaseAPI {
             body: TheoryGuidedModelToJSON(requestParameters.theoryGuidedModel),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => TheoryGuidedModelFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a Theory-GuidedModel
     * Create a Theory-GuidedModel
     */
-    async theoryGuidedmodelsPost(requestParameters: TheoryGuidedmodelsPostRequest): Promise<void> {
-        await this.theoryGuidedmodelsPostRaw(requestParameters);
+    async theoryGuidedmodelsPost(requestParameters: TheoryGuidedmodelsPostRequest): Promise<TheoryGuidedModel> {
+        const response = await this.theoryGuidedmodelsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

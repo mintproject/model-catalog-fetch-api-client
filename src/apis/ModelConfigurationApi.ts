@@ -169,7 +169,7 @@ export class ModelConfigurationApi extends runtime.BaseAPI {
      * Updates an existing ModelConfiguration
      * Update a ModelConfiguration
      */
-    async modelconfigurationsIdPutRaw(requestParameters: ModelconfigurationsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async modelconfigurationsIdPutRaw(requestParameters: ModelconfigurationsIdPutRequest): Promise<runtime.ApiResponse<ModelConfiguration>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling modelconfigurationsIdPut.');
         }
@@ -200,22 +200,23 @@ export class ModelConfigurationApi extends runtime.BaseAPI {
             body: ModelConfigurationToJSON(requestParameters.modelConfiguration),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelConfigurationFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing ModelConfiguration
     * Update a ModelConfiguration
     */
-    async modelconfigurationsIdPut(requestParameters: ModelconfigurationsIdPutRequest): Promise<void> {
-        await this.modelconfigurationsIdPutRaw(requestParameters);
+    async modelconfigurationsIdPut(requestParameters: ModelconfigurationsIdPutRequest): Promise<ModelConfiguration> {
+        const response = await this.modelconfigurationsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a ModelConfiguration
      * Create a ModelConfiguration
      */
-    async modelconfigurationsPostRaw(requestParameters: ModelconfigurationsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async modelconfigurationsPostRaw(requestParameters: ModelconfigurationsPostRequest): Promise<runtime.ApiResponse<ModelConfiguration>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling modelconfigurationsPost.');
         }
@@ -242,15 +243,16 @@ export class ModelConfigurationApi extends runtime.BaseAPI {
             body: ModelConfigurationToJSON(requestParameters.modelConfiguration),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelConfigurationFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a ModelConfiguration
     * Create a ModelConfiguration
     */
-    async modelconfigurationsPost(requestParameters: ModelconfigurationsPostRequest): Promise<void> {
-        await this.modelconfigurationsPostRaw(requestParameters);
+    async modelconfigurationsPost(requestParameters: ModelconfigurationsPostRequest): Promise<ModelConfiguration> {
+        const response = await this.modelconfigurationsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

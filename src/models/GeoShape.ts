@@ -35,6 +35,12 @@ export interface GeoShape {
      * @type {Array<string>}
      * @memberof GeoShape
      */
+    description?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GeoShape
+     */
     box?: Array<string> | null;
     /**
      * 
@@ -74,6 +80,7 @@ export function GeoShapeFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         
         'elevation': !exists(json, 'elevation') ? undefined : json['elevation'],
         'latitude': !exists(json, 'latitude') ? undefined : json['latitude'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'box': !exists(json, 'box') ? undefined : json['box'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
@@ -93,6 +100,7 @@ export function GeoShapeToJSON(value?: GeoShape): any {
         
         'elevation': value.elevation,
         'latitude': value.latitude,
+        'description': value.description,
         'box': value.box,
         'id': value.id,
         'label': value.label,

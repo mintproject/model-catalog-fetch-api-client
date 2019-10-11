@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
 export interface Process {
     /**
      * 
+     * @type {Array<string>}
+     * @memberof Process
+     */
+    description?: Array<string> | null;
+    /**
+     * 
      * @type {string}
      * @memberof Process
      */
@@ -54,6 +60,7 @@ export function ProcessFromJSONTyped(json: any, ignoreDiscriminator: boolean): P
     }
     return {
         
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -70,6 +77,7 @@ export function ProcessToJSON(value?: Process): any {
     }
     return {
         
+        'description': value.description,
         'id': value.id,
         'label': value.label,
         'type': value.type,

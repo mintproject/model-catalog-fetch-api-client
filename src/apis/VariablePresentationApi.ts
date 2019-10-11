@@ -169,7 +169,7 @@ export class VariablePresentationApi extends runtime.BaseAPI {
      * Updates an existing VariablePresentation
      * Update a VariablePresentation
      */
-    async variablepresentationsIdPutRaw(requestParameters: VariablepresentationsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async variablepresentationsIdPutRaw(requestParameters: VariablepresentationsIdPutRequest): Promise<runtime.ApiResponse<VariablePresentation>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling variablepresentationsIdPut.');
         }
@@ -200,22 +200,23 @@ export class VariablePresentationApi extends runtime.BaseAPI {
             body: VariablePresentationToJSON(requestParameters.variablePresentation),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => VariablePresentationFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing VariablePresentation
     * Update a VariablePresentation
     */
-    async variablepresentationsIdPut(requestParameters: VariablepresentationsIdPutRequest): Promise<void> {
-        await this.variablepresentationsIdPutRaw(requestParameters);
+    async variablepresentationsIdPut(requestParameters: VariablepresentationsIdPutRequest): Promise<VariablePresentation> {
+        const response = await this.variablepresentationsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a VariablePresentation
      * Create a VariablePresentation
      */
-    async variablepresentationsPostRaw(requestParameters: VariablepresentationsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async variablepresentationsPostRaw(requestParameters: VariablepresentationsPostRequest): Promise<runtime.ApiResponse<VariablePresentation>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling variablepresentationsPost.');
         }
@@ -242,15 +243,16 @@ export class VariablePresentationApi extends runtime.BaseAPI {
             body: VariablePresentationToJSON(requestParameters.variablePresentation),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => VariablePresentationFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a VariablePresentation
     * Create a VariablePresentation
     */
-    async variablepresentationsPost(requestParameters: VariablepresentationsPostRequest): Promise<void> {
-        await this.variablepresentationsPostRaw(requestParameters);
+    async variablepresentationsPost(requestParameters: VariablepresentationsPostRequest): Promise<VariablePresentation> {
+        const response = await this.variablepresentationsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

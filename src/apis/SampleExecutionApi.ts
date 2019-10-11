@@ -169,7 +169,7 @@ export class SampleExecutionApi extends runtime.BaseAPI {
      * Updates an existing SampleExecution
      * Update a SampleExecution
      */
-    async sampleexecutionsIdPutRaw(requestParameters: SampleexecutionsIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async sampleexecutionsIdPutRaw(requestParameters: SampleexecutionsIdPutRequest): Promise<runtime.ApiResponse<SampleExecution>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling sampleexecutionsIdPut.');
         }
@@ -200,22 +200,23 @@ export class SampleExecutionApi extends runtime.BaseAPI {
             body: SampleExecutionToJSON(requestParameters.sampleExecution),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SampleExecutionFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing SampleExecution
     * Update a SampleExecution
     */
-    async sampleexecutionsIdPut(requestParameters: SampleexecutionsIdPutRequest): Promise<void> {
-        await this.sampleexecutionsIdPutRaw(requestParameters);
+    async sampleexecutionsIdPut(requestParameters: SampleexecutionsIdPutRequest): Promise<SampleExecution> {
+        const response = await this.sampleexecutionsIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a SampleExecution
      * Create a SampleExecution
      */
-    async sampleexecutionsPostRaw(requestParameters: SampleexecutionsPostRequest): Promise<runtime.ApiResponse<void>> {
+    async sampleexecutionsPostRaw(requestParameters: SampleexecutionsPostRequest): Promise<runtime.ApiResponse<SampleExecution>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling sampleexecutionsPost.');
         }
@@ -242,15 +243,16 @@ export class SampleExecutionApi extends runtime.BaseAPI {
             body: SampleExecutionToJSON(requestParameters.sampleExecution),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SampleExecutionFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a SampleExecution
     * Create a SampleExecution
     */
-    async sampleexecutionsPost(requestParameters: SampleexecutionsPostRequest): Promise<void> {
-        await this.sampleexecutionsPostRaw(requestParameters);
+    async sampleexecutionsPost(requestParameters: SampleexecutionsPostRequest): Promise<SampleExecution> {
+        const response = await this.sampleexecutionsPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

@@ -169,7 +169,7 @@ export class SVOVariableApi extends runtime.BaseAPI {
      * Updates an existing SVOVariable
      * Update a SVOVariable
      */
-    async svovariablesIdPutRaw(requestParameters: SvovariablesIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async svovariablesIdPutRaw(requestParameters: SvovariablesIdPutRequest): Promise<runtime.ApiResponse<SVOVariable>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling svovariablesIdPut.');
         }
@@ -200,22 +200,23 @@ export class SVOVariableApi extends runtime.BaseAPI {
             body: SVOVariableToJSON(requestParameters.sVOVariable),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SVOVariableFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing SVOVariable
     * Update a SVOVariable
     */
-    async svovariablesIdPut(requestParameters: SvovariablesIdPutRequest): Promise<void> {
-        await this.svovariablesIdPutRaw(requestParameters);
+    async svovariablesIdPut(requestParameters: SvovariablesIdPutRequest): Promise<SVOVariable> {
+        const response = await this.svovariablesIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a SVOVariable
      * Create a SVOVariable
      */
-    async svovariablesPostRaw(requestParameters: SvovariablesPostRequest): Promise<runtime.ApiResponse<void>> {
+    async svovariablesPostRaw(requestParameters: SvovariablesPostRequest): Promise<runtime.ApiResponse<SVOVariable>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling svovariablesPost.');
         }
@@ -242,15 +243,16 @@ export class SVOVariableApi extends runtime.BaseAPI {
             body: SVOVariableToJSON(requestParameters.sVOVariable),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SVOVariableFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a SVOVariable
     * Create a SVOVariable
     */
-    async svovariablesPost(requestParameters: SvovariablesPostRequest): Promise<void> {
-        await this.svovariablesPostRaw(requestParameters);
+    async svovariablesPost(requestParameters: SvovariablesPostRequest): Promise<SVOVariable> {
+        const response = await this.svovariablesPostRaw(requestParameters);
+        return await response.value();
     }
 
 }

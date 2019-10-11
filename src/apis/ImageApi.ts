@@ -169,7 +169,7 @@ export class ImageApi extends runtime.BaseAPI {
      * Updates an existing Image
      * Update a Image
      */
-    async imagesIdPutRaw(requestParameters: ImagesIdPutRequest): Promise<runtime.ApiResponse<void>> {
+    async imagesIdPutRaw(requestParameters: ImagesIdPutRequest): Promise<runtime.ApiResponse<Image>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling imagesIdPut.');
         }
@@ -200,22 +200,23 @@ export class ImageApi extends runtime.BaseAPI {
             body: ImageToJSON(requestParameters.image),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ImageFromJSON(jsonValue));
     }
 
    /**
     * Updates an existing Image
     * Update a Image
     */
-    async imagesIdPut(requestParameters: ImagesIdPutRequest): Promise<void> {
-        await this.imagesIdPutRaw(requestParameters);
+    async imagesIdPut(requestParameters: ImagesIdPutRequest): Promise<Image> {
+        const response = await this.imagesIdPutRaw(requestParameters);
+        return await response.value();
     }
 
     /**
      * Create a new instance of a Image
      * Create a Image
      */
-    async imagesPostRaw(requestParameters: ImagesPostRequest): Promise<runtime.ApiResponse<void>> {
+    async imagesPostRaw(requestParameters: ImagesPostRequest): Promise<runtime.ApiResponse<Image>> {
         if (requestParameters.user === null || requestParameters.user === undefined) {
             throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling imagesPost.');
         }
@@ -242,15 +243,16 @@ export class ImageApi extends runtime.BaseAPI {
             body: ImageToJSON(requestParameters.image),
         });
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ImageFromJSON(jsonValue));
     }
 
    /**
     * Create a new instance of a Image
     * Create a Image
     */
-    async imagesPost(requestParameters: ImagesPostRequest): Promise<void> {
-        await this.imagesPostRaw(requestParameters);
+    async imagesPost(requestParameters: ImagesPostRequest): Promise<Image> {
+        const response = await this.imagesPostRaw(requestParameters);
+        return await response.value();
     }
 
 }
