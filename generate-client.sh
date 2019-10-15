@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-REPO_TAG=1.0.0
+REPO_TAG=master
 FILE=https://raw.githubusercontent.com/mintproject/model-catalog-api/$REPO_TAG/model-catalog.yaml
 docker run -ti --rm -v ${PWD}:/local openapitools/openapi-generator-cli:v4.1.2 \
      generate  \

@@ -12,7 +12,7 @@
  */
 
 
-export const BASE_PATH = "https://dev.api.models.mint.isi.edu/v1.1.0".replace(/\/+$/, "");
+export const BASE_PATH = "https://api.models.mint.isi.edu/v1.1.0".replace(/\/+$/, "");
 
 const isBlob = (value: any) => typeof Blob !== 'undefined' && value instanceof Blob;
 
