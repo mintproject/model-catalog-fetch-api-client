@@ -20,6 +20,13 @@
   },
   "hooks": {
     "after:bump": "echo ${version} > VERSION"
+  },
+  "npm": {
+    "publish": true,
+    "publishPath": ".",
+    "access": null,
+    "otp": null
   }
+
 }
 
