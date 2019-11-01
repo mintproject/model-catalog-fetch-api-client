@@ -27,16 +27,16 @@ import {
 export interface Parameter {
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<string>}
      * @memberof Parameter
      */
-    hasDefaultValue?: Array<object> | null;
+    hasDefaultValue?: Array<string> | null;
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<string>}
      * @memberof Parameter
      */
-    hasMaximumAcceptedValue?: Array<object> | null;
+    hasMaximumAcceptedValue?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -51,10 +51,10 @@ export interface Parameter {
     hasDataType?: Array<string> | null;
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<string>}
      * @memberof Parameter
      */
-    hasFixedValue?: Array<object> | null;
+    hasFixedValue?: Array<string> | null;
     /**
      * 
      * @type {Array<VariablePresentation>}
@@ -75,10 +75,10 @@ export interface Parameter {
     type?: Array<string> | null;
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<string>}
      * @memberof Parameter
      */
-    hasMinimumAcceptedValue?: Array<object> | null;
+    hasMinimumAcceptedValue?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}

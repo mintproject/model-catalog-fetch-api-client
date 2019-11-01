@@ -92,13 +92,13 @@ export interface Software {
      * @type {Array<string>}
      * @memberof Software
      */
-    referencePublication?: Array<string> | null;
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Software
      */
-    description?: Array<string> | null;
+    referencePublication?: Array<string> | null;
     /**
      * 
      * @type {Array<Image>}
@@ -242,13 +242,13 @@ export interface Software {
      * @type {Array<string>}
      * @memberof Software
      */
-    license?: Array<string> | null;
+    operatingSystems?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Software
      */
-    operatingSystems?: Array<string> | null;
+    license?: Array<string> | null;
     /**
      * 
      * @type {Array<SourceCode>}
@@ -286,8 +286,8 @@ export function SoftwareFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'hasVersion': !exists(json, 'hasVersion') ? undefined : (json['hasVersion'] as Array<any>).map(SoftwareVersionFromJSON),
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
-        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'screenshot': !exists(json, 'screenshot') ? undefined : (json['screenshot'] as Array<any>).map(ImageFromJSON),
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
@@ -311,8 +311,8 @@ export function SoftwareFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'label': !exists(json, 'label') ? undefined : json['label'],
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
-        'license': !exists(json, 'license') ? undefined : json['license'],
         'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
+        'license': !exists(json, 'license') ? undefined : json['license'],
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : (json['hasSourceCode'] as Array<any>).map(SourceCodeFromJSON),
         'hasExample': !exists(json, 'hasExample') ? undefined : json['hasExample'],
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
@@ -335,8 +335,8 @@ export function SoftwareToJSON(value?: Software): any {
         'hasVersion': value.hasVersion === undefined ? undefined : (value.hasVersion as Array<any>).map(SoftwareVersionToJSON),
         'hasTypicalDataSource': value.hasTypicalDataSource,
         'hasDownloadURL': value.hasDownloadURL,
-        'referencePublication': value.referencePublication,
         'description': value.description,
+        'referencePublication': value.referencePublication,
         'screenshot': value.screenshot === undefined ? undefined : (value.screenshot as Array<any>).map(ImageToJSON),
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
@@ -360,8 +360,8 @@ export function SoftwareToJSON(value?: Software): any {
         'label': value.label,
         'hasAssumption': value.hasAssumption,
         'datePublished': value.datePublished,
-        'license': value.license,
         'operatingSystems': value.operatingSystems,
+        'license': value.license,
         'hasSourceCode': value.hasSourceCode === undefined ? undefined : (value.hasSourceCode as Array<any>).map(SourceCodeToJSON),
         'hasExample': value.hasExample,
         'publisher': value.publisher,

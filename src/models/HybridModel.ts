@@ -172,13 +172,13 @@ export interface HybridModel {
      * @type {Array<string>}
      * @memberof HybridModel
      */
-    identifier?: Array<string> | null;
+    memoryRequirements?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof HybridModel
      */
-    memoryRequirements?: Array<string> | null;
+    identifier?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -310,8 +310,8 @@ export function HybridModelFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : json['hasSampleVisualization'],
-        'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
+        'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'website': !exists(json, 'website') ? undefined : json['website'],
         'citation': !exists(json, 'citation') ? undefined : json['citation'],
         'author': !exists(json, 'author') ? undefined : json['author'],
@@ -363,8 +363,8 @@ export function HybridModelToJSON(value?: HybridModel): any {
         'hasPurpose': value.hasPurpose,
         'id': value.id,
         'hasSampleVisualization': value.hasSampleVisualization,
-        'identifier': value.identifier,
         'memoryRequirements': value.memoryRequirements,
+        'identifier': value.identifier,
         'website': value.website,
         'citation': value.citation,
         'author': value.author,
