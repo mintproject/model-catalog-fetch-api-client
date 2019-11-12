@@ -25,10 +25,10 @@ import {
     GridFromJSON,
     GridFromJSONTyped,
     GridToJSON,
-    Index,
-    IndexFromJSON,
-    IndexFromJSONTyped,
-    IndexToJSON,
+    NumericalIndex,
+    NumericalIndexFromJSON,
+    NumericalIndexFromJSONTyped,
+    NumericalIndexToJSON,
     Process,
     ProcessFromJSON,
     ProcessFromJSONTyped,
@@ -72,13 +72,13 @@ export interface ModelConfigurationSetup {
      * @type {Array<string>}
      * @memberof ModelConfigurationSetup
      */
-    hasImplementationScriptLocation?: Array<string> | null;
+    softwareRequirements?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof ModelConfigurationSetup
      */
-    softwareRequirements?: Array<string> | null;
+    hasImplementationScriptLocation?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -132,13 +132,13 @@ export interface ModelConfigurationSetup {
      * @type {Array<object>}
      * @memberof ModelConfigurationSetup
      */
-    hasContactPerson?: Array<object> | null;
+    logo?: Array<object> | null;
     /**
      * 
      * @type {Array<object>}
      * @memberof ModelConfigurationSetup
      */
-    logo?: Array<object> | null;
+    hasContactPerson?: Array<object> | null;
     /**
      * 
      * @type {string}
@@ -294,13 +294,13 @@ export interface ModelConfigurationSetup {
      * @type {Array<string>}
      * @memberof ModelConfigurationSetup
      */
-    referencePublication?: Array<string> | null;
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof ModelConfigurationSetup
      */
-    description?: Array<string> | null;
+    referencePublication?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -447,10 +447,10 @@ export interface ModelConfigurationSetup {
     hasEquation?: Array<Equation> | null;
     /**
      * 
-     * @type {Array<Index>}
+     * @type {Array<NumericalIndex>}
      * @memberof ModelConfigurationSetup
      */
-    usefulForCalculatingIndex?: Array<Index> | null;
+    usefulForCalculatingIndex?: Array<NumericalIndex> | null;
     /**
      * 
      * @type {Array<object>}
@@ -472,8 +472,8 @@ export function ModelConfigurationSetupFromJSONTyped(json: any, ignoreDiscrimina
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'hasGrid': !exists(json, 'hasGrid') ? undefined : (json['hasGrid'] as Array<any>).map(GridFromJSON),
-        'hasImplementationScriptLocation': !exists(json, 'hasImplementationScriptLocation') ? undefined : json['hasImplementationScriptLocation'],
         'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
+        'hasImplementationScriptLocation': !exists(json, 'hasImplementationScriptLocation') ? undefined : json['hasImplementationScriptLocation'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'calibratedVariable': !exists(json, 'calibratedVariable') ? undefined : json['calibratedVariable'],
@@ -482,8 +482,8 @@ export function ModelConfigurationSetupFromJSONTyped(json: any, ignoreDiscrimina
         'calibrationMethod': !exists(json, 'calibrationMethod') ? undefined : json['calibrationMethod'],
         'hasRegion': !exists(json, 'hasRegion') ? undefined : (json['hasRegion'] as Array<any>).map(RegionFromJSON),
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
-        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'logo': !exists(json, 'logo') ? undefined : json['logo'],
+        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'hasSampleExecution': !exists(json, 'hasSampleExecution') ? undefined : json['hasSampleExecution'],
@@ -509,8 +509,8 @@ export function ModelConfigurationSetupFromJSONTyped(json: any, ignoreDiscrimina
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : json['hasVersion'],
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
-        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'screenshot': !exists(json, 'screenshot') ? undefined : json['screenshot'],
         'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : json['hasModelCategory'],
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
@@ -535,7 +535,7 @@ export function ModelConfigurationSetupFromJSONTyped(json: any, ignoreDiscrimina
         'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'validUntil': !exists(json, 'validUntil') ? undefined : json['validUntil'],
         'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
-        'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(IndexFromJSON),
+        'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
         'hasInput': !exists(json, 'hasInput') ? undefined : json['hasInput'],
     };
 }
@@ -552,8 +552,8 @@ export function ModelConfigurationSetupToJSON(value?: ModelConfigurationSetup): 
         'keywords': value.keywords,
         'hasDocumentation': value.hasDocumentation,
         'hasGrid': value.hasGrid === undefined ? undefined : (value.hasGrid as Array<any>).map(GridToJSON),
-        'hasImplementationScriptLocation': value.hasImplementationScriptLocation,
         'softwareRequirements': value.softwareRequirements,
+        'hasImplementationScriptLocation': value.hasImplementationScriptLocation,
         'hasDownloadURL': value.hasDownloadURL,
         'type': value.type,
         'calibratedVariable': value.calibratedVariable,
@@ -562,8 +562,8 @@ export function ModelConfigurationSetupToJSON(value?: ModelConfigurationSetup): 
         'calibrationMethod': value.calibrationMethod,
         'hasRegion': value.hasRegion === undefined ? undefined : (value.hasRegion as Array<any>).map(RegionToJSON),
         'hasFAQ': value.hasFAQ,
-        'hasContactPerson': value.hasContactPerson,
         'logo': value.logo,
+        'hasContactPerson': value.hasContactPerson,
         'id': value.id,
         'identifier': value.identifier,
         'hasSampleExecution': value.hasSampleExecution,
@@ -589,8 +589,8 @@ export function ModelConfigurationSetupToJSON(value?: ModelConfigurationSetup): 
         'supportDetails': value.supportDetails,
         'hasVersion': value.hasVersion,
         'hasTypicalDataSource': value.hasTypicalDataSource,
-        'referencePublication': value.referencePublication,
         'description': value.description,
+        'referencePublication': value.referencePublication,
         'screenshot': value.screenshot,
         'hasModelCategory': value.hasModelCategory,
         'hadPrimarySource': value.hadPrimarySource,
@@ -615,7 +615,7 @@ export function ModelConfigurationSetupToJSON(value?: ModelConfigurationSetup): 
         'operatingSystems': value.operatingSystems,
         'validUntil': value.validUntil,
         'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
-        'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(IndexToJSON),
+        'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
         'hasInput': value.hasInput,
     };
 }

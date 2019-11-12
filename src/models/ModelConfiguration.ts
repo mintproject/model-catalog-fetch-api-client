@@ -25,10 +25,10 @@ import {
     GridFromJSON,
     GridFromJSONTyped,
     GridToJSON,
-    Index,
-    IndexFromJSON,
-    IndexFromJSONTyped,
-    IndexToJSON,
+    NumericalIndex,
+    NumericalIndexFromJSON,
+    NumericalIndexFromJSONTyped,
+    NumericalIndexToJSON,
     Process,
     ProcessFromJSON,
     ProcessFromJSONTyped,
@@ -72,13 +72,13 @@ export interface ModelConfiguration {
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    hasImplementationScriptLocation?: Array<string> | null;
+    softwareRequirements?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    softwareRequirements?: Array<string> | null;
+    hasImplementationScriptLocation?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -120,13 +120,13 @@ export interface ModelConfiguration {
      * @type {Array<object>}
      * @memberof ModelConfiguration
      */
-    hasContactPerson?: Array<object> | null;
+    logo?: Array<object> | null;
     /**
      * 
      * @type {Array<object>}
      * @memberof ModelConfiguration
      */
-    logo?: Array<object> | null;
+    hasContactPerson?: Array<object> | null;
     /**
      * 
      * @type {string}
@@ -270,13 +270,13 @@ export interface ModelConfiguration {
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    referencePublication?: Array<string> | null;
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
-    description?: Array<string> | null;
+    referencePublication?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -405,10 +405,10 @@ export interface ModelConfiguration {
     hasEquation?: Array<Equation> | null;
     /**
      * 
-     * @type {Array<Index>}
+     * @type {Array<NumericalIndex>}
      * @memberof ModelConfiguration
      */
-    usefulForCalculatingIndex?: Array<Index> | null;
+    usefulForCalculatingIndex?: Array<NumericalIndex> | null;
     /**
      * 
      * @type {Array<object>}
@@ -430,16 +430,16 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'hasGrid': !exists(json, 'hasGrid') ? undefined : (json['hasGrid'] as Array<any>).map(GridFromJSON),
-        'hasImplementationScriptLocation': !exists(json, 'hasImplementationScriptLocation') ? undefined : json['hasImplementationScriptLocation'],
         'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
+        'hasImplementationScriptLocation': !exists(json, 'hasImplementationScriptLocation') ? undefined : json['hasImplementationScriptLocation'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
         'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : json['compatibleVisualizationSoftware'],
         'hasRegion': !exists(json, 'hasRegion') ? undefined : (json['hasRegion'] as Array<any>).map(RegionFromJSON),
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
-        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'logo': !exists(json, 'logo') ? undefined : json['logo'],
+        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'hasSampleExecution': !exists(json, 'hasSampleExecution') ? undefined : json['hasSampleExecution'],
@@ -463,8 +463,8 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : json['hasVersion'],
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
-        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'screenshot': !exists(json, 'screenshot') ? undefined : json['screenshot'],
         'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : json['hasModelCategory'],
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
@@ -486,7 +486,7 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'hasParameter': !exists(json, 'hasParameter') ? undefined : json['hasParameter'],
         'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
-        'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(IndexFromJSON),
+        'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
         'hasInput': !exists(json, 'hasInput') ? undefined : json['hasInput'],
     };
 }
@@ -503,16 +503,16 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'keywords': value.keywords,
         'hasDocumentation': value.hasDocumentation,
         'hasGrid': value.hasGrid === undefined ? undefined : (value.hasGrid as Array<any>).map(GridToJSON),
-        'hasImplementationScriptLocation': value.hasImplementationScriptLocation,
         'softwareRequirements': value.softwareRequirements,
+        'hasImplementationScriptLocation': value.hasImplementationScriptLocation,
         'hasDownloadURL': value.hasDownloadURL,
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
         'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware,
         'hasRegion': value.hasRegion === undefined ? undefined : (value.hasRegion as Array<any>).map(RegionToJSON),
         'hasFAQ': value.hasFAQ,
-        'hasContactPerson': value.hasContactPerson,
         'logo': value.logo,
+        'hasContactPerson': value.hasContactPerson,
         'id': value.id,
         'identifier': value.identifier,
         'hasSampleExecution': value.hasSampleExecution,
@@ -536,8 +536,8 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'supportDetails': value.supportDetails,
         'hasVersion': value.hasVersion,
         'hasTypicalDataSource': value.hasTypicalDataSource,
-        'referencePublication': value.referencePublication,
         'description': value.description,
+        'referencePublication': value.referencePublication,
         'screenshot': value.screenshot,
         'hasModelCategory': value.hasModelCategory,
         'hadPrimarySource': value.hadPrimarySource,
@@ -559,7 +559,7 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'hasParameter': value.hasParameter,
         'operatingSystems': value.operatingSystems,
         'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
-        'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(IndexToJSON),
+        'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
         'hasInput': value.hasInput,
     };
 }

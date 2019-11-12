@@ -71,13 +71,13 @@ export interface Grid {
      * @type {Array<string>}
      * @memberof Grid
      */
-    hasCoordinateSystem?: Array<string> | null;
+    hasSpatialResolution?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Grid
      */
-    hasSpatialResolution?: Array<string> | null;
+    hasCoordinateSystem?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -122,8 +122,8 @@ export function GridFromJSONTyped(json: any, ignoreDiscriminator: boolean): Grid
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasFixedResource': !exists(json, 'hasFixedResource') ? undefined : json['hasFixedResource'],
-        'hasCoordinateSystem': !exists(json, 'hasCoordinateSystem') ? undefined : json['hasCoordinateSystem'],
         'hasSpatialResolution': !exists(json, 'hasSpatialResolution') ? undefined : json['hasSpatialResolution'],
+        'hasCoordinateSystem': !exists(json, 'hasCoordinateSystem') ? undefined : json['hasCoordinateSystem'],
         'hasShape': !exists(json, 'hasShape') ? undefined : json['hasShape'],
         'hasDimension': !exists(json, 'hasDimension') ? undefined : json['hasDimension'],
         'position': !exists(json, 'position') ? undefined : json['position'],
@@ -148,8 +148,8 @@ export function GridToJSON(value?: Grid): any {
         'label': value.label,
         'type': value.type,
         'hasFixedResource': value.hasFixedResource,
-        'hasCoordinateSystem': value.hasCoordinateSystem,
         'hasSpatialResolution': value.hasSpatialResolution,
+        'hasCoordinateSystem': value.hasCoordinateSystem,
         'hasShape': value.hasShape,
         'hasDimension': value.hasDimension,
         'position': value.position,
