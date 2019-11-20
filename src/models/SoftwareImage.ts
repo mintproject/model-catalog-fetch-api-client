@@ -60,25 +60,25 @@ export interface SoftwareImage {
      * @type {Array<string>}
      * @memberof SoftwareImage
      */
-    keywords?: Array<string> | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof SoftwareImage
-     */
     hasDocumentation?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof SoftwareImage
      */
-    supportDetails?: Array<string> | null;
+    keywords?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof SoftwareImage
      */
     softwareRequirements?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SoftwareImage
+     */
+    supportDetails?: Array<string> | null;
     /**
      * 
      * @type {Array<SoftwareVersion>}
@@ -102,13 +102,13 @@ export interface SoftwareImage {
      * @type {Array<string>}
      * @memberof SoftwareImage
      */
-    referencePublication?: Array<string> | null;
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof SoftwareImage
      */
-    description?: Array<string> | null;
+    referencePublication?: Array<string> | null;
     /**
      * 
      * @type {Array<Image>}
@@ -141,16 +141,16 @@ export interface SoftwareImage {
     dateCreated?: Array<string> | null;
     /**
      * 
-     * @type {Array<Person>}
-     * @memberof SoftwareImage
-     */
-    contributor?: Array<Person> | null;
-    /**
-     * 
      * @type {Array<Software>}
      * @memberof SoftwareImage
      */
     compatibleVisualizationSoftware?: Array<Software> | null;
+    /**
+     * 
+     * @type {Array<Person>}
+     * @memberof SoftwareImage
+     */
+    contributor?: Array<Person> | null;
     /**
      * 
      * @type {Array<string>}
@@ -302,22 +302,22 @@ export function SoftwareImageFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'hasFunding': !exists(json, 'hasFunding') ? undefined : (json['hasFunding'] as Array<any>).map(FundingInformationFromJSON),
-        'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
-        'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
+        'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
+        'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : (json['hasVersion'] as Array<any>).map(SoftwareVersionFromJSON),
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
-        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'screenshot': !exists(json, 'screenshot') ? undefined : (json['screenshot'] as Array<any>).map(ImageFromJSON),
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
-        'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
         'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
+        'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
         'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
@@ -354,22 +354,22 @@ export function SoftwareImageToJSON(value?: SoftwareImage): any {
     return {
         
         'hasFunding': value.hasFunding === undefined ? undefined : (value.hasFunding as Array<any>).map(FundingInformationToJSON),
-        'keywords': value.keywords,
         'hasDocumentation': value.hasDocumentation,
-        'supportDetails': value.supportDetails,
+        'keywords': value.keywords,
         'softwareRequirements': value.softwareRequirements,
+        'supportDetails': value.supportDetails,
         'hasVersion': value.hasVersion === undefined ? undefined : (value.hasVersion as Array<any>).map(SoftwareVersionToJSON),
         'hasTypicalDataSource': value.hasTypicalDataSource,
         'hasDownloadURL': value.hasDownloadURL,
-        'referencePublication': value.referencePublication,
         'description': value.description,
+        'referencePublication': value.referencePublication,
         'screenshot': value.screenshot === undefined ? undefined : (value.screenshot as Array<any>).map(ImageToJSON),
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
         'hadPrimarySource': value.hadPrimarySource,
         'dateCreated': value.dateCreated,
-        'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
         'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
+        'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
         'hasFAQ': value.hasFAQ,
         'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
         'hasContactPerson': value.hasContactPerson,

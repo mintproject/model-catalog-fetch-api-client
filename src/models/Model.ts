@@ -44,13 +44,13 @@ export interface Model {
      * @type {Array<string>}
      * @memberof Model
      */
-    keywords?: Array<string> | null;
+    hasDocumentation?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Model
      */
-    hasDocumentation?: Array<string> | null;
+    keywords?: Array<string> | null;
     /**
      * 
      * @type {Array<Grid>}
@@ -62,13 +62,13 @@ export interface Model {
      * @type {Array<string>}
      * @memberof Model
      */
-    softwareRequirements?: Array<string> | null;
+    supportDetails?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Model
      */
-    supportDetails?: Array<string> | null;
+    softwareRequirements?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -92,13 +92,13 @@ export interface Model {
      * @type {Array<string>}
      * @memberof Model
      */
-    description?: Array<string> | null;
+    referencePublication?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Model
      */
-    referencePublication?: Array<string> | null;
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -140,13 +140,13 @@ export interface Model {
      * @type {Array<object>}
      * @memberof Model
      */
-    compatibleVisualizationSoftware?: Array<object> | null;
+    contributor?: Array<object> | null;
     /**
      * 
      * @type {Array<object>}
      * @memberof Model
      */
-    contributor?: Array<object> | null;
+    compatibleVisualizationSoftware?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -254,13 +254,13 @@ export interface Model {
      * @type {Array<string>}
      * @memberof Model
      */
-    license?: Array<string> | null;
+    operatingSystems?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Model
      */
-    operatingSystems?: Array<string> | null;
+    license?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -281,16 +281,16 @@ export interface Model {
     hasExample?: Array<string> | null;
     /**
      * 
-     * @type {Array<object>}
-     * @memberof Model
-     */
-    publisher?: Array<object> | null;
-    /**
-     * 
      * @type {Array<Equation>}
      * @memberof Model
      */
     hasEquation?: Array<Equation> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof Model
+     */
+    publisher?: Array<object> | null;
     /**
      * 
      * @type {Array<NumericalIndex>}
@@ -310,24 +310,24 @@ export function ModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): Mod
     return {
         
         'hasFunding': !exists(json, 'hasFunding') ? undefined : json['hasFunding'],
-        'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
+        'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'hasGrid': !exists(json, 'hasGrid') ? undefined : (json['hasGrid'] as Array<any>).map(GridFromJSON),
-        'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
+        'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : json['hasVersion'],
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
         'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'screenshot': !exists(json, 'screenshot') ? undefined : json['screenshot'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
         'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : json['hasModelCategory'],
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
-        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : json['compatibleVisualizationSoftware'],
         'contributor': !exists(json, 'contributor') ? undefined : json['contributor'],
+        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : json['compatibleVisualizationSoftware'],
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
         'logo': !exists(json, 'logo') ? undefined : json['logo'],
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
@@ -345,13 +345,13 @@ export function ModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): Mod
         'label': !exists(json, 'label') ? undefined : json['label'],
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
-        'license': !exists(json, 'license') ? undefined : json['license'],
         'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
+        'license': !exists(json, 'license') ? undefined : json['license'],
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : json['hasSourceCode'],
         'hasExplanationDiagram': !exists(json, 'hasExplanationDiagram') ? undefined : json['hasExplanationDiagram'],
         'hasExample': !exists(json, 'hasExample') ? undefined : json['hasExample'],
-        'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
         'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
+        'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
         'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
     };
 }
@@ -366,24 +366,24 @@ export function ModelToJSON(value?: Model): any {
     return {
         
         'hasFunding': value.hasFunding,
-        'keywords': value.keywords,
         'hasDocumentation': value.hasDocumentation,
+        'keywords': value.keywords,
         'hasGrid': value.hasGrid === undefined ? undefined : (value.hasGrid as Array<any>).map(GridToJSON),
-        'softwareRequirements': value.softwareRequirements,
         'supportDetails': value.supportDetails,
+        'softwareRequirements': value.softwareRequirements,
         'hasVersion': value.hasVersion,
         'hasTypicalDataSource': value.hasTypicalDataSource,
         'hasDownloadURL': value.hasDownloadURL,
-        'description': value.description,
         'referencePublication': value.referencePublication,
+        'description': value.description,
         'screenshot': value.screenshot,
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
         'hasModelCategory': value.hasModelCategory,
         'hadPrimarySource': value.hadPrimarySource,
         'dateCreated': value.dateCreated,
-        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware,
         'contributor': value.contributor,
+        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware,
         'hasFAQ': value.hasFAQ,
         'logo': value.logo,
         'hasContactPerson': value.hasContactPerson,
@@ -401,13 +401,13 @@ export function ModelToJSON(value?: Model): any {
         'label': value.label,
         'hasAssumption': value.hasAssumption,
         'datePublished': value.datePublished,
-        'license': value.license,
         'operatingSystems': value.operatingSystems,
+        'license': value.license,
         'hasSourceCode': value.hasSourceCode,
         'hasExplanationDiagram': value.hasExplanationDiagram,
         'hasExample': value.hasExample,
-        'publisher': value.publisher,
         'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
+        'publisher': value.publisher,
         'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
     };
 }

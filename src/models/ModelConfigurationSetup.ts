@@ -54,13 +54,13 @@ export interface ModelConfigurationSetup {
      * @type {Array<string>}
      * @memberof ModelConfigurationSetup
      */
-    keywords?: Array<string> | null;
+    hasDocumentation?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof ModelConfigurationSetup
      */
-    hasDocumentation?: Array<string> | null;
+    keywords?: Array<string> | null;
     /**
      * 
      * @type {Array<Grid>}
@@ -294,13 +294,13 @@ export interface ModelConfigurationSetup {
      * @type {Array<string>}
      * @memberof ModelConfigurationSetup
      */
-    description?: Array<string> | null;
+    referencePublication?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof ModelConfigurationSetup
      */
-    referencePublication?: Array<string> | null;
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -469,8 +469,8 @@ export function ModelConfigurationSetupFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
+        'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'hasGrid': !exists(json, 'hasGrid') ? undefined : (json['hasGrid'] as Array<any>).map(GridFromJSON),
         'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'hasImplementationScriptLocation': !exists(json, 'hasImplementationScriptLocation') ? undefined : json['hasImplementationScriptLocation'],
@@ -509,8 +509,8 @@ export function ModelConfigurationSetupFromJSONTyped(json: any, ignoreDiscrimina
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : json['hasVersion'],
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
         'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'screenshot': !exists(json, 'screenshot') ? undefined : json['screenshot'],
         'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : json['hasModelCategory'],
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
@@ -549,8 +549,8 @@ export function ModelConfigurationSetupToJSON(value?: ModelConfigurationSetup): 
     }
     return {
         
-        'keywords': value.keywords,
         'hasDocumentation': value.hasDocumentation,
+        'keywords': value.keywords,
         'hasGrid': value.hasGrid === undefined ? undefined : (value.hasGrid as Array<any>).map(GridToJSON),
         'softwareRequirements': value.softwareRequirements,
         'hasImplementationScriptLocation': value.hasImplementationScriptLocation,
@@ -589,8 +589,8 @@ export function ModelConfigurationSetupToJSON(value?: ModelConfigurationSetup): 
         'supportDetails': value.supportDetails,
         'hasVersion': value.hasVersion,
         'hasTypicalDataSource': value.hasTypicalDataSource,
-        'description': value.description,
         'referencePublication': value.referencePublication,
+        'description': value.description,
         'screenshot': value.screenshot,
         'hasModelCategory': value.hasModelCategory,
         'hadPrimarySource': value.hadPrimarySource,
