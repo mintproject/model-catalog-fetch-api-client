@@ -60,19 +60,13 @@ export interface SoftwareImage {
      * @type {Array<string>}
      * @memberof SoftwareImage
      */
-    hasDocumentation?: Array<string> | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof SoftwareImage
-     */
     keywords?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof SoftwareImage
      */
-    softwareRequirements?: Array<string> | null;
+    hasDocumentation?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -81,34 +75,40 @@ export interface SoftwareImage {
     supportDetails?: Array<string> | null;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof SoftwareImage
+     */
+    softwareRequirements?: Array<string> | null;
+    /**
+     * 
      * @type {Array<SoftwareVersion>}
      * @memberof SoftwareImage
      */
     hasVersion?: Array<SoftwareVersion> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof SoftwareImage
      */
-    hasTypicalDataSource?: Array<string> | null;
+    hasTypicalDataSource?: Array<object> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof SoftwareImage
      */
-    hasDownloadURL?: Array<string> | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof SoftwareImage
-     */
-    description?: Array<string> | null;
+    hasDownloadURL?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof SoftwareImage
      */
     referencePublication?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SoftwareImage
+     */
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<Image>}
@@ -141,16 +141,16 @@ export interface SoftwareImage {
     dateCreated?: Array<string> | null;
     /**
      * 
-     * @type {Array<Software>}
-     * @memberof SoftwareImage
-     */
-    compatibleVisualizationSoftware?: Array<Software> | null;
-    /**
-     * 
      * @type {Array<Person>}
      * @memberof SoftwareImage
      */
     contributor?: Array<Person> | null;
+    /**
+     * 
+     * @type {Array<Software>}
+     * @memberof SoftwareImage
+     */
+    compatibleVisualizationSoftware?: Array<Software> | null;
     /**
      * 
      * @type {Array<string>}
@@ -159,16 +159,16 @@ export interface SoftwareImage {
     hasFAQ?: Array<string> | null;
     /**
      * 
-     * @type {Array<Image>}
-     * @memberof SoftwareImage
-     */
-    logo?: Array<Image> | null;
-    /**
-     * 
      * @type {Array<object>}
      * @memberof SoftwareImage
      */
     hasContactPerson?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<Image>}
+     * @memberof SoftwareImage
+     */
+    logo?: Array<Image> | null;
     /**
      * 
      * @type {Array<string>}
@@ -201,10 +201,10 @@ export interface SoftwareImage {
     identifier?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof SoftwareImage
      */
-    website?: Array<string> | null;
+    website?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -261,16 +261,16 @@ export interface SoftwareImage {
     datePublished?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof SoftwareImage
      */
-    operatingSystems?: Array<string> | null;
+    license?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof SoftwareImage
      */
-    license?: Array<string> | null;
+    operatingSystems?: Array<string> | null;
     /**
      * 
      * @type {Array<SourceCode>}
@@ -302,25 +302,25 @@ export function SoftwareImageFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'hasFunding': !exists(json, 'hasFunding') ? undefined : (json['hasFunding'] as Array<any>).map(FundingInformationFromJSON),
-        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
-        'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
+        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
+        'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : (json['hasVersion'] as Array<any>).map(SoftwareVersionFromJSON),
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
         'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'screenshot': !exists(json, 'screenshot') ? undefined : (json['screenshot'] as Array<any>).map(ImageFromJSON),
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
-        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
         'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
+        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
-        'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
+        'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : (json['hasSampleVisualization'] as Array<any>).map(VisualizationFromJSON),
@@ -336,8 +336,8 @@ export function SoftwareImageFromJSONTyped(json: any, ignoreDiscriminator: boole
         'hasExecutionCommand': !exists(json, 'hasExecutionCommand') ? undefined : json['hasExecutionCommand'],
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
-        'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'license': !exists(json, 'license') ? undefined : json['license'],
+        'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : (json['hasSourceCode'] as Array<any>).map(SourceCodeFromJSON),
         'hasExample': !exists(json, 'hasExample') ? undefined : json['hasExample'],
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
@@ -354,25 +354,25 @@ export function SoftwareImageToJSON(value?: SoftwareImage): any {
     return {
         
         'hasFunding': value.hasFunding === undefined ? undefined : (value.hasFunding as Array<any>).map(FundingInformationToJSON),
-        'hasDocumentation': value.hasDocumentation,
         'keywords': value.keywords,
-        'softwareRequirements': value.softwareRequirements,
+        'hasDocumentation': value.hasDocumentation,
         'supportDetails': value.supportDetails,
+        'softwareRequirements': value.softwareRequirements,
         'hasVersion': value.hasVersion === undefined ? undefined : (value.hasVersion as Array<any>).map(SoftwareVersionToJSON),
         'hasTypicalDataSource': value.hasTypicalDataSource,
         'hasDownloadURL': value.hasDownloadURL,
-        'description': value.description,
         'referencePublication': value.referencePublication,
+        'description': value.description,
         'screenshot': value.screenshot === undefined ? undefined : (value.screenshot as Array<any>).map(ImageToJSON),
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
         'hadPrimarySource': value.hadPrimarySource,
         'dateCreated': value.dateCreated,
-        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
         'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
+        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
         'hasFAQ': value.hasFAQ,
-        'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
         'hasContactPerson': value.hasContactPerson,
+        'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
         'hasPurpose': value.hasPurpose,
         'id': value.id,
         'hasSampleVisualization': value.hasSampleVisualization === undefined ? undefined : (value.hasSampleVisualization as Array<any>).map(VisualizationToJSON),
@@ -388,8 +388,8 @@ export function SoftwareImageToJSON(value?: SoftwareImage): any {
         'hasExecutionCommand': value.hasExecutionCommand,
         'hasAssumption': value.hasAssumption,
         'datePublished': value.datePublished,
-        'operatingSystems': value.operatingSystems,
         'license': value.license,
+        'operatingSystems': value.operatingSystems,
         'hasSourceCode': value.hasSourceCode === undefined ? undefined : (value.hasSourceCode as Array<any>).map(SourceCodeToJSON),
         'hasExample': value.hasExample,
         'publisher': value.publisher,

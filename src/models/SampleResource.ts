@@ -50,10 +50,10 @@ export interface SampleResource {
     type?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof SampleResource
      */
-    value?: Array<string> | null;
+    value?: Array<object> | null;
 }
 
 export function SampleResourceFromJSON(json: any): SampleResource {

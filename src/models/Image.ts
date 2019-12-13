@@ -91,10 +91,10 @@ export interface Image {
     type?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof Image
      */
-    value?: Array<string> | null;
+    value?: Array<object> | null;
     /**
      * 
      * @type {Array<SampleResource>}

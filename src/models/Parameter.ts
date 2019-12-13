@@ -27,28 +27,28 @@ import {
 export interface Parameter {
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof Parameter
      */
-    hasDefaultValue?: Array<string> | null;
+    hasDefaultValue?: Array<object> | null;
     /**
      * 
-     * @type {Array<number>}
+     * @type {Array<object>}
      * @memberof Parameter
      */
-    hasMaximumAcceptedValue?: Array<number> | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof Parameter
-     */
-    description?: Array<string> | null;
+    hasMaximumAcceptedValue?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Parameter
      */
     hasDataType?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Parameter
+     */
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -75,10 +75,10 @@ export interface Parameter {
     type?: Array<string> | null;
     /**
      * 
-     * @type {Array<number>}
+     * @type {Array<object>}
      * @memberof Parameter
      */
-    hasMinimumAcceptedValue?: Array<number> | null;
+    hasMinimumAcceptedValue?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -109,6 +109,12 @@ export interface Parameter {
      * @memberof Parameter
      */
     usesUnit?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof Parameter
+     */
+    hasStepSize?: Array<number> | null;
 }
 
 export function ParameterFromJSON(json: any): Parameter {
@@ -123,8 +129,8 @@ export function ParameterFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         
         'hasDefaultValue': !exists(json, 'hasDefaultValue') ? undefined : json['hasDefaultValue'],
         'hasMaximumAcceptedValue': !exists(json, 'hasMaximumAcceptedValue') ? undefined : json['hasMaximumAcceptedValue'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
         'hasDataType': !exists(json, 'hasDataType') ? undefined : json['hasDataType'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'hasFixedValue': !exists(json, 'hasFixedValue') ? undefined : json['hasFixedValue'],
         'hasPresentation': !exists(json, 'hasPresentation') ? undefined : (json['hasPresentation'] as Array<any>).map(VariablePresentationFromJSON),
         'label': !exists(json, 'label') ? undefined : json['label'],
@@ -135,6 +141,7 @@ export function ParameterFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'position': !exists(json, 'position') ? undefined : json['position'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'usesUnit': !exists(json, 'usesUnit') ? undefined : json['usesUnit'],
+        'hasStepSize': !exists(json, 'hasStepSize') ? undefined : json['hasStepSize'],
     };
 }
 
@@ -149,8 +156,8 @@ export function ParameterToJSON(value?: Parameter): any {
         
         'hasDefaultValue': value.hasDefaultValue,
         'hasMaximumAcceptedValue': value.hasMaximumAcceptedValue,
-        'description': value.description,
         'hasDataType': value.hasDataType,
+        'description': value.description,
         'hasFixedValue': value.hasFixedValue,
         'hasPresentation': value.hasPresentation === undefined ? undefined : (value.hasPresentation as Array<any>).map(VariablePresentationToJSON),
         'label': value.label,
@@ -161,6 +168,7 @@ export function ParameterToJSON(value?: Parameter): any {
         'position': value.position,
         'id': value.id,
         'usesUnit': value.usesUnit,
+        'hasStepSize': value.hasStepSize,
     };
 }
 

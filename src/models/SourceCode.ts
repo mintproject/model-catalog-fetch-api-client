@@ -20,10 +20,10 @@ import { exists, mapValues } from '../runtime';
 export interface SourceCode {
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof SourceCode
      */
-    license?: Array<string> | null;
+    license?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -38,10 +38,10 @@ export interface SourceCode {
     description?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof SourceCode
      */
-    codeRepository?: Array<string> | null;
+    codeRepository?: Array<object> | null;
     /**
      * 
      * @type {string}

@@ -26,10 +26,10 @@ export interface Organization {
     identifier?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof Organization
      */
-    website?: Array<string> | null;
+    website?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}

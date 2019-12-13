@@ -31,10 +31,10 @@ import {
 export interface VariablePresentation {
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof VariablePresentation
      */
-    hasDefaultValue?: Array<string> | null;
+    hasDefaultValue?: Array<object> | null;
     /**
      * 
      * @type {Array<StandardVariable>}
@@ -43,10 +43,10 @@ export interface VariablePresentation {
     hasStandardVariable?: Array<StandardVariable> | null;
     /**
      * 
-     * @type {Array<number>}
+     * @type {Array<object>}
      * @memberof VariablePresentation
      */
-    hasMaximumAcceptedValue?: Array<number> | null;
+    hasMaximumAcceptedValue?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -85,10 +85,10 @@ export interface VariablePresentation {
     hasShortName?: Array<string> | null;
     /**
      * 
-     * @type {Array<number>}
+     * @type {Array<object>}
      * @memberof VariablePresentation
      */
-    hasMinimumAcceptedValue?: Array<number> | null;
+    hasMinimumAcceptedValue?: Array<object> | null;
     /**
      * 
      * @type {string}

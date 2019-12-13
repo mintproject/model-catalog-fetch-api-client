@@ -44,13 +44,13 @@ export interface Emulator {
      * @type {Array<string>}
      * @memberof Emulator
      */
-    hasDocumentation?: Array<string> | null;
+    keywords?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof Emulator
      */
-    keywords?: Array<string> | null;
+    hasDocumentation?: Array<object> | null;
     /**
      * 
      * @type {Array<Grid>}
@@ -62,13 +62,13 @@ export interface Emulator {
      * @type {Array<string>}
      * @memberof Emulator
      */
-    supportDetails?: Array<string> | null;
+    softwareRequirements?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Emulator
      */
-    softwareRequirements?: Array<string> | null;
+    supportDetails?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -77,28 +77,28 @@ export interface Emulator {
     hasVersion?: Array<object> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof Emulator
      */
-    hasTypicalDataSource?: Array<string> | null;
+    hasTypicalDataSource?: Array<object> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof Emulator
      */
-    hasDownloadURL?: Array<string> | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof Emulator
-     */
-    referencePublication?: Array<string> | null;
+    hasDownloadURL?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Emulator
      */
     description?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Emulator
+     */
+    referencePublication?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -158,13 +158,13 @@ export interface Emulator {
      * @type {Array<object>}
      * @memberof Emulator
      */
-    logo?: Array<object> | null;
+    hasContactPerson?: Array<object> | null;
     /**
      * 
      * @type {Array<object>}
      * @memberof Emulator
      */
-    hasContactPerson?: Array<object> | null;
+    logo?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -188,19 +188,19 @@ export interface Emulator {
      * @type {Array<string>}
      * @memberof Emulator
      */
-    memoryRequirements?: Array<string> | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof Emulator
-     */
     identifier?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Emulator
      */
-    website?: Array<string> | null;
+    memoryRequirements?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof Emulator
+     */
+    website?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -257,10 +257,10 @@ export interface Emulator {
     operatingSystems?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof Emulator
      */
-    license?: Array<string> | null;
+    license?: Array<object> | null;
     /**
      * 
      * @type {Array<object>}
@@ -281,16 +281,16 @@ export interface Emulator {
     hasExample?: Array<string> | null;
     /**
      * 
-     * @type {Array<Equation>}
-     * @memberof Emulator
-     */
-    hasEquation?: Array<Equation> | null;
-    /**
-     * 
      * @type {Array<object>}
      * @memberof Emulator
      */
     publisher?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<Equation>}
+     * @memberof Emulator
+     */
+    hasEquation?: Array<Equation> | null;
     /**
      * 
      * @type {Array<NumericalIndex>}
@@ -310,16 +310,16 @@ export function EmulatorFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     return {
         
         'hasFunding': !exists(json, 'hasFunding') ? undefined : json['hasFunding'],
-        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
+        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'hasGrid': !exists(json, 'hasGrid') ? undefined : (json['hasGrid'] as Array<any>).map(GridFromJSON),
-        'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
         'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
+        'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : json['hasVersion'],
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
-        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'screenshot': !exists(json, 'screenshot') ? undefined : json['screenshot'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
@@ -329,13 +329,13 @@ export function EmulatorFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'contributor': !exists(json, 'contributor') ? undefined : json['contributor'],
         'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : json['compatibleVisualizationSoftware'],
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
-        'logo': !exists(json, 'logo') ? undefined : json['logo'],
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
+        'logo': !exists(json, 'logo') ? undefined : json['logo'],
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : json['hasSampleVisualization'],
-        'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
+        'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
         'website': !exists(json, 'website') ? undefined : json['website'],
         'citation': !exists(json, 'citation') ? undefined : json['citation'],
         'author': !exists(json, 'author') ? undefined : json['author'],
@@ -350,8 +350,8 @@ export function EmulatorFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : json['hasSourceCode'],
         'hasExplanationDiagram': !exists(json, 'hasExplanationDiagram') ? undefined : json['hasExplanationDiagram'],
         'hasExample': !exists(json, 'hasExample') ? undefined : json['hasExample'],
-        'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
+        'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
         'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
     };
 }
@@ -366,16 +366,16 @@ export function EmulatorToJSON(value?: Emulator): any {
     return {
         
         'hasFunding': value.hasFunding,
-        'hasDocumentation': value.hasDocumentation,
         'keywords': value.keywords,
+        'hasDocumentation': value.hasDocumentation,
         'hasGrid': value.hasGrid === undefined ? undefined : (value.hasGrid as Array<any>).map(GridToJSON),
-        'supportDetails': value.supportDetails,
         'softwareRequirements': value.softwareRequirements,
+        'supportDetails': value.supportDetails,
         'hasVersion': value.hasVersion,
         'hasTypicalDataSource': value.hasTypicalDataSource,
         'hasDownloadURL': value.hasDownloadURL,
-        'referencePublication': value.referencePublication,
         'description': value.description,
+        'referencePublication': value.referencePublication,
         'screenshot': value.screenshot,
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
@@ -385,13 +385,13 @@ export function EmulatorToJSON(value?: Emulator): any {
         'contributor': value.contributor,
         'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware,
         'hasFAQ': value.hasFAQ,
-        'logo': value.logo,
         'hasContactPerson': value.hasContactPerson,
+        'logo': value.logo,
         'hasPurpose': value.hasPurpose,
         'id': value.id,
         'hasSampleVisualization': value.hasSampleVisualization,
-        'memoryRequirements': value.memoryRequirements,
         'identifier': value.identifier,
+        'memoryRequirements': value.memoryRequirements,
         'website': value.website,
         'citation': value.citation,
         'author': value.author,
@@ -406,8 +406,8 @@ export function EmulatorToJSON(value?: Emulator): any {
         'hasSourceCode': value.hasSourceCode,
         'hasExplanationDiagram': value.hasExplanationDiagram,
         'hasExample': value.hasExample,
-        'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
         'publisher': value.publisher,
+        'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
         'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
     };
 }

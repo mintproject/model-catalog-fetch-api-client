@@ -17,6 +17,9 @@ import {
     ConfigurationSetup,
     ConfigurationSetupFromJSON,
     ConfigurationSetupToJSON,
+    ModelConfigurationSetup,
+    ModelConfigurationSetupFromJSON,
+    ModelConfigurationSetupToJSON,
 } from '../models';
 
 export interface ConfigurationsetupsGetRequest {
@@ -43,6 +46,12 @@ export interface ConfigurationsetupsIdPutRequest {
 export interface ConfigurationsetupsPostRequest {
     user: string;
     configurationSetup?: ConfigurationSetup;
+}
+
+export interface CustomConfigurationsetupsIdGetRequest {
+    id: string;
+    username?: string;
+    customQueryName?: string;
 }
 
 /**
@@ -252,6 +261,46 @@ export class ConfigurationSetupApi extends runtime.BaseAPI {
     */
     async configurationsetupsPost(requestParameters: ConfigurationsetupsPostRequest): Promise<ConfigurationSetup> {
         const response = await this.configurationsetupsPostRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Gets the details of a single instance of a ModelConfigurationSetup
+     * Get a ModelConfigurationSetup
+     */
+    async customConfigurationsetupsIdGetRaw(requestParameters: CustomConfigurationsetupsIdGetRequest): Promise<runtime.ApiResponse<ModelConfigurationSetup>> {
+        if (requestParameters.id === null || requestParameters.id === undefined) {
+            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling customConfigurationsetupsIdGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.username !== undefined) {
+            queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.customQueryName !== undefined) {
+            queryParameters['custom_query_name'] = requestParameters.customQueryName;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/custom/configurationsetups/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelConfigurationSetupFromJSON(jsonValue));
+    }
+
+   /**
+    * Gets the details of a single instance of a ModelConfigurationSetup
+    * Get a ModelConfigurationSetup
+    */
+    async customConfigurationsetupsIdGet(requestParameters: CustomConfigurationsetupsIdGetRequest): Promise<ModelConfigurationSetup> {
+        const response = await this.customConfigurationsetupsIdGetRaw(requestParameters);
         return await response.value();
     }
 

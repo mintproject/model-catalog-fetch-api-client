@@ -63,10 +63,10 @@ export interface SampleCollection {
     type?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof SampleCollection
      */
-    value?: Array<string> | null;
+    value?: Array<object> | null;
 }
 
 export function SampleCollectionFromJSON(json: any): SampleCollection {

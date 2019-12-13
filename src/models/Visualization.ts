@@ -69,10 +69,10 @@ export interface Visualization {
     type?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof Visualization
      */
-    value?: Array<string> | null;
+    value?: Array<object> | null;
 }
 
 export function VisualizationFromJSON(json: any): Visualization {

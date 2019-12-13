@@ -74,13 +74,13 @@ export interface ConfigurationSetup {
      * @type {Array<string>}
      * @memberof ConfigurationSetup
      */
-    hasDocumentation?: Array<string> | null;
+    keywords?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof ConfigurationSetup
      */
-    keywords?: Array<string> | null;
+    hasDocumentation?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -89,16 +89,16 @@ export interface ConfigurationSetup {
     softwareRequirements?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof ConfigurationSetup
      */
-    hasImplementationScriptLocation?: Array<string> | null;
+    hasImplementationScriptLocation?: Array<object> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof ConfigurationSetup
      */
-    hasDownloadURL?: Array<string> | null;
+    hasDownloadURL?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -125,16 +125,16 @@ export interface ConfigurationSetup {
     hasFAQ?: Array<string> | null;
     /**
      * 
-     * @type {Array<Image>}
-     * @memberof ConfigurationSetup
-     */
-    logo?: Array<Image> | null;
-    /**
-     * 
      * @type {Array<object>}
      * @memberof ConfigurationSetup
      */
     hasContactPerson?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<Image>}
+     * @memberof ConfigurationSetup
+     */
+    logo?: Array<Image> | null;
     /**
      * 
      * @type {string}
@@ -191,10 +191,10 @@ export interface ConfigurationSetup {
     datePublished?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof ConfigurationSetup
      */
-    license?: Array<string> | null;
+    license?: Array<object> | null;
     /**
      * 
      * @type {Array<SourceCode>}
@@ -233,10 +233,10 @@ export interface ConfigurationSetup {
     hasFunding?: Array<FundingInformation> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof ConfigurationSetup
      */
-    hasComponentLocation?: Array<string> | null;
+    hasComponentLocation?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -251,22 +251,22 @@ export interface ConfigurationSetup {
     hasVersion?: Array<SoftwareVersion> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof ConfigurationSetup
      */
-    hasTypicalDataSource?: Array<string> | null;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ConfigurationSetup
-     */
-    description?: Array<string> | null;
+    hasTypicalDataSource?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof ConfigurationSetup
      */
     referencePublication?: Array<string> | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ConfigurationSetup
+     */
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<Image>}
@@ -317,10 +317,10 @@ export interface ConfigurationSetup {
     memoryRequirements?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof ConfigurationSetup
      */
-    website?: Array<string> | null;
+    website?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -347,10 +347,10 @@ export interface ConfigurationSetup {
     hasUsageNotes?: Array<string> | null;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<object>}
      * @memberof ConfigurationSetup
      */
-    hasSupportScriptLocation?: Array<string> | null;
+    hasSupportScriptLocation?: Array<object> | null;
     /**
      * 
      * @type {Array<string>}
@@ -393,8 +393,8 @@ export function ConfigurationSetupFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
+        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'hasImplementationScriptLocation': !exists(json, 'hasImplementationScriptLocation') ? undefined : json['hasImplementationScriptLocation'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
@@ -402,8 +402,8 @@ export function ConfigurationSetupFromJSONTyped(json: any, ignoreDiscriminator: 
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
         'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
-        'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
+        'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
         'id': !exists(json, 'id') ? undefined : json['id'],
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'hasSampleExecution': !exists(json, 'hasSampleExecution') ? undefined : (json['hasSampleExecution'] as Array<any>).map(SampleExecutionFromJSON),
@@ -424,8 +424,8 @@ export function ConfigurationSetupFromJSONTyped(json: any, ignoreDiscriminator: 
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : (json['hasVersion'] as Array<any>).map(SoftwareVersionFromJSON),
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
         'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'screenshot': !exists(json, 'screenshot') ? undefined : (json['screenshot'] as Array<any>).map(ImageFromJSON),
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
         'hasSoftwareImage': !exists(json, 'hasSoftwareImage') ? undefined : (json['hasSoftwareImage'] as Array<any>).map(SoftwareImageFromJSON),
@@ -457,8 +457,8 @@ export function ConfigurationSetupToJSON(value?: ConfigurationSetup): any {
     }
     return {
         
-        'hasDocumentation': value.hasDocumentation,
         'keywords': value.keywords,
+        'hasDocumentation': value.hasDocumentation,
         'softwareRequirements': value.softwareRequirements,
         'hasImplementationScriptLocation': value.hasImplementationScriptLocation,
         'hasDownloadURL': value.hasDownloadURL,
@@ -466,8 +466,8 @@ export function ConfigurationSetupToJSON(value?: ConfigurationSetup): any {
         'hasInstallationInstructions': value.hasInstallationInstructions,
         'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
         'hasFAQ': value.hasFAQ,
-        'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
         'hasContactPerson': value.hasContactPerson,
+        'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
         'id': value.id,
         'identifier': value.identifier,
         'hasSampleExecution': value.hasSampleExecution === undefined ? undefined : (value.hasSampleExecution as Array<any>).map(SampleExecutionToJSON),
@@ -488,8 +488,8 @@ export function ConfigurationSetupToJSON(value?: ConfigurationSetup): any {
         'supportDetails': value.supportDetails,
         'hasVersion': value.hasVersion === undefined ? undefined : (value.hasVersion as Array<any>).map(SoftwareVersionToJSON),
         'hasTypicalDataSource': value.hasTypicalDataSource,
-        'description': value.description,
         'referencePublication': value.referencePublication,
+        'description': value.description,
         'screenshot': value.screenshot === undefined ? undefined : (value.screenshot as Array<any>).map(ImageToJSON),
         'hadPrimarySource': value.hadPrimarySource,
         'hasSoftwareImage': value.hasSoftwareImage === undefined ? undefined : (value.hasSoftwareImage as Array<any>).map(SoftwareImageToJSON),

@@ -44,10 +44,10 @@ export interface TimeInterval {
     type?: Array<string> | null;
     /**
      * 
-     * @type {Array<number>}
+     * @type {Array<object>}
      * @memberof TimeInterval
      */
-    intervalValue?: Array<number> | null;
+    intervalValue?: Array<object> | null;
     /**
      * 
      * @type {Array<object>}
