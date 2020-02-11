@@ -19,6 +19,24 @@ import {
     ModelToJSON,
 } from '../models';
 
+export interface CustomModelIndexGetRequest {
+    label: string;
+    customQueryName?: string;
+    username?: string;
+}
+
+export interface CustomModelInterventionGetRequest {
+    label: string;
+    customQueryName?: string;
+    username?: string;
+}
+
+export interface CustomModelRegionGetRequest {
+    label: string;
+    customQueryName?: string;
+    username?: string;
+}
+
 export interface ModelsGetRequest {
     username?: string;
     label?: string;
@@ -49,6 +67,138 @@ export interface ModelsPostRequest {
  * no description
  */
 export class ModelApi extends runtime.BaseAPI {
+
+    /**
+     * Gets the details of a single instance of a Model
+     * Get a Model
+     */
+    async customModelIndexGetRaw(requestParameters: CustomModelIndexGetRequest): Promise<runtime.ApiResponse<Model>> {
+        if (requestParameters.label === null || requestParameters.label === undefined) {
+            throw new runtime.RequiredError('label','Required parameter requestParameters.label was null or undefined when calling customModelIndexGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.customQueryName !== undefined) {
+            queryParameters['custom_query_name'] = requestParameters.customQueryName;
+        }
+
+        if (requestParameters.username !== undefined) {
+            queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.label !== undefined) {
+            queryParameters['label'] = requestParameters.label;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/custom/model/index`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelFromJSON(jsonValue));
+    }
+
+   /**
+    * Gets the details of a single instance of a Model
+    * Get a Model
+    */
+    async customModelIndexGet(requestParameters: CustomModelIndexGetRequest): Promise<Model> {
+        const response = await this.customModelIndexGetRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Gets the details of a single instance of a Model
+     * Get a Model
+     */
+    async customModelInterventionGetRaw(requestParameters: CustomModelInterventionGetRequest): Promise<runtime.ApiResponse<Model>> {
+        if (requestParameters.label === null || requestParameters.label === undefined) {
+            throw new runtime.RequiredError('label','Required parameter requestParameters.label was null or undefined when calling customModelInterventionGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.customQueryName !== undefined) {
+            queryParameters['custom_query_name'] = requestParameters.customQueryName;
+        }
+
+        if (requestParameters.username !== undefined) {
+            queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.label !== undefined) {
+            queryParameters['label'] = requestParameters.label;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/custom/model/intervention`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelFromJSON(jsonValue));
+    }
+
+   /**
+    * Gets the details of a single instance of a Model
+    * Get a Model
+    */
+    async customModelInterventionGet(requestParameters: CustomModelInterventionGetRequest): Promise<Model> {
+        const response = await this.customModelInterventionGetRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Gets the details of a single instance of a Model
+     * Get a Model
+     */
+    async customModelRegionGetRaw(requestParameters: CustomModelRegionGetRequest): Promise<runtime.ApiResponse<Model>> {
+        if (requestParameters.label === null || requestParameters.label === undefined) {
+            throw new runtime.RequiredError('label','Required parameter requestParameters.label was null or undefined when calling customModelRegionGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.customQueryName !== undefined) {
+            queryParameters['custom_query_name'] = requestParameters.customQueryName;
+        }
+
+        if (requestParameters.username !== undefined) {
+            queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.label !== undefined) {
+            queryParameters['label'] = requestParameters.label;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/custom/model/region`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelFromJSON(jsonValue));
+    }
+
+   /**
+    * Gets the details of a single instance of a Model
+    * Get a Model
+    */
+    async customModelRegionGet(requestParameters: CustomModelRegionGetRequest): Promise<Model> {
+        const response = await this.customModelRegionGetRaw(requestParameters);
+        return await response.value();
+    }
 
     /**
      * Gets a list of all Model entities

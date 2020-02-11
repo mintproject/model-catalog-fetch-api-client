@@ -19,6 +19,12 @@ import {
     ModelConfigurationToJSON,
 } from '../models';
 
+export interface CustomModelconfigurationsIdGetRequest {
+    id: string;
+    username?: string;
+    customQueryName?: string;
+}
+
 export interface ModelconfigurationsGetRequest {
     username?: string;
     label?: string;
@@ -49,6 +55,46 @@ export interface ModelconfigurationsPostRequest {
  * no description
  */
 export class ModelConfigurationApi extends runtime.BaseAPI {
+
+    /**
+     * Gets the details of a single instance of a ModelConfiguration
+     * Get a ModelConfiguration
+     */
+    async customModelconfigurationsIdGetRaw(requestParameters: CustomModelconfigurationsIdGetRequest): Promise<runtime.ApiResponse<ModelConfiguration>> {
+        if (requestParameters.id === null || requestParameters.id === undefined) {
+            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling customModelconfigurationsIdGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.username !== undefined) {
+            queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.customQueryName !== undefined) {
+            queryParameters['custom_query_name'] = requestParameters.customQueryName;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/custom/modelconfigurations/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelConfigurationFromJSON(jsonValue));
+    }
+
+   /**
+    * Gets the details of a single instance of a ModelConfiguration
+    * Get a ModelConfiguration
+    */
+    async customModelconfigurationsIdGet(requestParameters: CustomModelconfigurationsIdGetRequest): Promise<ModelConfiguration> {
+        const response = await this.customModelconfigurationsIdGetRaw(requestParameters);
+        return await response.value();
+    }
 
     /**
      * Gets a list of all ModelConfiguration entities
