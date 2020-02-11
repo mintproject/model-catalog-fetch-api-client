@@ -10,12 +10,10 @@
     "prepare": "npm run build"
   },
   "devDependencies": {
-    "typescript": "^2.4"
+    "typescript": "^2.9.2"
   },
   "publishConfig": {
     "registry": "mintproject"
   },
-  "dependencies": {
-    "tsc": "^1.20150623.0"
-  }
+  "dependencies": {}
 }
