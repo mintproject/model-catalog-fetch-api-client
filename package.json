@@ -1,6 +1,6 @@
 {
   "name": "@mintproject/modelcatalog_client",
-  "version": "1.4.3",
+  "version": "1.5.0",
   "description": "OpenAPI client for @mintproject/modelcatalog_client",
   "author": "OpenAPI-Generator",
   "main": "./dist/index.js",
@@ -14,5 +14,8 @@
   },
   "publishConfig": {
     "registry": "mintproject"
+  },
+  "dependencies": {
+    "tsc": "^1.20150623.0"
   }
 }
