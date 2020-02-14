@@ -72,7 +72,7 @@ export class ModelApi extends runtime.BaseAPI {
      * Gets the details of a single instance of a Model
      * Get a Model
      */
-    async customModelIndexGetRaw(requestParameters: CustomModelIndexGetRequest): Promise<runtime.ApiResponse<Model>> {
+    async customModelIndexGetRaw(requestParameters: CustomModelIndexGetRequest): Promise<runtime.ApiResponse<Array<Model>>> {
         if (requestParameters.label === null || requestParameters.label === undefined) {
             throw new runtime.RequiredError('label','Required parameter requestParameters.label was null or undefined when calling customModelIndexGet.');
         }
@@ -100,14 +100,14 @@ export class ModelApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModelFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ModelFromJSON));
     }
 
    /**
     * Gets the details of a single instance of a Model
     * Get a Model
     */
-    async customModelIndexGet(requestParameters: CustomModelIndexGetRequest): Promise<Model> {
+    async customModelIndexGet(requestParameters: CustomModelIndexGetRequest): Promise<Array<Model>> {
         const response = await this.customModelIndexGetRaw(requestParameters);
         return await response.value();
     }
@@ -116,7 +116,7 @@ export class ModelApi extends runtime.BaseAPI {
      * Gets the details of a single instance of a Model
      * Get a Model
      */
-    async customModelInterventionGetRaw(requestParameters: CustomModelInterventionGetRequest): Promise<runtime.ApiResponse<Model>> {
+    async customModelInterventionGetRaw(requestParameters: CustomModelInterventionGetRequest): Promise<runtime.ApiResponse<Array<Model>>> {
         if (requestParameters.label === null || requestParameters.label === undefined) {
             throw new runtime.RequiredError('label','Required parameter requestParameters.label was null or undefined when calling customModelInterventionGet.');
         }
@@ -144,14 +144,14 @@ export class ModelApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModelFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ModelFromJSON));
     }
 
    /**
     * Gets the details of a single instance of a Model
     * Get a Model
     */
-    async customModelInterventionGet(requestParameters: CustomModelInterventionGetRequest): Promise<Model> {
+    async customModelInterventionGet(requestParameters: CustomModelInterventionGetRequest): Promise<Array<Model>> {
         const response = await this.customModelInterventionGetRaw(requestParameters);
         return await response.value();
     }
@@ -160,7 +160,7 @@ export class ModelApi extends runtime.BaseAPI {
      * Gets the details of a single instance of a Model
      * Get a Model
      */
-    async customModelRegionGetRaw(requestParameters: CustomModelRegionGetRequest): Promise<runtime.ApiResponse<Model>> {
+    async customModelRegionGetRaw(requestParameters: CustomModelRegionGetRequest): Promise<runtime.ApiResponse<Array<Model>>> {
         if (requestParameters.label === null || requestParameters.label === undefined) {
             throw new runtime.RequiredError('label','Required parameter requestParameters.label was null or undefined when calling customModelRegionGet.');
         }
@@ -188,14 +188,14 @@ export class ModelApi extends runtime.BaseAPI {
             query: queryParameters,
         });
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ModelFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ModelFromJSON));
     }
 
    /**
     * Gets the details of a single instance of a Model
     * Get a Model
     */
-    async customModelRegionGet(requestParameters: CustomModelRegionGetRequest): Promise<Model> {
+    async customModelRegionGet(requestParameters: CustomModelRegionGetRequest): Promise<Array<Model>> {
         const response = await this.customModelRegionGetRaw(requestParameters);
         return await response.value();
     }

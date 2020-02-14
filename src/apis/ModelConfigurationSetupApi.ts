@@ -19,6 +19,12 @@ import {
     ModelConfigurationSetupToJSON,
 } from '../models';
 
+export interface CustomModelconfigurationsetupsIdGetRequest {
+    id: string;
+    username?: string;
+    customQueryName?: string;
+}
+
 export interface ModelconfigurationsetupsGetRequest {
     username?: string;
     label?: string;
@@ -49,6 +55,46 @@ export interface ModelconfigurationsetupsPostRequest {
  * no description
  */
 export class ModelConfigurationSetupApi extends runtime.BaseAPI {
+
+    /**
+     * Gets the details of a single instance of a ModelConfigurationSetup
+     * Get a ModelConfigurationSetup
+     */
+    async customModelconfigurationsetupsIdGetRaw(requestParameters: CustomModelconfigurationsetupsIdGetRequest): Promise<runtime.ApiResponse<ModelConfigurationSetup>> {
+        if (requestParameters.id === null || requestParameters.id === undefined) {
+            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling customModelconfigurationsetupsIdGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.username !== undefined) {
+            queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.customQueryName !== undefined) {
+            queryParameters['custom_query_name'] = requestParameters.customQueryName;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/custom/modelconfigurationsetups/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ModelConfigurationSetupFromJSON(jsonValue));
+    }
+
+   /**
+    * Gets the details of a single instance of a ModelConfigurationSetup
+    * Get a ModelConfigurationSetup
+    */
+    async customModelconfigurationsetupsIdGet(requestParameters: CustomModelconfigurationsetupsIdGetRequest): Promise<ModelConfigurationSetup> {
+        const response = await this.customModelconfigurationsetupsIdGetRaw(requestParameters);
+        return await response.value();
+    }
 
     /**
      * Gets a list of all ModelConfigurationSetup entities
