@@ -129,6 +129,12 @@ export interface ModelConfiguration {
     hasContactPerson?: Array<object> | null;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    tag?: Array<string> | null;
+    /**
+     * 
      * @type {string}
      * @memberof ModelConfiguration
      */
@@ -405,16 +411,16 @@ export interface ModelConfiguration {
     hasEquation?: Array<Equation> | null;
     /**
      * 
-     * @type {Array<object>}
-     * @memberof ModelConfiguration
-     */
-    hasInput?: Array<object> | null;
-    /**
-     * 
      * @type {Array<NumericalIndex>}
      * @memberof ModelConfiguration
      */
     usefulForCalculatingIndex?: Array<NumericalIndex> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    hasInput?: Array<object> | null;
 }
 
 export function ModelConfigurationFromJSON(json: any): ModelConfiguration {
@@ -440,6 +446,7 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
         'logo': !exists(json, 'logo') ? undefined : json['logo'],
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
+        'tag': !exists(json, 'tag') ? undefined : json['tag'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'hasSampleExecution': !exists(json, 'hasSampleExecution') ? undefined : json['hasSampleExecution'],
@@ -486,8 +493,8 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'hasParameter': !exists(json, 'hasParameter') ? undefined : json['hasParameter'],
         'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
-        'hasInput': !exists(json, 'hasInput') ? undefined : json['hasInput'],
         'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
+        'hasInput': !exists(json, 'hasInput') ? undefined : json['hasInput'],
     };
 }
 
@@ -513,6 +520,7 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'hasFAQ': value.hasFAQ,
         'logo': value.logo,
         'hasContactPerson': value.hasContactPerson,
+        'tag': value.tag,
         'id': value.id,
         'identifier': value.identifier,
         'hasSampleExecution': value.hasSampleExecution,
@@ -559,8 +567,8 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'hasParameter': value.hasParameter,
         'operatingSystems': value.operatingSystems,
         'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
-        'hasInput': value.hasInput,
         'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
+        'hasInput': value.hasInput,
     };
 }
 

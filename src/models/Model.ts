@@ -62,13 +62,13 @@ export interface Model {
      * @type {Array<string>}
      * @memberof Model
      */
-    softwareRequirements?: Array<string> | null;
+    supportDetails?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Model
      */
-    supportDetails?: Array<string> | null;
+    softwareRequirements?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -313,8 +313,8 @@ export function ModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): Mod
         'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'hasGrid': !exists(json, 'hasGrid') ? undefined : (json['hasGrid'] as Array<any>).map(GridFromJSON),
-        'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
+        'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : json['hasVersion'],
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
@@ -369,8 +369,8 @@ export function ModelToJSON(value?: Model): any {
         'hasDocumentation': value.hasDocumentation,
         'keywords': value.keywords,
         'hasGrid': value.hasGrid === undefined ? undefined : (value.hasGrid as Array<any>).map(GridToJSON),
-        'softwareRequirements': value.softwareRequirements,
         'supportDetails': value.supportDetails,
+        'softwareRequirements': value.softwareRequirements,
         'hasVersion': value.hasVersion,
         'hasTypicalDataSource': value.hasTypicalDataSource,
         'hasDownloadURL': value.hasDownloadURL,

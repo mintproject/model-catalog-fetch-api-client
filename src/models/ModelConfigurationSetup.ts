@@ -141,6 +141,12 @@ export interface ModelConfigurationSetup {
     hasContactPerson?: Array<object> | null;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof ModelConfigurationSetup
+     */
+    tag?: Array<string> | null;
+    /**
+     * 
      * @type {string}
      * @memberof ModelConfigurationSetup
      */
@@ -447,16 +453,16 @@ export interface ModelConfigurationSetup {
     hasEquation?: Array<Equation> | null;
     /**
      * 
-     * @type {Array<object>}
-     * @memberof ModelConfigurationSetup
-     */
-    hasInput?: Array<object> | null;
-    /**
-     * 
      * @type {Array<NumericalIndex>}
      * @memberof ModelConfigurationSetup
      */
     usefulForCalculatingIndex?: Array<NumericalIndex> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ModelConfigurationSetup
+     */
+    hasInput?: Array<object> | null;
 }
 
 export function ModelConfigurationSetupFromJSON(json: any): ModelConfigurationSetup {
@@ -484,6 +490,7 @@ export function ModelConfigurationSetupFromJSONTyped(json: any, ignoreDiscrimina
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
         'logo': !exists(json, 'logo') ? undefined : json['logo'],
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
+        'tag': !exists(json, 'tag') ? undefined : json['tag'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'hasSampleExecution': !exists(json, 'hasSampleExecution') ? undefined : json['hasSampleExecution'],
@@ -535,8 +542,8 @@ export function ModelConfigurationSetupFromJSONTyped(json: any, ignoreDiscrimina
         'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'validUntil': !exists(json, 'validUntil') ? undefined : json['validUntil'],
         'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
-        'hasInput': !exists(json, 'hasInput') ? undefined : json['hasInput'],
         'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
+        'hasInput': !exists(json, 'hasInput') ? undefined : json['hasInput'],
     };
 }
 
@@ -564,6 +571,7 @@ export function ModelConfigurationSetupToJSON(value?: ModelConfigurationSetup): 
         'hasFAQ': value.hasFAQ,
         'logo': value.logo,
         'hasContactPerson': value.hasContactPerson,
+        'tag': value.tag,
         'id': value.id,
         'identifier': value.identifier,
         'hasSampleExecution': value.hasSampleExecution,
@@ -615,8 +623,8 @@ export function ModelConfigurationSetupToJSON(value?: ModelConfigurationSetup): 
         'operatingSystems': value.operatingSystems,
         'validUntil': value.validUntil,
         'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
-        'hasInput': value.hasInput,
         'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
+        'hasInput': value.hasInput,
     };
 }
 

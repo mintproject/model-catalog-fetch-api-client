@@ -35,7 +35,7 @@ export interface Region {
      * @type {Array<Region>}
      * @memberof Region
      */
-    country?: Array<Region> | null;
+    partOf?: Array<Region> | null;
     /**
      * 
      * @type {string}
@@ -68,7 +68,7 @@ export function RegionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
         
         'geo': !exists(json, 'geo') ? undefined : json['geo'],
         'description': !exists(json, 'description') ? undefined : json['description'],
-        'country': !exists(json, 'country') ? undefined : (json['country'] as Array<any>).map(RegionFromJSON),
+        'partOf': !exists(json, 'partOf') ? undefined : (json['partOf'] as Array<any>).map(RegionFromJSON),
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -86,7 +86,7 @@ export function RegionToJSON(value?: Region): any {
         
         'geo': value.geo,
         'description': value.description,
-        'country': value.country === undefined ? undefined : (value.country as Array<any>).map(RegionToJSON),
+        'partOf': value.partOf === undefined ? undefined : (value.partOf as Array<any>).map(RegionToJSON),
         'id': value.id,
         'label': value.label,
         'type': value.type,

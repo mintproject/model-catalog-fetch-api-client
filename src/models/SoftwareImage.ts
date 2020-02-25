@@ -72,13 +72,13 @@ export interface SoftwareImage {
      * @type {Array<string>}
      * @memberof SoftwareImage
      */
-    softwareRequirements?: Array<string> | null;
+    supportDetails?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof SoftwareImage
      */
-    supportDetails?: Array<string> | null;
+    softwareRequirements?: Array<string> | null;
     /**
      * 
      * @type {Array<SoftwareVersion>}
@@ -304,8 +304,8 @@ export function SoftwareImageFromJSONTyped(json: any, ignoreDiscriminator: boole
         'hasFunding': !exists(json, 'hasFunding') ? undefined : (json['hasFunding'] as Array<any>).map(FundingInformationFromJSON),
         'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
-        'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
+        'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : (json['hasVersion'] as Array<any>).map(SoftwareVersionFromJSON),
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
@@ -356,8 +356,8 @@ export function SoftwareImageToJSON(value?: SoftwareImage): any {
         'hasFunding': value.hasFunding === undefined ? undefined : (value.hasFunding as Array<any>).map(FundingInformationToJSON),
         'hasDocumentation': value.hasDocumentation,
         'keywords': value.keywords,
-        'softwareRequirements': value.softwareRequirements,
         'supportDetails': value.supportDetails,
+        'softwareRequirements': value.softwareRequirements,
         'hasVersion': value.hasVersion === undefined ? undefined : (value.hasVersion as Array<any>).map(SoftwareVersionToJSON),
         'hasTypicalDataSource': value.hasTypicalDataSource,
         'hasDownloadURL': value.hasDownloadURL,

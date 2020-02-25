@@ -42,13 +42,13 @@ export interface Parameter {
      * @type {Array<string>}
      * @memberof Parameter
      */
-    hasDataType?: Array<string> | null;
+    description?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Parameter
      */
-    description?: Array<string> | null;
+    hasDataType?: Array<string> | null;
     /**
      * 
      * @type {Array<object>}
@@ -129,8 +129,8 @@ export function ParameterFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         
         'hasDefaultValue': !exists(json, 'hasDefaultValue') ? undefined : json['hasDefaultValue'],
         'hasMaximumAcceptedValue': !exists(json, 'hasMaximumAcceptedValue') ? undefined : json['hasMaximumAcceptedValue'],
-        'hasDataType': !exists(json, 'hasDataType') ? undefined : json['hasDataType'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'hasDataType': !exists(json, 'hasDataType') ? undefined : json['hasDataType'],
         'hasFixedValue': !exists(json, 'hasFixedValue') ? undefined : json['hasFixedValue'],
         'hasPresentation': !exists(json, 'hasPresentation') ? undefined : (json['hasPresentation'] as Array<any>).map(VariablePresentationFromJSON),
         'label': !exists(json, 'label') ? undefined : json['label'],
@@ -156,8 +156,8 @@ export function ParameterToJSON(value?: Parameter): any {
         
         'hasDefaultValue': value.hasDefaultValue,
         'hasMaximumAcceptedValue': value.hasMaximumAcceptedValue,
-        'hasDataType': value.hasDataType,
         'description': value.description,
+        'hasDataType': value.hasDataType,
         'hasFixedValue': value.hasFixedValue,
         'hasPresentation': value.hasPresentation === undefined ? undefined : (value.hasPresentation as Array<any>).map(VariablePresentationToJSON),
         'label': value.label,
