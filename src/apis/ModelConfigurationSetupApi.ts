@@ -25,6 +25,12 @@ export interface CustomModelconfigurationsetupsIdGetRequest {
     customQueryName?: string;
 }
 
+export interface CustomModelconfigurationsetupsVariableGetRequest {
+    label: string;
+    customQueryName?: string;
+    username?: string;
+}
+
 export interface ModelconfigurationsetupsGetRequest {
     username?: string;
     label?: string;
@@ -93,6 +99,50 @@ export class ModelConfigurationSetupApi extends runtime.BaseAPI {
     */
     async customModelconfigurationsetupsIdGet(requestParameters: CustomModelconfigurationsetupsIdGetRequest): Promise<ModelConfigurationSetup> {
         const response = await this.customModelconfigurationsetupsIdGetRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Get model configurations by variable name
+     * Get a list  Model
+     */
+    async customModelconfigurationsetupsVariableGetRaw(requestParameters: CustomModelconfigurationsetupsVariableGetRequest): Promise<runtime.ApiResponse<Array<ModelConfigurationSetup>>> {
+        if (requestParameters.label === null || requestParameters.label === undefined) {
+            throw new runtime.RequiredError('label','Required parameter requestParameters.label was null or undefined when calling customModelconfigurationsetupsVariableGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.customQueryName !== undefined) {
+            queryParameters['custom_query_name'] = requestParameters.customQueryName;
+        }
+
+        if (requestParameters.username !== undefined) {
+            queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.label !== undefined) {
+            queryParameters['label'] = requestParameters.label;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/custom/modelconfigurationsetups/variable`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ModelConfigurationSetupFromJSON));
+    }
+
+   /**
+    * Get model configurations by variable name
+    * Get a list  Model
+    */
+    async customModelconfigurationsetupsVariableGet(requestParameters: CustomModelconfigurationsetupsVariableGetRequest): Promise<Array<ModelConfigurationSetup>> {
+        const response = await this.customModelconfigurationsetupsVariableGetRaw(requestParameters);
         return await response.value();
     }
 
