@@ -1,6 +1,6 @@
 {
   "name": "@mintproject/modelcatalog_client",
-  "version": "1.7.3",
+  "version": "1.7.4",
   "description": "OpenAPI client for @mintproject/modelcatalog_client",
   "author": "OpenAPI-Generator",
   "main": "./dist/index.js",
