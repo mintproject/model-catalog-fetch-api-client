@@ -37,6 +37,12 @@ export interface CustomModelRegionGetRequest {
     username?: string;
 }
 
+export interface CustomModelsVariableGetRequest {
+    label: string;
+    customQueryName?: string;
+    username?: string;
+}
+
 export interface ModelsGetRequest {
     username?: string;
     label?: string;
@@ -197,6 +203,50 @@ export class ModelApi extends runtime.BaseAPI {
     */
     async customModelRegionGet(requestParameters: CustomModelRegionGetRequest): Promise<Array<Model>> {
         const response = await this.customModelRegionGetRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Get models by variable name
+     * Get a list of Model
+     */
+    async customModelsVariableGetRaw(requestParameters: CustomModelsVariableGetRequest): Promise<runtime.ApiResponse<Array<Model>>> {
+        if (requestParameters.label === null || requestParameters.label === undefined) {
+            throw new runtime.RequiredError('label','Required parameter requestParameters.label was null or undefined when calling customModelsVariableGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.customQueryName !== undefined) {
+            queryParameters['custom_query_name'] = requestParameters.customQueryName;
+        }
+
+        if (requestParameters.username !== undefined) {
+            queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.label !== undefined) {
+            queryParameters['label'] = requestParameters.label;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/custom/models/variable`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ModelFromJSON));
+    }
+
+   /**
+    * Get models by variable name
+    * Get a list of Model
+    */
+    async customModelsVariableGet(requestParameters: CustomModelsVariableGetRequest): Promise<Array<Model>> {
+        const response = await this.customModelsVariableGetRaw(requestParameters);
         return await response.value();
     }
 
