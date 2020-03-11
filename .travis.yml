@@ -12,6 +12,3 @@ deploy:
   api_key:
     secure: eywgNnHAMAPRgwAhIpaB34v7CLja2TsotbQ8bBHyD7bCNiVl//mO3FSsHF+a8OZjL88ZShw7Mb+dBT/jVtofSbGzSVH+EOKR9eZnV00TPE45SRJFET9pmSHDg1+uLb0S/HiJYPl4wdXucy47d1qCMt9xuiUbi/bU/EAs7sB7rw4MOHfJODC2cbHXmlfYnFWMM2nfmYotw4l5UMKkAbWOImgRjY4MScSaoKxV/tWnkfvNWFt4EDX7vZ9nEj3v/CrUPEowEO7tq+8cG003QnrW+rfP9XN0NLBgCJZp45INKHq76C/n3XHbaH7NExUFEpoQGx79gOM111USOvi8NUmpHsyE65U7TwLmbgoAstgcmXyUtTDQOCCVkuLUk/7nh0BSVJTiqMCMeGpdsveriNINhJclGuZ4Q5gUIwLzNl0jCuGewuUj1NjTdNh3XrgII8+by0KJnufcDXfO52ap1bOeLeTHJNZWcAI3ZK/N8iVaXa4MOq+ei4g1HdGKR/ILBVbLCRIaekk9vEINLdjnX2lJAAntwNXsE8llyXGL6lCh8EB/7Fhb7Ct50zlHgXUU/DZBZaVLFmGceZ+cqIEkgtEoYmf4Mli7Rr10SBI+ZO0DXsgnmFd0bL/P49CvcIFeOUD+cNunp9SvMOJnJQQsbezGhkUxUoA/pdmQM32nDWnMdoY=
   skip_cleanup: true
-  on:
-    tags: true
-    repo: mintproject/model-catalog-fetch-api-client
