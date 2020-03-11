@@ -2,13 +2,13 @@ language: node_js
 node_js:
 - '12.13'
 install:
-  - npm install
-  - npm run build
+- npm install
+- npm run build
 before_deploy:
-  - npm install typescript@3.6 -g
+- npm install typescript@3.6 -g
 deploy:
   provider: npm
-  email: mosorio@isi.edu 
+  email: mosorio@isi.edu
   api_key:
-    secure: eywgNnHAMAPRgwAhIpaB34v7CLja2TsotbQ8bBHyD7bCNiVl//mO3FSsHF+a8OZjL88ZShw7Mb+dBT/jVtofSbGzSVH+EOKR9eZnV00TPE45SRJFET9pmSHDg1+uLb0S/HiJYPl4wdXucy47d1qCMt9xuiUbi/bU/EAs7sB7rw4MOHfJODC2cbHXmlfYnFWMM2nfmYotw4l5UMKkAbWOImgRjY4MScSaoKxV/tWnkfvNWFt4EDX7vZ9nEj3v/CrUPEowEO7tq+8cG003QnrW+rfP9XN0NLBgCJZp45INKHq76C/n3XHbaH7NExUFEpoQGx79gOM111USOvi8NUmpHsyE65U7TwLmbgoAstgcmXyUtTDQOCCVkuLUk/7nh0BSVJTiqMCMeGpdsveriNINhJclGuZ4Q5gUIwLzNl0jCuGewuUj1NjTdNh3XrgII8+by0KJnufcDXfO52ap1bOeLeTHJNZWcAI3ZK/N8iVaXa4MOq+ei4g1HdGKR/ILBVbLCRIaekk9vEINLdjnX2lJAAntwNXsE8llyXGL6lCh8EB/7Fhb7Ct50zlHgXUU/DZBZaVLFmGceZ+cqIEkgtEoYmf4Mli7Rr10SBI+ZO0DXsgnmFd0bL/P49CvcIFeOUD+cNunp9SvMOJnJQQsbezGhkUxUoA/pdmQM32nDWnMdoY=
+    secure: DpPyTYs1jwI4PM2mJRL/7RsJvdz17J81rQqQ+651rKddsh3s7ZQkT3b3mMXAADCXTlM/kbKio3YozHy5UGgusGb8oQEY3LzAS7Bc7hWRt2SxDYK+xl+skX3p46/jkPkbgwBmujz/3tSmaEJlDGfMmQ5bs+FMXscb0hu71TX7xs78MeNzQG6L14QwsBtXJECHWKppEXtzX0vIZWZf35XfOO+5ELhCjnl87LcGFWAl61YlLKPwXwIYbG8Cve3QyoYOh/hXwi6TD2n+QSbfGQU+5neRzca1ehlyy29Bm2g7Ch50y3KmcemM0V2JeU55wgBDz5h5XnSugPnljq04t1OkWrvLuYY7kCJgXpNcM44rSTu0hLQ745iSsTvq/pUVQqbQ3j1NE2g7CY5AqyoBFwQYiUglm4IbvFdAUINpbSaccIzJ+rvxYtKZ2ZP6j+0vnGSRwMCICaMbe1nrjGCEZcW8QHpzbMngsVtX8Z8LODU9isRj3t5m0j5aiFZXcp/pfIgTX7iHwCus00DE4hxzcF/v/vlF3CS/n4wXPXRyuoFNSmD6Y1iLXTYqy7KmXD51YOJrneVZS/EUBe+eMqzW5KpCJa0AphnWCFP2iUeCIYTgsJL1AQAUXW1KpMjryV0bsPhGVHkok9IPVM+DJyNq/zabPZ+BwljmGlqsumwKPi2AjTE=
   skip_cleanup: true
