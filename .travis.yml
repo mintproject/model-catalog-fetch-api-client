@@ -3,6 +3,7 @@ node_js:
 - '12.13'
 install:
   - npm install typescript -g
+  - npm run build
 deploy:
   provider: npm
   email: maxiosorio@gmail.com
