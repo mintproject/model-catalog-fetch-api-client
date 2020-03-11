@@ -9,7 +9,7 @@
     "build": "tsc",
     "prepare": "npm run build"
   },
-  "devDependencies": {
+  "dependencies": {
     "typescript": "^3.6"
   },
   "publishConfig": {
