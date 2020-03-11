@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * Model Catalog
- * This is the API of the  Software Description Ontology at [https://mintproject.github.io/Mint-ModelCatalog-Ontology/release/1.3.0/index-en.html](https://w3id.org/okn/o/sdm)
+ * This is the API of the  Software Description Ontology at [https://w3id.org/okn/o/sdm](https://w3id.org/okn/o/sdm)
  *
  * The version of the OpenAPI document: v1.4.0
  * 

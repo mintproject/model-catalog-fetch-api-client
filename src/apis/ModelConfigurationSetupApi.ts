@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * Model Catalog
- * This is the API of the  Software Description Ontology at [https://mintproject.github.io/Mint-ModelCatalog-Ontology/release/1.3.0/index-en.html](https://w3id.org/okn/o/sdm)
+ * This is the API of the  Software Description Ontology at [https://w3id.org/okn/o/sdm](https://w3id.org/okn/o/sdm)
  *
  * The version of the OpenAPI document: v1.4.0
  * 
@@ -23,6 +23,12 @@ export interface CustomModelconfigurationsetupsIdGetRequest {
     id: string;
     username?: string;
     customQueryName?: string;
+}
+
+export interface CustomModelconfigurationsetupsVariableGetRequest {
+    label: string;
+    customQueryName?: string;
+    username?: string;
 }
 
 export interface ModelconfigurationsetupsGetRequest {
@@ -93,6 +99,50 @@ export class ModelConfigurationSetupApi extends runtime.BaseAPI {
     */
     async customModelconfigurationsetupsIdGet(requestParameters: CustomModelconfigurationsetupsIdGetRequest): Promise<ModelConfigurationSetup> {
         const response = await this.customModelconfigurationsetupsIdGetRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Get model configurations by variable name
+     * Get a list  Model
+     */
+    async customModelconfigurationsetupsVariableGetRaw(requestParameters: CustomModelconfigurationsetupsVariableGetRequest): Promise<runtime.ApiResponse<Array<ModelConfigurationSetup>>> {
+        if (requestParameters.label === null || requestParameters.label === undefined) {
+            throw new runtime.RequiredError('label','Required parameter requestParameters.label was null or undefined when calling customModelconfigurationsetupsVariableGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.customQueryName !== undefined) {
+            queryParameters['custom_query_name'] = requestParameters.customQueryName;
+        }
+
+        if (requestParameters.username !== undefined) {
+            queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.label !== undefined) {
+            queryParameters['label'] = requestParameters.label;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/custom/modelconfigurationsetups/variable`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ModelConfigurationSetupFromJSON));
+    }
+
+   /**
+    * Get model configurations by variable name
+    * Get a list  Model
+    */
+    async customModelconfigurationsetupsVariableGet(requestParameters: CustomModelconfigurationsetupsVariableGetRequest): Promise<Array<ModelConfigurationSetup>> {
+        const response = await this.customModelconfigurationsetupsVariableGetRaw(requestParameters);
         return await response.value();
     }
 

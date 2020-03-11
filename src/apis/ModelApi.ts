@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * Model Catalog
- * This is the API of the  Software Description Ontology at [https://mintproject.github.io/Mint-ModelCatalog-Ontology/release/1.3.0/index-en.html](https://w3id.org/okn/o/sdm)
+ * This is the API of the  Software Description Ontology at [https://w3id.org/okn/o/sdm](https://w3id.org/okn/o/sdm)
  *
  * The version of the OpenAPI document: v1.4.0
  * 
@@ -32,6 +32,18 @@ export interface CustomModelInterventionGetRequest {
 }
 
 export interface CustomModelRegionGetRequest {
+    label: string;
+    customQueryName?: string;
+    username?: string;
+}
+
+export interface CustomModelsStandardVariableGetRequest {
+    label: string;
+    customQueryName?: string;
+    username?: string;
+}
+
+export interface CustomModelsVariableGetRequest {
     label: string;
     customQueryName?: string;
     username?: string;
@@ -197,6 +209,94 @@ export class ModelApi extends runtime.BaseAPI {
     */
     async customModelRegionGet(requestParameters: CustomModelRegionGetRequest): Promise<Array<Model>> {
         const response = await this.customModelRegionGetRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Gets a list of model filter by the label of a standard variable
+     * Get a list of models
+     */
+    async customModelsStandardVariableGetRaw(requestParameters: CustomModelsStandardVariableGetRequest): Promise<runtime.ApiResponse<Array<Model>>> {
+        if (requestParameters.label === null || requestParameters.label === undefined) {
+            throw new runtime.RequiredError('label','Required parameter requestParameters.label was null or undefined when calling customModelsStandardVariableGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.customQueryName !== undefined) {
+            queryParameters['custom_query_name'] = requestParameters.customQueryName;
+        }
+
+        if (requestParameters.username !== undefined) {
+            queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.label !== undefined) {
+            queryParameters['label'] = requestParameters.label;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/custom/models/standard_variable`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ModelFromJSON));
+    }
+
+   /**
+    * Gets a list of model filter by the label of a standard variable
+    * Get a list of models
+    */
+    async customModelsStandardVariableGet(requestParameters: CustomModelsStandardVariableGetRequest): Promise<Array<Model>> {
+        const response = await this.customModelsStandardVariableGetRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Get models by variable name
+     * Get a list of Model
+     */
+    async customModelsVariableGetRaw(requestParameters: CustomModelsVariableGetRequest): Promise<runtime.ApiResponse<Array<Model>>> {
+        if (requestParameters.label === null || requestParameters.label === undefined) {
+            throw new runtime.RequiredError('label','Required parameter requestParameters.label was null or undefined when calling customModelsVariableGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.customQueryName !== undefined) {
+            queryParameters['custom_query_name'] = requestParameters.customQueryName;
+        }
+
+        if (requestParameters.username !== undefined) {
+            queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.label !== undefined) {
+            queryParameters['label'] = requestParameters.label;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/custom/models/variable`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ModelFromJSON));
+    }
+
+   /**
+    * Get models by variable name
+    * Get a list of Model
+    */
+    async customModelsVariableGet(requestParameters: CustomModelsVariableGetRequest): Promise<Array<Model>> {
+        const response = await this.customModelsVariableGetRaw(requestParameters);
         return await response.value();
     }
 

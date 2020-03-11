@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * Model Catalog
- * This is the API of the  Software Description Ontology at [https://mintproject.github.io/Mint-ModelCatalog-Ontology/release/1.3.0/index-en.html](https://w3id.org/okn/o/sdm)
+ * This is the API of the  Software Description Ontology at [https://w3id.org/okn/o/sdm](https://w3id.org/okn/o/sdm)
  *
  * The version of the OpenAPI document: v1.4.0
  * 
@@ -60,13 +60,13 @@ export interface SoftwareVersion {
      * @type {Array<string>}
      * @memberof SoftwareVersion
      */
-    hasDocumentation?: Array<string> | null;
+    keywords?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof SoftwareVersion
      */
-    keywords?: Array<string> | null;
+    hasDocumentation?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -141,16 +141,16 @@ export interface SoftwareVersion {
     dateCreated?: Array<string> | null;
     /**
      * 
-     * @type {Array<Software>}
-     * @memberof SoftwareVersion
-     */
-    compatibleVisualizationSoftware?: Array<Software> | null;
-    /**
-     * 
      * @type {Array<Person>}
      * @memberof SoftwareVersion
      */
     contributor?: Array<Person> | null;
+    /**
+     * 
+     * @type {Array<Software>}
+     * @memberof SoftwareVersion
+     */
+    compatibleVisualizationSoftware?: Array<Software> | null;
     /**
      * 
      * @type {Array<string>}
@@ -159,16 +159,22 @@ export interface SoftwareVersion {
     hasFAQ?: Array<string> | null;
     /**
      * 
+     * @type {Array<Image>}
+     * @memberof SoftwareVersion
+     */
+    logo?: Array<Image> | null;
+    /**
+     * 
      * @type {Array<object>}
      * @memberof SoftwareVersion
      */
     hasContactPerson?: Array<object> | null;
     /**
      * 
-     * @type {Array<Image>}
+     * @type {Array<string>}
      * @memberof SoftwareVersion
      */
-    logo?: Array<Image> | null;
+    tag?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -192,13 +198,13 @@ export interface SoftwareVersion {
      * @type {Array<string>}
      * @memberof SoftwareVersion
      */
-    memoryRequirements?: Array<string> | null;
+    identifier?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof SoftwareVersion
      */
-    identifier?: Array<string> | null;
+    memoryRequirements?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -308,8 +314,8 @@ export function SoftwareVersionFromJSONTyped(json: any, ignoreDiscriminator: boo
     return {
         
         'hasFunding': !exists(json, 'hasFunding') ? undefined : (json['hasFunding'] as Array<any>).map(FundingInformationFromJSON),
-        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
+        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
         'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : (json['hasVersion'] as Array<any>).map(SoftwareVersionFromJSON),
@@ -322,16 +328,17 @@ export function SoftwareVersionFromJSONTyped(json: any, ignoreDiscriminator: boo
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
-        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
         'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
+        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
-        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
+        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
+        'tag': !exists(json, 'tag') ? undefined : json['tag'],
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : (json['hasSampleVisualization'] as Array<any>).map(VisualizationFromJSON),
-        'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
+        'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
         'website': !exists(json, 'website') ? undefined : json['website'],
         'citation': !exists(json, 'citation') ? undefined : json['citation'],
         'hasConfiguration': !exists(json, 'hasConfiguration') ? undefined : (json['hasConfiguration'] as Array<any>).map(SoftwareConfigurationFromJSON),
@@ -361,8 +368,8 @@ export function SoftwareVersionToJSON(value?: SoftwareVersion): any {
     return {
         
         'hasFunding': value.hasFunding === undefined ? undefined : (value.hasFunding as Array<any>).map(FundingInformationToJSON),
-        'hasDocumentation': value.hasDocumentation,
         'keywords': value.keywords,
+        'hasDocumentation': value.hasDocumentation,
         'supportDetails': value.supportDetails,
         'softwareRequirements': value.softwareRequirements,
         'hasVersion': value.hasVersion === undefined ? undefined : (value.hasVersion as Array<any>).map(SoftwareVersionToJSON),
@@ -375,16 +382,17 @@ export function SoftwareVersionToJSON(value?: SoftwareVersion): any {
         'hasInstallationInstructions': value.hasInstallationInstructions,
         'hadPrimarySource': value.hadPrimarySource,
         'dateCreated': value.dateCreated,
-        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
         'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
+        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
         'hasFAQ': value.hasFAQ,
-        'hasContactPerson': value.hasContactPerson,
         'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
+        'hasContactPerson': value.hasContactPerson,
+        'tag': value.tag,
         'hasPurpose': value.hasPurpose,
         'id': value.id,
         'hasSampleVisualization': value.hasSampleVisualization === undefined ? undefined : (value.hasSampleVisualization as Array<any>).map(VisualizationToJSON),
-        'memoryRequirements': value.memoryRequirements,
         'identifier': value.identifier,
+        'memoryRequirements': value.memoryRequirements,
         'website': value.website,
         'citation': value.citation,
         'hasConfiguration': value.hasConfiguration === undefined ? undefined : (value.hasConfiguration as Array<any>).map(SoftwareConfigurationToJSON),

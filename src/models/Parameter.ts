@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * Model Catalog
- * This is the API of the  Software Description Ontology at [https://mintproject.github.io/Mint-ModelCatalog-Ontology/release/1.3.0/index-en.html](https://w3id.org/okn/o/sdm)
+ * This is the API of the  Software Description Ontology at [https://w3id.org/okn/o/sdm](https://w3id.org/okn/o/sdm)
  *
  * The version of the OpenAPI document: v1.4.0
  * 
@@ -13,6 +13,10 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    Intervention,
+    InterventionFromJSON,
+    InterventionFromJSONTyped,
+    InterventionToJSON,
     Unit,
     UnitFromJSON,
     UnitFromJSONTyped,
@@ -77,6 +81,12 @@ export interface Parameter {
     label?: Array<string> | null;
     /**
      * 
+     * @type {Array<number>}
+     * @memberof Parameter
+     */
+    recommendedIncrement?: Array<number> | null;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof Parameter
      */
@@ -99,6 +109,12 @@ export interface Parameter {
      * @memberof Parameter
      */
     adjustsVariable?: Array<Variable> | null;
+    /**
+     * 
+     * @type {Array<Intervention>}
+     * @memberof Parameter
+     */
+    relevantForIntervention?: Array<Intervention> | null;
     /**
      * 
      * @type {Array<number>}
@@ -142,10 +158,12 @@ export function ParameterFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'hasFixedValue': !exists(json, 'hasFixedValue') ? undefined : json['hasFixedValue'],
         'hasPresentation': !exists(json, 'hasPresentation') ? undefined : (json['hasPresentation'] as Array<any>).map(VariablePresentationFromJSON),
         'label': !exists(json, 'label') ? undefined : json['label'],
+        'recommendedIncrement': !exists(json, 'recommendedIncrement') ? undefined : json['recommendedIncrement'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasMinimumAcceptedValue': !exists(json, 'hasMinimumAcceptedValue') ? undefined : json['hasMinimumAcceptedValue'],
         'hasAcceptedValues': !exists(json, 'hasAcceptedValues') ? undefined : json['hasAcceptedValues'],
         'adjustsVariable': !exists(json, 'adjustsVariable') ? undefined : (json['adjustsVariable'] as Array<any>).map(VariableFromJSON),
+        'relevantForIntervention': !exists(json, 'relevantForIntervention') ? undefined : (json['relevantForIntervention'] as Array<any>).map(InterventionFromJSON),
         'position': !exists(json, 'position') ? undefined : json['position'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'usesUnit': !exists(json, 'usesUnit') ? undefined : (json['usesUnit'] as Array<any>).map(UnitFromJSON),
@@ -169,10 +187,12 @@ export function ParameterToJSON(value?: Parameter): any {
         'hasFixedValue': value.hasFixedValue,
         'hasPresentation': value.hasPresentation === undefined ? undefined : (value.hasPresentation as Array<any>).map(VariablePresentationToJSON),
         'label': value.label,
+        'recommendedIncrement': value.recommendedIncrement,
         'type': value.type,
         'hasMinimumAcceptedValue': value.hasMinimumAcceptedValue,
         'hasAcceptedValues': value.hasAcceptedValues,
         'adjustsVariable': value.adjustsVariable === undefined ? undefined : (value.adjustsVariable as Array<any>).map(VariableToJSON),
+        'relevantForIntervention': value.relevantForIntervention === undefined ? undefined : (value.relevantForIntervention as Array<any>).map(InterventionToJSON),
         'position': value.position,
         'id': value.id,
         'usesUnit': value.usesUnit === undefined ? undefined : (value.usesUnit as Array<any>).map(UnitToJSON),

@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * Model Catalog
- * This is the API of the  Software Description Ontology at [https://mintproject.github.io/Mint-ModelCatalog-Ontology/release/1.3.0/index-en.html](https://w3id.org/okn/o/sdm)
+ * This is the API of the  Software Description Ontology at [https://w3id.org/okn/o/sdm](https://w3id.org/okn/o/sdm)
  *
  * The version of the OpenAPI document: v1.4.0
  * 
@@ -90,13 +90,13 @@ export interface EmpiricalModel {
      * @type {Array<string>}
      * @memberof EmpiricalModel
      */
-    softwareRequirements?: Array<string> | null;
+    supportDetails?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof EmpiricalModel
      */
-    supportDetails?: Array<string> | null;
+    softwareRequirements?: Array<string> | null;
     /**
      * 
      * @type {Array<SoftwareVersion>}
@@ -165,16 +165,16 @@ export interface EmpiricalModel {
     dateCreated?: Array<string> | null;
     /**
      * 
-     * @type {Array<Software>}
-     * @memberof EmpiricalModel
-     */
-    compatibleVisualizationSoftware?: Array<Software> | null;
-    /**
-     * 
      * @type {Array<Person>}
      * @memberof EmpiricalModel
      */
     contributor?: Array<Person> | null;
+    /**
+     * 
+     * @type {Array<Software>}
+     * @memberof EmpiricalModel
+     */
+    compatibleVisualizationSoftware?: Array<Software> | null;
     /**
      * 
      * @type {Array<string>}
@@ -282,13 +282,13 @@ export interface EmpiricalModel {
      * @type {Array<string>}
      * @memberof EmpiricalModel
      */
-    license?: Array<string> | null;
+    operatingSystems?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof EmpiricalModel
      */
-    operatingSystems?: Array<string> | null;
+    license?: Array<string> | null;
     /**
      * 
      * @type {Array<SourceCode>}
@@ -309,16 +309,16 @@ export interface EmpiricalModel {
     hasExample?: Array<string> | null;
     /**
      * 
-     * @type {Array<Equation>}
-     * @memberof EmpiricalModel
-     */
-    hasEquation?: Array<Equation> | null;
-    /**
-     * 
      * @type {Array<object>}
      * @memberof EmpiricalModel
      */
     publisher?: Array<object> | null;
+    /**
+     * 
+     * @type {Array<Equation>}
+     * @memberof EmpiricalModel
+     */
+    hasEquation?: Array<Equation> | null;
     /**
      * 
      * @type {Array<NumericalIndex>}
@@ -341,8 +341,8 @@ export function EmpiricalModelFromJSONTyped(json: any, ignoreDiscriminator: bool
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'hasGrid': !exists(json, 'hasGrid') ? undefined : (json['hasGrid'] as Array<any>).map(GridFromJSON),
-        'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
+        'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : (json['hasVersion'] as Array<any>).map(SoftwareVersionFromJSON),
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
@@ -354,8 +354,8 @@ export function EmpiricalModelFromJSONTyped(json: any, ignoreDiscriminator: bool
         'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : json['hasModelCategory'],
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
-        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
         'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
+        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
         'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
@@ -373,13 +373,13 @@ export function EmpiricalModelFromJSONTyped(json: any, ignoreDiscriminator: bool
         'label': !exists(json, 'label') ? undefined : json['label'],
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
-        'license': !exists(json, 'license') ? undefined : json['license'],
         'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
+        'license': !exists(json, 'license') ? undefined : json['license'],
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : (json['hasSourceCode'] as Array<any>).map(SourceCodeFromJSON),
         'hasExplanationDiagram': !exists(json, 'hasExplanationDiagram') ? undefined : (json['hasExplanationDiagram'] as Array<any>).map(ImageFromJSON),
         'hasExample': !exists(json, 'hasExample') ? undefined : json['hasExample'],
-        'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
+        'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
         'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
     };
 }
@@ -397,8 +397,8 @@ export function EmpiricalModelToJSON(value?: EmpiricalModel): any {
         'keywords': value.keywords,
         'hasDocumentation': value.hasDocumentation,
         'hasGrid': value.hasGrid === undefined ? undefined : (value.hasGrid as Array<any>).map(GridToJSON),
-        'softwareRequirements': value.softwareRequirements,
         'supportDetails': value.supportDetails,
+        'softwareRequirements': value.softwareRequirements,
         'hasVersion': value.hasVersion === undefined ? undefined : (value.hasVersion as Array<any>).map(SoftwareVersionToJSON),
         'hasTypicalDataSource': value.hasTypicalDataSource,
         'hasDownloadURL': value.hasDownloadURL,
@@ -410,8 +410,8 @@ export function EmpiricalModelToJSON(value?: EmpiricalModel): any {
         'hasModelCategory': value.hasModelCategory,
         'hadPrimarySource': value.hadPrimarySource,
         'dateCreated': value.dateCreated,
-        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
         'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
+        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
         'hasFAQ': value.hasFAQ,
         'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
         'hasContactPerson': value.hasContactPerson,
@@ -429,13 +429,13 @@ export function EmpiricalModelToJSON(value?: EmpiricalModel): any {
         'label': value.label,
         'hasAssumption': value.hasAssumption,
         'datePublished': value.datePublished,
-        'license': value.license,
         'operatingSystems': value.operatingSystems,
+        'license': value.license,
         'hasSourceCode': value.hasSourceCode === undefined ? undefined : (value.hasSourceCode as Array<any>).map(SourceCodeToJSON),
         'hasExplanationDiagram': value.hasExplanationDiagram === undefined ? undefined : (value.hasExplanationDiagram as Array<any>).map(ImageToJSON),
         'hasExample': value.hasExample,
-        'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
         'publisher': value.publisher,
+        'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
         'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
     };
 }

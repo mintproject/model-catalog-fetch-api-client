@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * Model Catalog
- * This is the API of the  Software Description Ontology at [https://mintproject.github.io/Mint-ModelCatalog-Ontology/release/1.3.0/index-en.html](https://w3id.org/okn/o/sdm)
+ * This is the API of the  Software Description Ontology at [https://w3id.org/okn/o/sdm](https://w3id.org/okn/o/sdm)
  *
  * The version of the OpenAPI document: v1.4.0
  * 
@@ -82,13 +82,13 @@ export interface Grid {
      * @type {Array<string>}
      * @memberof Grid
      */
-    hasSpatialResolution?: Array<string> | null;
+    hasCoordinateSystem?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof Grid
      */
-    hasCoordinateSystem?: Array<string> | null;
+    hasSpatialResolution?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -133,8 +133,8 @@ export function GridFromJSONTyped(json: any, ignoreDiscriminator: boolean): Grid
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasFixedResource': !exists(json, 'hasFixedResource') ? undefined : (json['hasFixedResource'] as Array<any>).map(SampleResourceFromJSON),
-        'hasSpatialResolution': !exists(json, 'hasSpatialResolution') ? undefined : json['hasSpatialResolution'],
         'hasCoordinateSystem': !exists(json, 'hasCoordinateSystem') ? undefined : json['hasCoordinateSystem'],
+        'hasSpatialResolution': !exists(json, 'hasSpatialResolution') ? undefined : json['hasSpatialResolution'],
         'hasShape': !exists(json, 'hasShape') ? undefined : json['hasShape'],
         'hasDimension': !exists(json, 'hasDimension') ? undefined : json['hasDimension'],
         'position': !exists(json, 'position') ? undefined : json['position'],
@@ -159,8 +159,8 @@ export function GridToJSON(value?: Grid): any {
         'label': value.label,
         'type': value.type,
         'hasFixedResource': value.hasFixedResource === undefined ? undefined : (value.hasFixedResource as Array<any>).map(SampleResourceToJSON),
-        'hasSpatialResolution': value.hasSpatialResolution,
         'hasCoordinateSystem': value.hasCoordinateSystem,
+        'hasSpatialResolution': value.hasSpatialResolution,
         'hasShape': value.hasShape,
         'hasDimension': value.hasDimension,
         'position': value.position,

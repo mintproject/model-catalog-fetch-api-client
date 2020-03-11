@@ -1,7 +1,7 @@
 // tslint:disable
 /**
  * Model Catalog
- * This is the API of the  Software Description Ontology at [https://mintproject.github.io/Mint-ModelCatalog-Ontology/release/1.3.0/index-en.html](https://w3id.org/okn/o/sdm)
+ * This is the API of the  Software Description Ontology at [https://w3id.org/okn/o/sdm](https://w3id.org/okn/o/sdm)
  *
  * The version of the OpenAPI document: v1.4.0
  * 
@@ -74,13 +74,13 @@ export interface ConfigurationSetup {
      * @type {Array<string>}
      * @memberof ConfigurationSetup
      */
-    hasDocumentation?: Array<string> | null;
+    keywords?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof ConfigurationSetup
      */
-    keywords?: Array<string> | null;
+    hasDocumentation?: Array<string> | null;
     /**
      * 
      * @type {Array<string>}
@@ -125,16 +125,16 @@ export interface ConfigurationSetup {
     hasFAQ?: Array<string> | null;
     /**
      * 
-     * @type {Array<object>}
-     * @memberof ConfigurationSetup
-     */
-    hasContactPerson?: Array<object> | null;
-    /**
-     * 
      * @type {Array<Image>}
      * @memberof ConfigurationSetup
      */
     logo?: Array<Image> | null;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof ConfigurationSetup
+     */
+    hasContactPerson?: Array<object> | null;
     /**
      * 
      * @type {string}
@@ -393,8 +393,8 @@ export function ConfigurationSetupFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
+        'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'hasImplementationScriptLocation': !exists(json, 'hasImplementationScriptLocation') ? undefined : json['hasImplementationScriptLocation'],
         'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
@@ -402,8 +402,8 @@ export function ConfigurationSetupFromJSONTyped(json: any, ignoreDiscriminator: 
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
         'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
-        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
+        'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'hasSampleExecution': !exists(json, 'hasSampleExecution') ? undefined : (json['hasSampleExecution'] as Array<any>).map(SampleExecutionFromJSON),
@@ -457,8 +457,8 @@ export function ConfigurationSetupToJSON(value?: ConfigurationSetup): any {
     }
     return {
         
-        'hasDocumentation': value.hasDocumentation,
         'keywords': value.keywords,
+        'hasDocumentation': value.hasDocumentation,
         'hasImplementationScriptLocation': value.hasImplementationScriptLocation,
         'softwareRequirements': value.softwareRequirements,
         'hasDownloadURL': value.hasDownloadURL,
@@ -466,8 +466,8 @@ export function ConfigurationSetupToJSON(value?: ConfigurationSetup): any {
         'hasInstallationInstructions': value.hasInstallationInstructions,
         'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
         'hasFAQ': value.hasFAQ,
-        'hasContactPerson': value.hasContactPerson,
         'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
+        'hasContactPerson': value.hasContactPerson,
         'id': value.id,
         'identifier': value.identifier,
         'hasSampleExecution': value.hasSampleExecution === undefined ? undefined : (value.hasSampleExecution as Array<any>).map(SampleExecutionToJSON),
