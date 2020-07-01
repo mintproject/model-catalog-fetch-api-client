@@ -13,7 +13,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Class designed to distinguish the different types of units that are available in variables from datasets or parameters
+ * Description not available
  * @export
  * @interface Unit
  */

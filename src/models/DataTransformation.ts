@@ -12,360 +12,385 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import {
-    FundingInformation,
-    FundingInformationFromJSON,
-    FundingInformationFromJSONTyped,
-    FundingInformationToJSON,
-    Image,
-    ImageFromJSON,
-    ImageFromJSONTyped,
-    ImageToJSON,
-    NumericalIndex,
-    NumericalIndexFromJSON,
-    NumericalIndexFromJSONTyped,
-    NumericalIndexToJSON,
-    Person,
-    PersonFromJSON,
-    PersonFromJSONTyped,
-    PersonToJSON,
-    Software,
-    SoftwareFromJSON,
-    SoftwareFromJSONTyped,
-    SoftwareToJSON,
-    SoftwareConfiguration,
-    SoftwareConfigurationFromJSON,
-    SoftwareConfigurationFromJSONTyped,
-    SoftwareConfigurationToJSON,
-    SourceCode,
-    SourceCodeFromJSON,
-    SourceCodeFromJSONTyped,
-    SourceCodeToJSON,
-    Visualization,
-    VisualizationFromJSON,
-    VisualizationFromJSONTyped,
-    VisualizationToJSON,
-} from './';
-
 /**
- * A software version is a specificf type of software that represents a particular set of functionalities. New functionalities and error fixes may occur between software versions
+ * Class that represents a software for performing data transformation.
  * @export
- * @interface SoftwareVersion
+ * @interface DataTransformation
  */
-export interface SoftwareVersion {
+export interface DataTransformation {
     /**
      * Instructions needed to download a software component. The difference with `hasDownloadURL` is that this property captures the human readable instructions required to download software. For example, sometimes an authentication is needed, users need to fill in a form, etc.
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     hasDownloadInstructions?: Array<string> | null;
     /**
      * Keywords associated with a software component
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     keywords?: Array<string> | null;
     /**
      * Pointer to the documentation of the model
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     hasDocumentation?: Array<string> | null;
     /**
+     * Property that points to the main runnable script for the current function
+     * @type {Array<string>}
+     * @memberof DataTransformation
+     */
+    hasImplementationScriptLocation?: Array<string> | null;
+    /**
      * Description not available
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     softwareRequirements?: Array<string> | null;
     /**
      * Download URL where to obtain the source/executable of the software
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     hasDownloadURL?: Array<string> | null;
     /**
      * type of the resource
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     type?: Array<string> | null;
     /**
      * Instructions required to install this particular piece of software. Installation instructions usually are available in a human-readable manner.
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     hasInstallationInstructions?: Array<string> | null;
     /**
      * Property that links a software component to other useful software that canbe used to visualize its outputs
-     * @type {Array<Software>}
-     * @memberof SoftwareVersion
+     * @type {Array<object>}
+     * @memberof DataTransformation
      */
-    compatibleVisualizationSoftware?: Array<Software> | null;
+    compatibleVisualizationSoftware?: Array<object> | null;
     /**
      * Description not available
      * @type {Array<object>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     copyrightHolder?: Array<object> | null;
     /**
      * Frequently asked questions about a software
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     hasFAQ?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<Image>}
-     * @memberof SoftwareVersion
+     * @type {Array<object>}
+     * @memberof DataTransformation
      */
-    logo?: Array<Image> | null;
+    logo?: Array<object> | null;
     /**
      * Description not available
      * @type {Array<object>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     hasContactPerson?: Array<object> | null;
     /**
      * Tag used to annotate a version or a software configuration. This annotation is useful to show which version is the latest, or which version is deprecated. Supported tags are: \"latest\", \"deprecated\"
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     tag?: Array<string> | null;
     /**
      * identifier
      * @type {string}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     id?: string;
     /**
      * Identifier of the resource being described
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     identifier?: Array<string> | null;
     /**
-     * Property that links a model to one of its configurations. A model may have multiple configurations, each of which is unique in terms of the inputs and outputs it uses.
-     * @type {Array<SoftwareConfiguration>}
-     * @memberof SoftwareVersion
+     * Description not available
+     * @type {Array<object>}
+     * @memberof DataTransformation
      */
-    hasConfiguration?: Array<SoftwareConfiguration> | null;
+    hasSampleExecution?: Array<object> | null;
     /**
      * Description not available
      * @type {Array<object>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
+     */
+    hasSampleResult?: Array<object> | null;
+    /**
+     * Description not available
+     * @type {Array<object>}
+     * @memberof DataTransformation
      */
     author?: Array<object> | null;
     /**
+     * Constraint or rule associated to a  variable or software configuration. For example: \"This model accepts only monthly data\", or \"all inputs of this model configuration must share the same location\". More structured restrictions, such as Jena rules or SWRL rules may also be captured with this property
+     * @type {Array<string>}
+     * @memberof DataTransformation
+     */
+    hasConstraint?: Array<string> | null;
+    /**
      * A file (e.g., Dockerfile) with executable instructions indicating how a Software Image or a Software component is built
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     hasBuildFile?: Array<string> | null;
     /**
      * A summarized description of the resource
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     shortDescription?: Array<string> | null;
     /**
+     * Execution instructions on how to run the image
+     * @type {Array<string>}
+     * @memberof DataTransformation
+     */
+    hasExecutionCommand?: Array<string> | null;
+    /**
      * Description not available
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     datePublished?: Array<string> | null;
     /**
      * License of a software component or its source code
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     license?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<SourceCode>}
-     * @memberof SoftwareVersion
+     * @type {Array<object>}
+     * @memberof DataTransformation
      */
-    hasSourceCode?: Array<SourceCode> | null;
+    hasSourceCode?: Array<object> | null;
+    /**
+     * Property used to define configurations with some fixed resources and values. The rationale of this property is to allow predefined configurations
+     * @type {Array<object>}
+     * @memberof DataTransformation
+     */
+    hasSetup?: Array<object> | null;
     /**
      * An example explaining a scenario where the software component was used in plain language.
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     hasExample?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<object>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     publisher?: Array<object> | null;
     /**
+     * Property that expresses what are the outputs of a model
+     * @type {Array<object>}
+     * @memberof DataTransformation
+     */
+    hasOutput?: Array<object> | null;
+    /**
      * Digital Object Identifier associated with a software component
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     doi?: Array<string> | null;
     /**
      * Property that links a software project to its funding information
-     * @type {Array<FundingInformation>}
-     * @memberof SoftwareVersion
+     * @type {Array<object>}
+     * @memberof DataTransformation
      */
-    hasFunding?: Array<FundingInformation> | null;
+    hasFunding?: Array<object> | null;
+    /**
+     * Location of the aggregation of all the files needed to execute the component. Usually a zip file including the run script and support scripts, including specification files
+     * @type {Array<string>}
+     * @memberof DataTransformation
+     */
+    hasComponentLocation?: Array<string> | null;
     /**
      * Property to link details, such as mailing lists in case a contact person is not provided
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     supportDetails?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<SoftwareVersion>}
-     * @memberof SoftwareVersion
+     * @type {Array<object>}
+     * @memberof DataTransformation
      */
-    hasVersion?: Array<SoftwareVersion> | null;
+    hasVersion?: Array<object> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     hasTypicalDataSource?: Array<string> | null;
     /**
      * small description
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     description?: Array<string> | null;
     /**
      * Main publication to cite for this software component
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     referencePublication?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<Image>}
-     * @memberof SoftwareVersion
+     * @type {Array<object>}
+     * @memberof DataTransformation
      */
-    screenshot?: Array<Image> | null;
+    screenshot?: Array<object> | null;
     /**
      * had primary source
      * @type {Array<object>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     hadPrimarySource?: Array<object> | null;
     /**
      * Pointer to the issue tracker of a software component
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     issueTracker?: Array<string> | null;
     /**
+     * Function to link a function with its corresponding container
+     * @type {Array<object>}
+     * @memberof DataTransformation
+     */
+    hasSoftwareImage?: Array<object> | null;
+    /**
      * Description not available
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     dateCreated?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<Person>}
-     * @memberof SoftwareVersion
+     * @type {Array<object>}
+     * @memberof DataTransformation
      */
-    contributor?: Array<Person> | null;
+    contributor?: Array<object> | null;
     /**
      * Objective or main functionality that can be achieved by running this software
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     hasPurpose?: Array<string> | null;
     /**
      * Instructions that indicate how a software component should be executed. The difference with `hasExecutionCommand` is that the execution instructions aim to be human-readable, and have explanations between the different commands and instructions
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     hasExecutableInstructions?: Array<string> | null;
     /**
      * A typical sample visualization of the softwware outputs
-     * @type {Array<Visualization>}
-     * @memberof SoftwareVersion
+     * @type {Array<object>}
+     * @memberof DataTransformation
      */
-    hasSampleVisualization?: Array<Visualization> | null;
+    hasSampleVisualization?: Array<object> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     memoryRequirements?: Array<string> | null;
     /**
      * Website of the software
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     website?: Array<string> | null;
     /**
      * How to cite this software
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     citation?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     processorRequirements?: Array<string> | null;
     /**
      * Property that describes the usage considerations of a particular software. These notes capture the rationale of for that software configuration, along with an explanation for sample inputs, things to consider when running the model with data, etc.
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     hasUsageNotes?: Array<string> | null;
     /**
+     * Property that links to the location of scripts that may be used from the main runnable script.
+     * @type {Array<string>}
+     * @memberof DataTransformation
+     */
+    hasSupportScriptLocation?: Array<string> | null;
+    /**
      * URl to the readme file of a software component
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     readme?: Array<string> | null;
     /**
      * short description of the resource
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     label?: Array<string> | null;
     /**
      * Assumptions of a software, e.g. the solver being used for a particular model, the source of the data (e.g., all data must have a given resolution), etc.
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     hasAssumption?: Array<string> | null;
     /**
+     * Property that indicates the parameters of a model configuration
+     * @type {Array<object>}
+     * @memberof DataTransformation
+     */
+    hasParameter?: Array<object> | null;
+    /**
      * Description not available
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     operatingSystems?: Array<string> | null;
     /**
      * Property that links a software component with an executable notebook (e.g., Jupyter notebook) that illustrates how to use it in an executable manner.
      * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * @memberof DataTransformation
      */
     hasExecutableNotebook?: Array<string> | null;
     /**
      * Property that indicates that a software component (or any of its outputs) can be used to calculate a particular index. The rationale for this property is that indices are usually calculated by applying post-processing steps to the outputs of a software component.
-     * @type {Array<NumericalIndex>}
-     * @memberof SoftwareVersion
+     * @type {Array<object>}
+     * @memberof DataTransformation
      */
-    usefulForCalculatingIndex?: Array<NumericalIndex> | null;
+    usefulForCalculatingIndex?: Array<object> | null;
     /**
-     * Identifier of the version of this software
-     * @type {Array<string>}
-     * @memberof SoftwareVersion
+     * Property that links a model configuration to the input types expected by it.
+     * @type {Array<object>}
+     * @memberof DataTransformation
      */
-    hasVersionId?: Array<string> | null;
+    hasInput?: Array<object> | null;
 }
 
-export function SoftwareVersionFromJSON(json: any): SoftwareVersion {
-    return SoftwareVersionFromJSONTyped(json, false);
+export function DataTransformationFromJSON(json: any): DataTransformation {
+    return DataTransformationFromJSONTyped(json, false);
 }
 
-export function SoftwareVersionFromJSONTyped(json: any, ignoreDiscriminator: boolean): SoftwareVersion {
+export function DataTransformationFromJSONTyped(json: any, ignoreDiscriminator: boolean): DataTransformation {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -374,58 +399,68 @@ export function SoftwareVersionFromJSONTyped(json: any, ignoreDiscriminator: boo
         'hasDownloadInstructions': !exists(json, 'hasDownloadInstructions') ? undefined : json['hasDownloadInstructions'],
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
+        'hasImplementationScriptLocation': !exists(json, 'hasImplementationScriptLocation') ? undefined : json['hasImplementationScriptLocation'],
         'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
-        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
+        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : json['compatibleVisualizationSoftware'],
         'copyrightHolder': !exists(json, 'copyrightHolder') ? undefined : json['copyrightHolder'],
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
-        'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
+        'logo': !exists(json, 'logo') ? undefined : json['logo'],
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'tag': !exists(json, 'tag') ? undefined : json['tag'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
-        'hasConfiguration': !exists(json, 'hasConfiguration') ? undefined : (json['hasConfiguration'] as Array<any>).map(SoftwareConfigurationFromJSON),
+        'hasSampleExecution': !exists(json, 'hasSampleExecution') ? undefined : json['hasSampleExecution'],
+        'hasSampleResult': !exists(json, 'hasSampleResult') ? undefined : json['hasSampleResult'],
         'author': !exists(json, 'author') ? undefined : json['author'],
+        'hasConstraint': !exists(json, 'hasConstraint') ? undefined : json['hasConstraint'],
         'hasBuildFile': !exists(json, 'hasBuildFile') ? undefined : json['hasBuildFile'],
         'shortDescription': !exists(json, 'shortDescription') ? undefined : json['shortDescription'],
+        'hasExecutionCommand': !exists(json, 'hasExecutionCommand') ? undefined : json['hasExecutionCommand'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
         'license': !exists(json, 'license') ? undefined : json['license'],
-        'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : (json['hasSourceCode'] as Array<any>).map(SourceCodeFromJSON),
+        'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : json['hasSourceCode'],
+        'hasSetup': !exists(json, 'hasSetup') ? undefined : json['hasSetup'],
         'hasExample': !exists(json, 'hasExample') ? undefined : json['hasExample'],
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
+        'hasOutput': !exists(json, 'hasOutput') ? undefined : json['hasOutput'],
         'doi': !exists(json, 'doi') ? undefined : json['doi'],
-        'hasFunding': !exists(json, 'hasFunding') ? undefined : (json['hasFunding'] as Array<any>).map(FundingInformationFromJSON),
+        'hasFunding': !exists(json, 'hasFunding') ? undefined : json['hasFunding'],
+        'hasComponentLocation': !exists(json, 'hasComponentLocation') ? undefined : json['hasComponentLocation'],
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
-        'hasVersion': !exists(json, 'hasVersion') ? undefined : (json['hasVersion'] as Array<any>).map(SoftwareVersionFromJSON),
+        'hasVersion': !exists(json, 'hasVersion') ? undefined : json['hasVersion'],
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
-        'screenshot': !exists(json, 'screenshot') ? undefined : (json['screenshot'] as Array<any>).map(ImageFromJSON),
+        'screenshot': !exists(json, 'screenshot') ? undefined : json['screenshot'],
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
         'issueTracker': !exists(json, 'issueTracker') ? undefined : json['issueTracker'],
+        'hasSoftwareImage': !exists(json, 'hasSoftwareImage') ? undefined : json['hasSoftwareImage'],
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
-        'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
+        'contributor': !exists(json, 'contributor') ? undefined : json['contributor'],
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'hasExecutableInstructions': !exists(json, 'hasExecutableInstructions') ? undefined : json['hasExecutableInstructions'],
-        'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : (json['hasSampleVisualization'] as Array<any>).map(VisualizationFromJSON),
+        'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : json['hasSampleVisualization'],
         'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
         'website': !exists(json, 'website') ? undefined : json['website'],
         'citation': !exists(json, 'citation') ? undefined : json['citation'],
         'processorRequirements': !exists(json, 'processorRequirements') ? undefined : json['processorRequirements'],
         'hasUsageNotes': !exists(json, 'hasUsageNotes') ? undefined : json['hasUsageNotes'],
+        'hasSupportScriptLocation': !exists(json, 'hasSupportScriptLocation') ? undefined : json['hasSupportScriptLocation'],
         'readme': !exists(json, 'readme') ? undefined : json['readme'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
+        'hasParameter': !exists(json, 'hasParameter') ? undefined : json['hasParameter'],
         'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'hasExecutableNotebook': !exists(json, 'hasExecutableNotebook') ? undefined : json['hasExecutableNotebook'],
-        'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
-        'hasVersionId': !exists(json, 'hasVersionId') ? undefined : json['hasVersionId'],
+        'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : json['usefulForCalculatingIndex'],
+        'hasInput': !exists(json, 'hasInput') ? undefined : json['hasInput'],
     };
 }
 
-export function SoftwareVersionToJSON(value?: SoftwareVersion): any {
+export function DataTransformationToJSON(value?: DataTransformation): any {
     if (value === undefined) {
         return undefined;
     }
@@ -437,54 +472,64 @@ export function SoftwareVersionToJSON(value?: SoftwareVersion): any {
         'hasDownloadInstructions': value.hasDownloadInstructions,
         'keywords': value.keywords,
         'hasDocumentation': value.hasDocumentation,
+        'hasImplementationScriptLocation': value.hasImplementationScriptLocation,
         'softwareRequirements': value.softwareRequirements,
         'hasDownloadURL': value.hasDownloadURL,
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
-        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
+        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware,
         'copyrightHolder': value.copyrightHolder,
         'hasFAQ': value.hasFAQ,
-        'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
+        'logo': value.logo,
         'hasContactPerson': value.hasContactPerson,
         'tag': value.tag,
         'id': value.id,
         'identifier': value.identifier,
-        'hasConfiguration': value.hasConfiguration === undefined ? undefined : (value.hasConfiguration as Array<any>).map(SoftwareConfigurationToJSON),
+        'hasSampleExecution': value.hasSampleExecution,
+        'hasSampleResult': value.hasSampleResult,
         'author': value.author,
+        'hasConstraint': value.hasConstraint,
         'hasBuildFile': value.hasBuildFile,
         'shortDescription': value.shortDescription,
+        'hasExecutionCommand': value.hasExecutionCommand,
         'datePublished': value.datePublished,
         'license': value.license,
-        'hasSourceCode': value.hasSourceCode === undefined ? undefined : (value.hasSourceCode as Array<any>).map(SourceCodeToJSON),
+        'hasSourceCode': value.hasSourceCode,
+        'hasSetup': value.hasSetup,
         'hasExample': value.hasExample,
         'publisher': value.publisher,
+        'hasOutput': value.hasOutput,
         'doi': value.doi,
-        'hasFunding': value.hasFunding === undefined ? undefined : (value.hasFunding as Array<any>).map(FundingInformationToJSON),
+        'hasFunding': value.hasFunding,
+        'hasComponentLocation': value.hasComponentLocation,
         'supportDetails': value.supportDetails,
-        'hasVersion': value.hasVersion === undefined ? undefined : (value.hasVersion as Array<any>).map(SoftwareVersionToJSON),
+        'hasVersion': value.hasVersion,
         'hasTypicalDataSource': value.hasTypicalDataSource,
         'description': value.description,
         'referencePublication': value.referencePublication,
-        'screenshot': value.screenshot === undefined ? undefined : (value.screenshot as Array<any>).map(ImageToJSON),
+        'screenshot': value.screenshot,
         'hadPrimarySource': value.hadPrimarySource,
         'issueTracker': value.issueTracker,
+        'hasSoftwareImage': value.hasSoftwareImage,
         'dateCreated': value.dateCreated,
-        'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
+        'contributor': value.contributor,
         'hasPurpose': value.hasPurpose,
         'hasExecutableInstructions': value.hasExecutableInstructions,
-        'hasSampleVisualization': value.hasSampleVisualization === undefined ? undefined : (value.hasSampleVisualization as Array<any>).map(VisualizationToJSON),
+        'hasSampleVisualization': value.hasSampleVisualization,
         'memoryRequirements': value.memoryRequirements,
         'website': value.website,
         'citation': value.citation,
         'processorRequirements': value.processorRequirements,
         'hasUsageNotes': value.hasUsageNotes,
+        'hasSupportScriptLocation': value.hasSupportScriptLocation,
         'readme': value.readme,
         'label': value.label,
         'hasAssumption': value.hasAssumption,
+        'hasParameter': value.hasParameter,
         'operatingSystems': value.operatingSystems,
         'hasExecutableNotebook': value.hasExecutableNotebook,
-        'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
-        'hasVersionId': value.hasVersionId,
+        'usefulForCalculatingIndex': value.usefulForCalculatingIndex,
+        'hasInput': value.hasInput,
     };
 }
 

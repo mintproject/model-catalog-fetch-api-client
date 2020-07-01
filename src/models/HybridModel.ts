@@ -62,19 +62,19 @@ import {
  */
 export interface HybridModel {
     /**
-     * Property that links a software project to its funding information
-     * @type {Array<FundingInformation>}
+     * Description not available
+     * @type {Array<string>}
      * @memberof HybridModel
      */
-    hasFunding?: Array<FundingInformation> | null;
+    hasDownloadInstructions?: Array<string> | null;
     /**
-     * Keywords associated with a software component
+     * Description not available
      * @type {Array<string>}
      * @memberof HybridModel
      */
     keywords?: Array<string> | null;
     /**
-     * Pointer to the documentation of the model
+     * Description not available
      * @type {Array<string>}
      * @memberof HybridModel
      */
@@ -86,12 +86,6 @@ export interface HybridModel {
      */
     hasGrid?: Array<Grid> | null;
     /**
-     * Property to link details, such as mailing lists in case a contact person is not provided
-     * @type {Array<string>}
-     * @memberof HybridModel
-     */
-    supportDetails?: Array<string> | null;
-    /**
      * Description not available
      * @type {Array<string>}
      * @memberof HybridModel
@@ -99,40 +93,10 @@ export interface HybridModel {
     softwareRequirements?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<SoftwareVersion>}
-     * @memberof HybridModel
-     */
-    hasVersion?: Array<SoftwareVersion> | null;
-    /**
-     * Description not available
-     * @type {Array<string>}
-     * @memberof HybridModel
-     */
-    hasTypicalDataSource?: Array<string> | null;
-    /**
-     * Download URL where to obtain the source/executable of the software
      * @type {Array<string>}
      * @memberof HybridModel
      */
     hasDownloadURL?: Array<string> | null;
-    /**
-     * small description
-     * @type {Array<string>}
-     * @memberof HybridModel
-     */
-    description?: Array<string> | null;
-    /**
-     * Main publication to cite in this software
-     * @type {Array<string>}
-     * @memberof HybridModel
-     */
-    referencePublication?: Array<string> | null;
-    /**
-     * Description not available
-     * @type {Array<Image>}
-     * @memberof HybridModel
-     */
-    screenshot?: Array<Image> | null;
     /**
      * type of the resource
      * @type {Array<string>}
@@ -140,43 +104,25 @@ export interface HybridModel {
      */
     type?: Array<string> | null;
     /**
-     * Instructions requires to install this particular piece of software.
+     * Description not available
      * @type {Array<string>}
      * @memberof HybridModel
      */
     hasInstallationInstructions?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
-     * @memberof HybridModel
-     */
-    hasModelCategory?: Array<string> | null;
-    /**
-     * Property to identify the original source of the information of the annotated resource. It could be a web page, an organization, a person, some experiment notes, etc.
-     * @type {Array<object>}
-     * @memberof HybridModel
-     */
-    hadPrimarySource?: Array<object> | null;
-    /**
-     * Description not available
-     * @type {Array<string>}
-     * @memberof HybridModel
-     */
-    dateCreated?: Array<string> | null;
-    /**
-     * Description not available
-     * @type {Array<Person>}
-     * @memberof HybridModel
-     */
-    contributor?: Array<Person> | null;
-    /**
-     * Property that links a software component to other useful software that canbe used to visualize its outputs
      * @type {Array<Software>}
      * @memberof HybridModel
      */
     compatibleVisualizationSoftware?: Array<Software> | null;
     /**
-     * Frequently asked questions about a software
+     * Description not available
+     * @type {Array<object>}
+     * @memberof HybridModel
+     */
+    copyrightHolder?: Array<object> | null;
+    /**
+     * Description not available
      * @type {Array<string>}
      * @memberof HybridModel
      */
@@ -194,47 +140,17 @@ export interface HybridModel {
      */
     hasContactPerson?: Array<object> | null;
     /**
-     * Objective or main functionality that can be achieved by running this software
-     * @type {Array<string>}
-     * @memberof HybridModel
-     */
-    hasPurpose?: Array<string> | null;
-    /**
      * identifier
      * @type {string}
      * @memberof HybridModel
      */
     id?: string;
     /**
-     * A typical sample visualization of the softwware outputs
-     * @type {Array<Visualization>}
-     * @memberof HybridModel
-     */
-    hasSampleVisualization?: Array<Visualization> | null;
-    /**
-     * Identifier of the resource being described
-     * @type {Array<string>}
-     * @memberof HybridModel
-     */
-    identifier?: Array<string> | null;
-    /**
      * Description not available
      * @type {Array<string>}
      * @memberof HybridModel
      */
-    memoryRequirements?: Array<string> | null;
-    /**
-     * Website of the software
-     * @type {Array<string>}
-     * @memberof HybridModel
-     */
-    website?: Array<string> | null;
-    /**
-     * How to cite this software
-     * @type {Array<string>}
-     * @memberof HybridModel
-     */
-    citation?: Array<string> | null;
+    identifier?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<object>}
@@ -246,31 +162,13 @@ export interface HybridModel {
      * @type {Array<string>}
      * @memberof HybridModel
      */
-    processorRequirements?: Array<string> | null;
+    hasBuildFile?: Array<string> | null;
     /**
-     * Property that describes the usage considerations of a particular software. These notes capture the rationale of for that software configuration, along with an explanation for sample inputs, things to consider when running the model with data, etc.
-     * @type {Array<string>}
-     * @memberof HybridModel
-     */
-    hasUsageNotes?: Array<string> | null;
-    /**
-     * A summarized description of the resource
+     * Description not available
      * @type {Array<string>}
      * @memberof HybridModel
      */
     shortDescription?: Array<string> | null;
-    /**
-     * short description of the resource
-     * @type {Array<string>}
-     * @memberof HybridModel
-     */
-    label?: Array<string> | null;
-    /**
-     * Assumptions of a software, e.g. the solver being used for a particular model, the source of the data (e.g., all data must have a given resolution), etc.
-     * @type {Array<string>}
-     * @memberof HybridModel
-     */
-    hasAssumption?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
@@ -279,12 +177,6 @@ export interface HybridModel {
     datePublished?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
-     * @memberof HybridModel
-     */
-    operatingSystems?: Array<string> | null;
-    /**
-     * License of a software component or its source code
      * @type {Array<string>}
      * @memberof HybridModel
      */
@@ -302,7 +194,7 @@ export interface HybridModel {
      */
     hasExplanationDiagram?: Array<Image> | null;
     /**
-     * An example explaining a scenario where the model was used in plain language.
+     * Description not available
      * @type {Array<string>}
      * @memberof HybridModel
      */
@@ -314,13 +206,169 @@ export interface HybridModel {
      */
     publisher?: Array<object> | null;
     /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    doi?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<FundingInformation>}
+     * @memberof HybridModel
+     */
+    hasFunding?: Array<FundingInformation> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    supportDetails?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<SoftwareVersion>}
+     * @memberof HybridModel
+     */
+    hasVersion?: Array<SoftwareVersion> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    hasTypicalDataSource?: Array<string> | null;
+    /**
+     * small description
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    description?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    referencePublication?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<Image>}
+     * @memberof HybridModel
+     */
+    screenshot?: Array<Image> | null;
+    /**
+     * Category associated with a model (e.g., Hydrology)
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    hasModelCategory?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<object>}
+     * @memberof HybridModel
+     */
+    hadPrimarySource?: Array<object> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    issueTracker?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    dateCreated?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<Person>}
+     * @memberof HybridModel
+     */
+    contributor?: Array<Person> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    hasPurpose?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    hasExecutableInstructions?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<Visualization>}
+     * @memberof HybridModel
+     */
+    hasSampleVisualization?: Array<Visualization> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    memoryRequirements?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    website?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    citation?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    processorRequirements?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    hasUsageNotes?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    readme?: Array<string> | null;
+    /**
+     * short description of the resource
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    label?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    hasAssumption?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    operatingSystems?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof HybridModel
+     */
+    hasExecutableNotebook?: Array<string> | null;
+    /**
      * Equations used in the model
      * @type {Array<Equation>}
      * @memberof HybridModel
      */
     hasEquation?: Array<Equation> | null;
     /**
-     * Property that indicates that a software component (or any of its outputs) can be used to calculate a particular index. The rationale for this property is that indices are usually calculated by applying post-processing steps to the outputs of a software component.
+     * Description not available
      * @type {Array<NumericalIndex>}
      * @memberof HybridModel
      */
@@ -337,48 +385,56 @@ export function HybridModelFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'hasFunding': !exists(json, 'hasFunding') ? undefined : (json['hasFunding'] as Array<any>).map(FundingInformationFromJSON),
+        'hasDownloadInstructions': !exists(json, 'hasDownloadInstructions') ? undefined : json['hasDownloadInstructions'],
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'hasGrid': !exists(json, 'hasGrid') ? undefined : (json['hasGrid'] as Array<any>).map(GridFromJSON),
-        'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
         'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
-        'hasVersion': !exists(json, 'hasVersion') ? undefined : (json['hasVersion'] as Array<any>).map(SoftwareVersionFromJSON),
-        'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
-        'screenshot': !exists(json, 'screenshot') ? undefined : (json['screenshot'] as Array<any>).map(ImageFromJSON),
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
-        'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : json['hasModelCategory'],
-        'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
-        'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
-        'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
         'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
+        'copyrightHolder': !exists(json, 'copyrightHolder') ? undefined : json['copyrightHolder'],
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
         'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
-        'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'id': !exists(json, 'id') ? undefined : json['id'],
-        'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : (json['hasSampleVisualization'] as Array<any>).map(VisualizationFromJSON),
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
-        'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
-        'website': !exists(json, 'website') ? undefined : json['website'],
-        'citation': !exists(json, 'citation') ? undefined : json['citation'],
         'author': !exists(json, 'author') ? undefined : json['author'],
-        'processorRequirements': !exists(json, 'processorRequirements') ? undefined : json['processorRequirements'],
-        'hasUsageNotes': !exists(json, 'hasUsageNotes') ? undefined : json['hasUsageNotes'],
+        'hasBuildFile': !exists(json, 'hasBuildFile') ? undefined : json['hasBuildFile'],
         'shortDescription': !exists(json, 'shortDescription') ? undefined : json['shortDescription'],
-        'label': !exists(json, 'label') ? undefined : json['label'],
-        'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
-        'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'license': !exists(json, 'license') ? undefined : json['license'],
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : (json['hasSourceCode'] as Array<any>).map(SourceCodeFromJSON),
         'hasExplanationDiagram': !exists(json, 'hasExplanationDiagram') ? undefined : (json['hasExplanationDiagram'] as Array<any>).map(ImageFromJSON),
         'hasExample': !exists(json, 'hasExample') ? undefined : json['hasExample'],
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
+        'doi': !exists(json, 'doi') ? undefined : json['doi'],
+        'hasFunding': !exists(json, 'hasFunding') ? undefined : (json['hasFunding'] as Array<any>).map(FundingInformationFromJSON),
+        'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
+        'hasVersion': !exists(json, 'hasVersion') ? undefined : (json['hasVersion'] as Array<any>).map(SoftwareVersionFromJSON),
+        'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
+        'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
+        'screenshot': !exists(json, 'screenshot') ? undefined : (json['screenshot'] as Array<any>).map(ImageFromJSON),
+        'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : json['hasModelCategory'],
+        'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
+        'issueTracker': !exists(json, 'issueTracker') ? undefined : json['issueTracker'],
+        'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
+        'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
+        'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
+        'hasExecutableInstructions': !exists(json, 'hasExecutableInstructions') ? undefined : json['hasExecutableInstructions'],
+        'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : (json['hasSampleVisualization'] as Array<any>).map(VisualizationFromJSON),
+        'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
+        'website': !exists(json, 'website') ? undefined : json['website'],
+        'citation': !exists(json, 'citation') ? undefined : json['citation'],
+        'processorRequirements': !exists(json, 'processorRequirements') ? undefined : json['processorRequirements'],
+        'hasUsageNotes': !exists(json, 'hasUsageNotes') ? undefined : json['hasUsageNotes'],
+        'readme': !exists(json, 'readme') ? undefined : json['readme'],
+        'label': !exists(json, 'label') ? undefined : json['label'],
+        'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
+        'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
+        'hasExecutableNotebook': !exists(json, 'hasExecutableNotebook') ? undefined : json['hasExecutableNotebook'],
         'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
         'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
     };
@@ -393,48 +449,56 @@ export function HybridModelToJSON(value?: HybridModel): any {
     }
     return {
         
-        'hasFunding': value.hasFunding === undefined ? undefined : (value.hasFunding as Array<any>).map(FundingInformationToJSON),
+        'hasDownloadInstructions': value.hasDownloadInstructions,
         'keywords': value.keywords,
         'hasDocumentation': value.hasDocumentation,
         'hasGrid': value.hasGrid === undefined ? undefined : (value.hasGrid as Array<any>).map(GridToJSON),
-        'supportDetails': value.supportDetails,
         'softwareRequirements': value.softwareRequirements,
-        'hasVersion': value.hasVersion === undefined ? undefined : (value.hasVersion as Array<any>).map(SoftwareVersionToJSON),
-        'hasTypicalDataSource': value.hasTypicalDataSource,
         'hasDownloadURL': value.hasDownloadURL,
-        'description': value.description,
-        'referencePublication': value.referencePublication,
-        'screenshot': value.screenshot === undefined ? undefined : (value.screenshot as Array<any>).map(ImageToJSON),
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
-        'hasModelCategory': value.hasModelCategory,
-        'hadPrimarySource': value.hadPrimarySource,
-        'dateCreated': value.dateCreated,
-        'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
         'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
+        'copyrightHolder': value.copyrightHolder,
         'hasFAQ': value.hasFAQ,
         'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
         'hasContactPerson': value.hasContactPerson,
-        'hasPurpose': value.hasPurpose,
         'id': value.id,
-        'hasSampleVisualization': value.hasSampleVisualization === undefined ? undefined : (value.hasSampleVisualization as Array<any>).map(VisualizationToJSON),
         'identifier': value.identifier,
-        'memoryRequirements': value.memoryRequirements,
-        'website': value.website,
-        'citation': value.citation,
         'author': value.author,
-        'processorRequirements': value.processorRequirements,
-        'hasUsageNotes': value.hasUsageNotes,
+        'hasBuildFile': value.hasBuildFile,
         'shortDescription': value.shortDescription,
-        'label': value.label,
-        'hasAssumption': value.hasAssumption,
         'datePublished': value.datePublished,
-        'operatingSystems': value.operatingSystems,
         'license': value.license,
         'hasSourceCode': value.hasSourceCode === undefined ? undefined : (value.hasSourceCode as Array<any>).map(SourceCodeToJSON),
         'hasExplanationDiagram': value.hasExplanationDiagram === undefined ? undefined : (value.hasExplanationDiagram as Array<any>).map(ImageToJSON),
         'hasExample': value.hasExample,
         'publisher': value.publisher,
+        'doi': value.doi,
+        'hasFunding': value.hasFunding === undefined ? undefined : (value.hasFunding as Array<any>).map(FundingInformationToJSON),
+        'supportDetails': value.supportDetails,
+        'hasVersion': value.hasVersion === undefined ? undefined : (value.hasVersion as Array<any>).map(SoftwareVersionToJSON),
+        'hasTypicalDataSource': value.hasTypicalDataSource,
+        'description': value.description,
+        'referencePublication': value.referencePublication,
+        'screenshot': value.screenshot === undefined ? undefined : (value.screenshot as Array<any>).map(ImageToJSON),
+        'hasModelCategory': value.hasModelCategory,
+        'hadPrimarySource': value.hadPrimarySource,
+        'issueTracker': value.issueTracker,
+        'dateCreated': value.dateCreated,
+        'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
+        'hasPurpose': value.hasPurpose,
+        'hasExecutableInstructions': value.hasExecutableInstructions,
+        'hasSampleVisualization': value.hasSampleVisualization === undefined ? undefined : (value.hasSampleVisualization as Array<any>).map(VisualizationToJSON),
+        'memoryRequirements': value.memoryRequirements,
+        'website': value.website,
+        'citation': value.citation,
+        'processorRequirements': value.processorRequirements,
+        'hasUsageNotes': value.hasUsageNotes,
+        'readme': value.readme,
+        'label': value.label,
+        'hasAssumption': value.hasAssumption,
+        'operatingSystems': value.operatingSystems,
+        'hasExecutableNotebook': value.hasExecutableNotebook,
         'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
         'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
     };

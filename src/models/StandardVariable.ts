@@ -13,7 +13,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * A standard variable, necessary to refer to all the variable using the same nomenclature in a domain ontology
+ * A standard variable, necessary to refer to all the variable using the same nomenclature in a domain ontology. For example, a standard variable may be a SVO variable (http://www.geoscienceontology.org/geo-upper#Variable)
  * @export
  * @interface StandardVariable
  */

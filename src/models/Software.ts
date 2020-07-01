@@ -50,6 +50,12 @@ import {
  */
 export interface Software {
     /**
+     * Instructions needed to download a software component. The difference with `hasDownloadURL` is that this property captures the human readable instructions required to download software. For example, sometimes an authentication is needed, users need to fill in a form, etc.
+     * @type {Array<string>}
+     * @memberof Software
+     */
+    hasDownloadInstructions?: Array<string> | null;
+    /**
      * Property that links a software project to its funding information
      * @type {Array<FundingInformation>}
      * @memberof Software
@@ -104,7 +110,7 @@ export interface Software {
      */
     description?: Array<string> | null;
     /**
-     * Main publication to cite in this software
+     * Main publication to cite for this software component
      * @type {Array<string>}
      * @memberof Software
      */
@@ -122,7 +128,7 @@ export interface Software {
      */
     type?: Array<string> | null;
     /**
-     * Instructions requires to install this particular piece of software.
+     * Instructions required to install this particular piece of software. Installation instructions usually are available in a human-readable manner.
      * @type {Array<string>}
      * @memberof Software
      */
@@ -134,11 +140,23 @@ export interface Software {
      */
     hadPrimarySource?: Array<object> | null;
     /**
+     * Pointer to the issue tracker of a software component
+     * @type {Array<string>}
+     * @memberof Software
+     */
+    issueTracker?: Array<string> | null;
+    /**
      * Description not available
      * @type {Array<string>}
      * @memberof Software
      */
     dateCreated?: Array<string> | null;
+    /**
+     * Property that links a software component to other useful software that canbe used to visualize its outputs
+     * @type {Array<Software>}
+     * @memberof Software
+     */
+    compatibleVisualizationSoftware?: Array<Software> | null;
     /**
      * Description not available
      * @type {Array<Person>}
@@ -146,11 +164,11 @@ export interface Software {
      */
     contributor?: Array<Person> | null;
     /**
-     * Property that links a software component to other useful software that canbe used to visualize its outputs
-     * @type {Array<Software>}
+     * Description not available
+     * @type {Array<object>}
      * @memberof Software
      */
-    compatibleVisualizationSoftware?: Array<Software> | null;
+    copyrightHolder?: Array<object> | null;
     /**
      * Frequently asked questions about a software
      * @type {Array<string>}
@@ -181,6 +199,12 @@ export interface Software {
      * @memberof Software
      */
     id?: string;
+    /**
+     * Instructions that indicate how a software component should be executed. The difference with `hasExecutionCommand` is that the execution instructions aim to be human-readable, and have explanations between the different commands and instructions
+     * @type {Array<string>}
+     * @memberof Software
+     */
+    hasExecutableInstructions?: Array<string> | null;
     /**
      * A typical sample visualization of the softwware outputs
      * @type {Array<Visualization>}
@@ -230,6 +254,18 @@ export interface Software {
      */
     hasUsageNotes?: Array<string> | null;
     /**
+     * URl to the readme file of a software component
+     * @type {Array<string>}
+     * @memberof Software
+     */
+    readme?: Array<string> | null;
+    /**
+     * A file (e.g., Dockerfile) with executable instructions indicating how a Software Image or a Software component is built
+     * @type {Array<string>}
+     * @memberof Software
+     */
+    hasBuildFile?: Array<string> | null;
+    /**
      * A summarized description of the resource
      * @type {Array<string>}
      * @memberof Software
@@ -272,7 +308,13 @@ export interface Software {
      */
     hasSourceCode?: Array<SourceCode> | null;
     /**
-     * An example explaining a scenario where the model was used in plain language.
+     * Property that links a software component with an executable notebook (e.g., Jupyter notebook) that illustrates how to use it in an executable manner.
+     * @type {Array<string>}
+     * @memberof Software
+     */
+    hasExecutableNotebook?: Array<string> | null;
+    /**
+     * An example explaining a scenario where the software component was used in plain language.
      * @type {Array<string>}
      * @memberof Software
      */
@@ -289,6 +331,12 @@ export interface Software {
      * @memberof Software
      */
     usefulForCalculatingIndex?: Array<NumericalIndex> | null;
+    /**
+     * Digital Object Identifier associated with a software component
+     * @type {Array<string>}
+     * @memberof Software
+     */
+    doi?: Array<string> | null;
 }
 
 export function SoftwareFromJSON(json: any): Software {
@@ -301,6 +349,7 @@ export function SoftwareFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
+        'hasDownloadInstructions': !exists(json, 'hasDownloadInstructions') ? undefined : json['hasDownloadInstructions'],
         'hasFunding': !exists(json, 'hasFunding') ? undefined : (json['hasFunding'] as Array<any>).map(FundingInformationFromJSON),
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
@@ -315,14 +364,17 @@ export function SoftwareFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
+        'issueTracker': !exists(json, 'issueTracker') ? undefined : json['issueTracker'],
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
-        'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
         'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
+        'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
+        'copyrightHolder': !exists(json, 'copyrightHolder') ? undefined : json['copyrightHolder'],
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
         'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'id': !exists(json, 'id') ? undefined : json['id'],
+        'hasExecutableInstructions': !exists(json, 'hasExecutableInstructions') ? undefined : json['hasExecutableInstructions'],
         'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : (json['hasSampleVisualization'] as Array<any>).map(VisualizationFromJSON),
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
@@ -331,6 +383,8 @@ export function SoftwareFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'author': !exists(json, 'author') ? undefined : json['author'],
         'processorRequirements': !exists(json, 'processorRequirements') ? undefined : json['processorRequirements'],
         'hasUsageNotes': !exists(json, 'hasUsageNotes') ? undefined : json['hasUsageNotes'],
+        'readme': !exists(json, 'readme') ? undefined : json['readme'],
+        'hasBuildFile': !exists(json, 'hasBuildFile') ? undefined : json['hasBuildFile'],
         'shortDescription': !exists(json, 'shortDescription') ? undefined : json['shortDescription'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
@@ -338,9 +392,11 @@ export function SoftwareFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'license': !exists(json, 'license') ? undefined : json['license'],
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : (json['hasSourceCode'] as Array<any>).map(SourceCodeFromJSON),
+        'hasExecutableNotebook': !exists(json, 'hasExecutableNotebook') ? undefined : json['hasExecutableNotebook'],
         'hasExample': !exists(json, 'hasExample') ? undefined : json['hasExample'],
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
         'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
+        'doi': !exists(json, 'doi') ? undefined : json['doi'],
     };
 }
 
@@ -353,6 +409,7 @@ export function SoftwareToJSON(value?: Software): any {
     }
     return {
         
+        'hasDownloadInstructions': value.hasDownloadInstructions,
         'hasFunding': value.hasFunding === undefined ? undefined : (value.hasFunding as Array<any>).map(FundingInformationToJSON),
         'keywords': value.keywords,
         'hasDocumentation': value.hasDocumentation,
@@ -367,14 +424,17 @@ export function SoftwareToJSON(value?: Software): any {
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
         'hadPrimarySource': value.hadPrimarySource,
+        'issueTracker': value.issueTracker,
         'dateCreated': value.dateCreated,
-        'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
         'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
+        'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
+        'copyrightHolder': value.copyrightHolder,
         'hasFAQ': value.hasFAQ,
         'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
         'hasContactPerson': value.hasContactPerson,
         'hasPurpose': value.hasPurpose,
         'id': value.id,
+        'hasExecutableInstructions': value.hasExecutableInstructions,
         'hasSampleVisualization': value.hasSampleVisualization === undefined ? undefined : (value.hasSampleVisualization as Array<any>).map(VisualizationToJSON),
         'identifier': value.identifier,
         'memoryRequirements': value.memoryRequirements,
@@ -383,6 +443,8 @@ export function SoftwareToJSON(value?: Software): any {
         'author': value.author,
         'processorRequirements': value.processorRequirements,
         'hasUsageNotes': value.hasUsageNotes,
+        'readme': value.readme,
+        'hasBuildFile': value.hasBuildFile,
         'shortDescription': value.shortDescription,
         'label': value.label,
         'hasAssumption': value.hasAssumption,
@@ -390,9 +452,11 @@ export function SoftwareToJSON(value?: Software): any {
         'operatingSystems': value.operatingSystems,
         'license': value.license,
         'hasSourceCode': value.hasSourceCode === undefined ? undefined : (value.hasSourceCode as Array<any>).map(SourceCodeToJSON),
+        'hasExecutableNotebook': value.hasExecutableNotebook,
         'hasExample': value.hasExample,
         'publisher': value.publisher,
         'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
+        'doi': value.doi,
     };
 }
 

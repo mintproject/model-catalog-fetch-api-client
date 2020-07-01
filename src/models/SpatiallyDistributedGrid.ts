@@ -13,6 +13,14 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    DataTransformation,
+    DataTransformationFromJSON,
+    DataTransformationFromJSONTyped,
+    DataTransformationToJSON,
+    DataTransformationSetup,
+    DataTransformationSetupFromJSON,
+    DataTransformationSetupFromJSONTyped,
+    DataTransformationSetupToJSON,
     SampleResource,
     SampleResourceFromJSON,
     SampleResourceFromJSONTyped,
@@ -24,25 +32,31 @@ import {
 } from './';
 
 /**
- * Description not available
+ * Grid that represents a 2D or 3D space
  * @export
  * @interface SpatiallyDistributedGrid
  */
 export interface SpatiallyDistributedGrid {
     /**
-     * Property to indicate dimensionality of the input or output of a dataset specification
+     * Description not available
      * @type {Array<number>}
      * @memberof SpatiallyDistributedGrid
      */
     hasDimensionality?: Array<number> | null;
     /**
-     * Format followed by a file. For example, txt, nc, etc.
+     * Description not available
      * @type {Array<string>}
      * @memberof SpatiallyDistributedGrid
      */
     hasFormat?: Array<string> | null;
     /**
-     * Relates a dataset specification to the data structure definition
+     * Description not available
+     * @type {Array<string>}
+     * @memberof SpatiallyDistributedGrid
+     */
+    pathLocation?: Array<string> | null;
+    /**
+     * Description not available
      * @type {Array<object>}
      * @memberof SpatiallyDistributedGrid
      */
@@ -54,7 +68,13 @@ export interface SpatiallyDistributedGrid {
      */
     description?: Array<string> | null;
     /**
-     * Property that links an instance of a dataset (or a dataset specification) to the presentation of a variable contained (or expected to be contained) on it.
+     * Description not available
+     * @type {Array<DataTransformation>}
+     * @memberof SpatiallyDistributedGrid
+     */
+    hasDataTransformation?: Array<DataTransformation> | null;
+    /**
+     * Description not available
      * @type {Array<VariablePresentation>}
      * @memberof SpatiallyDistributedGrid
      */
@@ -72,7 +92,7 @@ export interface SpatiallyDistributedGrid {
      */
     type?: Array<string> | null;
     /**
-     * Property that links a parameter or an input to a fixed value. For example, in a given configuration a parameter with the planting date for a model could be fixed to avoid the user changing it for that region.
+     * Description not available
      * @type {Array<SampleResource>}
      * @memberof SpatiallyDistributedGrid
      */
@@ -84,7 +104,7 @@ export interface SpatiallyDistributedGrid {
      */
     hasCoordinateSystem?: Array<string> | null;
     /**
-     * Description not available
+     * Spatial resolution of a grid (e.g., 50m)
      * @type {Array<string>}
      * @memberof SpatiallyDistributedGrid
      */
@@ -96,13 +116,19 @@ export interface SpatiallyDistributedGrid {
      */
     hasShape?: Array<string> | null;
     /**
-     * Description not available
+     * Dimension of the grid (2D, 3D)
      * @type {Array<string>}
      * @memberof SpatiallyDistributedGrid
      */
     hasDimension?: Array<string> | null;
     /**
-     * Position of the parameter or input/output in the model configuration. This property is needed to know how to organize the I/O of the component on execution
+     * Description not available
+     * @type {Array<DataTransformationSetup>}
+     * @memberof SpatiallyDistributedGrid
+     */
+    hasDataTransformationSetup?: Array<DataTransformationSetup> | null;
+    /**
+     * Description not available
      * @type {Array<number>}
      * @memberof SpatiallyDistributedGrid
      */
@@ -127,8 +153,10 @@ export function SpatiallyDistributedGridFromJSONTyped(json: any, ignoreDiscrimin
         
         'hasDimensionality': !exists(json, 'hasDimensionality') ? undefined : json['hasDimensionality'],
         'hasFormat': !exists(json, 'hasFormat') ? undefined : json['hasFormat'],
+        'pathLocation': !exists(json, 'pathLocation') ? undefined : json['pathLocation'],
         'hasFileStructure': !exists(json, 'hasFileStructure') ? undefined : json['hasFileStructure'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'hasDataTransformation': !exists(json, 'hasDataTransformation') ? undefined : (json['hasDataTransformation'] as Array<any>).map(DataTransformationFromJSON),
         'hasPresentation': !exists(json, 'hasPresentation') ? undefined : (json['hasPresentation'] as Array<any>).map(VariablePresentationFromJSON),
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -137,6 +165,7 @@ export function SpatiallyDistributedGridFromJSONTyped(json: any, ignoreDiscrimin
         'hasSpatialResolution': !exists(json, 'hasSpatialResolution') ? undefined : json['hasSpatialResolution'],
         'hasShape': !exists(json, 'hasShape') ? undefined : json['hasShape'],
         'hasDimension': !exists(json, 'hasDimension') ? undefined : json['hasDimension'],
+        'hasDataTransformationSetup': !exists(json, 'hasDataTransformationSetup') ? undefined : (json['hasDataTransformationSetup'] as Array<any>).map(DataTransformationSetupFromJSON),
         'position': !exists(json, 'position') ? undefined : json['position'],
         'id': !exists(json, 'id') ? undefined : json['id'],
     };
@@ -153,8 +182,10 @@ export function SpatiallyDistributedGridToJSON(value?: SpatiallyDistributedGrid)
         
         'hasDimensionality': value.hasDimensionality,
         'hasFormat': value.hasFormat,
+        'pathLocation': value.pathLocation,
         'hasFileStructure': value.hasFileStructure,
         'description': value.description,
+        'hasDataTransformation': value.hasDataTransformation === undefined ? undefined : (value.hasDataTransformation as Array<any>).map(DataTransformationToJSON),
         'hasPresentation': value.hasPresentation === undefined ? undefined : (value.hasPresentation as Array<any>).map(VariablePresentationToJSON),
         'label': value.label,
         'type': value.type,
@@ -163,6 +194,7 @@ export function SpatiallyDistributedGridToJSON(value?: SpatiallyDistributedGrid)
         'hasSpatialResolution': value.hasSpatialResolution,
         'hasShape': value.hasShape,
         'hasDimension': value.hasDimension,
+        'hasDataTransformationSetup': value.hasDataTransformationSetup === undefined ? undefined : (value.hasDataTransformationSetup as Array<any>).map(DataTransformationSetupToJSON),
         'position': value.position,
         'id': value.id,
     };

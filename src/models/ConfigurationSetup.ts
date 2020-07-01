@@ -68,11 +68,17 @@ import {
 } from './';
 
 /**
- * Special type of configuration in which some of the inputs or parameters are associated to files or values. A configuration may be associated to multiple setups to facilitate its execution.
+ * Description not available
  * @export
  * @interface ConfigurationSetup
  */
 export interface ConfigurationSetup {
+    /**
+     * Instructions needed to download a software component. The difference with `hasDownloadURL` is that this property captures the human readable instructions required to download software. For example, sometimes an authentication is needed, users need to fill in a form, etc.
+     * @type {Array<string>}
+     * @memberof ConfigurationSetup
+     */
+    hasDownloadInstructions?: Array<string> | null;
     /**
      * Keywords associated with a software component
      * @type {Array<string>}
@@ -110,7 +116,7 @@ export interface ConfigurationSetup {
      */
     type?: Array<string> | null;
     /**
-     * Instructions requires to install this particular piece of software.
+     * Instructions required to install this particular piece of software. Installation instructions usually are available in a human-readable manner.
      * @type {Array<string>}
      * @memberof ConfigurationSetup
      */
@@ -121,6 +127,12 @@ export interface ConfigurationSetup {
      * @memberof ConfigurationSetup
      */
     compatibleVisualizationSoftware?: Array<Software> | null;
+    /**
+     * Description not available
+     * @type {Array<object>}
+     * @memberof ConfigurationSetup
+     */
+    copyrightHolder?: Array<object> | null;
     /**
      * Frequently asked questions about a software
      * @type {Array<string>}
@@ -182,6 +194,12 @@ export interface ConfigurationSetup {
      */
     hasConstraint?: Array<string> | null;
     /**
+     * A file (e.g., Dockerfile) with executable instructions indicating how a Software Image or a Software component is built
+     * @type {Array<string>}
+     * @memberof ConfigurationSetup
+     */
+    hasBuildFile?: Array<string> | null;
+    /**
      * A summarized description of the resource
      * @type {Array<string>}
      * @memberof ConfigurationSetup
@@ -218,7 +236,7 @@ export interface ConfigurationSetup {
      */
     hasSetup?: Array<ConfigurationSetup> | null;
     /**
-     * An example explaining a scenario where the model was used in plain language.
+     * An example explaining a scenario where the software component was used in plain language.
      * @type {Array<string>}
      * @memberof ConfigurationSetup
      */
@@ -235,6 +253,12 @@ export interface ConfigurationSetup {
      * @memberof ConfigurationSetup
      */
     hasOutput?: Array<DatasetSpecification> | null;
+    /**
+     * Digital Object Identifier associated with a software component
+     * @type {Array<string>}
+     * @memberof ConfigurationSetup
+     */
+    doi?: Array<string> | null;
     /**
      * Property that links a software project to its funding information
      * @type {Array<FundingInformation>}
@@ -272,7 +296,7 @@ export interface ConfigurationSetup {
      */
     description?: Array<string> | null;
     /**
-     * Main publication to cite in this software
+     * Main publication to cite for this software component
      * @type {Array<string>}
      * @memberof ConfigurationSetup
      */
@@ -284,11 +308,17 @@ export interface ConfigurationSetup {
      */
     screenshot?: Array<Image> | null;
     /**
-     * Property to identify the original source of the information of the annotated resource. It could be a web page, an organization, a person, some experiment notes, etc.
+     * had primary source
      * @type {Array<object>}
      * @memberof ConfigurationSetup
      */
     hadPrimarySource?: Array<object> | null;
+    /**
+     * Pointer to the issue tracker of a software component
+     * @type {Array<string>}
+     * @memberof ConfigurationSetup
+     */
+    issueTracker?: Array<string> | null;
     /**
      * Function to link a function with its corresponding container
      * @type {Array<SoftwareImage>}
@@ -313,6 +343,12 @@ export interface ConfigurationSetup {
      * @memberof ConfigurationSetup
      */
     hasPurpose?: Array<string> | null;
+    /**
+     * Instructions that indicate how a software component should be executed. The difference with `hasExecutionCommand` is that the execution instructions aim to be human-readable, and have explanations between the different commands and instructions
+     * @type {Array<string>}
+     * @memberof ConfigurationSetup
+     */
+    hasExecutableInstructions?: Array<string> | null;
     /**
      * A typical sample visualization of the softwware outputs
      * @type {Array<Visualization>}
@@ -362,6 +398,12 @@ export interface ConfigurationSetup {
      */
     hasSupportScriptLocation?: Array<string> | null;
     /**
+     * URl to the readme file of a software component
+     * @type {Array<string>}
+     * @memberof ConfigurationSetup
+     */
+    readme?: Array<string> | null;
+    /**
      * short description of the resource
      * @type {Array<string>}
      * @memberof ConfigurationSetup
@@ -386,17 +428,23 @@ export interface ConfigurationSetup {
      */
     operatingSystems?: Array<string> | null;
     /**
-     * Property that links a model configuration to the input types expected by it.
-     * @type {Array<DatasetSpecification>}
+     * Property that links a software component with an executable notebook (e.g., Jupyter notebook) that illustrates how to use it in an executable manner.
+     * @type {Array<string>}
      * @memberof ConfigurationSetup
      */
-    hasInput?: Array<DatasetSpecification> | null;
+    hasExecutableNotebook?: Array<string> | null;
     /**
      * Property that indicates that a software component (or any of its outputs) can be used to calculate a particular index. The rationale for this property is that indices are usually calculated by applying post-processing steps to the outputs of a software component.
      * @type {Array<NumericalIndex>}
      * @memberof ConfigurationSetup
      */
     usefulForCalculatingIndex?: Array<NumericalIndex> | null;
+    /**
+     * Property that links a model configuration to the input types expected by it.
+     * @type {Array<DatasetSpecification>}
+     * @memberof ConfigurationSetup
+     */
+    hasInput?: Array<DatasetSpecification> | null;
 }
 
 export function ConfigurationSetupFromJSON(json: any): ConfigurationSetup {
@@ -409,6 +457,7 @@ export function ConfigurationSetupFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
+        'hasDownloadInstructions': !exists(json, 'hasDownloadInstructions') ? undefined : json['hasDownloadInstructions'],
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'hasImplementationScriptLocation': !exists(json, 'hasImplementationScriptLocation') ? undefined : json['hasImplementationScriptLocation'],
@@ -417,6 +466,7 @@ export function ConfigurationSetupFromJSONTyped(json: any, ignoreDiscriminator: 
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
         'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
+        'copyrightHolder': !exists(json, 'copyrightHolder') ? undefined : json['copyrightHolder'],
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
         'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
@@ -427,6 +477,7 @@ export function ConfigurationSetupFromJSONTyped(json: any, ignoreDiscriminator: 
         'hasSampleResult': !exists(json, 'hasSampleResult') ? undefined : (json['hasSampleResult'] as Array<any>).map(SampleResourceFromJSON),
         'author': !exists(json, 'author') ? undefined : json['author'],
         'hasConstraint': !exists(json, 'hasConstraint') ? undefined : json['hasConstraint'],
+        'hasBuildFile': !exists(json, 'hasBuildFile') ? undefined : json['hasBuildFile'],
         'shortDescription': !exists(json, 'shortDescription') ? undefined : json['shortDescription'],
         'hasExecutionCommand': !exists(json, 'hasExecutionCommand') ? undefined : json['hasExecutionCommand'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
@@ -436,6 +487,7 @@ export function ConfigurationSetupFromJSONTyped(json: any, ignoreDiscriminator: 
         'hasExample': !exists(json, 'hasExample') ? undefined : json['hasExample'],
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
         'hasOutput': !exists(json, 'hasOutput') ? undefined : (json['hasOutput'] as Array<any>).map(DatasetSpecificationFromJSON),
+        'doi': !exists(json, 'doi') ? undefined : json['doi'],
         'hasFunding': !exists(json, 'hasFunding') ? undefined : (json['hasFunding'] as Array<any>).map(FundingInformationFromJSON),
         'hasComponentLocation': !exists(json, 'hasComponentLocation') ? undefined : json['hasComponentLocation'],
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
@@ -445,10 +497,12 @@ export function ConfigurationSetupFromJSONTyped(json: any, ignoreDiscriminator: 
         'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'screenshot': !exists(json, 'screenshot') ? undefined : (json['screenshot'] as Array<any>).map(ImageFromJSON),
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
+        'issueTracker': !exists(json, 'issueTracker') ? undefined : json['issueTracker'],
         'hasSoftwareImage': !exists(json, 'hasSoftwareImage') ? undefined : (json['hasSoftwareImage'] as Array<any>).map(SoftwareImageFromJSON),
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
         'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
+        'hasExecutableInstructions': !exists(json, 'hasExecutableInstructions') ? undefined : json['hasExecutableInstructions'],
         'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : (json['hasSampleVisualization'] as Array<any>).map(VisualizationFromJSON),
         'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
         'website': !exists(json, 'website') ? undefined : json['website'],
@@ -457,12 +511,14 @@ export function ConfigurationSetupFromJSONTyped(json: any, ignoreDiscriminator: 
         'adjustableParameter': !exists(json, 'adjustableParameter') ? undefined : (json['adjustableParameter'] as Array<any>).map(ParameterFromJSON),
         'hasUsageNotes': !exists(json, 'hasUsageNotes') ? undefined : json['hasUsageNotes'],
         'hasSupportScriptLocation': !exists(json, 'hasSupportScriptLocation') ? undefined : json['hasSupportScriptLocation'],
+        'readme': !exists(json, 'readme') ? undefined : json['readme'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
         'hasParameter': !exists(json, 'hasParameter') ? undefined : (json['hasParameter'] as Array<any>).map(ParameterFromJSON),
         'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
-        'hasInput': !exists(json, 'hasInput') ? undefined : (json['hasInput'] as Array<any>).map(DatasetSpecificationFromJSON),
+        'hasExecutableNotebook': !exists(json, 'hasExecutableNotebook') ? undefined : json['hasExecutableNotebook'],
         'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
+        'hasInput': !exists(json, 'hasInput') ? undefined : (json['hasInput'] as Array<any>).map(DatasetSpecificationFromJSON),
     };
 }
 
@@ -475,6 +531,7 @@ export function ConfigurationSetupToJSON(value?: ConfigurationSetup): any {
     }
     return {
         
+        'hasDownloadInstructions': value.hasDownloadInstructions,
         'keywords': value.keywords,
         'hasDocumentation': value.hasDocumentation,
         'hasImplementationScriptLocation': value.hasImplementationScriptLocation,
@@ -483,6 +540,7 @@ export function ConfigurationSetupToJSON(value?: ConfigurationSetup): any {
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
         'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
+        'copyrightHolder': value.copyrightHolder,
         'hasFAQ': value.hasFAQ,
         'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
         'hasContactPerson': value.hasContactPerson,
@@ -493,6 +551,7 @@ export function ConfigurationSetupToJSON(value?: ConfigurationSetup): any {
         'hasSampleResult': value.hasSampleResult === undefined ? undefined : (value.hasSampleResult as Array<any>).map(SampleResourceToJSON),
         'author': value.author,
         'hasConstraint': value.hasConstraint,
+        'hasBuildFile': value.hasBuildFile,
         'shortDescription': value.shortDescription,
         'hasExecutionCommand': value.hasExecutionCommand,
         'datePublished': value.datePublished,
@@ -502,6 +561,7 @@ export function ConfigurationSetupToJSON(value?: ConfigurationSetup): any {
         'hasExample': value.hasExample,
         'publisher': value.publisher,
         'hasOutput': value.hasOutput === undefined ? undefined : (value.hasOutput as Array<any>).map(DatasetSpecificationToJSON),
+        'doi': value.doi,
         'hasFunding': value.hasFunding === undefined ? undefined : (value.hasFunding as Array<any>).map(FundingInformationToJSON),
         'hasComponentLocation': value.hasComponentLocation,
         'supportDetails': value.supportDetails,
@@ -511,10 +571,12 @@ export function ConfigurationSetupToJSON(value?: ConfigurationSetup): any {
         'referencePublication': value.referencePublication,
         'screenshot': value.screenshot === undefined ? undefined : (value.screenshot as Array<any>).map(ImageToJSON),
         'hadPrimarySource': value.hadPrimarySource,
+        'issueTracker': value.issueTracker,
         'hasSoftwareImage': value.hasSoftwareImage === undefined ? undefined : (value.hasSoftwareImage as Array<any>).map(SoftwareImageToJSON),
         'dateCreated': value.dateCreated,
         'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
         'hasPurpose': value.hasPurpose,
+        'hasExecutableInstructions': value.hasExecutableInstructions,
         'hasSampleVisualization': value.hasSampleVisualization === undefined ? undefined : (value.hasSampleVisualization as Array<any>).map(VisualizationToJSON),
         'memoryRequirements': value.memoryRequirements,
         'website': value.website,
@@ -523,12 +585,14 @@ export function ConfigurationSetupToJSON(value?: ConfigurationSetup): any {
         'adjustableParameter': value.adjustableParameter === undefined ? undefined : (value.adjustableParameter as Array<any>).map(ParameterToJSON),
         'hasUsageNotes': value.hasUsageNotes,
         'hasSupportScriptLocation': value.hasSupportScriptLocation,
+        'readme': value.readme,
         'label': value.label,
         'hasAssumption': value.hasAssumption,
         'hasParameter': value.hasParameter === undefined ? undefined : (value.hasParameter as Array<any>).map(ParameterToJSON),
         'operatingSystems': value.operatingSystems,
-        'hasInput': value.hasInput === undefined ? undefined : (value.hasInput as Array<any>).map(DatasetSpecificationToJSON),
+        'hasExecutableNotebook': value.hasExecutableNotebook,
         'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
+        'hasInput': value.hasInput === undefined ? undefined : (value.hasInput as Array<any>).map(DatasetSpecificationToJSON),
     };
 }
 

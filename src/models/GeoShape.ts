@@ -13,19 +13,19 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Description not available
+ * Shape or polygon of a region in a map
  * @export
  * @interface GeoShape
  */
 export interface GeoShape {
     /**
-     * Description not available
+     * Elevation of a location (WGS84)
      * @type {Array<string>}
      * @memberof GeoShape
      */
     elevation?: Array<string> | null;
     /**
-     * Description not available
+     * Latitude (coordinates) of a location (WGS84)
      * @type {Array<string>}
      * @memberof GeoShape
      */
@@ -61,7 +61,7 @@ export interface GeoShape {
      */
     type?: Array<string> | null;
     /**
-     * Description not available
+     * Longitude (coordinates) of a location (WGS84)
      * @type {Array<string>}
      * @memberof GeoShape
      */

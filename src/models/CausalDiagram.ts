@@ -13,11 +13,17 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Description not available
+ * Diagram information with the processes and variables associated with a model configuration
  * @export
  * @interface CausalDiagram
  */
 export interface CausalDiagram {
+    /**
+     * Property that links a causal diagram with its constituent nodes
+     * @type {Array<object>}
+     * @memberof CausalDiagram
+     */
+    hasDiagramPart?: Array<object> | null;
     /**
      * small description
      * @type {Array<string>}
@@ -42,12 +48,6 @@ export interface CausalDiagram {
      * @memberof CausalDiagram
      */
     type?: Array<string> | null;
-    /**
-     * Description not available
-     * @type {Array<object>}
-     * @memberof CausalDiagram
-     */
-    hasPart?: Array<object> | null;
 }
 
 export function CausalDiagramFromJSON(json: any): CausalDiagram {
@@ -60,11 +60,11 @@ export function CausalDiagramFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'hasDiagramPart': !exists(json, 'hasDiagramPart') ? undefined : json['hasDiagramPart'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
-        'hasPart': !exists(json, 'hasPart') ? undefined : json['hasPart'],
     };
 }
 
@@ -77,11 +77,11 @@ export function CausalDiagramToJSON(value?: CausalDiagram): any {
     }
     return {
         
+        'hasDiagramPart': value.hasDiagramPart,
         'description': value.description,
         'id': value.id,
         'label': value.label,
         'type': value.type,
-        'hasPart': value.hasPart,
     };
 }
 

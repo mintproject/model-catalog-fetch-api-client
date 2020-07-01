@@ -43,7 +43,7 @@ export interface Process {
      */
     type?: Array<string> | null;
     /**
-     * Description not available
+     * Property that captures if a physical process influences another process
      * @type {Array<Process>}
      * @memberof Process
      */

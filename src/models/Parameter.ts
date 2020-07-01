@@ -32,7 +32,7 @@ import {
 } from './';
 
 /**
- * A parameter of the model.
+ * Description not available
  * @export
  * @interface Parameter
  */

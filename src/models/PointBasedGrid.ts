@@ -13,6 +13,14 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    DataTransformation,
+    DataTransformationFromJSON,
+    DataTransformationFromJSONTyped,
+    DataTransformationToJSON,
+    DataTransformationSetup,
+    DataTransformationSetupFromJSON,
+    DataTransformationSetupFromJSONTyped,
+    DataTransformationSetupToJSON,
     SampleResource,
     SampleResourceFromJSON,
     SampleResourceFromJSONTyped,
@@ -24,25 +32,31 @@ import {
 } from './';
 
 /**
- * Description not available
+ * A grid that is based on a series if points (or a single point). Typically associated with point-based models
  * @export
  * @interface PointBasedGrid
  */
 export interface PointBasedGrid {
     /**
-     * Property to indicate dimensionality of the input or output of a dataset specification
+     * Description not available
      * @type {Array<number>}
      * @memberof PointBasedGrid
      */
     hasDimensionality?: Array<number> | null;
     /**
-     * Format followed by a file. For example, txt, nc, etc.
+     * Description not available
      * @type {Array<string>}
      * @memberof PointBasedGrid
      */
     hasFormat?: Array<string> | null;
     /**
-     * Relates a dataset specification to the data structure definition
+     * Description not available
+     * @type {Array<string>}
+     * @memberof PointBasedGrid
+     */
+    pathLocation?: Array<string> | null;
+    /**
+     * Description not available
      * @type {Array<object>}
      * @memberof PointBasedGrid
      */
@@ -54,7 +68,13 @@ export interface PointBasedGrid {
      */
     description?: Array<string> | null;
     /**
-     * Property that links an instance of a dataset (or a dataset specification) to the presentation of a variable contained (or expected to be contained) on it.
+     * Description not available
+     * @type {Array<DataTransformation>}
+     * @memberof PointBasedGrid
+     */
+    hasDataTransformation?: Array<DataTransformation> | null;
+    /**
+     * Description not available
      * @type {Array<VariablePresentation>}
      * @memberof PointBasedGrid
      */
@@ -72,7 +92,7 @@ export interface PointBasedGrid {
      */
     type?: Array<string> | null;
     /**
-     * Property that links a parameter or an input to a fixed value. For example, in a given configuration a parameter with the planting date for a model could be fixed to avoid the user changing it for that region.
+     * Description not available
      * @type {Array<SampleResource>}
      * @memberof PointBasedGrid
      */
@@ -84,7 +104,7 @@ export interface PointBasedGrid {
      */
     hasCoordinateSystem?: Array<string> | null;
     /**
-     * Description not available
+     * Spatial resolution of a grid (e.g., 50m)
      * @type {Array<string>}
      * @memberof PointBasedGrid
      */
@@ -96,13 +116,19 @@ export interface PointBasedGrid {
      */
     hasShape?: Array<string> | null;
     /**
-     * Description not available
+     * Dimension of the grid (2D, 3D)
      * @type {Array<string>}
      * @memberof PointBasedGrid
      */
     hasDimension?: Array<string> | null;
     /**
-     * Position of the parameter or input/output in the model configuration. This property is needed to know how to organize the I/O of the component on execution
+     * Description not available
+     * @type {Array<DataTransformationSetup>}
+     * @memberof PointBasedGrid
+     */
+    hasDataTransformationSetup?: Array<DataTransformationSetup> | null;
+    /**
+     * Description not available
      * @type {Array<number>}
      * @memberof PointBasedGrid
      */
@@ -127,8 +153,10 @@ export function PointBasedGridFromJSONTyped(json: any, ignoreDiscriminator: bool
         
         'hasDimensionality': !exists(json, 'hasDimensionality') ? undefined : json['hasDimensionality'],
         'hasFormat': !exists(json, 'hasFormat') ? undefined : json['hasFormat'],
+        'pathLocation': !exists(json, 'pathLocation') ? undefined : json['pathLocation'],
         'hasFileStructure': !exists(json, 'hasFileStructure') ? undefined : json['hasFileStructure'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'hasDataTransformation': !exists(json, 'hasDataTransformation') ? undefined : (json['hasDataTransformation'] as Array<any>).map(DataTransformationFromJSON),
         'hasPresentation': !exists(json, 'hasPresentation') ? undefined : (json['hasPresentation'] as Array<any>).map(VariablePresentationFromJSON),
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -137,6 +165,7 @@ export function PointBasedGridFromJSONTyped(json: any, ignoreDiscriminator: bool
         'hasSpatialResolution': !exists(json, 'hasSpatialResolution') ? undefined : json['hasSpatialResolution'],
         'hasShape': !exists(json, 'hasShape') ? undefined : json['hasShape'],
         'hasDimension': !exists(json, 'hasDimension') ? undefined : json['hasDimension'],
+        'hasDataTransformationSetup': !exists(json, 'hasDataTransformationSetup') ? undefined : (json['hasDataTransformationSetup'] as Array<any>).map(DataTransformationSetupFromJSON),
         'position': !exists(json, 'position') ? undefined : json['position'],
         'id': !exists(json, 'id') ? undefined : json['id'],
     };
@@ -153,8 +182,10 @@ export function PointBasedGridToJSON(value?: PointBasedGrid): any {
         
         'hasDimensionality': value.hasDimensionality,
         'hasFormat': value.hasFormat,
+        'pathLocation': value.pathLocation,
         'hasFileStructure': value.hasFileStructure,
         'description': value.description,
+        'hasDataTransformation': value.hasDataTransformation === undefined ? undefined : (value.hasDataTransformation as Array<any>).map(DataTransformationToJSON),
         'hasPresentation': value.hasPresentation === undefined ? undefined : (value.hasPresentation as Array<any>).map(VariablePresentationToJSON),
         'label': value.label,
         'type': value.type,
@@ -163,6 +194,7 @@ export function PointBasedGridToJSON(value?: PointBasedGrid): any {
         'hasSpatialResolution': value.hasSpatialResolution,
         'hasShape': value.hasShape,
         'hasDimension': value.hasDimension,
+        'hasDataTransformationSetup': value.hasDataTransformationSetup === undefined ? undefined : (value.hasDataTransformationSetup as Array<any>).map(DataTransformationSetupToJSON),
         'position': value.position,
         'id': value.id,
     };

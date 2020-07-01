@@ -13,7 +13,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Description not available
+ * Information about the mathematical representation used in a model or model configuration
  * @export
  * @interface Equation
  */

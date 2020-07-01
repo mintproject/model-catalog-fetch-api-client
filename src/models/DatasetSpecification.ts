@@ -13,6 +13,14 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    DataTransformation,
+    DataTransformationFromJSON,
+    DataTransformationFromJSONTyped,
+    DataTransformationToJSON,
+    DataTransformationSetup,
+    DataTransformationSetupFromJSON,
+    DataTransformationSetupFromJSONTyped,
+    DataTransformationSetupToJSON,
     SampleResource,
     SampleResourceFromJSON,
     SampleResourceFromJSONTyped,
@@ -24,7 +32,7 @@ import {
 } from './';
 
 /**
- * Class designed to describe a type of input or output used or produced by a model. For example, Topoflow has several inputs. One of them is a text file with precipitation values. The representation of this input is an instance of a dataset specification.
+ * Description not available
  * @export
  * @interface DatasetSpecification
  */
@@ -42,6 +50,12 @@ export interface DatasetSpecification {
      */
     hasFormat?: Array<string> | null;
     /**
+     * Property that indicates the relative path of an input or output with respect to the folder structure of the executable.   For example, let\'s assume we have an input that has to exist in the folder `/datasets` or the executable will not work. This property ensures that this knowledge is captured for a given software component execution.  In this case the property would capture this as follows:  ``` :input_prep a sd:DatasetSpecification . :input_prep rdfs:label \"precipitation file\" . :input_precip sd:pathLocation \"/datasets/\". ```
+     * @type {Array<string>}
+     * @memberof DatasetSpecification
+     */
+    pathLocation?: Array<string> | null;
+    /**
      * Relates a dataset specification to the data structure definition
      * @type {Array<object>}
      * @memberof DatasetSpecification
@@ -54,23 +68,17 @@ export interface DatasetSpecification {
      */
     description?: Array<string> | null;
     /**
+     * Property that associates an input/output with their corresponding data transformation.
+     * @type {Array<DataTransformation>}
+     * @memberof DatasetSpecification
+     */
+    hasDataTransformation?: Array<DataTransformation> | null;
+    /**
      * Property that links an instance of a dataset (or a dataset specification) to the presentation of a variable contained (or expected to be contained) on it.
      * @type {Array<VariablePresentation>}
      * @memberof DatasetSpecification
      */
     hasPresentation?: Array<VariablePresentation> | null;
-    /**
-     * Position of the parameter or input/output in the model configuration. This property is needed to know how to organize the I/O of the component on execution
-     * @type {Array<number>}
-     * @memberof DatasetSpecification
-     */
-    position?: Array<number> | null;
-    /**
-     * identifier
-     * @type {string}
-     * @memberof DatasetSpecification
-     */
-    id?: string;
     /**
      * short description of the resource
      * @type {Array<string>}
@@ -89,6 +97,24 @@ export interface DatasetSpecification {
      * @memberof DatasetSpecification
      */
     hasFixedResource?: Array<SampleResource> | null;
+    /**
+     * Property to link an input/output dataset to the specific data transformation (with URLs
+     * @type {Array<DataTransformationSetup>}
+     * @memberof DatasetSpecification
+     */
+    hasDataTransformationSetup?: Array<DataTransformationSetup> | null;
+    /**
+     * Position of the parameter or input/output in the model configuration. This property is needed to know how to organize the I/O of the component on execution
+     * @type {Array<number>}
+     * @memberof DatasetSpecification
+     */
+    position?: Array<number> | null;
+    /**
+     * identifier
+     * @type {string}
+     * @memberof DatasetSpecification
+     */
+    id?: string;
 }
 
 export function DatasetSpecificationFromJSON(json: any): DatasetSpecification {
@@ -103,14 +129,17 @@ export function DatasetSpecificationFromJSONTyped(json: any, ignoreDiscriminator
         
         'hasDimensionality': !exists(json, 'hasDimensionality') ? undefined : json['hasDimensionality'],
         'hasFormat': !exists(json, 'hasFormat') ? undefined : json['hasFormat'],
+        'pathLocation': !exists(json, 'pathLocation') ? undefined : json['pathLocation'],
         'hasFileStructure': !exists(json, 'hasFileStructure') ? undefined : json['hasFileStructure'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'hasDataTransformation': !exists(json, 'hasDataTransformation') ? undefined : (json['hasDataTransformation'] as Array<any>).map(DataTransformationFromJSON),
         'hasPresentation': !exists(json, 'hasPresentation') ? undefined : (json['hasPresentation'] as Array<any>).map(VariablePresentationFromJSON),
-        'position': !exists(json, 'position') ? undefined : json['position'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasFixedResource': !exists(json, 'hasFixedResource') ? undefined : (json['hasFixedResource'] as Array<any>).map(SampleResourceFromJSON),
+        'hasDataTransformationSetup': !exists(json, 'hasDataTransformationSetup') ? undefined : (json['hasDataTransformationSetup'] as Array<any>).map(DataTransformationSetupFromJSON),
+        'position': !exists(json, 'position') ? undefined : json['position'],
+        'id': !exists(json, 'id') ? undefined : json['id'],
     };
 }
 
@@ -125,14 +154,17 @@ export function DatasetSpecificationToJSON(value?: DatasetSpecification): any {
         
         'hasDimensionality': value.hasDimensionality,
         'hasFormat': value.hasFormat,
+        'pathLocation': value.pathLocation,
         'hasFileStructure': value.hasFileStructure,
         'description': value.description,
+        'hasDataTransformation': value.hasDataTransformation === undefined ? undefined : (value.hasDataTransformation as Array<any>).map(DataTransformationToJSON),
         'hasPresentation': value.hasPresentation === undefined ? undefined : (value.hasPresentation as Array<any>).map(VariablePresentationToJSON),
-        'position': value.position,
-        'id': value.id,
         'label': value.label,
         'type': value.type,
         'hasFixedResource': value.hasFixedResource === undefined ? undefined : (value.hasFixedResource as Array<any>).map(SampleResourceToJSON),
+        'hasDataTransformationSetup': value.hasDataTransformationSetup === undefined ? undefined : (value.hasDataTransformationSetup as Array<any>).map(DataTransformationSetupToJSON),
+        'position': value.position,
+        'id': value.id,
     };
 }
 

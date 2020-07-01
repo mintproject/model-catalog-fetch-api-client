@@ -102,13 +102,19 @@ import {
  */
 export interface ModelConfiguration {
     /**
-     * Keywords associated with a software component
+     * Description not available
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    hasDownloadInstructions?: Array<string> | null;
+    /**
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
     keywords?: Array<string> | null;
     /**
-     * Pointer to the documentation of the model
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -120,7 +126,7 @@ export interface ModelConfiguration {
      */
     hasGrid?: Array<Grid> | null;
     /**
-     * Property that points to the main runnable script for the current function
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -132,7 +138,7 @@ export interface ModelConfiguration {
      */
     softwareRequirements?: Array<string> | null;
     /**
-     * Download URL where to obtain the source/executable of the software
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -144,17 +150,23 @@ export interface ModelConfiguration {
      */
     type?: Array<string> | null;
     /**
-     * Instructions requires to install this particular piece of software.
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
     hasInstallationInstructions?: Array<string> | null;
     /**
-     * Property that links a software component to other useful software that canbe used to visualize its outputs
+     * Description not available
      * @type {Array<Software>}
      * @memberof ModelConfiguration
      */
     compatibleVisualizationSoftware?: Array<Software> | null;
+    /**
+     * Description not available
+     * @type {Array<object>}
+     * @memberof ModelConfiguration
+     */
+    copyrightHolder?: Array<object> | null;
     /**
      * Property linking a region to a model configuration/calibration. This property implies that the described model configuration is prepared to execute in that target region
      * @type {Array<Region>}
@@ -162,7 +174,7 @@ export interface ModelConfiguration {
      */
     hasRegion?: Array<Region> | null;
     /**
-     * Frequently asked questions about a software
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -180,7 +192,7 @@ export interface ModelConfiguration {
      */
     hasContactPerson?: Array<object> | null;
     /**
-     * Tag used to annotate a version or a software configuration. This annotation is useful to show which version is the latest, or which version is deprecated. Supported tags are: \"latest\", \"deprecated\"
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -192,7 +204,7 @@ export interface ModelConfiguration {
      */
     id?: string;
     /**
-     * Identifier of the resource being described
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -216,19 +228,25 @@ export interface ModelConfiguration {
      */
     author?: Array<object> | null;
     /**
-     * Constraint or rule associated to a  variable or software configuration. For example: \"This model accepts only monthly data\", or \"all inputs of this model configuration must share the same location\". More structured restrictions, such as Jena rules or SWRL rules may also be captured with this property
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
     hasConstraint?: Array<string> | null;
     /**
-     * A summarized description of the resource
+     * Description not available
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    hasBuildFile?: Array<string> | null;
+    /**
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
     shortDescription?: Array<string> | null;
     /**
-     * Execution instructions on how to run the image
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -240,7 +258,7 @@ export interface ModelConfiguration {
      */
     datePublished?: Array<string> | null;
     /**
-     * License of a software component or its source code
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -252,7 +270,7 @@ export interface ModelConfiguration {
      */
     hasSourceCode?: Array<SourceCode> | null;
     /**
-     * Property used to define configurations with some fixed resources and values. The rationale of this property is to allow predefined configurations
+     * Description not available
      * @type {Array<ConfigurationSetup>}
      * @memberof ModelConfiguration
      */
@@ -264,7 +282,7 @@ export interface ModelConfiguration {
      */
     hasExplanationDiagram?: Array<Image> | null;
     /**
-     * An example explaining a scenario where the model was used in plain language.
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -276,37 +294,43 @@ export interface ModelConfiguration {
      */
     publisher?: Array<object> | null;
     /**
-     * Property that expresses what are the outputs of a model
+     * Description not available
      * @type {Array<DatasetSpecification>}
      * @memberof ModelConfiguration
      */
     hasOutput?: Array<DatasetSpecification> | null;
     /**
-     * Description not available
+     * Time interval used in the model configuration
      * @type {Array<TimeInterval>}
      * @memberof ModelConfiguration
      */
     hasOutputTimeInterval?: Array<TimeInterval> | null;
     /**
-     * Property that links a software project to its funding information
+     * Description not available
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    doi?: Array<string> | null;
+    /**
+     * Description not available
      * @type {Array<FundingInformation>}
      * @memberof ModelConfiguration
      */
     hasFunding?: Array<FundingInformation> | null;
     /**
-     * Location of the aggregation of all the files needed to execute the component. Usually a zip file including the run script and support scripts, including specification files
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
     hasComponentLocation?: Array<string> | null;
     /**
-     * Description not available
+     * Property that indicates which physical processes (if any) are associated with a model configuration
      * @type {Array<Process>}
      * @memberof ModelConfiguration
      */
     hasProcess?: Array<Process> | null;
     /**
-     * Property to link details, such as mailing lists in case a contact person is not provided
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -330,7 +354,7 @@ export interface ModelConfiguration {
      */
     description?: Array<string> | null;
     /**
-     * Main publication to cite in this software
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -342,19 +366,25 @@ export interface ModelConfiguration {
      */
     screenshot?: Array<Image> | null;
     /**
-     * Description not available
+     * Category associated with a model (e.g., Hydrology)
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
     hasModelCategory?: Array<string> | null;
     /**
-     * Property to identify the original source of the information of the annotated resource. It could be a web page, an organization, a person, some experiment notes, etc.
+     * Description not available
      * @type {Array<object>}
      * @memberof ModelConfiguration
      */
     hadPrimarySource?: Array<object> | null;
     /**
-     * Function to link a function with its corresponding container
+     * Description not available
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    issueTracker?: Array<string> | null;
+    /**
+     * Description not available
      * @type {Array<SoftwareImage>}
      * @memberof ModelConfiguration
      */
@@ -372,19 +402,25 @@ export interface ModelConfiguration {
      */
     contributor?: Array<Person> | null;
     /**
-     * Description not available
+     * Sample result table associated with a model configuration
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
     hasModelResultTable?: Array<string> | null;
     /**
-     * Objective or main functionality that can be achieved by running this software
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
     hasPurpose?: Array<string> | null;
     /**
-     * A typical sample visualization of the softwware outputs
+     * Description not available
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    hasExecutableInstructions?: Array<string> | null;
+    /**
+     * Description not available
      * @type {Array<Visualization>}
      * @memberof ModelConfiguration
      */
@@ -402,13 +438,13 @@ export interface ModelConfiguration {
      */
     memoryRequirements?: Array<string> | null;
     /**
-     * Website of the software
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
     website?: Array<string> | null;
     /**
-     * How to cite this software
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -420,17 +456,23 @@ export interface ModelConfiguration {
      */
     processorRequirements?: Array<string> | null;
     /**
-     * Property that describes the usage considerations of a particular software. These notes capture the rationale of for that software configuration, along with an explanation for sample inputs, things to consider when running the model with data, etc.
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
     hasUsageNotes?: Array<string> | null;
     /**
-     * Property that links to the location of scripts that may be used from the main runnable script.
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
     hasSupportScriptLocation?: Array<string> | null;
+    /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    readme?: Array<string> | null;
     /**
      * short description of the resource
      * @type {Array<string>}
@@ -438,13 +480,13 @@ export interface ModelConfiguration {
      */
     label?: Array<string> | null;
     /**
-     * Assumptions of a software, e.g. the solver being used for a particular model, the source of the data (e.g., all data must have a given resolution), etc.
+     * Description not available
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
     hasAssumption?: Array<string> | null;
     /**
-     * Property that indicates the parameters of a model configuration
+     * Description not available
      * @type {Array<Parameter>}
      * @memberof ModelConfiguration
      */
@@ -456,23 +498,29 @@ export interface ModelConfiguration {
      */
     operatingSystems?: Array<string> | null;
     /**
+     * Description not available
+     * @type {Array<string>}
+     * @memberof ModelConfiguration
+     */
+    hasExecutableNotebook?: Array<string> | null;
+    /**
      * Equations used in the model
      * @type {Array<Equation>}
      * @memberof ModelConfiguration
      */
     hasEquation?: Array<Equation> | null;
     /**
-     * Property that links a model configuration to the input types expected by it.
-     * @type {Array<DatasetSpecification>}
-     * @memberof ModelConfiguration
-     */
-    hasInput?: Array<DatasetSpecification> | null;
-    /**
-     * Property that indicates that a software component (or any of its outputs) can be used to calculate a particular index. The rationale for this property is that indices are usually calculated by applying post-processing steps to the outputs of a software component.
+     * Description not available
      * @type {Array<NumericalIndex>}
      * @memberof ModelConfiguration
      */
     usefulForCalculatingIndex?: Array<NumericalIndex> | null;
+    /**
+     * Description not available
+     * @type {Array<DatasetSpecification>}
+     * @memberof ModelConfiguration
+     */
+    hasInput?: Array<DatasetSpecification> | null;
 }
 
 export function ModelConfigurationFromJSON(json: any): ModelConfiguration {
@@ -485,6 +533,7 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
+        'hasDownloadInstructions': !exists(json, 'hasDownloadInstructions') ? undefined : json['hasDownloadInstructions'],
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'hasGrid': !exists(json, 'hasGrid') ? undefined : (json['hasGrid'] as Array<any>).map(GridFromJSON),
@@ -494,6 +543,7 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
         'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
+        'copyrightHolder': !exists(json, 'copyrightHolder') ? undefined : json['copyrightHolder'],
         'hasRegion': !exists(json, 'hasRegion') ? undefined : (json['hasRegion'] as Array<any>).map(RegionFromJSON),
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
         'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
@@ -505,6 +555,7 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'hasSampleResult': !exists(json, 'hasSampleResult') ? undefined : (json['hasSampleResult'] as Array<any>).map(SampleResourceFromJSON),
         'author': !exists(json, 'author') ? undefined : json['author'],
         'hasConstraint': !exists(json, 'hasConstraint') ? undefined : json['hasConstraint'],
+        'hasBuildFile': !exists(json, 'hasBuildFile') ? undefined : json['hasBuildFile'],
         'shortDescription': !exists(json, 'shortDescription') ? undefined : json['shortDescription'],
         'hasExecutionCommand': !exists(json, 'hasExecutionCommand') ? undefined : json['hasExecutionCommand'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
@@ -516,6 +567,7 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
         'hasOutput': !exists(json, 'hasOutput') ? undefined : (json['hasOutput'] as Array<any>).map(DatasetSpecificationFromJSON),
         'hasOutputTimeInterval': !exists(json, 'hasOutputTimeInterval') ? undefined : (json['hasOutputTimeInterval'] as Array<any>).map(TimeIntervalFromJSON),
+        'doi': !exists(json, 'doi') ? undefined : json['doi'],
         'hasFunding': !exists(json, 'hasFunding') ? undefined : (json['hasFunding'] as Array<any>).map(FundingInformationFromJSON),
         'hasComponentLocation': !exists(json, 'hasComponentLocation') ? undefined : json['hasComponentLocation'],
         'hasProcess': !exists(json, 'hasProcess') ? undefined : (json['hasProcess'] as Array<any>).map(ProcessFromJSON),
@@ -527,11 +579,13 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'screenshot': !exists(json, 'screenshot') ? undefined : (json['screenshot'] as Array<any>).map(ImageFromJSON),
         'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : json['hasModelCategory'],
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
+        'issueTracker': !exists(json, 'issueTracker') ? undefined : json['issueTracker'],
         'hasSoftwareImage': !exists(json, 'hasSoftwareImage') ? undefined : (json['hasSoftwareImage'] as Array<any>).map(SoftwareImageFromJSON),
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
         'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
         'hasModelResultTable': !exists(json, 'hasModelResultTable') ? undefined : json['hasModelResultTable'],
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
+        'hasExecutableInstructions': !exists(json, 'hasExecutableInstructions') ? undefined : json['hasExecutableInstructions'],
         'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : (json['hasSampleVisualization'] as Array<any>).map(VisualizationFromJSON),
         'hasCausalDiagram': !exists(json, 'hasCausalDiagram') ? undefined : (json['hasCausalDiagram'] as Array<any>).map(CausalDiagramFromJSON),
         'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
@@ -540,13 +594,15 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'processorRequirements': !exists(json, 'processorRequirements') ? undefined : json['processorRequirements'],
         'hasUsageNotes': !exists(json, 'hasUsageNotes') ? undefined : json['hasUsageNotes'],
         'hasSupportScriptLocation': !exists(json, 'hasSupportScriptLocation') ? undefined : json['hasSupportScriptLocation'],
+        'readme': !exists(json, 'readme') ? undefined : json['readme'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
         'hasParameter': !exists(json, 'hasParameter') ? undefined : (json['hasParameter'] as Array<any>).map(ParameterFromJSON),
         'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
+        'hasExecutableNotebook': !exists(json, 'hasExecutableNotebook') ? undefined : json['hasExecutableNotebook'],
         'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
-        'hasInput': !exists(json, 'hasInput') ? undefined : (json['hasInput'] as Array<any>).map(DatasetSpecificationFromJSON),
         'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
+        'hasInput': !exists(json, 'hasInput') ? undefined : (json['hasInput'] as Array<any>).map(DatasetSpecificationFromJSON),
     };
 }
 
@@ -559,6 +615,7 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
     }
     return {
         
+        'hasDownloadInstructions': value.hasDownloadInstructions,
         'keywords': value.keywords,
         'hasDocumentation': value.hasDocumentation,
         'hasGrid': value.hasGrid === undefined ? undefined : (value.hasGrid as Array<any>).map(GridToJSON),
@@ -568,6 +625,7 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
         'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
+        'copyrightHolder': value.copyrightHolder,
         'hasRegion': value.hasRegion === undefined ? undefined : (value.hasRegion as Array<any>).map(RegionToJSON),
         'hasFAQ': value.hasFAQ,
         'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
@@ -579,6 +637,7 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'hasSampleResult': value.hasSampleResult === undefined ? undefined : (value.hasSampleResult as Array<any>).map(SampleResourceToJSON),
         'author': value.author,
         'hasConstraint': value.hasConstraint,
+        'hasBuildFile': value.hasBuildFile,
         'shortDescription': value.shortDescription,
         'hasExecutionCommand': value.hasExecutionCommand,
         'datePublished': value.datePublished,
@@ -590,6 +649,7 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'publisher': value.publisher,
         'hasOutput': value.hasOutput === undefined ? undefined : (value.hasOutput as Array<any>).map(DatasetSpecificationToJSON),
         'hasOutputTimeInterval': value.hasOutputTimeInterval === undefined ? undefined : (value.hasOutputTimeInterval as Array<any>).map(TimeIntervalToJSON),
+        'doi': value.doi,
         'hasFunding': value.hasFunding === undefined ? undefined : (value.hasFunding as Array<any>).map(FundingInformationToJSON),
         'hasComponentLocation': value.hasComponentLocation,
         'hasProcess': value.hasProcess === undefined ? undefined : (value.hasProcess as Array<any>).map(ProcessToJSON),
@@ -601,11 +661,13 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'screenshot': value.screenshot === undefined ? undefined : (value.screenshot as Array<any>).map(ImageToJSON),
         'hasModelCategory': value.hasModelCategory,
         'hadPrimarySource': value.hadPrimarySource,
+        'issueTracker': value.issueTracker,
         'hasSoftwareImage': value.hasSoftwareImage === undefined ? undefined : (value.hasSoftwareImage as Array<any>).map(SoftwareImageToJSON),
         'dateCreated': value.dateCreated,
         'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
         'hasModelResultTable': value.hasModelResultTable,
         'hasPurpose': value.hasPurpose,
+        'hasExecutableInstructions': value.hasExecutableInstructions,
         'hasSampleVisualization': value.hasSampleVisualization === undefined ? undefined : (value.hasSampleVisualization as Array<any>).map(VisualizationToJSON),
         'hasCausalDiagram': value.hasCausalDiagram === undefined ? undefined : (value.hasCausalDiagram as Array<any>).map(CausalDiagramToJSON),
         'memoryRequirements': value.memoryRequirements,
@@ -614,13 +676,15 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'processorRequirements': value.processorRequirements,
         'hasUsageNotes': value.hasUsageNotes,
         'hasSupportScriptLocation': value.hasSupportScriptLocation,
+        'readme': value.readme,
         'label': value.label,
         'hasAssumption': value.hasAssumption,
         'hasParameter': value.hasParameter === undefined ? undefined : (value.hasParameter as Array<any>).map(ParameterToJSON),
         'operatingSystems': value.operatingSystems,
+        'hasExecutableNotebook': value.hasExecutableNotebook,
         'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
-        'hasInput': value.hasInput === undefined ? undefined : (value.hasInput as Array<any>).map(DatasetSpecificationToJSON),
         'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
+        'hasInput': value.hasInput === undefined ? undefined : (value.hasInput as Array<any>).map(DatasetSpecificationToJSON),
     };
 }
 

@@ -28,7 +28,7 @@ import {
 } from './';
 
 /**
- * Concept used to represent an instantiation of a variable in an input/output dataset. For example, a model A may use an input file with temperature expressed in Farenheit (variablePresentation1), while a model B may produce an output with temperature in Celsius (variablePresentation2). Both variable presentations refer to the concept of temperature.
+ * Description not available
  * @export
  * @interface VariablePresentation
  */

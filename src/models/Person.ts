@@ -13,7 +13,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Description not available
+ * A human being (individual)
  * @export
  * @interface Person
  */

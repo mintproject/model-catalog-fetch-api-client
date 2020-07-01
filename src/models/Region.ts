@@ -13,13 +13,13 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * Description not available
+ * An area or division with some characteristics but not always fixed boundaries
  * @export
  * @interface Region
  */
 export interface Region {
     /**
-     * Description not available
+     * Specific coordinates or shape associated with a region
      * @type {Array<object>}
      * @memberof Region
      */
