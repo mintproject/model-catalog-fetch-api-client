@@ -213,10 +213,10 @@ export interface ConfigurationSetup {
     hasExecutionCommand?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof ConfigurationSetup
      */
-    datePublished?: Array<string> | null;
+    datePublished?: Array<Date> | null;
     /**
      * License of a software component or its source code
      * @type {Array<string>}
@@ -327,10 +327,10 @@ export interface ConfigurationSetup {
     hasSoftwareImage?: Array<SoftwareImage> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof ConfigurationSetup
      */
-    dateCreated?: Array<string> | null;
+    dateCreated?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<Person>}

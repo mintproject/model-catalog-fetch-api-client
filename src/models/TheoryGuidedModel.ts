@@ -171,10 +171,10 @@ export interface TheoryGuidedModel {
     shortDescription?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof TheoryGuidedModel
      */
-    datePublished?: Array<string> | null;
+    datePublished?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<string>}
@@ -273,10 +273,10 @@ export interface TheoryGuidedModel {
     issueTracker?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof TheoryGuidedModel
      */
-    dateCreated?: Array<string> | null;
+    dateCreated?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<Person>}

@@ -26,6 +26,12 @@ import {
  */
 export interface NumericalIndex {
     /**
+     * the standard name of a variable
+     * @type {Array<StandardVariable>}
+     * @memberof NumericalIndex
+     */
+    hasStandardVariable?: Array<StandardVariable> | null;
+    /**
      * small description
      * @type {Array<string>}
      * @memberof NumericalIndex
@@ -49,12 +55,6 @@ export interface NumericalIndex {
      * @memberof NumericalIndex
      */
     type?: Array<string> | null;
-    /**
-     * the standard name of a variable
-     * @type {Array<StandardVariable>}
-     * @memberof NumericalIndex
-     */
-    hasStandardVariable?: Array<StandardVariable> | null;
 }
 
 export function NumericalIndexFromJSON(json: any): NumericalIndex {
@@ -67,11 +67,11 @@ export function NumericalIndexFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
+        'hasStandardVariable': !exists(json, 'hasStandardVariable') ? undefined : (json['hasStandardVariable'] as Array<any>).map(StandardVariableFromJSON),
         'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
-        'hasStandardVariable': !exists(json, 'hasStandardVariable') ? undefined : (json['hasStandardVariable'] as Array<any>).map(StandardVariableFromJSON),
     };
 }
 
@@ -84,11 +84,11 @@ export function NumericalIndexToJSON(value?: NumericalIndex): any {
     }
     return {
         
+        'hasStandardVariable': value.hasStandardVariable === undefined ? undefined : (value.hasStandardVariable as Array<any>).map(StandardVariableToJSON),
         'description': value.description,
         'id': value.id,
         'label': value.label,
         'type': value.type,
-        'hasStandardVariable': value.hasStandardVariable === undefined ? undefined : (value.hasStandardVariable as Array<any>).map(StandardVariableToJSON),
     };
 }
 

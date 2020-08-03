@@ -94,17 +94,17 @@ export interface VariablePresentation {
      */
     hasMinimumAcceptedValue?: Array<object> | null;
     /**
-     * identifier
-     * @type {string}
-     * @memberof VariablePresentation
-     */
-    id?: string;
-    /**
      * Associates a presentation with a dataset where the presentation occurs
      * @type {Array<DatasetSpecification>}
      * @memberof VariablePresentation
      */
     partOfDataset?: Array<DatasetSpecification> | null;
+    /**
+     * identifier
+     * @type {string}
+     * @memberof VariablePresentation
+     */
+    id?: string;
     /**
      * Property used to link a variable presentation or time interval to the unit they are represented in
      * @type {Array<Unit>}
@@ -133,8 +133,8 @@ export function VariablePresentationFromJSONTyped(json: any, ignoreDiscriminator
         'hasLongName': !exists(json, 'hasLongName') ? undefined : json['hasLongName'],
         'hasShortName': !exists(json, 'hasShortName') ? undefined : json['hasShortName'],
         'hasMinimumAcceptedValue': !exists(json, 'hasMinimumAcceptedValue') ? undefined : json['hasMinimumAcceptedValue'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
         'partOfDataset': !exists(json, 'partOfDataset') ? undefined : (json['partOfDataset'] as Array<any>).map(DatasetSpecificationFromJSON),
+        'id': !exists(json, 'id') ? undefined : json['id'],
         'usesUnit': !exists(json, 'usesUnit') ? undefined : (json['usesUnit'] as Array<any>).map(UnitFromJSON),
     };
 }
@@ -158,8 +158,8 @@ export function VariablePresentationToJSON(value?: VariablePresentation): any {
         'hasLongName': value.hasLongName,
         'hasShortName': value.hasShortName,
         'hasMinimumAcceptedValue': value.hasMinimumAcceptedValue,
-        'id': value.id,
         'partOfDataset': value.partOfDataset === undefined ? undefined : (value.partOfDataset as Array<any>).map(DatasetSpecificationToJSON),
+        'id': value.id,
         'usesUnit': value.usesUnit === undefined ? undefined : (value.usesUnit as Array<any>).map(UnitToJSON),
     };
 }

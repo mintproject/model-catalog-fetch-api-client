@@ -19,6 +19,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface Process {
     /**
+     * Property that captures if a physical process influences another process
+     * @type {Array<Process>}
+     * @memberof Process
+     */
+    influences?: Array<Process> | null;
+    /**
      * small description
      * @type {Array<string>}
      * @memberof Process
@@ -42,12 +48,6 @@ export interface Process {
      * @memberof Process
      */
     type?: Array<string> | null;
-    /**
-     * Property that captures if a physical process influences another process
-     * @type {Array<Process>}
-     * @memberof Process
-     */
-    influences?: Array<Process> | null;
 }
 
 export function ProcessFromJSON(json: any): Process {
@@ -60,11 +60,11 @@ export function ProcessFromJSONTyped(json: any, ignoreDiscriminator: boolean): P
     }
     return {
         
+        'influences': !exists(json, 'influences') ? undefined : (json['influences'] as Array<any>).map(ProcessFromJSON),
         'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
-        'influences': !exists(json, 'influences') ? undefined : (json['influences'] as Array<any>).map(ProcessFromJSON),
     };
 }
 
@@ -77,11 +77,11 @@ export function ProcessToJSON(value?: Process): any {
     }
     return {
         
+        'influences': value.influences === undefined ? undefined : (value.influences as Array<any>).map(ProcessToJSON),
         'description': value.description,
         'id': value.id,
         'label': value.label,
         'type': value.type,
-        'influences': value.influences === undefined ? undefined : (value.influences as Array<any>).map(ProcessToJSON),
     };
 }
 

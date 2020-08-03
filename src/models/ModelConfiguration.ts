@@ -253,10 +253,10 @@ export interface ModelConfiguration {
     hasExecutionCommand?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof ModelConfiguration
      */
-    datePublished?: Array<string> | null;
+    datePublished?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<string>}
@@ -391,10 +391,10 @@ export interface ModelConfiguration {
     hasSoftwareImage?: Array<SoftwareImage> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof ModelConfiguration
      */
-    dateCreated?: Array<string> | null;
+    dateCreated?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<Person>}

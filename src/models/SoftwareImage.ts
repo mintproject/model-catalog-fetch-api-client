@@ -163,10 +163,10 @@ export interface SoftwareImage {
     hasExecutionCommand?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof SoftwareImage
      */
-    datePublished?: Array<string> | null;
+    datePublished?: Array<Date> | null;
     /**
      * License of a software component or its source code
      * @type {Array<string>}
@@ -253,10 +253,10 @@ export interface SoftwareImage {
     issueTracker?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof SoftwareImage
      */
-    dateCreated?: Array<string> | null;
+    dateCreated?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<Person>}

@@ -171,10 +171,10 @@ export interface Model {
     shortDescription?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof Model
      */
-    datePublished?: Array<string> | null;
+    datePublished?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<string>}
@@ -273,10 +273,10 @@ export interface Model {
     issueTracker?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof Model
      */
-    dateCreated?: Array<string> | null;
+    dateCreated?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<Person>}

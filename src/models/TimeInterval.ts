@@ -26,6 +26,12 @@ import {
  */
 export interface TimeInterval {
     /**
+     * Unit used in an interval (e.g., month)
+     * @type {Array<Unit>}
+     * @memberof TimeInterval
+     */
+    intervalUnit?: Array<Unit> | null;
+    /**
      * small description
      * @type {Array<string>}
      * @memberof TimeInterval
@@ -55,12 +61,6 @@ export interface TimeInterval {
      * @memberof TimeInterval
      */
     intervalValue?: Array<object> | null;
-    /**
-     * Unit used in an interval (e.g., month)
-     * @type {Array<Unit>}
-     * @memberof TimeInterval
-     */
-    intervalUnit?: Array<Unit> | null;
 }
 
 export function TimeIntervalFromJSON(json: any): TimeInterval {
@@ -73,12 +73,12 @@ export function TimeIntervalFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
+        'intervalUnit': !exists(json, 'intervalUnit') ? undefined : (json['intervalUnit'] as Array<any>).map(UnitFromJSON),
         'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'intervalValue': !exists(json, 'intervalValue') ? undefined : json['intervalValue'],
-        'intervalUnit': !exists(json, 'intervalUnit') ? undefined : (json['intervalUnit'] as Array<any>).map(UnitFromJSON),
     };
 }
 
@@ -91,12 +91,12 @@ export function TimeIntervalToJSON(value?: TimeInterval): any {
     }
     return {
         
+        'intervalUnit': value.intervalUnit === undefined ? undefined : (value.intervalUnit as Array<any>).map(UnitToJSON),
         'description': value.description,
         'id': value.id,
         'label': value.label,
         'type': value.type,
         'intervalValue': value.intervalValue,
-        'intervalUnit': value.intervalUnit === undefined ? undefined : (value.intervalUnit as Array<any>).map(UnitToJSON),
     };
 }
 

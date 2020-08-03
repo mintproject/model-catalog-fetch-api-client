@@ -12,6 +12,65 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ConfigurationSetup,
+    ConfigurationSetupFromJSON,
+    ConfigurationSetupFromJSONTyped,
+    ConfigurationSetupToJSON,
+    DatasetSpecification,
+    DatasetSpecificationFromJSON,
+    DatasetSpecificationFromJSONTyped,
+    DatasetSpecificationToJSON,
+    FundingInformation,
+    FundingInformationFromJSON,
+    FundingInformationFromJSONTyped,
+    FundingInformationToJSON,
+    Image,
+    ImageFromJSON,
+    ImageFromJSONTyped,
+    ImageToJSON,
+    NumericalIndex,
+    NumericalIndexFromJSON,
+    NumericalIndexFromJSONTyped,
+    NumericalIndexToJSON,
+    Parameter,
+    ParameterFromJSON,
+    ParameterFromJSONTyped,
+    ParameterToJSON,
+    Person,
+    PersonFromJSON,
+    PersonFromJSONTyped,
+    PersonToJSON,
+    SampleExecution,
+    SampleExecutionFromJSON,
+    SampleExecutionFromJSONTyped,
+    SampleExecutionToJSON,
+    SampleResource,
+    SampleResourceFromJSON,
+    SampleResourceFromJSONTyped,
+    SampleResourceToJSON,
+    Software,
+    SoftwareFromJSON,
+    SoftwareFromJSONTyped,
+    SoftwareToJSON,
+    SoftwareImage,
+    SoftwareImageFromJSON,
+    SoftwareImageFromJSONTyped,
+    SoftwareImageToJSON,
+    SoftwareVersion,
+    SoftwareVersionFromJSON,
+    SoftwareVersionFromJSONTyped,
+    SoftwareVersionToJSON,
+    SourceCode,
+    SourceCodeFromJSON,
+    SourceCodeFromJSONTyped,
+    SourceCodeToJSON,
+    Visualization,
+    VisualizationFromJSON,
+    VisualizationFromJSONTyped,
+    VisualizationToJSON,
+} from './';
+
 /**
  * Special type of data transformation where the inputs and parameters have some pre-selected values. For example, they may point to a particular dataset URL to be used in the transformation
  * @export
@@ -68,10 +127,10 @@ export interface DataTransformationSetup {
     hasInstallationInstructions?: Array<string> | null;
     /**
      * Property that links a software component to other useful software that canbe used to visualize its outputs
-     * @type {Array<object>}
+     * @type {Array<Software>}
      * @memberof DataTransformationSetup
      */
-    compatibleVisualizationSoftware?: Array<object> | null;
+    compatibleVisualizationSoftware?: Array<Software> | null;
     /**
      * Description not available
      * @type {Array<object>}
@@ -86,10 +145,10 @@ export interface DataTransformationSetup {
     hasFAQ?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<object>}
+     * @type {Array<Image>}
      * @memberof DataTransformationSetup
      */
-    logo?: Array<object> | null;
+    logo?: Array<Image> | null;
     /**
      * Description not available
      * @type {Array<object>}
@@ -116,16 +175,16 @@ export interface DataTransformationSetup {
     identifier?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<object>}
+     * @type {Array<SampleExecution>}
      * @memberof DataTransformationSetup
      */
-    hasSampleExecution?: Array<object> | null;
+    hasSampleExecution?: Array<SampleExecution> | null;
     /**
      * Description not available
-     * @type {Array<object>}
+     * @type {Array<SampleResource>}
      * @memberof DataTransformationSetup
      */
-    hasSampleResult?: Array<object> | null;
+    hasSampleResult?: Array<SampleResource> | null;
     /**
      * Description not available
      * @type {Array<object>}
@@ -158,10 +217,10 @@ export interface DataTransformationSetup {
     hasExecutionCommand?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof DataTransformationSetup
      */
-    datePublished?: Array<string> | null;
+    datePublished?: Array<Date> | null;
     /**
      * License of a software component or its source code
      * @type {Array<string>}
@@ -170,16 +229,16 @@ export interface DataTransformationSetup {
     license?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<object>}
+     * @type {Array<SourceCode>}
      * @memberof DataTransformationSetup
      */
-    hasSourceCode?: Array<object> | null;
+    hasSourceCode?: Array<SourceCode> | null;
     /**
      * Property used to define configurations with some fixed resources and values. The rationale of this property is to allow predefined configurations
-     * @type {Array<object>}
+     * @type {Array<ConfigurationSetup>}
      * @memberof DataTransformationSetup
      */
-    hasSetup?: Array<object> | null;
+    hasSetup?: Array<ConfigurationSetup> | null;
     /**
      * An example explaining a scenario where the software component was used in plain language.
      * @type {Array<string>}
@@ -194,10 +253,10 @@ export interface DataTransformationSetup {
     publisher?: Array<object> | null;
     /**
      * Property that expresses what are the outputs of a model
-     * @type {Array<object>}
+     * @type {Array<DatasetSpecification>}
      * @memberof DataTransformationSetup
      */
-    hasOutput?: Array<object> | null;
+    hasOutput?: Array<DatasetSpecification> | null;
     /**
      * Digital Object Identifier associated with a software component
      * @type {Array<string>}
@@ -206,10 +265,10 @@ export interface DataTransformationSetup {
     doi?: Array<string> | null;
     /**
      * Property that links a software project to its funding information
-     * @type {Array<object>}
+     * @type {Array<FundingInformation>}
      * @memberof DataTransformationSetup
      */
-    hasFunding?: Array<object> | null;
+    hasFunding?: Array<FundingInformation> | null;
     /**
      * Location of the aggregation of all the files needed to execute the component. Usually a zip file including the run script and support scripts, including specification files
      * @type {Array<string>}
@@ -224,10 +283,10 @@ export interface DataTransformationSetup {
     supportDetails?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<object>}
+     * @type {Array<SoftwareVersion>}
      * @memberof DataTransformationSetup
      */
-    hasVersion?: Array<object> | null;
+    hasVersion?: Array<SoftwareVersion> | null;
     /**
      * Description not available
      * @type {Array<string>}
@@ -248,10 +307,10 @@ export interface DataTransformationSetup {
     referencePublication?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<object>}
+     * @type {Array<Image>}
      * @memberof DataTransformationSetup
      */
-    screenshot?: Array<object> | null;
+    screenshot?: Array<Image> | null;
     /**
      * had primary source
      * @type {Array<object>}
@@ -266,22 +325,22 @@ export interface DataTransformationSetup {
     issueTracker?: Array<string> | null;
     /**
      * Function to link a function with its corresponding container
-     * @type {Array<object>}
+     * @type {Array<SoftwareImage>}
      * @memberof DataTransformationSetup
      */
-    hasSoftwareImage?: Array<object> | null;
+    hasSoftwareImage?: Array<SoftwareImage> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof DataTransformationSetup
      */
-    dateCreated?: Array<string> | null;
+    dateCreated?: Array<Date> | null;
     /**
      * Description not available
-     * @type {Array<object>}
+     * @type {Array<Person>}
      * @memberof DataTransformationSetup
      */
-    contributor?: Array<object> | null;
+    contributor?: Array<Person> | null;
     /**
      * Objective or main functionality that can be achieved by running this software
      * @type {Array<string>}
@@ -296,10 +355,10 @@ export interface DataTransformationSetup {
     hasExecutableInstructions?: Array<string> | null;
     /**
      * A typical sample visualization of the softwware outputs
-     * @type {Array<object>}
+     * @type {Array<Visualization>}
      * @memberof DataTransformationSetup
      */
-    hasSampleVisualization?: Array<object> | null;
+    hasSampleVisualization?: Array<Visualization> | null;
     /**
      * Description not available
      * @type {Array<string>}
@@ -326,10 +385,10 @@ export interface DataTransformationSetup {
     processorRequirements?: Array<string> | null;
     /**
      * Parameter that can be adjusted in a configuration setup
-     * @type {Array<object>}
+     * @type {Array<Parameter>}
      * @memberof DataTransformationSetup
      */
-    adjustableParameter?: Array<object> | null;
+    adjustableParameter?: Array<Parameter> | null;
     /**
      * Property that describes the usage considerations of a particular software. These notes capture the rationale of for that software configuration, along with an explanation for sample inputs, things to consider when running the model with data, etc.
      * @type {Array<string>}
@@ -362,10 +421,10 @@ export interface DataTransformationSetup {
     hasAssumption?: Array<string> | null;
     /**
      * Property that indicates the parameters of a model configuration
-     * @type {Array<object>}
+     * @type {Array<Parameter>}
      * @memberof DataTransformationSetup
      */
-    hasParameter?: Array<object> | null;
+    hasParameter?: Array<Parameter> | null;
     /**
      * Description not available
      * @type {Array<string>}
@@ -380,16 +439,16 @@ export interface DataTransformationSetup {
     hasExecutableNotebook?: Array<string> | null;
     /**
      * Property that indicates that a software component (or any of its outputs) can be used to calculate a particular index. The rationale for this property is that indices are usually calculated by applying post-processing steps to the outputs of a software component.
-     * @type {Array<object>}
+     * @type {Array<NumericalIndex>}
      * @memberof DataTransformationSetup
      */
-    usefulForCalculatingIndex?: Array<object> | null;
+    usefulForCalculatingIndex?: Array<NumericalIndex> | null;
     /**
      * Property that links a model configuration to the input types expected by it.
-     * @type {Array<object>}
+     * @type {Array<DatasetSpecification>}
      * @memberof DataTransformationSetup
      */
-    hasInput?: Array<object> | null;
+    hasInput?: Array<DatasetSpecification> | null;
 }
 
 export function DataTransformationSetupFromJSON(json: any): DataTransformationSetup {
@@ -410,16 +469,16 @@ export function DataTransformationSetupFromJSONTyped(json: any, ignoreDiscrimina
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
-        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : json['compatibleVisualizationSoftware'],
+        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
         'copyrightHolder': !exists(json, 'copyrightHolder') ? undefined : json['copyrightHolder'],
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
-        'logo': !exists(json, 'logo') ? undefined : json['logo'],
+        'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'tag': !exists(json, 'tag') ? undefined : json['tag'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
-        'hasSampleExecution': !exists(json, 'hasSampleExecution') ? undefined : json['hasSampleExecution'],
-        'hasSampleResult': !exists(json, 'hasSampleResult') ? undefined : json['hasSampleResult'],
+        'hasSampleExecution': !exists(json, 'hasSampleExecution') ? undefined : (json['hasSampleExecution'] as Array<any>).map(SampleExecutionFromJSON),
+        'hasSampleResult': !exists(json, 'hasSampleResult') ? undefined : (json['hasSampleResult'] as Array<any>).map(SampleResourceFromJSON),
         'author': !exists(json, 'author') ? undefined : json['author'],
         'hasConstraint': !exists(json, 'hasConstraint') ? undefined : json['hasConstraint'],
         'hasBuildFile': !exists(json, 'hasBuildFile') ? undefined : json['hasBuildFile'],
@@ -427,43 +486,43 @@ export function DataTransformationSetupFromJSONTyped(json: any, ignoreDiscrimina
         'hasExecutionCommand': !exists(json, 'hasExecutionCommand') ? undefined : json['hasExecutionCommand'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
         'license': !exists(json, 'license') ? undefined : json['license'],
-        'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : json['hasSourceCode'],
-        'hasSetup': !exists(json, 'hasSetup') ? undefined : json['hasSetup'],
+        'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : (json['hasSourceCode'] as Array<any>).map(SourceCodeFromJSON),
+        'hasSetup': !exists(json, 'hasSetup') ? undefined : (json['hasSetup'] as Array<any>).map(ConfigurationSetupFromJSON),
         'hasExample': !exists(json, 'hasExample') ? undefined : json['hasExample'],
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
-        'hasOutput': !exists(json, 'hasOutput') ? undefined : json['hasOutput'],
+        'hasOutput': !exists(json, 'hasOutput') ? undefined : (json['hasOutput'] as Array<any>).map(DatasetSpecificationFromJSON),
         'doi': !exists(json, 'doi') ? undefined : json['doi'],
-        'hasFunding': !exists(json, 'hasFunding') ? undefined : json['hasFunding'],
+        'hasFunding': !exists(json, 'hasFunding') ? undefined : (json['hasFunding'] as Array<any>).map(FundingInformationFromJSON),
         'hasComponentLocation': !exists(json, 'hasComponentLocation') ? undefined : json['hasComponentLocation'],
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
-        'hasVersion': !exists(json, 'hasVersion') ? undefined : json['hasVersion'],
+        'hasVersion': !exists(json, 'hasVersion') ? undefined : (json['hasVersion'] as Array<any>).map(SoftwareVersionFromJSON),
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
-        'screenshot': !exists(json, 'screenshot') ? undefined : json['screenshot'],
+        'screenshot': !exists(json, 'screenshot') ? undefined : (json['screenshot'] as Array<any>).map(ImageFromJSON),
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
         'issueTracker': !exists(json, 'issueTracker') ? undefined : json['issueTracker'],
-        'hasSoftwareImage': !exists(json, 'hasSoftwareImage') ? undefined : json['hasSoftwareImage'],
+        'hasSoftwareImage': !exists(json, 'hasSoftwareImage') ? undefined : (json['hasSoftwareImage'] as Array<any>).map(SoftwareImageFromJSON),
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
-        'contributor': !exists(json, 'contributor') ? undefined : json['contributor'],
+        'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'hasExecutableInstructions': !exists(json, 'hasExecutableInstructions') ? undefined : json['hasExecutableInstructions'],
-        'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : json['hasSampleVisualization'],
+        'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : (json['hasSampleVisualization'] as Array<any>).map(VisualizationFromJSON),
         'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
         'website': !exists(json, 'website') ? undefined : json['website'],
         'citation': !exists(json, 'citation') ? undefined : json['citation'],
         'processorRequirements': !exists(json, 'processorRequirements') ? undefined : json['processorRequirements'],
-        'adjustableParameter': !exists(json, 'adjustableParameter') ? undefined : json['adjustableParameter'],
+        'adjustableParameter': !exists(json, 'adjustableParameter') ? undefined : (json['adjustableParameter'] as Array<any>).map(ParameterFromJSON),
         'hasUsageNotes': !exists(json, 'hasUsageNotes') ? undefined : json['hasUsageNotes'],
         'hasSupportScriptLocation': !exists(json, 'hasSupportScriptLocation') ? undefined : json['hasSupportScriptLocation'],
         'readme': !exists(json, 'readme') ? undefined : json['readme'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
-        'hasParameter': !exists(json, 'hasParameter') ? undefined : json['hasParameter'],
+        'hasParameter': !exists(json, 'hasParameter') ? undefined : (json['hasParameter'] as Array<any>).map(ParameterFromJSON),
         'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'hasExecutableNotebook': !exists(json, 'hasExecutableNotebook') ? undefined : json['hasExecutableNotebook'],
-        'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : json['usefulForCalculatingIndex'],
-        'hasInput': !exists(json, 'hasInput') ? undefined : json['hasInput'],
+        'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
+        'hasInput': !exists(json, 'hasInput') ? undefined : (json['hasInput'] as Array<any>).map(DatasetSpecificationFromJSON),
     };
 }
 
@@ -484,16 +543,16 @@ export function DataTransformationSetupToJSON(value?: DataTransformationSetup): 
         'hasDownloadURL': value.hasDownloadURL,
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
-        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware,
+        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
         'copyrightHolder': value.copyrightHolder,
         'hasFAQ': value.hasFAQ,
-        'logo': value.logo,
+        'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
         'hasContactPerson': value.hasContactPerson,
         'tag': value.tag,
         'id': value.id,
         'identifier': value.identifier,
-        'hasSampleExecution': value.hasSampleExecution,
-        'hasSampleResult': value.hasSampleResult,
+        'hasSampleExecution': value.hasSampleExecution === undefined ? undefined : (value.hasSampleExecution as Array<any>).map(SampleExecutionToJSON),
+        'hasSampleResult': value.hasSampleResult === undefined ? undefined : (value.hasSampleResult as Array<any>).map(SampleResourceToJSON),
         'author': value.author,
         'hasConstraint': value.hasConstraint,
         'hasBuildFile': value.hasBuildFile,
@@ -501,43 +560,43 @@ export function DataTransformationSetupToJSON(value?: DataTransformationSetup): 
         'hasExecutionCommand': value.hasExecutionCommand,
         'datePublished': value.datePublished,
         'license': value.license,
-        'hasSourceCode': value.hasSourceCode,
-        'hasSetup': value.hasSetup,
+        'hasSourceCode': value.hasSourceCode === undefined ? undefined : (value.hasSourceCode as Array<any>).map(SourceCodeToJSON),
+        'hasSetup': value.hasSetup === undefined ? undefined : (value.hasSetup as Array<any>).map(ConfigurationSetupToJSON),
         'hasExample': value.hasExample,
         'publisher': value.publisher,
-        'hasOutput': value.hasOutput,
+        'hasOutput': value.hasOutput === undefined ? undefined : (value.hasOutput as Array<any>).map(DatasetSpecificationToJSON),
         'doi': value.doi,
-        'hasFunding': value.hasFunding,
+        'hasFunding': value.hasFunding === undefined ? undefined : (value.hasFunding as Array<any>).map(FundingInformationToJSON),
         'hasComponentLocation': value.hasComponentLocation,
         'supportDetails': value.supportDetails,
-        'hasVersion': value.hasVersion,
+        'hasVersion': value.hasVersion === undefined ? undefined : (value.hasVersion as Array<any>).map(SoftwareVersionToJSON),
         'hasTypicalDataSource': value.hasTypicalDataSource,
         'description': value.description,
         'referencePublication': value.referencePublication,
-        'screenshot': value.screenshot,
+        'screenshot': value.screenshot === undefined ? undefined : (value.screenshot as Array<any>).map(ImageToJSON),
         'hadPrimarySource': value.hadPrimarySource,
         'issueTracker': value.issueTracker,
-        'hasSoftwareImage': value.hasSoftwareImage,
+        'hasSoftwareImage': value.hasSoftwareImage === undefined ? undefined : (value.hasSoftwareImage as Array<any>).map(SoftwareImageToJSON),
         'dateCreated': value.dateCreated,
-        'contributor': value.contributor,
+        'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
         'hasPurpose': value.hasPurpose,
         'hasExecutableInstructions': value.hasExecutableInstructions,
-        'hasSampleVisualization': value.hasSampleVisualization,
+        'hasSampleVisualization': value.hasSampleVisualization === undefined ? undefined : (value.hasSampleVisualization as Array<any>).map(VisualizationToJSON),
         'memoryRequirements': value.memoryRequirements,
         'website': value.website,
         'citation': value.citation,
         'processorRequirements': value.processorRequirements,
-        'adjustableParameter': value.adjustableParameter,
+        'adjustableParameter': value.adjustableParameter === undefined ? undefined : (value.adjustableParameter as Array<any>).map(ParameterToJSON),
         'hasUsageNotes': value.hasUsageNotes,
         'hasSupportScriptLocation': value.hasSupportScriptLocation,
         'readme': value.readme,
         'label': value.label,
         'hasAssumption': value.hasAssumption,
-        'hasParameter': value.hasParameter,
+        'hasParameter': value.hasParameter === undefined ? undefined : (value.hasParameter as Array<any>).map(ParameterToJSON),
         'operatingSystems': value.operatingSystems,
         'hasExecutableNotebook': value.hasExecutableNotebook,
-        'usefulForCalculatingIndex': value.usefulForCalculatingIndex,
-        'hasInput': value.hasInput,
+        'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
+        'hasInput': value.hasInput === undefined ? undefined : (value.hasInput as Array<any>).map(DatasetSpecificationToJSON),
     };
 }
 

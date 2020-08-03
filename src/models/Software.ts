@@ -147,22 +147,22 @@ export interface Software {
     issueTracker?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof Software
      */
-    dateCreated?: Array<string> | null;
-    /**
-     * Property that links a software component to other useful software that canbe used to visualize its outputs
-     * @type {Array<Software>}
-     * @memberof Software
-     */
-    compatibleVisualizationSoftware?: Array<Software> | null;
+    dateCreated?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<Person>}
      * @memberof Software
      */
     contributor?: Array<Person> | null;
+    /**
+     * Property that links a software component to other useful software that canbe used to visualize its outputs
+     * @type {Array<Software>}
+     * @memberof Software
+     */
+    compatibleVisualizationSoftware?: Array<Software> | null;
     /**
      * Description not available
      * @type {Array<object>}
@@ -285,10 +285,10 @@ export interface Software {
     hasAssumption?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof Software
      */
-    datePublished?: Array<string> | null;
+    datePublished?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<string>}
@@ -366,8 +366,8 @@ export function SoftwareFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
         'issueTracker': !exists(json, 'issueTracker') ? undefined : json['issueTracker'],
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
-        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
         'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
+        'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
         'copyrightHolder': !exists(json, 'copyrightHolder') ? undefined : json['copyrightHolder'],
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
         'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
@@ -426,8 +426,8 @@ export function SoftwareToJSON(value?: Software): any {
         'hadPrimarySource': value.hadPrimarySource,
         'issueTracker': value.issueTracker,
         'dateCreated': value.dateCreated,
-        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
         'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
+        'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
         'copyrightHolder': value.copyrightHolder,
         'hasFAQ': value.hasFAQ,
         'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),

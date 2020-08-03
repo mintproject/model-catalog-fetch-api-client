@@ -269,10 +269,10 @@ export interface ModelConfigurationSetup {
     hasExecutionCommand?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof ModelConfigurationSetup
      */
-    datePublished?: Array<string> | null;
+    datePublished?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<string>}
@@ -419,10 +419,10 @@ export interface ModelConfigurationSetup {
     hasSoftwareImage?: Array<SoftwareImage> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof ModelConfigurationSetup
      */
-    dateCreated?: Array<string> | null;
+    dateCreated?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<Person>}
@@ -545,10 +545,10 @@ export interface ModelConfigurationSetup {
     hasExecutableNotebook?: Array<string> | null;
     /**
      * Date until which the calibration of a model is valid. For example, a trained model with data from 2005-2010 may only be valid for predictions until 2015.
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof ModelConfigurationSetup
      */
-    validUntil?: Array<string> | null;
+    validUntil?: Array<Date> | null;
     /**
      * Equations used in the model
      * @type {Array<Equation>}

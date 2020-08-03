@@ -25,17 +25,17 @@ export interface Region {
      */
     geo?: Array<object> | null;
     /**
-     * small description
-     * @type {Array<string>}
-     * @memberof Region
-     */
-    description?: Array<string> | null;
-    /**
      * Indicates whether a region is part of another region
      * @type {Array<Region>}
      * @memberof Region
      */
     partOf?: Array<Region> | null;
+    /**
+     * small description
+     * @type {Array<string>}
+     * @memberof Region
+     */
+    description?: Array<string> | null;
     /**
      * identifier
      * @type {string}
@@ -67,8 +67,8 @@ export function RegionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
     return {
         
         'geo': !exists(json, 'geo') ? undefined : json['geo'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
         'partOf': !exists(json, 'partOf') ? undefined : (json['partOf'] as Array<any>).map(RegionFromJSON),
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -85,8 +85,8 @@ export function RegionToJSON(value?: Region): any {
     return {
         
         'geo': value.geo,
-        'description': value.description,
         'partOf': value.partOf === undefined ? undefined : (value.partOf as Array<any>).map(RegionToJSON),
+        'description': value.description,
         'id': value.id,
         'label': value.label,
         'type': value.type,

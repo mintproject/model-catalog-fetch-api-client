@@ -19,6 +19,12 @@ import {
     DataTransformationToJSON,
 } from '../models';
 
+export interface CustomDataspecificationsIdDatatransformationsGetRequest {
+    id: string;
+    customQueryName?: string;
+    username?: string;
+}
+
 export interface DatatransformationsGetRequest {
     username?: string;
     label?: string;
@@ -51,6 +57,46 @@ export interface DatatransformationsPostRequest {
  * no description
  */
 export class DataTransformationApi extends runtime.BaseAPI {
+
+    /**
+     * Gets a list of data transformations related a dataset
+     * Gets a list of data transformations related a dataset
+     */
+    async customDataspecificationsIdDatatransformationsGetRaw(requestParameters: CustomDataspecificationsIdDatatransformationsGetRequest): Promise<runtime.ApiResponse<Array<DataTransformation>>> {
+        if (requestParameters.id === null || requestParameters.id === undefined) {
+            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling customDataspecificationsIdDatatransformationsGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.customQueryName !== undefined) {
+            queryParameters['custom_query_name'] = requestParameters.customQueryName;
+        }
+
+        if (requestParameters.username !== undefined) {
+            queryParameters['username'] = requestParameters.username;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/custom/dataspecifications/{id}/datatransformations`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DataTransformationFromJSON));
+    }
+
+   /**
+    * Gets a list of data transformations related a dataset
+    * Gets a list of data transformations related a dataset
+    */
+    async customDataspecificationsIdDatatransformationsGet(requestParameters: CustomDataspecificationsIdDatatransformationsGetRequest): Promise<Array<DataTransformation>> {
+        const response = await this.customDataspecificationsIdDatatransformationsGetRaw(requestParameters);
+        return await response.value();
+    }
 
     /**
      * Gets a list of all instances of DataTransformation (more information in https://w3id.org/okn/o/sd#DataTransformation)

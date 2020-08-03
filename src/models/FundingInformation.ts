@@ -44,17 +44,17 @@ export interface FundingInformation {
      */
     label?: Array<string> | null;
     /**
-     * type of the resource
-     * @type {Array<string>}
-     * @memberof FundingInformation
-     */
-    type?: Array<string> | null;
-    /**
      * Description not available
      * @type {Array<Organization>}
      * @memberof FundingInformation
      */
     fundingSource?: Array<Organization> | null;
+    /**
+     * type of the resource
+     * @type {Array<string>}
+     * @memberof FundingInformation
+     */
+    type?: Array<string> | null;
     /**
      * Grant number used for funding
      * @type {Array<string>}
@@ -76,8 +76,8 @@ export function FundingInformationFromJSONTyped(json: any, ignoreDiscriminator: 
         'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
         'fundingSource': !exists(json, 'fundingSource') ? undefined : (json['fundingSource'] as Array<any>).map(OrganizationFromJSON),
+        'type': !exists(json, 'type') ? undefined : json['type'],
         'fundingGrant': !exists(json, 'fundingGrant') ? undefined : json['fundingGrant'],
     };
 }
@@ -94,8 +94,8 @@ export function FundingInformationToJSON(value?: FundingInformation): any {
         'description': value.description,
         'id': value.id,
         'label': value.label,
-        'type': value.type,
         'fundingSource': value.fundingSource === undefined ? undefined : (value.fundingSource as Array<any>).map(OrganizationToJSON),
+        'type': value.type,
         'fundingGrant': value.fundingGrant,
     };
 }

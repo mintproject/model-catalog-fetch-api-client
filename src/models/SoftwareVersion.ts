@@ -169,10 +169,10 @@ export interface SoftwareVersion {
     shortDescription?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof SoftwareVersion
      */
-    datePublished?: Array<string> | null;
+    datePublished?: Array<Date> | null;
     /**
      * License of a software component or its source code
      * @type {Array<string>}
@@ -259,10 +259,10 @@ export interface SoftwareVersion {
     issueTracker?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof SoftwareVersion
      */
-    dateCreated?: Array<string> | null;
+    dateCreated?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<Person>}
