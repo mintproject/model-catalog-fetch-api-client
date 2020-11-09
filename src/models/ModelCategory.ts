@@ -12,60 +12,48 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import {
-    VariablePresentation,
-    Process,
-} from './';
-
 /**
- * Diagram information with the processes and variables associated with a model configuration
+ * Class used to represent a category of a model (e.g., Hydrology, Agriculture, etc.)
  * @export
- * @interface CausalDiagram
+ * @interface ModelCategory
  */
-export interface CausalDiagram {
-    /**
-     * Property that links a causal diagram with its constituent nodes
-     * @type {Array<VariablePresentation | Process>}
-     * @memberof CausalDiagram
-     */
-    hasDiagramPart?: Array<VariablePresentation | Process> | null;
+export interface ModelCategory {
     /**
      * small description
      * @type {Array<string>}
-     * @memberof CausalDiagram
+     * @memberof ModelCategory
      */
     description?: Array<string> | null;
     /**
      * identifier
      * @type {string}
-     * @memberof CausalDiagram
+     * @memberof ModelCategory
      */
     id?: string;
     /**
      * short description of the resource
      * @type {Array<string>}
-     * @memberof CausalDiagram
+     * @memberof ModelCategory
      */
     label?: Array<string> | null;
     /**
      * type of the resource
      * @type {Array<string>}
-     * @memberof CausalDiagram
+     * @memberof ModelCategory
      */
     type?: Array<string> | null;
 }
 
-export function CausalDiagramFromJSON(json: any): CausalDiagram {
-    return CausalDiagramFromJSONTyped(json, false);
+export function ModelCategoryFromJSON(json: any): ModelCategory {
+    return ModelCategoryFromJSONTyped(json, false);
 }
 
-export function CausalDiagramFromJSONTyped(json: any, ignoreDiscriminator: boolean): CausalDiagram {
+export function ModelCategoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): ModelCategory {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'hasDiagramPart': !exists(json, 'hasDiagramPart') ? undefined : json['hasDiagramPart'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
@@ -73,7 +61,7 @@ export function CausalDiagramFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function CausalDiagramToJSON(value?: CausalDiagram): any {
+export function ModelCategoryToJSON(value?: ModelCategory): any {
     if (value === undefined) {
         return undefined;
     }
@@ -82,7 +70,6 @@ export function CausalDiagramToJSON(value?: CausalDiagram): any {
     }
     return {
         
-        'hasDiagramPart': value.hasDiagramPart,
         'description': value.description,
         'id': value.id,
         'label': value.label,

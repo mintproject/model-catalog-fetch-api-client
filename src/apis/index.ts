@@ -1,5 +1,7 @@
+export * from './CatalogIdentifierApi';
 export * from './CausalDiagramApi';
 export * from './ConfigurationSetupApi';
+export * from './CoupledModelApi';
 export * from './DataTransformationApi';
 export * from './DataTransformationSetupApi';
 export * from './DatasetSpecificationApi';
@@ -15,6 +17,7 @@ export * from './HybridModelApi';
 export * from './ImageApi';
 export * from './InterventionApi';
 export * from './ModelApi';
+export * from './ModelCategoryApi';
 export * from './ModelConfigurationApi';
 export * from './ModelConfigurationSetupApi';
 export * from './NumericalIndexApi';

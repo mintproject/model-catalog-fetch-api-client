@@ -32,120 +32,120 @@ import {
 } from './';
 
 /**
- * Description not available
+ * Class to identify that a parameter is a catalog identifier. The rationale for this type of parameter is that in some cases datasets may be downloaded in the software component itself, rather than exposed as an input
  * @export
- * @interface Parameter
+ * @interface CatalogIdentifier
  */
-export interface Parameter {
+export interface CatalogIdentifier {
     /**
      * Default accepted value of a variable presentation (or a parameter)
      * @type {Array<URI | boolean | DateTime | float | integer | string>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     hasDefaultValue?: Array<string> | null;
     /**
      * Maximum accepted value of a variable presentation (or a parameter)
      * @type {Array<DateTime | float | integer>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     hasMaximumAcceptedValue?: Array<string> | null;
     /**
      * small description
      * @type {Array<string>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     description?: Array<string> | null;
     /**
      * Property that indicates the data type of a parameter
      * @type {Array<string>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     hasDataType?: Array<string> | null;
     /**
      * Value of a parameter in a software setup.
      * @type {Array<URI | boolean | DateTime | float | integer | string>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     hasFixedValue?: Array<string> | null;
     /**
      * Property that links an instance of a dataset (or a dataset specification) to the presentation of a variable contained (or expected to be contained) on it.
      * @type {Array<VariablePresentation>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     hasPresentation?: Array<VariablePresentation> | null;
     /**
      * short description of the resource
      * @type {Array<string>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     label?: Array<string> | null;
     /**
      * Value that represents how a parameter should be incremented on each iteration of a software component execution. This value is important when preparing execution ensembles automatically, e.g., simulating crop production varying the parameter \"fertilizer amount\" in increments of 10%.
      * @type {Array<number>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     recommendedIncrement?: Array<number> | null;
     /**
      * type of the resource
      * @type {Array<string>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     type?: Array<string> | null;
     /**
      * Minimum accepted value of a variable presentation (or a parameter)
      * @type {Array<DateTime | float | integer>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     hasMinimumAcceptedValue?: Array<string> | null;
     /**
      * Property that constraints which values are accepted for a parameter. For example, the name of a crop can only be \"Maize\" or \"Sorghum\"
      * @type {Array<string>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     hasAcceptedValues?: Array<string> | null;
     /**
      * Property that links parameter with the variable they adjust. This property can be used when parameters quantify variables without directly representing them. For example, a \"fertilizer percentage adjustment\" parameter can quantify a \"fertilizer price\" variable
      * @type {Array<Variable>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     adjustsVariable?: Array<Variable> | null;
     /**
      * Description not available
      * @type {Array<Intervention>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     relevantForIntervention?: Array<Intervention> | null;
     /**
      * Position of the parameter or input/output in the model configuration. This property is needed to know how to organize the I/O of the component on execution
      * @type {Array<number>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     position?: Array<number> | null;
     /**
      * identifier
      * @type {string}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     id?: string;
     /**
      * Property used to link a variable presentation or time interval to the unit they are represented in
      * @type {Array<Unit>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     usesUnit?: Array<Unit> | null;
     /**
      * Property that determines what are the increments (step size) that are commonly used to vary a parameter. This is commonly used for automatically setting up software tests. For example, if I want to set up a model and try 30 reasonable values on a parameter, I may use the default value and the step size to create the appropriate increments. If the step size is 0.1 and the default value is 0, then I will will be able to create setups: 0, 0.1, 0.2...2.9,3
      * @type {Array<number>}
-     * @memberof Parameter
+     * @memberof CatalogIdentifier
      */
     hasStepSize?: Array<number> | null;
 }
 
-export function ParameterFromJSON(json: any): Parameter {
-    return ParameterFromJSONTyped(json, false);
+export function CatalogIdentifierFromJSON(json: any): CatalogIdentifier {
+    return CatalogIdentifierFromJSONTyped(json, false);
 }
 
-export function ParameterFromJSONTyped(json: any, ignoreDiscriminator: boolean): Parameter {
+export function CatalogIdentifierFromJSONTyped(json: any, ignoreDiscriminator: boolean): CatalogIdentifier {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -171,7 +171,7 @@ export function ParameterFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     };
 }
 
-export function ParameterToJSON(value?: Parameter): any {
+export function CatalogIdentifierToJSON(value?: CatalogIdentifier): any {
     if (value === undefined) {
         return undefined;
     }
@@ -195,7 +195,7 @@ export function ParameterToJSON(value?: Parameter): any {
         'relevantForIntervention': value.relevantForIntervention === undefined ? undefined : (value.relevantForIntervention as Array<any>).map(InterventionToJSON),
         'position': value.position,
         'id': value.id,
-        'usesUnit': value.usesUnit,
+        'usesUnit': value.usesUnit === undefined ? undefined : (value.usesUnit as Array<any>).map(UnitToJSON),
         'hasStepSize': value.hasStepSize,
     };
 }

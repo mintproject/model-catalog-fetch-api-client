@@ -29,6 +29,10 @@ import {
     ImageFromJSON,
     ImageFromJSONTyped,
     ImageToJSON,
+    Model,
+    ModelFromJSON,
+    ModelFromJSONTyped,
+    ModelToJSON,
     ModelCategory,
     ModelCategoryFromJSON,
     ModelCategoryFromJSONTyped,
@@ -61,330 +65,336 @@ import {
 } from './';
 
 /**
- * Model based on observations.
+ * Model that incorporates the coupling of two or more existing models
  * @export
- * @interface EmpiricalModel
+ * @interface CoupledModel
  */
-export interface EmpiricalModel {
+export interface CoupledModel {
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasDownloadInstructions?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     keywords?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasDocumentation?: Array<string> | null;
     /**
      * Grid information about the model
      * @type {Array<Grid>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasGrid?: Array<Grid> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     softwareRequirements?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasDownloadURL?: Array<string> | null;
     /**
      * type of the resource
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     type?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasInstallationInstructions?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<Software>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     compatibleVisualizationSoftware?: Array<Software> | null;
     /**
      * Description not available
      * @type {Array<Organization | Person>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     copyrightHolder?: Array<Organization | Person> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasFAQ?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<Image>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     logo?: Array<Image> | null;
     /**
      * Description not available
      * @type {Array<Organization | Person>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasContactPerson?: Array<Organization | Person> | null;
     /**
      * identifier
      * @type {string}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     id?: string;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     identifier?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<Organization | Person>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     author?: Array<Organization | Person> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasBuildFile?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     shortDescription?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<Date>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     datePublished?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     license?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<SourceCode>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasSourceCode?: Array<SourceCode> | null;
     /**
      * Diagram used to explain the behavior of the model
      * @type {Array<Image>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasExplanationDiagram?: Array<Image> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasExample?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<Organization | Person>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     publisher?: Array<Organization | Person> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     doi?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<FundingInformation>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasFunding?: Array<FundingInformation> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     supportDetails?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<SoftwareVersion>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasVersion?: Array<SoftwareVersion> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasTypicalDataSource?: Array<string> | null;
     /**
      * small description
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     description?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     referencePublication?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<Image>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     screenshot?: Array<Image> | null;
     /**
+     * Property that describes which models are used by a coupled model
+     * @type {Array<Model>}
+     * @memberof CoupledModel
+     */
+    usesModel?: Array<Model> | null;
+    /**
      * Category associated with a model (e.g., Hydrology, etc.)
      * @type {Array<ModelCategory>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasModelCategory?: Array<ModelCategory> | null;
     /**
      * Description not available
      * @type {Array<object>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hadPrimarySource?: Array<object> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     issueTracker?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<Date>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     dateCreated?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<Person>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     contributor?: Array<Person> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasPurpose?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasExecutableInstructions?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<Visualization>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasSampleVisualization?: Array<Visualization> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     memoryRequirements?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     website?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     citation?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     processorRequirements?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasUsageNotes?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     readme?: Array<string> | null;
     /**
      * short description of the resource
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     label?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasAssumption?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     operatingSystems?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasExecutableNotebook?: Array<string> | null;
     /**
      * Equations used in the model
      * @type {Array<Equation>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     hasEquation?: Array<Equation> | null;
     /**
      * Description not available
      * @type {Array<NumericalIndex>}
-     * @memberof EmpiricalModel
+     * @memberof CoupledModel
      */
     usefulForCalculatingIndex?: Array<NumericalIndex> | null;
 }
 
-export function EmpiricalModelFromJSON(json: any): EmpiricalModel {
-    return EmpiricalModelFromJSONTyped(json, false);
+export function CoupledModelFromJSON(json: any): CoupledModel {
+    return CoupledModelFromJSONTyped(json, false);
 }
 
-export function EmpiricalModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): EmpiricalModel {
+export function CoupledModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): CoupledModel {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -422,6 +432,7 @@ export function EmpiricalModelFromJSONTyped(json: any, ignoreDiscriminator: bool
         'description': !exists(json, 'description') ? undefined : json['description'],
         'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'screenshot': !exists(json, 'screenshot') ? undefined : (json['screenshot'] as Array<any>).map(ImageFromJSON),
+        'usesModel': !exists(json, 'usesModel') ? undefined : (json['usesModel'] as Array<any>).map(ModelFromJSON),
         'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : (json['hasModelCategory'] as Array<any>).map(ModelCategoryFromJSON),
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
         'issueTracker': !exists(json, 'issueTracker') ? undefined : json['issueTracker'],
@@ -445,7 +456,7 @@ export function EmpiricalModelFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-export function EmpiricalModelToJSON(value?: EmpiricalModel): any {
+export function CoupledModelToJSON(value?: CoupledModel): any {
     if (value === undefined) {
         return undefined;
     }
@@ -486,6 +497,7 @@ export function EmpiricalModelToJSON(value?: EmpiricalModel): any {
         'description': value.description,
         'referencePublication': value.referencePublication,
         'screenshot': value.screenshot === undefined ? undefined : (value.screenshot as Array<any>).map(ImageToJSON),
+        'usesModel': value.usesModel === undefined ? undefined : (value.usesModel as Array<any>).map(ModelToJSON),
         'hasModelCategory': value.hasModelCategory === undefined ? undefined : (value.hasModelCategory as Array<any>).map(ModelCategoryToJSON),
         'hadPrimarySource': value.hadPrimarySource,
         'issueTracker': value.issueTracker,
