@@ -29,10 +29,6 @@ import {
     SampleResourceFromJSON,
     SampleResourceFromJSONTyped,
     SampleResourceToJSON,
-    URI | boolean | DateTime | float | integer | string,
-    URI | boolean | DateTime | float | integer | stringFromJSON,
-    URI | boolean | DateTime | float | integer | stringFromJSONTyped,
-    URI | boolean | DateTime | float | integer | stringToJSON,
     VariablePresentation,
     VariablePresentationFromJSON,
     VariablePresentationFromJSONTyped,
@@ -140,7 +136,7 @@ export interface Image {
      * @type {Array<URI | boolean | DateTime | float | integer | string>}
      * @memberof Image
      */
-    value?: Array<URI | boolean | DateTime | float | integer | string> | null;
+    value?: Array<string> | null;
 }
 
 export function ImageFromJSON(json: any): Image {
@@ -168,7 +164,7 @@ export function ImageFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ima
         'hasDataTransformationSetup': !exists(json, 'hasDataTransformationSetup') ? undefined : (json['hasDataTransformationSetup'] as Array<any>).map(DataTransformationSetupFromJSON),
         'position': !exists(json, 'position') ? undefined : json['position'],
         'id': !exists(json, 'id') ? undefined : json['id'],
-        'value': !exists(json, 'value') ? undefined : (json['value'] as Array<any>).map(URI | boolean | DateTime | float | integer | stringFromJSON),
+        'value': !exists(json, 'value') ? undefined : json['value'],
     };
 }
 
@@ -196,7 +192,7 @@ export function ImageToJSON(value?: Image): any {
         'hasDataTransformationSetup': value.hasDataTransformationSetup === undefined ? undefined : (value.hasDataTransformationSetup as Array<any>).map(DataTransformationSetupToJSON),
         'position': value.position,
         'id': value.id,
-        'value': value.value === undefined ? undefined : (value.value as Array<any>).map(URI | boolean | DateTime | float | integer | stringToJSON),
+        'value': value.value,
     };
 }
 

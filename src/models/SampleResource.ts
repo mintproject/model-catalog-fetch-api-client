@@ -12,12 +12,6 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import {
-    URI | boolean | DateTime | float | integer | string,
-    URI | boolean | DateTime | float | integer | stringFromJSON,
-    URI | boolean | DateTime | float | integer | stringFromJSONTyped,
-    URI | boolean | DateTime | float | integer | stringToJSON,
-} from './';
 
 /**
  * A sample resource associated with a software
@@ -57,10 +51,10 @@ export interface SampleResource {
     type?: Array<string> | null;
     /**
      * Value associated to the described entity
-     * @type {Array<URI | boolean | DateTime | float | integer | string>}
+     * @type {Array<string>}
      * @memberof SampleResource
      */
-    value?: Array<URI | boolean | DateTime | float | integer | string> | null;
+    value?: Array<string> | null;
 }
 
 export function SampleResourceFromJSON(json: any): SampleResource {
@@ -78,7 +72,7 @@ export function SampleResourceFromJSONTyped(json: any, ignoreDiscriminator: bool
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
-        'value': !exists(json, 'value') ? undefined : (json['value'] as Array<any>).map(URI | boolean | DateTime | float | integer | stringFromJSON),
+        'value': !exists(json, 'value') ? undefined : json['value'],
     };
 }
 
@@ -96,7 +90,7 @@ export function SampleResourceToJSON(value?: SampleResource): any {
         'id': value.id,
         'label': value.label,
         'type': value.type,
-        'value': value.value === undefined ? undefined : (value.value as Array<any>).map(URI | boolean | DateTime | float | integer | stringToJSON),
+        'value': value.value,
     };
 }
 

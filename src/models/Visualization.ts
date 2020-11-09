@@ -17,10 +17,6 @@ import {
     SoftwareFromJSON,
     SoftwareFromJSONTyped,
     SoftwareToJSON,
-    URI | boolean | DateTime | float | integer | string,
-    URI | boolean | DateTime | float | integer | stringFromJSON,
-    URI | boolean | DateTime | float | integer | stringFromJSONTyped,
-    URI | boolean | DateTime | float | integer | stringToJSON,
 } from './';
 
 /**
@@ -73,10 +69,10 @@ export interface Visualization {
     type?: Array<string> | null;
     /**
      * Value associated to the described entity
-     * @type {Array<URI | boolean | DateTime | float | integer | string>}
+     * @type {Array<string>}
      * @memberof Visualization
      */
-    value?: Array<URI | boolean | DateTime | float | integer | string> | null;
+    value?: Array<string> | null;
 }
 
 export function VisualizationFromJSON(json: any): Visualization {
@@ -96,7 +92,7 @@ export function VisualizationFromJSONTyped(json: any, ignoreDiscriminator: boole
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
-        'value': !exists(json, 'value') ? undefined : (json['value'] as Array<any>).map(URI | boolean | DateTime | float | integer | stringFromJSON),
+        'value': !exists(json, 'value') ? undefined : json['value'],
     };
 }
 
@@ -116,7 +112,7 @@ export function VisualizationToJSON(value?: Visualization): any {
         'id': value.id,
         'label': value.label,
         'type': value.type,
-        'value': value.value === undefined ? undefined : (value.value as Array<any>).map(URI | boolean | DateTime | float | integer | stringToJSON),
+        'value': value.value,
     };
 }
 

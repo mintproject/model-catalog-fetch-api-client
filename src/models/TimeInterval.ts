@@ -13,10 +13,6 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    Integer | string,
-    Integer | stringFromJSON,
-    Integer | stringFromJSONTyped,
-    Integer | stringToJSON,
     Unit,
     UnitFromJSON,
     UnitFromJSONTyped,
@@ -64,7 +60,7 @@ export interface TimeInterval {
      * @type {Array<Integer | string>}
      * @memberof TimeInterval
      */
-    intervalValue?: Array<Integer | string> | null;
+    intervalValue?: Array<string> | null;
 }
 
 export function TimeIntervalFromJSON(json: any): TimeInterval {
@@ -82,7 +78,7 @@ export function TimeIntervalFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
-        'intervalValue': !exists(json, 'intervalValue') ? undefined : (json['intervalValue'] as Array<any>).map(Integer | stringFromJSON),
+        'intervalValue': !exists(json, 'intervalValue') ? undefined : json['intervalValue'],
     };
 }
 
@@ -100,7 +96,7 @@ export function TimeIntervalToJSON(value?: TimeInterval): any {
         'id': value.id,
         'label': value.label,
         'type': value.type,
-        'intervalValue': value.intervalValue === undefined ? undefined : (value.intervalValue as Array<any>).map(Integer | stringToJSON),
+        'intervalValue': value.intervalValue,
     };
 }
 

@@ -13,10 +13,8 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    VariablePresentation | Process,
-    VariablePresentation | ProcessFromJSON,
-    VariablePresentation | ProcessFromJSONTyped,
-    VariablePresentation | ProcessToJSON,
+    VariablePresentation,
+    Process,
 } from './';
 
 /**
@@ -67,7 +65,7 @@ export function CausalDiagramFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'hasDiagramPart': !exists(json, 'hasDiagramPart') ? undefined : (json['hasDiagramPart'] as Array<any>).map(VariablePresentation | ProcessFromJSON),
+        'hasDiagramPart': !exists(json, 'hasDiagramPart') ? undefined : json['hasDiagramPart'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
@@ -84,7 +82,7 @@ export function CausalDiagramToJSON(value?: CausalDiagram): any {
     }
     return {
         
-        'hasDiagramPart': value.hasDiagramPart === undefined ? undefined : (value.hasDiagramPart as Array<any>).map(VariablePresentation | ProcessToJSON),
+        'hasDiagramPart': value.hasDiagramPart,
         'description': value.description,
         'id': value.id,
         'label': value.label,

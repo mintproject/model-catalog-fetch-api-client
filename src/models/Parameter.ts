@@ -13,18 +13,10 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    DateTime | float | integer,
-    DateTime | float | integerFromJSON,
-    DateTime | float | integerFromJSONTyped,
-    DateTime | float | integerToJSON,
     Intervention,
     InterventionFromJSON,
     InterventionFromJSONTyped,
     InterventionToJSON,
-    URI | boolean | DateTime | float | integer | string,
-    URI | boolean | DateTime | float | integer | stringFromJSON,
-    URI | boolean | DateTime | float | integer | stringFromJSONTyped,
-    URI | boolean | DateTime | float | integer | stringToJSON,
     Unit,
     UnitFromJSON,
     UnitFromJSONTyped,
@@ -50,13 +42,13 @@ export interface Parameter {
      * @type {Array<URI | boolean | DateTime | float | integer | string>}
      * @memberof Parameter
      */
-    hasDefaultValue?: Array<URI | boolean | DateTime | float | integer | string> | null;
+    hasDefaultValue?: Array<string> | null;
     /**
      * Maximum accepted value of a variable presentation (or a parameter)
      * @type {Array<DateTime | float | integer>}
      * @memberof Parameter
      */
-    hasMaximumAcceptedValue?: Array<DateTime | float | integer> | null;
+    hasMaximumAcceptedValue?: Array<string> | null;
     /**
      * small description
      * @type {Array<string>}
@@ -74,7 +66,7 @@ export interface Parameter {
      * @type {Array<URI | boolean | DateTime | float | integer | string>}
      * @memberof Parameter
      */
-    hasFixedValue?: Array<URI | boolean | DateTime | float | integer | string> | null;
+    hasFixedValue?: Array<string> | null;
     /**
      * Property that links an instance of a dataset (or a dataset specification) to the presentation of a variable contained (or expected to be contained) on it.
      * @type {Array<VariablePresentation>}
@@ -104,7 +96,7 @@ export interface Parameter {
      * @type {Array<DateTime | float | integer>}
      * @memberof Parameter
      */
-    hasMinimumAcceptedValue?: Array<DateTime | float | integer> | null;
+    hasMinimumAcceptedValue?: Array<string> | null;
     /**
      * Property that constraints which values are accepted for a parameter. For example, the name of a crop can only be \"Maize\" or \"Sorghum\"
      * @type {Array<string>}
@@ -159,16 +151,16 @@ export function ParameterFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
-        'hasDefaultValue': !exists(json, 'hasDefaultValue') ? undefined : (json['hasDefaultValue'] as Array<any>).map(URI | boolean | DateTime | float | integer | stringFromJSON),
-        'hasMaximumAcceptedValue': !exists(json, 'hasMaximumAcceptedValue') ? undefined : (json['hasMaximumAcceptedValue'] as Array<any>).map(DateTime | float | integerFromJSON),
+        'hasDefaultValue': !exists(json, 'hasDefaultValue') ? undefined : json['hasDefaultValue'],
+        'hasMaximumAcceptedValue': !exists(json, 'hasMaximumAcceptedValue') ? undefined : json['hasMaximumAcceptedValue'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'hasDataType': !exists(json, 'hasDataType') ? undefined : json['hasDataType'],
-        'hasFixedValue': !exists(json, 'hasFixedValue') ? undefined : (json['hasFixedValue'] as Array<any>).map(URI | boolean | DateTime | float | integer | stringFromJSON),
+        'hasFixedValue': !exists(json, 'hasFixedValue') ? undefined : json['hasFixedValue'],
         'hasPresentation': !exists(json, 'hasPresentation') ? undefined : (json['hasPresentation'] as Array<any>).map(VariablePresentationFromJSON),
         'label': !exists(json, 'label') ? undefined : json['label'],
         'recommendedIncrement': !exists(json, 'recommendedIncrement') ? undefined : json['recommendedIncrement'],
         'type': !exists(json, 'type') ? undefined : json['type'],
-        'hasMinimumAcceptedValue': !exists(json, 'hasMinimumAcceptedValue') ? undefined : (json['hasMinimumAcceptedValue'] as Array<any>).map(DateTime | float | integerFromJSON),
+        'hasMinimumAcceptedValue': !exists(json, 'hasMinimumAcceptedValue') ? undefined : json['hasMinimumAcceptedValue'],
         'hasAcceptedValues': !exists(json, 'hasAcceptedValues') ? undefined : json['hasAcceptedValues'],
         'adjustsVariable': !exists(json, 'adjustsVariable') ? undefined : (json['adjustsVariable'] as Array<any>).map(VariableFromJSON),
         'relevantForIntervention': !exists(json, 'relevantForIntervention') ? undefined : (json['relevantForIntervention'] as Array<any>).map(InterventionFromJSON),
@@ -188,22 +180,22 @@ export function ParameterToJSON(value?: Parameter): any {
     }
     return {
         
-        'hasDefaultValue': value.hasDefaultValue === undefined ? undefined : (value.hasDefaultValue as Array<any>).map(URI | boolean | DateTime | float | integer | stringToJSON),
-        'hasMaximumAcceptedValue': value.hasMaximumAcceptedValue === undefined ? undefined : (value.hasMaximumAcceptedValue as Array<any>).map(DateTime | float | integerToJSON),
+        'hasDefaultValue': value.hasDefaultValue,
+        'hasMaximumAcceptedValue': value.hasMaximumAcceptedValue,
         'description': value.description,
         'hasDataType': value.hasDataType,
-        'hasFixedValue': value.hasFixedValue === undefined ? undefined : (value.hasFixedValue as Array<any>).map(URI | boolean | DateTime | float | integer | stringToJSON),
+        'hasFixedValue': value.hasFixedValue,
         'hasPresentation': value.hasPresentation === undefined ? undefined : (value.hasPresentation as Array<any>).map(VariablePresentationToJSON),
         'label': value.label,
         'recommendedIncrement': value.recommendedIncrement,
         'type': value.type,
-        'hasMinimumAcceptedValue': value.hasMinimumAcceptedValue === undefined ? undefined : (value.hasMinimumAcceptedValue as Array<any>).map(DateTime | float | integerToJSON),
+        'hasMinimumAcceptedValue': value.hasMinimumAcceptedValue,
         'hasAcceptedValues': value.hasAcceptedValues,
         'adjustsVariable': value.adjustsVariable === undefined ? undefined : (value.adjustsVariable as Array<any>).map(VariableToJSON),
         'relevantForIntervention': value.relevantForIntervention === undefined ? undefined : (value.relevantForIntervention as Array<any>).map(InterventionToJSON),
         'position': value.position,
         'id': value.id,
-        'usesUnit': value.usesUnit === undefined ? undefined : (value.usesUnit as Array<any>).map(UnitToJSON),
+        'usesUnit': value.usesUnit,
         'hasStepSize': value.hasStepSize,
     };
 }

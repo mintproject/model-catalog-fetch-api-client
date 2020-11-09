@@ -17,18 +17,10 @@ import {
     DatasetSpecificationFromJSON,
     DatasetSpecificationFromJSONTyped,
     DatasetSpecificationToJSON,
-    DateTime | float | integer,
-    DateTime | float | integerFromJSON,
-    DateTime | float | integerFromJSONTyped,
-    DateTime | float | integerToJSON,
     StandardVariable,
     StandardVariableFromJSON,
     StandardVariableFromJSONTyped,
     StandardVariableToJSON,
-    URI | boolean | DateTime | float | integer | string,
-    URI | boolean | DateTime | float | integer | stringFromJSON,
-    URI | boolean | DateTime | float | integer | stringFromJSONTyped,
-    URI | boolean | DateTime | float | integer | stringToJSON,
     Unit,
     UnitFromJSON,
     UnitFromJSONTyped,
@@ -43,10 +35,10 @@ import {
 export interface VariablePresentation {
     /**
      * Default accepted value of a variable presentation (or a parameter)
-     * @type {Array<URI | boolean | DateTime | float | integer | string>}
+     * @type {Array<string>}
      * @memberof VariablePresentation
      */
-    hasDefaultValue?: Array<URI | boolean | DateTime | float | integer | string> | null;
+    hasDefaultValue?: Array<string> | null;
     /**
      * the standard name of a variable
      * @type {Array<StandardVariable>}
@@ -55,10 +47,10 @@ export interface VariablePresentation {
     hasStandardVariable?: Array<StandardVariable> | null;
     /**
      * Maximum accepted value of a variable presentation (or a parameter)
-     * @type {Array<DateTime | float | integer>}
+     * @type {Array<string>}
      * @memberof VariablePresentation
      */
-    hasMaximumAcceptedValue?: Array<DateTime | float | integer> | null;
+    hasMaximumAcceptedValue?: Array<string> | null;
     /**
      * Constraint or rule associated to a  variable or software configuration. For example: \"This model accepts only monthly data\", or \"all inputs of this model configuration must share the same location\". More structured restrictions, such as Jena rules or SWRL rules may also be captured with this property
      * @type {Array<string>}
@@ -97,10 +89,10 @@ export interface VariablePresentation {
     hasShortName?: Array<string> | null;
     /**
      * Minimum accepted value of a variable presentation (or a parameter)
-     * @type {Array<DateTime | float | integer>}
+     * @type {Array<string>}
      * @memberof VariablePresentation
      */
-    hasMinimumAcceptedValue?: Array<DateTime | float | integer> | null;
+    hasMinimumAcceptedValue?: Array<string> | null;
     /**
      * Associates a presentation with a dataset where the presentation occurs
      * @type {Array<DatasetSpecification>}
@@ -131,16 +123,16 @@ export function VariablePresentationFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'hasDefaultValue': !exists(json, 'hasDefaultValue') ? undefined : (json['hasDefaultValue'] as Array<any>).map(URI | boolean | DateTime | float | integer | stringFromJSON),
+        'hasDefaultValue': !exists(json, 'hasDefaultValue') ? undefined : json['hasDefaultValue'],
         'hasStandardVariable': !exists(json, 'hasStandardVariable') ? undefined : (json['hasStandardVariable'] as Array<any>).map(StandardVariableFromJSON),
-        'hasMaximumAcceptedValue': !exists(json, 'hasMaximumAcceptedValue') ? undefined : (json['hasMaximumAcceptedValue'] as Array<any>).map(DateTime | float | integerFromJSON),
+        'hasMaximumAcceptedValue': !exists(json, 'hasMaximumAcceptedValue') ? undefined : json['hasMaximumAcceptedValue'],
         'hasConstraint': !exists(json, 'hasConstraint') ? undefined : json['hasConstraint'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasLongName': !exists(json, 'hasLongName') ? undefined : json['hasLongName'],
         'hasShortName': !exists(json, 'hasShortName') ? undefined : json['hasShortName'],
-        'hasMinimumAcceptedValue': !exists(json, 'hasMinimumAcceptedValue') ? undefined : (json['hasMinimumAcceptedValue'] as Array<any>).map(DateTime | float | integerFromJSON),
+        'hasMinimumAcceptedValue': !exists(json, 'hasMinimumAcceptedValue') ? undefined : json['hasMinimumAcceptedValue'],
         'partOfDataset': !exists(json, 'partOfDataset') ? undefined : (json['partOfDataset'] as Array<any>).map(DatasetSpecificationFromJSON),
         'id': !exists(json, 'id') ? undefined : json['id'],
         'usesUnit': !exists(json, 'usesUnit') ? undefined : (json['usesUnit'] as Array<any>).map(UnitFromJSON),
@@ -156,19 +148,19 @@ export function VariablePresentationToJSON(value?: VariablePresentation): any {
     }
     return {
         
-        'hasDefaultValue': value.hasDefaultValue === undefined ? undefined : (value.hasDefaultValue as Array<any>).map(URI | boolean | DateTime | float | integer | stringToJSON),
-        'hasStandardVariable': value.hasStandardVariable === undefined ? undefined : (value.hasStandardVariable as Array<any>).map(StandardVariableToJSON),
-        'hasMaximumAcceptedValue': value.hasMaximumAcceptedValue === undefined ? undefined : (value.hasMaximumAcceptedValue as Array<any>).map(DateTime | float | integerToJSON),
+        'hasDefaultValue': value.hasDefaultValue,
+        'hasStandardVariable': value.hasStandardVariable,
+        'hasMaximumAcceptedValue': value.hasMaximumAcceptedValue,
         'hasConstraint': value.hasConstraint,
         'description': value.description,
         'label': value.label,
         'type': value.type,
         'hasLongName': value.hasLongName,
         'hasShortName': value.hasShortName,
-        'hasMinimumAcceptedValue': value.hasMinimumAcceptedValue === undefined ? undefined : (value.hasMinimumAcceptedValue as Array<any>).map(DateTime | float | integerToJSON),
-        'partOfDataset': value.partOfDataset === undefined ? undefined : (value.partOfDataset as Array<any>).map(DatasetSpecificationToJSON),
+        'hasMinimumAcceptedValue': value.hasMinimumAcceptedValue,
+        'partOfDataset': value.partOfDataset,
         'id': value.id,
-        'usesUnit': value.usesUnit === undefined ? undefined : (value.usesUnit as Array<any>).map(UnitToJSON),
+        'usesUnit': value.usesUnit,
     };
 }
 

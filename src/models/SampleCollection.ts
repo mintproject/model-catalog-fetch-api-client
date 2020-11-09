@@ -17,10 +17,6 @@ import {
     SampleResourceFromJSON,
     SampleResourceFromJSONTyped,
     SampleResourceToJSON,
-    URI | boolean | DateTime | float | integer | string,
-    URI | boolean | DateTime | float | integer | stringFromJSON,
-    URI | boolean | DateTime | float | integer | stringFromJSONTyped,
-    URI | boolean | DateTime | float | integer | stringToJSON,
 } from './';
 
 /**
@@ -67,10 +63,10 @@ export interface SampleCollection {
     type?: Array<string> | null;
     /**
      * Value associated to the described entity
-     * @type {Array<URI | boolean | DateTime | float | integer | string>}
+     * @type {Array<string>}
      * @memberof SampleCollection
      */
-    value?: Array<URI | boolean | DateTime | float | integer | string> | null;
+    value?: Array<string> | null;
 }
 
 export function SampleCollectionFromJSON(json: any): SampleCollection {
@@ -89,7 +85,7 @@ export function SampleCollectionFromJSONTyped(json: any, ignoreDiscriminator: bo
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
-        'value': !exists(json, 'value') ? undefined : (json['value'] as Array<any>).map(URI | boolean | DateTime | float | integer | stringFromJSON),
+        'value': !exists(json, 'value') ? undefined : json['value'],
     };
 }
 
@@ -108,7 +104,7 @@ export function SampleCollectionToJSON(value?: SampleCollection): any {
         'id': value.id,
         'label': value.label,
         'type': value.type,
-        'value': value.value === undefined ? undefined : (value.value as Array<any>).map(URI | boolean | DateTime | float | integer | stringToJSON),
+        'value': value.value,
     };
 }
 

@@ -13,10 +13,8 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    GeoCoordinates | GeoShape,
-    GeoCoordinates | GeoShapeFromJSON,
-    GeoCoordinates | GeoShapeFromJSONTyped,
-    GeoCoordinates | GeoShapeToJSON,
+    GeoCoordinates,
+    GeoShape,
 } from './';
 
 /**
@@ -73,7 +71,7 @@ export function RegionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
     }
     return {
         
-        'geo': !exists(json, 'geo') ? undefined : (json['geo'] as Array<any>).map(GeoCoordinates | GeoShapeFromJSON),
+        'geo': !exists(json, 'geo') ? undefined : json['geo'],
         'partOf': !exists(json, 'partOf') ? undefined : (json['partOf'] as Array<any>).map(RegionFromJSON),
         'description': !exists(json, 'description') ? undefined : json['description'],
         'id': !exists(json, 'id') ? undefined : json['id'],
@@ -91,7 +89,7 @@ export function RegionToJSON(value?: Region): any {
     }
     return {
         
-        'geo': value.geo === undefined ? undefined : (value.geo as Array<any>).map(GeoCoordinates | GeoShapeToJSON),
+        'geo': value.geo,
         'partOf': value.partOf === undefined ? undefined : (value.partOf as Array<any>).map(RegionToJSON),
         'description': value.description,
         'id': value.id,
