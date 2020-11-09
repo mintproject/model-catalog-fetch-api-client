@@ -13,42 +13,42 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * A standard variable, necessary to refer to all the variable using the same nomenclature in a domain ontology. For example, a standard variable may be a SVO variable (http://www.geoscienceontology.org/geo-upper#Variable)
+ * Class used to represent a category of a model (e.g., Hydrology, Agriculture, etc.)
  * @export
- * @interface StandardVariable
+ * @interface ModelCategory
  */
-export interface StandardVariable {
+export interface ModelCategory {
     /**
      * small description
      * @type {Array<string>}
-     * @memberof StandardVariable
+     * @memberof ModelCategory
      */
     description?: Array<string> | null;
     /**
      * identifier
      * @type {string}
-     * @memberof StandardVariable
+     * @memberof ModelCategory
      */
     id?: string;
     /**
      * short description of the resource
      * @type {Array<string>}
-     * @memberof StandardVariable
+     * @memberof ModelCategory
      */
     label?: Array<string> | null;
     /**
      * type of the resource
      * @type {Array<string>}
-     * @memberof StandardVariable
+     * @memberof ModelCategory
      */
     type?: Array<string> | null;
 }
 
-export function StandardVariableFromJSON(json: any): StandardVariable {
-    return StandardVariableFromJSONTyped(json, false);
+export function ModelCategoryFromJSON(json: any): ModelCategory {
+    return ModelCategoryFromJSONTyped(json, false);
 }
 
-export function StandardVariableFromJSONTyped(json: any, ignoreDiscriminator: boolean): StandardVariable {
+export function ModelCategoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): ModelCategory {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -61,7 +61,7 @@ export function StandardVariableFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function StandardVariableToJSON(value?: StandardVariable): any {
+export function ModelCategoryToJSON(value?: ModelCategory): any {
     if (value === undefined) {
         return undefined;
     }

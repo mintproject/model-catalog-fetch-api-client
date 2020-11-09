@@ -13,18 +13,6 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    CausalDiagram,
-    CausalDiagramFromJSON,
-    CausalDiagramFromJSONTyped,
-    CausalDiagramToJSON,
-    ConfigurationSetup,
-    ConfigurationSetupFromJSON,
-    ConfigurationSetupFromJSONTyped,
-    ConfigurationSetupToJSON,
-    DatasetSpecification,
-    DatasetSpecificationFromJSON,
-    DatasetSpecificationFromJSONTyped,
-    DatasetSpecificationToJSON,
     Equation,
     EquationFromJSON,
     EquationFromJSONTyped,
@@ -41,6 +29,10 @@ import {
     ImageFromJSON,
     ImageFromJSONTyped,
     ImageToJSON,
+    Model,
+    ModelFromJSON,
+    ModelFromJSONTyped,
+    ModelToJSON,
     ModelCategory,
     ModelCategoryFromJSON,
     ModelCategoryFromJSONTyped,
@@ -53,38 +45,14 @@ import {
     Organization | PersonFromJSON,
     Organization | PersonFromJSONTyped,
     Organization | PersonToJSON,
-    Parameter,
-    ParameterFromJSON,
-    ParameterFromJSONTyped,
-    ParameterToJSON,
     Person,
     PersonFromJSON,
     PersonFromJSONTyped,
     PersonToJSON,
-    Process,
-    ProcessFromJSON,
-    ProcessFromJSONTyped,
-    ProcessToJSON,
-    Region,
-    RegionFromJSON,
-    RegionFromJSONTyped,
-    RegionToJSON,
-    SampleExecution,
-    SampleExecutionFromJSON,
-    SampleExecutionFromJSONTyped,
-    SampleExecutionToJSON,
-    SampleResource,
-    SampleResourceFromJSON,
-    SampleResourceFromJSONTyped,
-    SampleResourceToJSON,
     Software,
     SoftwareFromJSON,
     SoftwareFromJSONTyped,
     SoftwareToJSON,
-    SoftwareImage,
-    SoftwareImageFromJSON,
-    SoftwareImageFromJSONTyped,
-    SoftwareImageToJSON,
     SoftwareVersion,
     SoftwareVersionFromJSON,
     SoftwareVersionFromJSONTyped,
@@ -93,10 +61,6 @@ import {
     SourceCodeFromJSON,
     SourceCodeFromJSONTyped,
     SourceCodeToJSON,
-    TimeInterval,
-    TimeIntervalFromJSON,
-    TimeIntervalFromJSONTyped,
-    TimeIntervalToJSON,
     Visualization,
     VisualizationFromJSON,
     VisualizationFromJSONTyped,
@@ -104,438 +68,336 @@ import {
 } from './';
 
 /**
- * A model configuration is a way of exposing a particular functionality of a model.
+ * Model that incorporates the coupling of two or more existing models
  * @export
- * @interface ModelConfiguration
+ * @interface CoupledModel
  */
-export interface ModelConfiguration {
+export interface CoupledModel {
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasDownloadInstructions?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     keywords?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasDocumentation?: Array<string> | null;
     /**
      * Grid information about the model
      * @type {Array<Grid>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasGrid?: Array<Grid> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
-     */
-    hasImplementationScriptLocation?: Array<string> | null;
-    /**
-     * Description not available
-     * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     softwareRequirements?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasDownloadURL?: Array<string> | null;
     /**
      * type of the resource
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     type?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasInstallationInstructions?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<Software>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     compatibleVisualizationSoftware?: Array<Software> | null;
     /**
      * Description not available
      * @type {Array<Organization | Person>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     copyrightHolder?: Array<Organization | Person> | null;
     /**
-     * Property linking a region to a model configuration/calibration. This property implies that the described model configuration is prepared to execute in that target region
-     * @type {Array<Region>}
-     * @memberof ModelConfiguration
-     */
-    hasRegion?: Array<Region> | null;
-    /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasFAQ?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<Image>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     logo?: Array<Image> | null;
     /**
      * Description not available
      * @type {Array<Organization | Person>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasContactPerson?: Array<Organization | Person> | null;
     /**
-     * Description not available
-     * @type {Array<string>}
-     * @memberof ModelConfiguration
-     */
-    tag?: Array<string> | null;
-    /**
      * identifier
      * @type {string}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     id?: string;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     identifier?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<SampleExecution>}
-     * @memberof ModelConfiguration
-     */
-    hasSampleExecution?: Array<SampleExecution> | null;
-    /**
-     * Description not available
-     * @type {Array<SampleResource>}
-     * @memberof ModelConfiguration
-     */
-    hasSampleResult?: Array<SampleResource> | null;
-    /**
-     * Description not available
      * @type {Array<Organization | Person>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     author?: Array<Organization | Person> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
-     */
-    hasConstraint?: Array<string> | null;
-    /**
-     * Description not available
-     * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasBuildFile?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     shortDescription?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<string>}
-     * @memberof ModelConfiguration
-     */
-    hasExecutionCommand?: Array<string> | null;
-    /**
-     * Description not available
      * @type {Array<Date>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     datePublished?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     license?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<SourceCode>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasSourceCode?: Array<SourceCode> | null;
     /**
-     * Description not available
-     * @type {Array<ConfigurationSetup>}
-     * @memberof ModelConfiguration
-     */
-    hasSetup?: Array<ConfigurationSetup> | null;
-    /**
      * Diagram used to explain the behavior of the model
      * @type {Array<Image>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasExplanationDiagram?: Array<Image> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasExample?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<Organization | Person>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     publisher?: Array<Organization | Person> | null;
     /**
      * Description not available
-     * @type {Array<DatasetSpecification>}
-     * @memberof ModelConfiguration
-     */
-    hasOutput?: Array<DatasetSpecification> | null;
-    /**
-     * Time interval used in the model configuration
-     * @type {Array<TimeInterval>}
-     * @memberof ModelConfiguration
-     */
-    hasOutputTimeInterval?: Array<TimeInterval> | null;
-    /**
-     * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     doi?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<FundingInformation>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasFunding?: Array<FundingInformation> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
-     */
-    hasComponentLocation?: Array<string> | null;
-    /**
-     * Property that indicates which physical processes (if any) are associated with a model configuration
-     * @type {Array<Process>}
-     * @memberof ModelConfiguration
-     */
-    hasProcess?: Array<Process> | null;
-    /**
-     * Description not available
-     * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     supportDetails?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<SoftwareVersion>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasVersion?: Array<SoftwareVersion> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasTypicalDataSource?: Array<string> | null;
     /**
      * small description
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     description?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     referencePublication?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<Image>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     screenshot?: Array<Image> | null;
     /**
+     * Property that describes which models are used by a coupled model
+     * @type {Array<Model>}
+     * @memberof CoupledModel
+     */
+    usesModel?: Array<Model> | null;
+    /**
      * Category associated with a model (e.g., Hydrology, etc.)
      * @type {Array<ModelCategory>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasModelCategory?: Array<ModelCategory> | null;
     /**
      * Description not available
      * @type {Array<object>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hadPrimarySource?: Array<object> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     issueTracker?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<SoftwareImage>}
-     * @memberof ModelConfiguration
-     */
-    hasSoftwareImage?: Array<SoftwareImage> | null;
-    /**
-     * Description not available
      * @type {Array<Date>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     dateCreated?: Array<Date> | null;
     /**
      * Description not available
      * @type {Array<Person>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     contributor?: Array<Person> | null;
     /**
-     * Sample result table associated with a model configuration
-     * @type {Array<string>}
-     * @memberof ModelConfiguration
-     */
-    hasModelResultTable?: Array<string> | null;
-    /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasPurpose?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasExecutableInstructions?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<Visualization>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasSampleVisualization?: Array<Visualization> | null;
     /**
-     * Diagram associated to a model configuration
-     * @type {Array<CausalDiagram>}
-     * @memberof ModelConfiguration
-     */
-    hasCausalDiagram?: Array<CausalDiagram> | null;
-    /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     memoryRequirements?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     website?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     citation?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     processorRequirements?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasUsageNotes?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
-     */
-    hasSupportScriptLocation?: Array<string> | null;
-    /**
-     * Description not available
-     * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     readme?: Array<string> | null;
     /**
      * short description of the resource
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     label?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasAssumption?: Array<string> | null;
     /**
      * Description not available
-     * @type {Array<Parameter>}
-     * @memberof ModelConfiguration
-     */
-    hasParameter?: Array<Parameter> | null;
-    /**
-     * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     operatingSystems?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasExecutableNotebook?: Array<string> | null;
     /**
      * Equations used in the model
      * @type {Array<Equation>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     hasEquation?: Array<Equation> | null;
     /**
      * Description not available
      * @type {Array<NumericalIndex>}
-     * @memberof ModelConfiguration
+     * @memberof CoupledModel
      */
     usefulForCalculatingIndex?: Array<NumericalIndex> | null;
-    /**
-     * Description not available
-     * @type {Array<DatasetSpecification>}
-     * @memberof ModelConfiguration
-     */
-    hasInput?: Array<DatasetSpecification> | null;
 }
 
-export function ModelConfigurationFromJSON(json: any): ModelConfiguration {
-    return ModelConfigurationFromJSONTyped(json, false);
+export function CoupledModelFromJSON(json: any): CoupledModel {
+    return CoupledModelFromJSONTyped(json, false);
 }
 
-export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: boolean): ModelConfiguration {
+export function CoupledModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): CoupledModel {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -545,76 +407,59 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'keywords': !exists(json, 'keywords') ? undefined : json['keywords'],
         'hasDocumentation': !exists(json, 'hasDocumentation') ? undefined : json['hasDocumentation'],
         'hasGrid': !exists(json, 'hasGrid') ? undefined : (json['hasGrid'] as Array<any>).map(GridFromJSON),
-        'hasImplementationScriptLocation': !exists(json, 'hasImplementationScriptLocation') ? undefined : json['hasImplementationScriptLocation'],
         'softwareRequirements': !exists(json, 'softwareRequirements') ? undefined : json['softwareRequirements'],
         'hasDownloadURL': !exists(json, 'hasDownloadURL') ? undefined : json['hasDownloadURL'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'hasInstallationInstructions': !exists(json, 'hasInstallationInstructions') ? undefined : json['hasInstallationInstructions'],
         'compatibleVisualizationSoftware': !exists(json, 'compatibleVisualizationSoftware') ? undefined : (json['compatibleVisualizationSoftware'] as Array<any>).map(SoftwareFromJSON),
         'copyrightHolder': !exists(json, 'copyrightHolder') ? undefined : (json['copyrightHolder'] as Array<any>).map(Organization | PersonFromJSON),
-        'hasRegion': !exists(json, 'hasRegion') ? undefined : (json['hasRegion'] as Array<any>).map(RegionFromJSON),
         'hasFAQ': !exists(json, 'hasFAQ') ? undefined : json['hasFAQ'],
         'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : (json['hasContactPerson'] as Array<any>).map(Organization | PersonFromJSON),
-        'tag': !exists(json, 'tag') ? undefined : json['tag'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
-        'hasSampleExecution': !exists(json, 'hasSampleExecution') ? undefined : (json['hasSampleExecution'] as Array<any>).map(SampleExecutionFromJSON),
-        'hasSampleResult': !exists(json, 'hasSampleResult') ? undefined : (json['hasSampleResult'] as Array<any>).map(SampleResourceFromJSON),
         'author': !exists(json, 'author') ? undefined : (json['author'] as Array<any>).map(Organization | PersonFromJSON),
-        'hasConstraint': !exists(json, 'hasConstraint') ? undefined : json['hasConstraint'],
         'hasBuildFile': !exists(json, 'hasBuildFile') ? undefined : json['hasBuildFile'],
         'shortDescription': !exists(json, 'shortDescription') ? undefined : json['shortDescription'],
-        'hasExecutionCommand': !exists(json, 'hasExecutionCommand') ? undefined : json['hasExecutionCommand'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
         'license': !exists(json, 'license') ? undefined : json['license'],
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : (json['hasSourceCode'] as Array<any>).map(SourceCodeFromJSON),
-        'hasSetup': !exists(json, 'hasSetup') ? undefined : (json['hasSetup'] as Array<any>).map(ConfigurationSetupFromJSON),
         'hasExplanationDiagram': !exists(json, 'hasExplanationDiagram') ? undefined : (json['hasExplanationDiagram'] as Array<any>).map(ImageFromJSON),
         'hasExample': !exists(json, 'hasExample') ? undefined : json['hasExample'],
         'publisher': !exists(json, 'publisher') ? undefined : (json['publisher'] as Array<any>).map(Organization | PersonFromJSON),
-        'hasOutput': !exists(json, 'hasOutput') ? undefined : (json['hasOutput'] as Array<any>).map(DatasetSpecificationFromJSON),
-        'hasOutputTimeInterval': !exists(json, 'hasOutputTimeInterval') ? undefined : (json['hasOutputTimeInterval'] as Array<any>).map(TimeIntervalFromJSON),
         'doi': !exists(json, 'doi') ? undefined : json['doi'],
         'hasFunding': !exists(json, 'hasFunding') ? undefined : (json['hasFunding'] as Array<any>).map(FundingInformationFromJSON),
-        'hasComponentLocation': !exists(json, 'hasComponentLocation') ? undefined : json['hasComponentLocation'],
-        'hasProcess': !exists(json, 'hasProcess') ? undefined : (json['hasProcess'] as Array<any>).map(ProcessFromJSON),
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : (json['hasVersion'] as Array<any>).map(SoftwareVersionFromJSON),
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'referencePublication': !exists(json, 'referencePublication') ? undefined : json['referencePublication'],
         'screenshot': !exists(json, 'screenshot') ? undefined : (json['screenshot'] as Array<any>).map(ImageFromJSON),
+        'usesModel': !exists(json, 'usesModel') ? undefined : (json['usesModel'] as Array<any>).map(ModelFromJSON),
         'hasModelCategory': !exists(json, 'hasModelCategory') ? undefined : (json['hasModelCategory'] as Array<any>).map(ModelCategoryFromJSON),
         'hadPrimarySource': !exists(json, 'hadPrimarySource') ? undefined : json['hadPrimarySource'],
         'issueTracker': !exists(json, 'issueTracker') ? undefined : json['issueTracker'],
-        'hasSoftwareImage': !exists(json, 'hasSoftwareImage') ? undefined : (json['hasSoftwareImage'] as Array<any>).map(SoftwareImageFromJSON),
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
         'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
-        'hasModelResultTable': !exists(json, 'hasModelResultTable') ? undefined : json['hasModelResultTable'],
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'hasExecutableInstructions': !exists(json, 'hasExecutableInstructions') ? undefined : json['hasExecutableInstructions'],
         'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : (json['hasSampleVisualization'] as Array<any>).map(VisualizationFromJSON),
-        'hasCausalDiagram': !exists(json, 'hasCausalDiagram') ? undefined : (json['hasCausalDiagram'] as Array<any>).map(CausalDiagramFromJSON),
         'memoryRequirements': !exists(json, 'memoryRequirements') ? undefined : json['memoryRequirements'],
         'website': !exists(json, 'website') ? undefined : json['website'],
         'citation': !exists(json, 'citation') ? undefined : json['citation'],
         'processorRequirements': !exists(json, 'processorRequirements') ? undefined : json['processorRequirements'],
         'hasUsageNotes': !exists(json, 'hasUsageNotes') ? undefined : json['hasUsageNotes'],
-        'hasSupportScriptLocation': !exists(json, 'hasSupportScriptLocation') ? undefined : json['hasSupportScriptLocation'],
         'readme': !exists(json, 'readme') ? undefined : json['readme'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'hasAssumption': !exists(json, 'hasAssumption') ? undefined : json['hasAssumption'],
-        'hasParameter': !exists(json, 'hasParameter') ? undefined : (json['hasParameter'] as Array<any>).map(ParameterFromJSON),
         'operatingSystems': !exists(json, 'operatingSystems') ? undefined : json['operatingSystems'],
         'hasExecutableNotebook': !exists(json, 'hasExecutableNotebook') ? undefined : json['hasExecutableNotebook'],
         'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
         'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
-        'hasInput': !exists(json, 'hasInput') ? undefined : (json['hasInput'] as Array<any>).map(DatasetSpecificationFromJSON),
     };
 }
 
-export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
+export function CoupledModelToJSON(value?: CoupledModel): any {
     if (value === undefined) {
         return undefined;
     }
@@ -627,72 +472,55 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'keywords': value.keywords,
         'hasDocumentation': value.hasDocumentation,
         'hasGrid': value.hasGrid === undefined ? undefined : (value.hasGrid as Array<any>).map(GridToJSON),
-        'hasImplementationScriptLocation': value.hasImplementationScriptLocation,
         'softwareRequirements': value.softwareRequirements,
         'hasDownloadURL': value.hasDownloadURL,
         'type': value.type,
         'hasInstallationInstructions': value.hasInstallationInstructions,
         'compatibleVisualizationSoftware': value.compatibleVisualizationSoftware === undefined ? undefined : (value.compatibleVisualizationSoftware as Array<any>).map(SoftwareToJSON),
         'copyrightHolder': value.copyrightHolder === undefined ? undefined : (value.copyrightHolder as Array<any>).map(Organization | PersonToJSON),
-        'hasRegion': value.hasRegion === undefined ? undefined : (value.hasRegion as Array<any>).map(RegionToJSON),
         'hasFAQ': value.hasFAQ,
         'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
         'hasContactPerson': value.hasContactPerson === undefined ? undefined : (value.hasContactPerson as Array<any>).map(Organization | PersonToJSON),
-        'tag': value.tag,
         'id': value.id,
         'identifier': value.identifier,
-        'hasSampleExecution': value.hasSampleExecution === undefined ? undefined : (value.hasSampleExecution as Array<any>).map(SampleExecutionToJSON),
-        'hasSampleResult': value.hasSampleResult === undefined ? undefined : (value.hasSampleResult as Array<any>).map(SampleResourceToJSON),
         'author': value.author === undefined ? undefined : (value.author as Array<any>).map(Organization | PersonToJSON),
-        'hasConstraint': value.hasConstraint,
         'hasBuildFile': value.hasBuildFile,
         'shortDescription': value.shortDescription,
-        'hasExecutionCommand': value.hasExecutionCommand,
         'datePublished': value.datePublished,
         'license': value.license,
         'hasSourceCode': value.hasSourceCode === undefined ? undefined : (value.hasSourceCode as Array<any>).map(SourceCodeToJSON),
-        'hasSetup': value.hasSetup === undefined ? undefined : (value.hasSetup as Array<any>).map(ConfigurationSetupToJSON),
         'hasExplanationDiagram': value.hasExplanationDiagram === undefined ? undefined : (value.hasExplanationDiagram as Array<any>).map(ImageToJSON),
         'hasExample': value.hasExample,
         'publisher': value.publisher === undefined ? undefined : (value.publisher as Array<any>).map(Organization | PersonToJSON),
-        'hasOutput': value.hasOutput === undefined ? undefined : (value.hasOutput as Array<any>).map(DatasetSpecificationToJSON),
-        'hasOutputTimeInterval': value.hasOutputTimeInterval === undefined ? undefined : (value.hasOutputTimeInterval as Array<any>).map(TimeIntervalToJSON),
         'doi': value.doi,
         'hasFunding': value.hasFunding === undefined ? undefined : (value.hasFunding as Array<any>).map(FundingInformationToJSON),
-        'hasComponentLocation': value.hasComponentLocation,
-        'hasProcess': value.hasProcess === undefined ? undefined : (value.hasProcess as Array<any>).map(ProcessToJSON),
         'supportDetails': value.supportDetails,
         'hasVersion': value.hasVersion === undefined ? undefined : (value.hasVersion as Array<any>).map(SoftwareVersionToJSON),
         'hasTypicalDataSource': value.hasTypicalDataSource,
         'description': value.description,
         'referencePublication': value.referencePublication,
         'screenshot': value.screenshot === undefined ? undefined : (value.screenshot as Array<any>).map(ImageToJSON),
+        'usesModel': value.usesModel === undefined ? undefined : (value.usesModel as Array<any>).map(ModelToJSON),
         'hasModelCategory': value.hasModelCategory === undefined ? undefined : (value.hasModelCategory as Array<any>).map(ModelCategoryToJSON),
         'hadPrimarySource': value.hadPrimarySource,
         'issueTracker': value.issueTracker,
-        'hasSoftwareImage': value.hasSoftwareImage === undefined ? undefined : (value.hasSoftwareImage as Array<any>).map(SoftwareImageToJSON),
         'dateCreated': value.dateCreated,
         'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
-        'hasModelResultTable': value.hasModelResultTable,
         'hasPurpose': value.hasPurpose,
         'hasExecutableInstructions': value.hasExecutableInstructions,
         'hasSampleVisualization': value.hasSampleVisualization === undefined ? undefined : (value.hasSampleVisualization as Array<any>).map(VisualizationToJSON),
-        'hasCausalDiagram': value.hasCausalDiagram === undefined ? undefined : (value.hasCausalDiagram as Array<any>).map(CausalDiagramToJSON),
         'memoryRequirements': value.memoryRequirements,
         'website': value.website,
         'citation': value.citation,
         'processorRequirements': value.processorRequirements,
         'hasUsageNotes': value.hasUsageNotes,
-        'hasSupportScriptLocation': value.hasSupportScriptLocation,
         'readme': value.readme,
         'label': value.label,
         'hasAssumption': value.hasAssumption,
-        'hasParameter': value.hasParameter === undefined ? undefined : (value.hasParameter as Array<any>).map(ParameterToJSON),
         'operatingSystems': value.operatingSystems,
         'hasExecutableNotebook': value.hasExecutableNotebook,
         'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
         'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
-        'hasInput': value.hasInput === undefined ? undefined : (value.hasInput as Array<any>).map(DatasetSpecificationToJSON),
     };
 }
 

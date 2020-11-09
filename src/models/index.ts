@@ -1,5 +1,7 @@
+export * from './CatalogIdentifier';
 export * from './CausalDiagram';
 export * from './ConfigurationSetup';
+export * from './CoupledModel';
 export * from './DataTransformation';
 export * from './DataTransformationSetup';
 export * from './DatasetSpecification';
@@ -14,6 +16,7 @@ export * from './HybridModel';
 export * from './Image';
 export * from './Intervention';
 export * from './Model';
+export * from './ModelCategory';
 export * from './ModelConfiguration';
 export * from './ModelConfigurationSetup';
 export * from './NumericalIndex';
