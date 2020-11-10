@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
-REPO_TAG=$1
+if [ "$#" -ne 1 ]; then
+    echo "WARNING: Missing argument"
+    echo "$ bash generate_client.sh [git_ref]"
+    REPO_TAG=master
+else
+    REPO_TAG=$1
+fi
+GENERATOR_VERSION=v4.1.2
 FILE=https://raw.githubusercontent.com/mintproject/model-catalog-api/$REPO_TAG/openapi.yaml
-docker run -ti --rm -v ${PWD}:/local openapitools/openapi-generator-cli:v4.1.2 \
+echo "Using openapi ${REPO_TAG}"
+echo "Using openapi-generator image ${GENERATOR_VERSION}"
+docker run -ti --rm -v ${PWD}:/local openapitools/openapi-generator-cli:$GENERATOR_VERSION \
      generate  \
      -i $FILE \
      -g typescript-fetch \
