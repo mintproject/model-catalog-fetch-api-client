@@ -225,6 +225,12 @@ export interface ModelConfigurationSetup {
      */
     id?: string;
     /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfigurationSetup
+     */
+    limitations?: Array<string> | null;
+    /**
      * Description not available
      * @type {Array<string>}
      * @memberof ModelConfigurationSetup
@@ -285,6 +291,12 @@ export interface ModelConfigurationSetup {
      */
     datePublished?: Array<string> | null;
     /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfigurationSetup
+     */
+    theoreticalBasis?: Array<string> | null;
+    /**
      * Description not available
      * @type {Array<string>}
      * @memberof ModelConfigurationSetup
@@ -332,6 +344,12 @@ export interface ModelConfigurationSetup {
      * @memberof ModelConfigurationSetup
      */
     hasOutput?: Array<DatasetSpecification> | null;
+    /**
+     * Property that indicates the estimated time it will take to run this model.
+     * @type {Array<string>}
+     * @memberof ModelConfigurationSetup
+     */
+    runtimeEstimation?: Array<string> | null;
     /**
      * Time interval used in the model configuration
      * @type {Array<TimeInterval>}
@@ -507,6 +525,12 @@ export interface ModelConfigurationSetup {
      */
     processorRequirements?: Array<string> | null;
     /**
+     * 
+     * @type {Array<string>}
+     * @memberof ModelConfigurationSetup
+     */
+    parameterization?: Array<string> | null;
+    /**
      * Description not available
      * @type {Array<Parameter>}
      * @memberof ModelConfigurationSetup
@@ -615,6 +639,7 @@ export function ModelConfigurationSetupFromJSONTyped(json: any, ignoreDiscrimina
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'tag': !exists(json, 'tag') ? undefined : json['tag'],
         'id': !exists(json, 'id') ? undefined : json['id'],
+        'limitations': !exists(json, 'limitations') ? undefined : json['limitations'],
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'hasSampleExecution': !exists(json, 'hasSampleExecution') ? undefined : (json['hasSampleExecution'] as Array<any>).map(SampleExecutionFromJSON),
         'hasSampleResult': !exists(json, 'hasSampleResult') ? undefined : (json['hasSampleResult'] as Array<any>).map(SampleResourceFromJSON),
@@ -625,6 +650,7 @@ export function ModelConfigurationSetupFromJSONTyped(json: any, ignoreDiscrimina
         'shortDescription': !exists(json, 'shortDescription') ? undefined : json['shortDescription'],
         'hasExecutionCommand': !exists(json, 'hasExecutionCommand') ? undefined : json['hasExecutionCommand'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
+        'theoreticalBasis': !exists(json, 'theoreticalBasis') ? undefined : json['theoreticalBasis'],
         'license': !exists(json, 'license') ? undefined : json['license'],
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : (json['hasSourceCode'] as Array<any>).map(SourceCodeFromJSON),
         'hasSetup': !exists(json, 'hasSetup') ? undefined : (json['hasSetup'] as Array<any>).map(ConfigurationSetupFromJSON),
@@ -633,6 +659,7 @@ export function ModelConfigurationSetupFromJSONTyped(json: any, ignoreDiscrimina
         'calibrationInterval': !exists(json, 'calibrationInterval') ? undefined : json['calibrationInterval'],
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
         'hasOutput': !exists(json, 'hasOutput') ? undefined : (json['hasOutput'] as Array<any>).map(DatasetSpecificationFromJSON),
+        'runtimeEstimation': !exists(json, 'runtimeEstimation') ? undefined : json['runtimeEstimation'],
         'hasOutputTimeInterval': !exists(json, 'hasOutputTimeInterval') ? undefined : (json['hasOutputTimeInterval'] as Array<any>).map(TimeIntervalFromJSON),
         'status': !exists(json, 'status') ? undefined : json['status'],
         'doi': !exists(json, 'doi') ? undefined : json['doi'],
@@ -662,6 +689,7 @@ export function ModelConfigurationSetupFromJSONTyped(json: any, ignoreDiscrimina
         'website': !exists(json, 'website') ? undefined : json['website'],
         'citation': !exists(json, 'citation') ? undefined : json['citation'],
         'processorRequirements': !exists(json, 'processorRequirements') ? undefined : json['processorRequirements'],
+        'parameterization': !exists(json, 'parameterization') ? undefined : json['parameterization'],
         'adjustableParameter': !exists(json, 'adjustableParameter') ? undefined : (json['adjustableParameter'] as Array<any>).map(ParameterFromJSON),
         'hasUsageNotes': !exists(json, 'hasUsageNotes') ? undefined : json['hasUsageNotes'],
         'hasSupportScriptLocation': !exists(json, 'hasSupportScriptLocation') ? undefined : json['hasSupportScriptLocation'],
@@ -706,6 +734,7 @@ export function ModelConfigurationSetupToJSON(value?: ModelConfigurationSetup): 
         'hasContactPerson': value.hasContactPerson,
         'tag': value.tag,
         'id': value.id,
+        'limitations': value.limitations,
         'identifier': value.identifier,
         'hasSampleExecution': value.hasSampleExecution === undefined ? undefined : (value.hasSampleExecution as Array<any>).map(SampleExecutionToJSON),
         'hasSampleResult': value.hasSampleResult === undefined ? undefined : (value.hasSampleResult as Array<any>).map(SampleResourceToJSON),
@@ -716,6 +745,7 @@ export function ModelConfigurationSetupToJSON(value?: ModelConfigurationSetup): 
         'shortDescription': value.shortDescription,
         'hasExecutionCommand': value.hasExecutionCommand,
         'datePublished': value.datePublished,
+        'theoreticalBasis': value.theoreticalBasis,
         'license': value.license,
         'hasSourceCode': value.hasSourceCode === undefined ? undefined : (value.hasSourceCode as Array<any>).map(SourceCodeToJSON),
         'hasSetup': value.hasSetup === undefined ? undefined : (value.hasSetup as Array<any>).map(ConfigurationSetupToJSON),
@@ -724,6 +754,7 @@ export function ModelConfigurationSetupToJSON(value?: ModelConfigurationSetup): 
         'calibrationInterval': value.calibrationInterval,
         'publisher': value.publisher,
         'hasOutput': value.hasOutput === undefined ? undefined : (value.hasOutput as Array<any>).map(DatasetSpecificationToJSON),
+        'runtimeEstimation': value.runtimeEstimation,
         'hasOutputTimeInterval': value.hasOutputTimeInterval === undefined ? undefined : (value.hasOutputTimeInterval as Array<any>).map(TimeIntervalToJSON),
         'status': value.status,
         'doi': value.doi,
@@ -753,6 +784,7 @@ export function ModelConfigurationSetupToJSON(value?: ModelConfigurationSetup): 
         'website': value.website,
         'citation': value.citation,
         'processorRequirements': value.processorRequirements,
+        'parameterization': value.parameterization,
         'adjustableParameter': value.adjustableParameter === undefined ? undefined : (value.adjustableParameter as Array<any>).map(ParameterToJSON),
         'hasUsageNotes': value.hasUsageNotes,
         'hasSupportScriptLocation': value.hasSupportScriptLocation,

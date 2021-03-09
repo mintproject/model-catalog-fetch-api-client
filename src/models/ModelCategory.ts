@@ -25,6 +25,12 @@ export interface ModelCategory {
      */
     description?: Array<string> | null;
     /**
+     * Indicates this subcategory parent category
+     * @type {Array<ModelCategory>}
+     * @memberof ModelCategory
+     */
+    parentCategory?: Array<ModelCategory> | null;
+    /**
      * identifier
      * @type {string}
      * @memberof ModelCategory
@@ -55,6 +61,7 @@ export function ModelCategoryFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'parentCategory': !exists(json, 'parentCategory') ? undefined : (json['parentCategory'] as Array<any>).map(ModelCategoryFromJSON),
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -71,6 +78,7 @@ export function ModelCategoryToJSON(value?: ModelCategory): any {
     return {
         
         'description': value.description,
+        'parentCategory': value.parentCategory === undefined ? undefined : (value.parentCategory as Array<any>).map(ModelCategoryToJSON),
         'id': value.id,
         'label': value.label,
         'type': value.type,

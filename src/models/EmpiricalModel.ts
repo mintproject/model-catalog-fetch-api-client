@@ -151,6 +151,12 @@ export interface EmpiricalModel {
      */
     id?: string;
     /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    limitations?: Array<string> | null;
+    /**
      * Description not available
      * @type {Array<string>}
      * @memberof EmpiricalModel
@@ -181,6 +187,12 @@ export interface EmpiricalModel {
      */
     datePublished?: Array<string> | null;
     /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    theoreticalBasis?: Array<string> | null;
+    /**
      * Description not available
      * @type {Array<string>}
      * @memberof EmpiricalModel
@@ -210,6 +222,12 @@ export interface EmpiricalModel {
      * @memberof EmpiricalModel
      */
     publisher?: Array<Organization | Person> | null;
+    /**
+     * Property that indicates the estimated time it will take to run this model.
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    runtimeEstimation?: Array<string> | null;
     /**
      * Description not available
      * @type {Array<string>}
@@ -331,6 +349,12 @@ export interface EmpiricalModel {
      */
     processorRequirements?: Array<string> | null;
     /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmpiricalModel
+     */
+    parameterization?: Array<string> | null;
+    /**
      * Description not available
      * @type {Array<string>}
      * @memberof EmpiricalModel
@@ -404,16 +428,19 @@ export function EmpiricalModelFromJSONTyped(json: any, ignoreDiscriminator: bool
         'logo': !exists(json, 'logo') ? undefined : (json['logo'] as Array<any>).map(ImageFromJSON),
         'hasContactPerson': !exists(json, 'hasContactPerson') ? undefined : json['hasContactPerson'],
         'id': !exists(json, 'id') ? undefined : json['id'],
+        'limitations': !exists(json, 'limitations') ? undefined : json['limitations'],
         'identifier': !exists(json, 'identifier') ? undefined : json['identifier'],
         'author': !exists(json, 'author') ? undefined : json['author'],
         'hasBuildFile': !exists(json, 'hasBuildFile') ? undefined : json['hasBuildFile'],
         'shortDescription': !exists(json, 'shortDescription') ? undefined : json['shortDescription'],
         'datePublished': !exists(json, 'datePublished') ? undefined : json['datePublished'],
+        'theoreticalBasis': !exists(json, 'theoreticalBasis') ? undefined : json['theoreticalBasis'],
         'license': !exists(json, 'license') ? undefined : json['license'],
         'hasSourceCode': !exists(json, 'hasSourceCode') ? undefined : (json['hasSourceCode'] as Array<any>).map(SourceCodeFromJSON),
         'hasExplanationDiagram': !exists(json, 'hasExplanationDiagram') ? undefined : (json['hasExplanationDiagram'] as Array<any>).map(ImageFromJSON),
         'hasExample': !exists(json, 'hasExample') ? undefined : json['hasExample'],
         'publisher': !exists(json, 'publisher') ? undefined : json['publisher'],
+        'runtimeEstimation': !exists(json, 'runtimeEstimation') ? undefined : json['runtimeEstimation'],
         'doi': !exists(json, 'doi') ? undefined : json['doi'],
         'hasFunding': !exists(json, 'hasFunding') ? undefined : (json['hasFunding'] as Array<any>).map(FundingInformationFromJSON),
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
@@ -434,6 +461,7 @@ export function EmpiricalModelFromJSONTyped(json: any, ignoreDiscriminator: bool
         'website': !exists(json, 'website') ? undefined : json['website'],
         'citation': !exists(json, 'citation') ? undefined : json['citation'],
         'processorRequirements': !exists(json, 'processorRequirements') ? undefined : json['processorRequirements'],
+        'parameterization': !exists(json, 'parameterization') ? undefined : json['parameterization'],
         'hasUsageNotes': !exists(json, 'hasUsageNotes') ? undefined : json['hasUsageNotes'],
         'readme': !exists(json, 'readme') ? undefined : json['readme'],
         'label': !exists(json, 'label') ? undefined : json['label'],
@@ -468,16 +496,19 @@ export function EmpiricalModelToJSON(value?: EmpiricalModel): any {
         'logo': value.logo === undefined ? undefined : (value.logo as Array<any>).map(ImageToJSON),
         'hasContactPerson': value.hasContactPerson,
         'id': value.id,
+        'limitations': value.limitations,
         'identifier': value.identifier,
         'author': value.author,
         'hasBuildFile': value.hasBuildFile,
         'shortDescription': value.shortDescription,
         'datePublished': value.datePublished,
+        'theoreticalBasis': value.theoreticalBasis,
         'license': value.license,
         'hasSourceCode': value.hasSourceCode === undefined ? undefined : (value.hasSourceCode as Array<any>).map(SourceCodeToJSON),
         'hasExplanationDiagram': value.hasExplanationDiagram === undefined ? undefined : (value.hasExplanationDiagram as Array<any>).map(ImageToJSON),
         'hasExample': value.hasExample,
         'publisher': value.publisher,
+        'runtimeEstimation': value.runtimeEstimation,
         'doi': value.doi,
         'hasFunding': value.hasFunding === undefined ? undefined : (value.hasFunding as Array<any>).map(FundingInformationToJSON),
         'supportDetails': value.supportDetails,
@@ -498,6 +529,7 @@ export function EmpiricalModelToJSON(value?: EmpiricalModel): any {
         'website': value.website,
         'citation': value.citation,
         'processorRequirements': value.processorRequirements,
+        'parameterization': value.parameterization,
         'hasUsageNotes': value.hasUsageNotes,
         'readme': value.readme,
         'label': value.label,
