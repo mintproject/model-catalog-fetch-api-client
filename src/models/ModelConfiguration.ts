@@ -94,6 +94,10 @@ import {
     TimeIntervalFromJSON,
     TimeIntervalFromJSONTyped,
     TimeIntervalToJSON,
+    VariablePresentation,
+    VariablePresentationFromJSON,
+    VariablePresentationFromJSONTyped,
+    VariablePresentationToJSON,
     Visualization,
     VisualizationFromJSON,
     VisualizationFromJSONTyped,
@@ -209,7 +213,7 @@ export interface ModelConfiguration {
      */
     id?: string;
     /**
-     * 
+     * Known restrictions (i.e. cases where the model is known not to be reliable or shouldn\'t be used)
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -269,7 +273,7 @@ export interface ModelConfiguration {
      */
     datePublished?: Array<string> | null;
     /**
-     * 
+     * What is the theory behind the processes described in the model
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -317,7 +321,7 @@ export interface ModelConfiguration {
      */
     hasOutput?: Array<DatasetSpecification> | null;
     /**
-     * Property that indicates the estimated time it will take to run this model.
+     * An estimate of the time required to run example codes or other known configurations
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -347,7 +351,7 @@ export interface ModelConfiguration {
      */
     hasComponentLocation?: Array<string> | null;
     /**
-     * Property that indicates which physical processes (if any) are associated with a model configuration
+     * Property that indicates which physical processes (if any) are associated with a model
      * @type {Array<Process>}
      * @memberof ModelConfiguration
      */
@@ -425,6 +429,12 @@ export interface ModelConfiguration {
      */
     contributor?: Array<Person> | null;
     /**
+     * Variable that is used as input for this model
+     * @type {Array<VariablePresentation>}
+     * @memberof ModelConfiguration
+     */
+    hasInputVariable?: Array<VariablePresentation> | null;
+    /**
      * Sample result table associated with a model configuration
      * @type {Array<string>}
      * @memberof ModelConfiguration
@@ -479,7 +489,7 @@ export interface ModelConfiguration {
      */
     processorRequirements?: Array<string> | null;
     /**
-     * 
+     * Were there any simplifications made to processes to make the model more efficient
      * @type {Array<string>}
      * @memberof ModelConfiguration
      */
@@ -550,6 +560,12 @@ export interface ModelConfiguration {
      * @memberof ModelConfiguration
      */
     hasInput?: Array<DatasetSpecification> | null;
+    /**
+     * Variable that is used as output for this model
+     * @type {Array<VariablePresentation>}
+     * @memberof ModelConfiguration
+     */
+    hasOutputVariable?: Array<VariablePresentation> | null;
 }
 
 export function ModelConfigurationFromJSON(json: any): ModelConfiguration {
@@ -615,6 +631,7 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'hasSoftwareImage': !exists(json, 'hasSoftwareImage') ? undefined : (json['hasSoftwareImage'] as Array<any>).map(SoftwareImageFromJSON),
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
         'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
+        'hasInputVariable': !exists(json, 'hasInputVariable') ? undefined : (json['hasInputVariable'] as Array<any>).map(VariablePresentationFromJSON),
         'hasModelResultTable': !exists(json, 'hasModelResultTable') ? undefined : json['hasModelResultTable'],
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'hasExecutableInstructions': !exists(json, 'hasExecutableInstructions') ? undefined : json['hasExecutableInstructions'],
@@ -636,6 +653,7 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
         'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
         'hasInput': !exists(json, 'hasInput') ? undefined : (json['hasInput'] as Array<any>).map(DatasetSpecificationFromJSON),
+        'hasOutputVariable': !exists(json, 'hasOutputVariable') ? undefined : (json['hasOutputVariable'] as Array<any>).map(VariablePresentationFromJSON),
     };
 }
 
@@ -701,6 +719,7 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'hasSoftwareImage': value.hasSoftwareImage === undefined ? undefined : (value.hasSoftwareImage as Array<any>).map(SoftwareImageToJSON),
         'dateCreated': value.dateCreated,
         'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
+        'hasInputVariable': value.hasInputVariable === undefined ? undefined : (value.hasInputVariable as Array<any>).map(VariablePresentationToJSON),
         'hasModelResultTable': value.hasModelResultTable,
         'hasPurpose': value.hasPurpose,
         'hasExecutableInstructions': value.hasExecutableInstructions,
@@ -722,6 +741,7 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
         'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
         'hasInput': value.hasInput === undefined ? undefined : (value.hasInput as Array<any>).map(DatasetSpecificationToJSON),
+        'hasOutputVariable': value.hasOutputVariable === undefined ? undefined : (value.hasOutputVariable as Array<any>).map(VariablePresentationToJSON),
     };
 }
 

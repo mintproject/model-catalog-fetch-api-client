@@ -42,6 +42,10 @@ import {
     PersonFromJSON,
     PersonFromJSONTyped,
     PersonToJSON,
+    Process,
+    ProcessFromJSON,
+    ProcessFromJSONTyped,
+    ProcessToJSON,
     Software,
     SoftwareFromJSON,
     SoftwareFromJSONTyped,
@@ -54,6 +58,10 @@ import {
     SourceCodeFromJSON,
     SourceCodeFromJSONTyped,
     SourceCodeToJSON,
+    VariablePresentation,
+    VariablePresentationFromJSON,
+    VariablePresentationFromJSONTyped,
+    VariablePresentationToJSON,
     Visualization,
     VisualizationFromJSON,
     VisualizationFromJSONTyped,
@@ -151,7 +159,7 @@ export interface HybridModel {
      */
     id?: string;
     /**
-     * 
+     * Known restrictions (i.e. cases where the model is known not to be reliable or shouldn\'t be used)
      * @type {Array<string>}
      * @memberof HybridModel
      */
@@ -187,7 +195,7 @@ export interface HybridModel {
      */
     datePublished?: Array<string> | null;
     /**
-     * 
+     * What is the theory behind the processes described in the model
      * @type {Array<string>}
      * @memberof HybridModel
      */
@@ -223,7 +231,7 @@ export interface HybridModel {
      */
     publisher?: Array<Organization | Person> | null;
     /**
-     * Property that indicates the estimated time it will take to run this model.
+     * An estimate of the time required to run example codes or other known configurations
      * @type {Array<string>}
      * @memberof HybridModel
      */
@@ -240,6 +248,12 @@ export interface HybridModel {
      * @memberof HybridModel
      */
     hasFunding?: Array<FundingInformation> | null;
+    /**
+     * Property that indicates which physical processes (if any) are associated with a model
+     * @type {Array<Process>}
+     * @memberof HybridModel
+     */
+    hasProcess?: Array<Process> | null;
     /**
      * Description not available
      * @type {Array<string>}
@@ -307,6 +321,12 @@ export interface HybridModel {
      */
     contributor?: Array<Person> | null;
     /**
+     * Variable that is used as input for this model
+     * @type {Array<VariablePresentation>}
+     * @memberof HybridModel
+     */
+    hasInputVariable?: Array<VariablePresentation> | null;
+    /**
      * Description not available
      * @type {Array<string>}
      * @memberof HybridModel
@@ -349,7 +369,7 @@ export interface HybridModel {
      */
     processorRequirements?: Array<string> | null;
     /**
-     * 
+     * Were there any simplifications made to processes to make the model more efficient
      * @type {Array<string>}
      * @memberof HybridModel
      */
@@ -402,6 +422,12 @@ export interface HybridModel {
      * @memberof HybridModel
      */
     usefulForCalculatingIndex?: Array<NumericalIndex> | null;
+    /**
+     * Variable that is used as output for this model
+     * @type {Array<VariablePresentation>}
+     * @memberof HybridModel
+     */
+    hasOutputVariable?: Array<VariablePresentation> | null;
 }
 
 export function HybridModelFromJSON(json: any): HybridModel {
@@ -443,6 +469,7 @@ export function HybridModelFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'runtimeEstimation': !exists(json, 'runtimeEstimation') ? undefined : json['runtimeEstimation'],
         'doi': !exists(json, 'doi') ? undefined : json['doi'],
         'hasFunding': !exists(json, 'hasFunding') ? undefined : (json['hasFunding'] as Array<any>).map(FundingInformationFromJSON),
+        'hasProcess': !exists(json, 'hasProcess') ? undefined : (json['hasProcess'] as Array<any>).map(ProcessFromJSON),
         'supportDetails': !exists(json, 'supportDetails') ? undefined : json['supportDetails'],
         'hasVersion': !exists(json, 'hasVersion') ? undefined : (json['hasVersion'] as Array<any>).map(SoftwareVersionFromJSON),
         'hasTypicalDataSource': !exists(json, 'hasTypicalDataSource') ? undefined : json['hasTypicalDataSource'],
@@ -454,6 +481,7 @@ export function HybridModelFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'issueTracker': !exists(json, 'issueTracker') ? undefined : json['issueTracker'],
         'dateCreated': !exists(json, 'dateCreated') ? undefined : json['dateCreated'],
         'contributor': !exists(json, 'contributor') ? undefined : (json['contributor'] as Array<any>).map(PersonFromJSON),
+        'hasInputVariable': !exists(json, 'hasInputVariable') ? undefined : (json['hasInputVariable'] as Array<any>).map(VariablePresentationFromJSON),
         'hasPurpose': !exists(json, 'hasPurpose') ? undefined : json['hasPurpose'],
         'hasExecutableInstructions': !exists(json, 'hasExecutableInstructions') ? undefined : json['hasExecutableInstructions'],
         'hasSampleVisualization': !exists(json, 'hasSampleVisualization') ? undefined : (json['hasSampleVisualization'] as Array<any>).map(VisualizationFromJSON),
@@ -470,6 +498,7 @@ export function HybridModelFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'hasExecutableNotebook': !exists(json, 'hasExecutableNotebook') ? undefined : json['hasExecutableNotebook'],
         'hasEquation': !exists(json, 'hasEquation') ? undefined : (json['hasEquation'] as Array<any>).map(EquationFromJSON),
         'usefulForCalculatingIndex': !exists(json, 'usefulForCalculatingIndex') ? undefined : (json['usefulForCalculatingIndex'] as Array<any>).map(NumericalIndexFromJSON),
+        'hasOutputVariable': !exists(json, 'hasOutputVariable') ? undefined : (json['hasOutputVariable'] as Array<any>).map(VariablePresentationFromJSON),
     };
 }
 
@@ -511,6 +540,7 @@ export function HybridModelToJSON(value?: HybridModel): any {
         'runtimeEstimation': value.runtimeEstimation,
         'doi': value.doi,
         'hasFunding': value.hasFunding === undefined ? undefined : (value.hasFunding as Array<any>).map(FundingInformationToJSON),
+        'hasProcess': value.hasProcess === undefined ? undefined : (value.hasProcess as Array<any>).map(ProcessToJSON),
         'supportDetails': value.supportDetails,
         'hasVersion': value.hasVersion === undefined ? undefined : (value.hasVersion as Array<any>).map(SoftwareVersionToJSON),
         'hasTypicalDataSource': value.hasTypicalDataSource,
@@ -522,6 +552,7 @@ export function HybridModelToJSON(value?: HybridModel): any {
         'issueTracker': value.issueTracker,
         'dateCreated': value.dateCreated,
         'contributor': value.contributor === undefined ? undefined : (value.contributor as Array<any>).map(PersonToJSON),
+        'hasInputVariable': value.hasInputVariable === undefined ? undefined : (value.hasInputVariable as Array<any>).map(VariablePresentationToJSON),
         'hasPurpose': value.hasPurpose,
         'hasExecutableInstructions': value.hasExecutableInstructions,
         'hasSampleVisualization': value.hasSampleVisualization === undefined ? undefined : (value.hasSampleVisualization as Array<any>).map(VisualizationToJSON),
@@ -538,6 +569,7 @@ export function HybridModelToJSON(value?: HybridModel): any {
         'hasExecutableNotebook': value.hasExecutableNotebook,
         'hasEquation': value.hasEquation === undefined ? undefined : (value.hasEquation as Array<any>).map(EquationToJSON),
         'usefulForCalculatingIndex': value.usefulForCalculatingIndex === undefined ? undefined : (value.usefulForCalculatingIndex as Array<any>).map(NumericalIndexToJSON),
+        'hasOutputVariable': value.hasOutputVariable === undefined ? undefined : (value.hasOutputVariable as Array<any>).map(VariablePresentationToJSON),
     };
 }
 
