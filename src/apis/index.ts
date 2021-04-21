@@ -1,6 +1,7 @@
 export * from './CatalogIdentifierApi';
 export * from './CausalDiagramApi';
 export * from './ConfigurationSetupApi';
+export * from './ConstraintApi';
 export * from './CoupledModelApi';
 export * from './DataTransformationApi';
 export * from './DataTransformationSetupApi';

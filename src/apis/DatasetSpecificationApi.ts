@@ -19,6 +19,18 @@ import {
     DatasetSpecificationToJSON,
 } from '../models';
 
+export interface CustomConfigurationIdInputsGetRequest {
+    id: string;
+    username?: string;
+    customQueryName?: string;
+}
+
+export interface CustomDatasetspecificationsGetRequest {
+    configurationid: string;
+    username?: string;
+    customQueryName?: string;
+}
+
 export interface DatasetspecificationsGetRequest {
     username?: string;
     label?: string;
@@ -51,6 +63,90 @@ export interface DatasetspecificationsPostRequest {
  * no description
  */
 export class DatasetSpecificationApi extends runtime.BaseAPI {
+
+    /**
+     * Gets all inputs of a configuration
+     * Gets all inputs of a configuration
+     */
+    async customConfigurationIdInputsGetRaw(requestParameters: CustomConfigurationIdInputsGetRequest): Promise<runtime.ApiResponse<Array<DatasetSpecification>>> {
+        if (requestParameters.id === null || requestParameters.id === undefined) {
+            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling customConfigurationIdInputsGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.username !== undefined) {
+            queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.customQueryName !== undefined) {
+            queryParameters['custom_query_name'] = requestParameters.customQueryName;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/custom/configuration/{id}/inputs`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DatasetSpecificationFromJSON));
+    }
+
+   /**
+    * Gets all inputs of a configuration
+    * Gets all inputs of a configuration
+    */
+    async customConfigurationIdInputsGet(requestParameters: CustomConfigurationIdInputsGetRequest): Promise<Array<DatasetSpecification>> {
+        const response = await this.customConfigurationIdInputsGetRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Gets all inputs of a configuration
+     * Gets all inputs of a configuration
+     */
+    async customDatasetspecificationsGetRaw(requestParameters: CustomDatasetspecificationsGetRequest): Promise<runtime.ApiResponse<Array<DatasetSpecification>>> {
+        if (requestParameters.configurationid === null || requestParameters.configurationid === undefined) {
+            throw new runtime.RequiredError('configurationid','Required parameter requestParameters.configurationid was null or undefined when calling customDatasetspecificationsGet.');
+        }
+
+        const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.username !== undefined) {
+            queryParameters['username'] = requestParameters.username;
+        }
+
+        if (requestParameters.configurationid !== undefined) {
+            queryParameters['configurationid'] = requestParameters.configurationid;
+        }
+
+        if (requestParameters.customQueryName !== undefined) {
+            queryParameters['custom_query_name'] = requestParameters.customQueryName;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/custom/datasetspecifications`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DatasetSpecificationFromJSON));
+    }
+
+   /**
+    * Gets all inputs of a configuration
+    * Gets all inputs of a configuration
+    */
+    async customDatasetspecificationsGet(requestParameters: CustomDatasetspecificationsGetRequest): Promise<Array<DatasetSpecification>> {
+        const response = await this.customDatasetspecificationsGetRaw(requestParameters);
+        return await response.value();
+    }
 
     /**
      * Gets a list of all instances of DatasetSpecification (more information in https://w3id.org/okn/o/sd#DatasetSpecification)

@@ -21,6 +21,10 @@ import {
     ConfigurationSetupFromJSON,
     ConfigurationSetupFromJSONTyped,
     ConfigurationSetupToJSON,
+    Constraint,
+    ConstraintFromJSON,
+    ConstraintFromJSONTyped,
+    ConstraintToJSON,
     DatasetSpecification,
     DatasetSpecificationFromJSON,
     DatasetSpecificationFromJSONTyped,
@@ -243,11 +247,11 @@ export interface ModelConfiguration {
      */
     author?: Array<Organization | Person> | null;
     /**
-     * Description not available
-     * @type {Array<string>}
+     * Data constraints for this configuration
+     * @type {Array<Constraint>}
      * @memberof ModelConfiguration
      */
-    hasConstraint?: Array<string> | null;
+    hasConstraint?: Array<Constraint> | null;
     /**
      * Description not available
      * @type {Array<string>}
@@ -600,7 +604,7 @@ export function ModelConfigurationFromJSONTyped(json: any, ignoreDiscriminator: 
         'hasSampleExecution': !exists(json, 'hasSampleExecution') ? undefined : (json['hasSampleExecution'] as Array<any>).map(SampleExecutionFromJSON),
         'hasSampleResult': !exists(json, 'hasSampleResult') ? undefined : (json['hasSampleResult'] as Array<any>).map(SampleResourceFromJSON),
         'author': !exists(json, 'author') ? undefined : json['author'],
-        'hasConstraint': !exists(json, 'hasConstraint') ? undefined : json['hasConstraint'],
+        'hasConstraint': !exists(json, 'hasConstraint') ? undefined : (json['hasConstraint'] as Array<any>).map(ConstraintFromJSON),
         'hasBuildFile': !exists(json, 'hasBuildFile') ? undefined : json['hasBuildFile'],
         'shortDescription': !exists(json, 'shortDescription') ? undefined : json['shortDescription'],
         'hasExecutionCommand': !exists(json, 'hasExecutionCommand') ? undefined : json['hasExecutionCommand'],
@@ -688,7 +692,7 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'hasSampleExecution': value.hasSampleExecution === undefined ? undefined : (value.hasSampleExecution as Array<any>).map(SampleExecutionToJSON),
         'hasSampleResult': value.hasSampleResult === undefined ? undefined : (value.hasSampleResult as Array<any>).map(SampleResourceToJSON),
         'author': value.author,
-        'hasConstraint': value.hasConstraint,
+        'hasConstraint': value.hasConstraint === undefined ? undefined : (value.hasConstraint as Array<any>).map(ConstraintFromJSON),
         'hasBuildFile': value.hasBuildFile,
         'shortDescription': value.shortDescription,
         'hasExecutionCommand': value.hasExecutionCommand,

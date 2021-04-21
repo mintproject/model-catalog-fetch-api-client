@@ -21,6 +21,10 @@ import {
     ConfigurationSetupFromJSON,
     ConfigurationSetupFromJSONTyped,
     ConfigurationSetupToJSON,
+    Constraint,
+    ConstraintFromJSON,
+    ConstraintFromJSONTyped,
+    ConstraintToJSON,
     DatasetSpecification,
     DatasetSpecificationFromJSON,
     DatasetSpecificationFromJSONTyped,
@@ -261,11 +265,11 @@ export interface ModelConfigurationSetup {
      */
     wasDerivedFromSetup?: Array<ConfigurationSetup> | null;
     /**
-     * Description not available
-     * @type {Array<string>}
+     * Data constraints for this configuration
+     * @type {Array<Constraint>}
      * @memberof ModelConfigurationSetup
      */
-    hasConstraint?: Array<string> | null;
+    hasConstraint?: Array<Constraint> | null;
     /**
      * Description not available
      * @type {Array<string>}
@@ -657,7 +661,7 @@ export function ModelConfigurationSetupFromJSONTyped(json: any, ignoreDiscrimina
         'hasSampleResult': !exists(json, 'hasSampleResult') ? undefined : (json['hasSampleResult'] as Array<any>).map(SampleResourceFromJSON),
         'author': !exists(json, 'author') ? undefined : json['author'],
         'wasDerivedFromSetup': !exists(json, 'wasDerivedFromSetup') ? undefined : (json['wasDerivedFromSetup'] as Array<any>).map(ConfigurationSetupFromJSON),
-        'hasConstraint': !exists(json, 'hasConstraint') ? undefined : json['hasConstraint'],
+        'hasConstraint': !exists(json, 'hasConstraint') ? undefined : (json['hasConstraint'] as Array<any>).map(ConstraintFromJSON),
         'hasBuildFile': !exists(json, 'hasBuildFile') ? undefined : json['hasBuildFile'],
         'shortDescription': !exists(json, 'shortDescription') ? undefined : json['shortDescription'],
         'hasExecutionCommand': !exists(json, 'hasExecutionCommand') ? undefined : json['hasExecutionCommand'],
@@ -754,7 +758,7 @@ export function ModelConfigurationSetupToJSON(value?: ModelConfigurationSetup): 
         'hasSampleResult': value.hasSampleResult === undefined ? undefined : (value.hasSampleResult as Array<any>).map(SampleResourceToJSON),
         'author': value.author,
         'wasDerivedFromSetup': value.wasDerivedFromSetup === undefined ? undefined : (value.wasDerivedFromSetup as Array<any>).map(ConfigurationSetupToJSON),
-        'hasConstraint': value.hasConstraint,
+        'hasConstraint': value.hasConstraint === undefined ? undefined : (value.hasConstraint as Array<any>).map(ConstraintFromJSON),
         'hasBuildFile': value.hasBuildFile,
         'shortDescription': value.shortDescription,
         'hasExecutionCommand': value.hasExecutionCommand,

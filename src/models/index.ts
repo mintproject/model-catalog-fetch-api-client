@@ -1,6 +1,7 @@
 export * from './CatalogIdentifier';
 export * from './CausalDiagram';
 export * from './ConfigurationSetup';
+export * from './Constraint';
 export * from './CoupledModel';
 export * from './DataTransformation';
 export * from './DataTransformationSetup';
