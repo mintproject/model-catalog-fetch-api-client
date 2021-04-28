@@ -265,7 +265,7 @@ export interface ModelConfigurationSetup {
      */
     wasDerivedFromSetup?: Array<ConfigurationSetup> | null;
     /**
-     * Data constraints for this configuration
+     * Description not available
      * @type {Array<Constraint>}
      * @memberof ModelConfigurationSetup
      */
@@ -596,10 +596,10 @@ export interface ModelConfigurationSetup {
     hasExecutableNotebook?: Array<string> | null;
     /**
      * Date until which the calibration of a model is valid. For example, a trained model with data from 2005-2010 may only be valid for predictions until 2015.
-     * @type {Array<string>}
+     * @type {Array<Date>}
      * @memberof ModelConfigurationSetup
      */
-    validUntil?: Array<string> | null;
+    validUntil?: Array<Date> | null;
     /**
      * Equations used in the model
      * @type {Array<Equation>}
@@ -758,7 +758,7 @@ export function ModelConfigurationSetupToJSON(value?: ModelConfigurationSetup): 
         'hasSampleResult': value.hasSampleResult === undefined ? undefined : (value.hasSampleResult as Array<any>).map(SampleResourceToJSON),
         'author': value.author,
         'wasDerivedFromSetup': value.wasDerivedFromSetup === undefined ? undefined : (value.wasDerivedFromSetup as Array<any>).map(ConfigurationSetupToJSON),
-        'hasConstraint': value.hasConstraint === undefined ? undefined : (value.hasConstraint as Array<any>).map(ConstraintFromJSON),
+        'hasConstraint': value.hasConstraint === undefined ? undefined : (value.hasConstraint as Array<any>).map(ConstraintToJSON),
         'hasBuildFile': value.hasBuildFile,
         'shortDescription': value.shortDescription,
         'hasExecutionCommand': value.hasExecutionCommand,

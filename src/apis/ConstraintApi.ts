@@ -53,7 +53,7 @@ export interface ConstraintsPostRequest {
 export class ConstraintApi extends runtime.BaseAPI {
 
     /**
-     * Gets a list of all instances of Constraint (more information in https://w3id.org/okn/o/sdm#Constraint)
+     * Gets a list of all instances of Constraint (more information in https://w3id.org/okn/o/sd#Constraint)
      * List all instances of Constraint
      */
     async constraintsGetRaw(requestParameters: ConstraintsGetRequest): Promise<runtime.ApiResponse<Array<Constraint>>> {
@@ -88,7 +88,7 @@ export class ConstraintApi extends runtime.BaseAPI {
     }
 
    /**
-    * Gets a list of all instances of Constraint (more information in https://w3id.org/okn/o/sdm#Constraint)
+    * Gets a list of all instances of Constraint (more information in https://w3id.org/okn/o/sd#Constraint)
     * List all instances of Constraint
     */
     async constraintsGet(requestParameters: ConstraintsGetRequest): Promise<Array<Constraint>> {
@@ -97,7 +97,7 @@ export class ConstraintApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete an existing Constraint (more information in https://w3id.org/okn/o/sdm#Constraint)
+     * Delete an existing Constraint (more information in https://w3id.org/okn/o/sd#Constraint)
      * Delete an existing Constraint
      */
     async constraintsIdDeleteRaw(requestParameters: ConstraintsIdDeleteRequest): Promise<runtime.ApiResponse<void>> {
@@ -132,7 +132,7 @@ export class ConstraintApi extends runtime.BaseAPI {
     }
 
    /**
-    * Delete an existing Constraint (more information in https://w3id.org/okn/o/sdm#Constraint)
+    * Delete an existing Constraint (more information in https://w3id.org/okn/o/sd#Constraint)
     * Delete an existing Constraint
     */
     async constraintsIdDelete(requestParameters: ConstraintsIdDeleteRequest): Promise<void> {
@@ -140,7 +140,7 @@ export class ConstraintApi extends runtime.BaseAPI {
     }
 
     /**
-     * Gets the details of a given Constraint (more information in https://w3id.org/okn/o/sdm#Constraint)
+     * Gets the details of a given Constraint (more information in https://w3id.org/okn/o/sd#Constraint)
      * Get a single Constraint by its id
      */
     async constraintsIdGetRaw(requestParameters: ConstraintsIdGetRequest): Promise<runtime.ApiResponse<Constraint>> {
@@ -167,7 +167,7 @@ export class ConstraintApi extends runtime.BaseAPI {
     }
 
    /**
-    * Gets the details of a given Constraint (more information in https://w3id.org/okn/o/sdm#Constraint)
+    * Gets the details of a given Constraint (more information in https://w3id.org/okn/o/sd#Constraint)
     * Get a single Constraint by its id
     */
     async constraintsIdGet(requestParameters: ConstraintsIdGetRequest): Promise<Constraint> {
@@ -176,7 +176,7 @@ export class ConstraintApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates an existing Constraint (more information in https://w3id.org/okn/o/sdm#Constraint)
+     * Updates an existing Constraint (more information in https://w3id.org/okn/o/sd#Constraint)
      * Update an existing Constraint
      */
     async constraintsIdPutRaw(requestParameters: ConstraintsIdPutRequest): Promise<runtime.ApiResponse<Constraint>> {
@@ -214,7 +214,7 @@ export class ConstraintApi extends runtime.BaseAPI {
     }
 
    /**
-    * Updates an existing Constraint (more information in https://w3id.org/okn/o/sdm#Constraint)
+    * Updates an existing Constraint (more information in https://w3id.org/okn/o/sd#Constraint)
     * Update an existing Constraint
     */
     async constraintsIdPut(requestParameters: ConstraintsIdPutRequest): Promise<Constraint> {
@@ -223,7 +223,7 @@ export class ConstraintApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new instance of Constraint (more information in https://w3id.org/okn/o/sdm#Constraint)
+     * Create a new instance of Constraint (more information in https://w3id.org/okn/o/sd#Constraint)
      * Create one Constraint
      */
     async constraintsPostRaw(requestParameters: ConstraintsPostRequest): Promise<runtime.ApiResponse<Constraint>> {
@@ -257,7 +257,7 @@ export class ConstraintApi extends runtime.BaseAPI {
     }
 
    /**
-    * Create a new instance of Constraint (more information in https://w3id.org/okn/o/sdm#Constraint)
+    * Create a new instance of Constraint (more information in https://w3id.org/okn/o/sd#Constraint)
     * Create one Constraint
     */
     async constraintsPost(requestParameters: ConstraintsPostRequest): Promise<Constraint> {

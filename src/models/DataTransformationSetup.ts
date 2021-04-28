@@ -17,6 +17,10 @@ import {
     ConfigurationSetupFromJSON,
     ConfigurationSetupFromJSONTyped,
     ConfigurationSetupToJSON,
+    Constraint,
+    ConstraintFromJSON,
+    ConstraintFromJSONTyped,
+    ConstraintToJSON,
     DatasetSpecification,
     DatasetSpecificationFromJSON,
     DatasetSpecificationFromJSONTyped,
@@ -199,11 +203,11 @@ export interface DataTransformationSetup {
      */
     wasDerivedFromSetup?: Array<ConfigurationSetup> | null;
     /**
-     * Constraint or rule associated to a  variable or software configuration. For example: \"This model accepts only monthly data\", or \"all inputs of this model configuration must share the same location\". More structured restrictions, such as Jena rules or SWRL rules may also be captured with this property
-     * @type {Array<string>}
+     * Constraint or rule associated to a software configuration. For example: \"This model accepts only monthly data\", or \"all inputs of this model configuration must share the same location\". More structured restrictions, such as Jena rules or SWRL rules may also be captured with this property
+     * @type {Array<Constraint>}
      * @memberof DataTransformationSetup
      */
-    hasConstraint?: Array<string> | null;
+    hasConstraint?: Array<Constraint> | null;
     /**
      * A file (e.g., Dockerfile) with executable instructions indicating how a Software Image or a Software component is built
      * @type {Array<string>}
@@ -494,7 +498,7 @@ export function DataTransformationSetupFromJSONTyped(json: any, ignoreDiscrimina
         'hasSampleResult': !exists(json, 'hasSampleResult') ? undefined : (json['hasSampleResult'] as Array<any>).map(SampleResourceFromJSON),
         'author': !exists(json, 'author') ? undefined : json['author'],
         'wasDerivedFromSetup': !exists(json, 'wasDerivedFromSetup') ? undefined : (json['wasDerivedFromSetup'] as Array<any>).map(ConfigurationSetupFromJSON),
-        'hasConstraint': !exists(json, 'hasConstraint') ? undefined : json['hasConstraint'],
+        'hasConstraint': !exists(json, 'hasConstraint') ? undefined : (json['hasConstraint'] as Array<any>).map(ConstraintFromJSON),
         'hasBuildFile': !exists(json, 'hasBuildFile') ? undefined : json['hasBuildFile'],
         'shortDescription': !exists(json, 'shortDescription') ? undefined : json['shortDescription'],
         'hasExecutionCommand': !exists(json, 'hasExecutionCommand') ? undefined : json['hasExecutionCommand'],
@@ -570,7 +574,7 @@ export function DataTransformationSetupToJSON(value?: DataTransformationSetup): 
         'hasSampleResult': value.hasSampleResult === undefined ? undefined : (value.hasSampleResult as Array<any>).map(SampleResourceToJSON),
         'author': value.author,
         'wasDerivedFromSetup': value.wasDerivedFromSetup === undefined ? undefined : (value.wasDerivedFromSetup as Array<any>).map(ConfigurationSetupToJSON),
-        'hasConstraint': value.hasConstraint,
+        'hasConstraint': value.hasConstraint === undefined ? undefined : (value.hasConstraint as Array<any>).map(ConstraintToJSON),
         'hasBuildFile': value.hasBuildFile,
         'shortDescription': value.shortDescription,
         'hasExecutionCommand': value.hasExecutionCommand,

@@ -247,7 +247,7 @@ export interface ModelConfiguration {
      */
     author?: Array<Organization | Person> | null;
     /**
-     * Data constraints for this configuration
+     * Description not available
      * @type {Array<Constraint>}
      * @memberof ModelConfiguration
      */
@@ -692,7 +692,7 @@ export function ModelConfigurationToJSON(value?: ModelConfiguration): any {
         'hasSampleExecution': value.hasSampleExecution === undefined ? undefined : (value.hasSampleExecution as Array<any>).map(SampleExecutionToJSON),
         'hasSampleResult': value.hasSampleResult === undefined ? undefined : (value.hasSampleResult as Array<any>).map(SampleResourceToJSON),
         'author': value.author,
-        'hasConstraint': value.hasConstraint === undefined ? undefined : (value.hasConstraint as Array<any>).map(ConstraintFromJSON),
+        'hasConstraint': value.hasConstraint === undefined ? undefined : (value.hasConstraint as Array<any>).map(ConstraintToJSON),
         'hasBuildFile': value.hasBuildFile,
         'shortDescription': value.shortDescription,
         'hasExecutionCommand': value.hasExecutionCommand,

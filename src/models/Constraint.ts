@@ -32,18 +32,6 @@ export interface Constraint {
      */
     description?: Array<string> | null;
     /**
-     * Minimum value that a variable can take in this constraint
-     * @type {Array<string>}
-     * @memberof Constraint
-     */
-    hasMinimumValue?: Array<string> | null;
-    /**
-     * Maximum value that a variable can take in this constraint
-     * @type {Array<string>}
-     * @memberof Constraint
-     */
-    hasMaximumValue?: Array<string> | null;
-    /**
      * identifier
      * @type {string}
      * @memberof Constraint
@@ -62,7 +50,13 @@ export interface Constraint {
      */
     type?: Array<string> | null;
     /**
-     * Property that links a constraint to the presentation of a variable that will test it
+     * Rule that defines this constraint
+     * @type {Array<string>}
+     * @memberof Constraint
+     */
+    hasRule?: Array<string> | null;
+    /**
+     * Property that links a rule and the variable that will test it
      * @type {Array<VariablePresentation>}
      * @memberof Constraint
      */
@@ -80,11 +74,10 @@ export function ConstraintFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return {
         
         'description': !exists(json, 'description') ? undefined : json['description'],
-        'hasMinimumValue': !exists(json, 'hasMinimumValue') ? undefined : json['hasMinimumValue'],
-        'hasMaximumValue': !exists(json, 'hasMaximumValue') ? undefined : json['hasMaximumValue'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'label': !exists(json, 'label') ? undefined : json['label'],
         'type': !exists(json, 'type') ? undefined : json['type'],
+        'hasRule': !exists(json, 'hasRule') ? undefined : json['hasRule'],
         'hasVariable': !exists(json, 'hasVariable') ? undefined : (json['hasVariable'] as Array<any>).map(VariablePresentationFromJSON),
     };
 }
@@ -99,11 +92,10 @@ export function ConstraintToJSON(value?: Constraint): any {
     return {
         
         'description': value.description,
-        'hasMinimumValue': value.hasMinimumValue,
-        'hasMaximumValue': value.hasMaximumValue,
         'id': value.id,
         'label': value.label,
         'type': value.type,
+        'hasRule': value.hasRule,
         'hasVariable': value.hasVariable === undefined ? undefined : (value.hasVariable as Array<any>).map(VariablePresentationToJSON),
     };
 }

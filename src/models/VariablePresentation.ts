@@ -149,7 +149,7 @@ export function VariablePresentationToJSON(value?: VariablePresentation): any {
     return {
         
         'hasDefaultValue': value.hasDefaultValue,
-        'hasStandardVariable': value.hasStandardVariable,
+        'hasStandardVariable': value.hasStandardVariable === undefined ? undefined : (value.hasStandardVariable as Array<any>).map(StandardVariableToJSON),
         'hasMaximumAcceptedValue': value.hasMaximumAcceptedValue,
         'hasConstraint': value.hasConstraint,
         'description': value.description,
@@ -158,9 +158,9 @@ export function VariablePresentationToJSON(value?: VariablePresentation): any {
         'hasLongName': value.hasLongName,
         'hasShortName': value.hasShortName,
         'hasMinimumAcceptedValue': value.hasMinimumAcceptedValue,
-        'partOfDataset': value.partOfDataset,
+        'partOfDataset': value.partOfDataset === undefined ? undefined : (value.partOfDataset as Array<any>).map(DatasetSpecificationToJSON),
         'id': value.id,
-        'usesUnit': value.usesUnit,
+        'usesUnit': value.usesUnit === undefined ? undefined : (value.usesUnit as Array<any>).map(UnitToJSON),
     };
 }
 
