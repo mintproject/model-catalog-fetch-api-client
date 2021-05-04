@@ -1,6 +1,6 @@
 {
     "npmRepository": "mintproject",
     "npmName": "@mintproject/modelcatalog_client",
-    "npmVersion": "7.0.4",
+    "npmVersion": "8.0.0",
     "typescriptThreePlus": true
 }
