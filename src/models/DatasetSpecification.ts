@@ -131,8 +131,8 @@ export function DatasetSpecificationFromJSONTyped(json: any, ignoreDiscriminator
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return {
-        
+
+    let ds : DatasetSpecification = {
         'hasDimensionality': !exists(json, 'hasDimensionality') ? undefined : json['hasDimensionality'],
         'hasFormat': !exists(json, 'hasFormat') ? undefined : json['hasFormat'],
         'pathLocation': !exists(json, 'pathLocation') ? undefined : json['pathLocation'],
@@ -148,6 +148,16 @@ export function DatasetSpecificationFromJSONTyped(json: any, ignoreDiscriminator
         'position': !exists(json, 'position') ? undefined : json['position'],
         'id': !exists(json, 'id') ? undefined : json['id'],
     };
+
+    if (!ds.position && json["https://w3id.org/okn/o/sd#position"]) {
+        ds.position = json["https://w3id.org/okn/o/sd#position"];
+    }
+
+    if (ds.position != null && !Array.isArray(ds.position)) {
+        ds.position = [ds.position];
+    }
+
+    return ds;
 }
 
 export function DatasetSpecificationToJSON(value?: DatasetSpecification): any {

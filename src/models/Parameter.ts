@@ -149,8 +149,7 @@ export function ParameterFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return {
-        
+    let param : Parameter = {
         'hasDefaultValue': !exists(json, 'hasDefaultValue') ? undefined : json['hasDefaultValue'],
         'hasMaximumAcceptedValue': !exists(json, 'hasMaximumAcceptedValue') ? undefined : json['hasMaximumAcceptedValue'],
         'description': !exists(json, 'description') ? undefined : json['description'],
@@ -169,6 +168,16 @@ export function ParameterFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'usesUnit': !exists(json, 'usesUnit') ? undefined : (json['usesUnit'] as Array<any>).map(UnitFromJSON),
         'hasStepSize': !exists(json, 'hasStepSize') ? undefined : json['hasStepSize'],
     };
+
+    if (!param.position && json["https://w3id.org/okn/o/sd#position"]) {
+        param.position = json["https://w3id.org/okn/o/sd#position"];
+    }
+
+    if (param.position != null && !Array.isArray(param.position)) {
+        param.position = [param.position];
+    }
+
+    return param;
 }
 
 export function ParameterToJSON(value?: Parameter): any {
