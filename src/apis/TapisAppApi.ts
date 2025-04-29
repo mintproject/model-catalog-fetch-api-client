@@ -12,15 +12,13 @@ import * as runtime from '../runtime';
 import { TapisApp, TapisAppFromJSON, TapisAppToJSON } from '../models';
 
 export interface TapisappsGetRequest {
-  tenant?: string;
-  owner?: string;
-  page?: number;
-  perPage?: number;
+  tenant: string;
 }
 
 export interface TapisappsIdGetRequest {
-  id: string;
-  tenant?: string;
+  tenant: string;
+  appId: string;
+  appVersion: string;
 }
 
 /**
@@ -33,23 +31,15 @@ export class TapisAppApi extends runtime.BaseAPI {
    */
   async tapisappsGetRaw(
     requestParameters: TapisappsGetRequest,
-  ): Promise<runtime.ApiResponse<Array<TapisApp>>> {
-    const queryParameters: runtime.HTTPQuery = {};
-
-    if (requestParameters.tenant !== undefined) {
-      queryParameters['tenant'] = requestParameters.tenant;
-    }
-
-    if (requestParameters.owner !== undefined) {
-      queryParameters['owner'] = requestParameters.owner;
-    }
-
-    if (requestParameters.page !== undefined) {
-      queryParameters['page'] = requestParameters.page;
-    }
-
-    if (requestParameters.perPage !== undefined) {
-      queryParameters['per_page'] = requestParameters.perPage;
+  ): Promise<runtime.ApiResponse<{ [key: string]: TapisApp }>> {
+    if (
+      requestParameters.tenant === null ||
+      requestParameters.tenant === undefined
+    ) {
+      throw new runtime.RequiredError(
+        'tenant',
+        'Required parameter requestParameters.tenant was null or undefined when calling tapisappsGet.',
+      );
     }
 
     const headerParameters: runtime.HTTPHeaders = {};
@@ -65,15 +55,21 @@ export class TapisAppApi extends runtime.BaseAPI {
     }
 
     const response = await this.request({
-      path: `/tapisapps`,
+      path: `/tapis/{tenant}/apps`.replace(
+        `{${'tenant'}}`,
+        encodeURIComponent(String(requestParameters.tenant)),
+      ),
       method: 'GET',
       headers: headerParameters,
-      query: queryParameters,
     });
 
-    return new runtime.JSONApiResponse(response, (jsonValue) =>
-      jsonValue.map(TapisAppFromJSON),
-    );
+    return new runtime.JSONApiResponse(response, (jsonValue) => {
+      const result: { [key: string]: TapisApp } = {};
+      for (const key in jsonValue) {
+        result[key] = TapisAppFromJSON(jsonValue[key]);
+      }
+      return result;
+    });
   }
 
   /**
@@ -82,7 +78,7 @@ export class TapisAppApi extends runtime.BaseAPI {
    */
   async tapisappsGet(
     requestParameters: TapisappsGetRequest,
-  ): Promise<Array<TapisApp>> {
+  ): Promise<{ [key: string]: TapisApp }> {
     const response = await this.tapisappsGetRaw(requestParameters);
     return await response.value();
   }
@@ -94,17 +90,32 @@ export class TapisAppApi extends runtime.BaseAPI {
   async tapisappsIdGetRaw(
     requestParameters: TapisappsIdGetRequest,
   ): Promise<runtime.ApiResponse<TapisApp>> {
-    if (requestParameters.id === null || requestParameters.id === undefined) {
+    if (
+      requestParameters.tenant === null ||
+      requestParameters.tenant === undefined
+    ) {
       throw new runtime.RequiredError(
-        'id',
-        'Required parameter requestParameters.id was null or undefined when calling tapisappsIdGet.',
+        'tenant',
+        'Required parameter requestParameters.tenant was null or undefined when calling tapisappsIdGet.',
       );
     }
-
-    const queryParameters: runtime.HTTPQuery = {};
-
-    if (requestParameters.tenant !== undefined) {
-      queryParameters['tenant'] = requestParameters.tenant;
+    if (
+      requestParameters.appId === null ||
+      requestParameters.appId === undefined
+    ) {
+      throw new runtime.RequiredError(
+        'appId',
+        'Required parameter requestParameters.appId was null or undefined when calling tapisappsIdGet.',
+      );
+    }
+    if (
+      requestParameters.appVersion === null ||
+      requestParameters.appVersion === undefined
+    ) {
+      throw new runtime.RequiredError(
+        'appVersion',
+        'Required parameter requestParameters.appVersion was null or undefined when calling tapisappsIdGet.',
+      );
     }
 
     const headerParameters: runtime.HTTPHeaders = {};
@@ -120,13 +131,21 @@ export class TapisAppApi extends runtime.BaseAPI {
     }
 
     const response = await this.request({
-      path: `/tapisapps/{id}`.replace(
-        `{${'id'}}`,
-        encodeURIComponent(String(requestParameters.id)),
-      ),
+      path: `/tapis/{tenant}/apps/{app_id}/{app_version}`
+        .replace(
+          `{${'tenant'}}`,
+          encodeURIComponent(String(requestParameters.tenant)),
+        )
+        .replace(
+          `{${'app_id'}}`,
+          encodeURIComponent(String(requestParameters.appId)),
+        )
+        .replace(
+          `{${'app_version'}}`,
+          encodeURIComponent(String(requestParameters.appVersion)),
+        ),
       method: 'GET',
       headers: headerParameters,
-      query: queryParameters,
     });
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
