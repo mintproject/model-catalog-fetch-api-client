@@ -45,3 +45,4 @@ export * from './User';
 export * from './Variable';
 export * from './VariablePresentation';
 export * from './Visualization';
+export * from './TapisApp';
