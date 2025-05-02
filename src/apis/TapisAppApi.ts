@@ -31,7 +31,7 @@ export class TapisAppApi extends runtime.BaseAPI {
    */
   async tapisappsGetRaw(
     requestParameters: TapisappsGetRequest,
-  ): Promise<runtime.ApiResponse<{ [key: string]: TapisApp }>> {
+  ): Promise<runtime.ApiResponse<TapisApp[]>> {
     if (
       requestParameters.tenant === null ||
       requestParameters.tenant === undefined
@@ -63,13 +63,9 @@ export class TapisAppApi extends runtime.BaseAPI {
       headers: headerParameters,
     });
 
-    return new runtime.JSONApiResponse(response, (jsonValue) => {
-      const result: { [key: string]: TapisApp } = {};
-      for (const key in jsonValue) {
-        result[key] = TapisAppFromJSON(jsonValue[key]);
-      }
-      return result;
-    });
+    return new runtime.JSONApiResponse(response, (jsonValue) =>
+      (jsonValue as any[]).map(TapisAppFromJSON),
+    );
   }
 
   /**
@@ -78,7 +74,7 @@ export class TapisAppApi extends runtime.BaseAPI {
    */
   async tapisappsGet(
     requestParameters: TapisappsGetRequest,
-  ): Promise<{ [key: string]: TapisApp }> {
+  ): Promise<TapisApp[]> {
     const response = await this.tapisappsGetRaw(requestParameters);
     return await response.value();
   }
