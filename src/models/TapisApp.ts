@@ -11,6 +11,333 @@
 import { exists } from '../runtime';
 
 /**
+ * Enumeration of input modes for arguments
+ * @export
+ * @enum {string}
+ */
+export enum ArgumentInputModeEnum {
+  REQUIRED = 'REQUIRED',
+  FIXED = 'FIXED',
+  INCLUDE_ON_DEMAND = 'INCLUDE_ON_DEMAND',
+  INCLUDE_BY_DEFAULT = 'INCLUDE_BY_DEFAULT',
+}
+
+/**
+ * Command line argument for job execution
+ * @export
+ * @interface Argument
+ */
+export interface Argument {
+  /**
+   * Argument name
+   * @type {string}
+   * @memberof Argument
+   */
+  name: string;
+  /**
+   * Argument description
+   * @type {string}
+   * @memberof Argument
+   */
+  description?: string;
+  /**
+   * Input mode for the argument
+   * @type {ArgumentInputModeEnum}
+   * @memberof Argument
+   */
+  inputMode?: ArgumentInputModeEnum;
+  /**
+   * Argument value
+   * @type {string}
+   * @memberof Argument
+   */
+  value?: string;
+  /**
+   * Order of the argument in the command line
+   * @type {number}
+   * @memberof Argument
+   */
+  order?: number;
+}
+
+/**
+ * Environment variable for job execution
+ * @export
+ * @interface EnvironmentVariable
+ */
+export interface EnvironmentVariable {
+  /**
+   * Environment variable key
+   * @type {string}
+   * @memberof EnvironmentVariable
+   */
+  key: string;
+  /**
+   * Environment variable value
+   * @type {string}
+   * @memberof EnvironmentVariable
+   */
+  value: string;
+}
+
+/**
+ * Filter for archiving job files
+ * @export
+ * @interface ArchiveFilter
+ */
+export interface ArchiveFilter {
+  /**
+   * Files to include in archive
+   * @type {Array<string>}
+   * @memberof ArchiveFilter
+   */
+  includes?: Array<string>;
+  /**
+   * Files to exclude from archive
+   * @type {Array<string>}
+   * @memberof ArchiveFilter
+   */
+  excludes?: Array<string>;
+  /**
+   * Whether to include launch files in archive
+   * @type {boolean}
+   * @memberof ArchiveFilter
+   */
+  includeLaunchFiles?: boolean;
+}
+
+/**
+ * Configuration for job logging
+ * @export
+ * @interface LogConfig
+ */
+export interface LogConfig {
+  /**
+   * Filename for stdout
+   * @type {string}
+   * @memberof LogConfig
+   */
+  stdoutFilename?: string;
+  /**
+   * Filename for stderr
+   * @type {string}
+   * @memberof LogConfig
+   */
+  stderrFilename?: string;
+}
+
+/**
+ * Set of parameters for job execution
+ * @export
+ * @interface ParameterSet
+ */
+export interface ParameterSet {
+  /**
+   * Application arguments
+   * @type {Array<Argument>}
+   * @memberof ParameterSet
+   */
+  appArgs?: Array<Argument>;
+  /**
+   * Container arguments
+   * @type {Array<Argument>}
+   * @memberof ParameterSet
+   */
+  containerArgs?: Array<Argument>;
+  /**
+   * Scheduler options
+   * @type {Array<Argument>}
+   * @memberof ParameterSet
+   */
+  schedulerOptions?: Array<Argument>;
+  /**
+   * Environment variables
+   * @type {Array<EnvironmentVariable>}
+   * @memberof ParameterSet
+   */
+  envVariables?: Array<EnvironmentVariable>;
+  /**
+   * Archive filter configuration
+   * @type {ArchiveFilter}
+   * @memberof ParameterSet
+   */
+  archiveFilter?: ArchiveFilter;
+  /**
+   * Log configuration
+   * @type {LogConfig}
+   * @memberof ParameterSet
+   */
+  logConfig?: LogConfig;
+}
+
+/**
+ * File input definition for jobs
+ * @export
+ * @interface FileInput
+ */
+export interface FileInput {
+  // File input properties would be defined here
+}
+
+/**
+ * Job attributes for Tapis applications
+ * @export
+ * @interface JobAttributes
+ */
+export interface JobAttributes {
+  /**
+   * Job description
+   * @type {string}
+   * @memberof JobAttributes
+   */
+  description?: string;
+  /**
+   * Whether to use dynamic execution system
+   * @type {boolean}
+   * @memberof JobAttributes
+   */
+  dynamicExecSystem?: boolean;
+  /**
+   * Execution system constraints
+   * @type {object}
+   * @memberof JobAttributes
+   */
+  execSystemConstraints?: object;
+  /**
+   * Execution system identifier
+   * @type {string}
+   * @memberof JobAttributes
+   */
+  execSystemId: string;
+  /**
+   * Execution directory on the system
+   * @type {string}
+   * @memberof JobAttributes
+   */
+  execSystemExecDir: string;
+  /**
+   * Input directory on the system
+   * @type {string}
+   * @memberof JobAttributes
+   */
+  execSystemInputDir: string;
+  /**
+   * Output directory on the system
+   * @type {string}
+   * @memberof JobAttributes
+   */
+  execSystemOutputDir: string;
+  /**
+   * DTN input directory
+   * @type {string}
+   * @memberof JobAttributes
+   */
+  dtnSystemInputDir?: string;
+  /**
+   * DTN output directory
+   * @type {string}
+   * @memberof JobAttributes
+   */
+  dtnSystemOutputDir?: string;
+  /**
+   * Logical queue for execution
+   * @type {string}
+   * @memberof JobAttributes
+   */
+  execSystemLogicalQueue?: string;
+  /**
+   * Archive system identifier
+   * @type {string}
+   * @memberof JobAttributes
+   */
+  archiveSystemId?: string;
+  /**
+   * Archive directory on the system
+   * @type {string}
+   * @memberof JobAttributes
+   */
+  archiveSystemDir?: string;
+  /**
+   * Whether to archive on application error
+   * @type {boolean}
+   * @memberof JobAttributes
+   */
+  archiveOnAppError?: boolean;
+  /**
+   * Whether the job uses MPI
+   * @type {boolean}
+   * @memberof JobAttributes
+   */
+  isMpi?: boolean;
+  /**
+   * MPI command
+   * @type {string}
+   * @memberof JobAttributes
+   */
+  mpiCmd?: string;
+  /**
+   * Command prefix
+   * @type {string}
+   * @memberof JobAttributes
+   */
+  cmdPrefix?: string;
+  /**
+   * Parameter set for the job
+   * @type {ParameterSet}
+   * @memberof JobAttributes
+   */
+  parameterSet?: ParameterSet;
+  /**
+   * File inputs for the job
+   * @type {Array<FileInput>}
+   * @memberof JobAttributes
+   */
+  fileInputs?: Array<FileInput>;
+  /**
+   * File input arrays
+   * @type {Array<any>}
+   * @memberof JobAttributes
+   */
+  fileInputArrays?: Array<any>;
+  /**
+   * Number of nodes to use
+   * @type {number}
+   * @memberof JobAttributes
+   */
+  nodeCount?: number;
+  /**
+   * Cores per node
+   * @type {number}
+   * @memberof JobAttributes
+   */
+  coresPerNode?: number;
+  /**
+   * Memory in MB
+   * @type {number}
+   * @memberof JobAttributes
+   */
+  memoryMB?: number;
+  /**
+   * Maximum runtime in minutes
+   * @type {number}
+   * @memberof JobAttributes
+   */
+  maxMinutes?: number;
+  /**
+   * Job subscriptions
+   * @type {Array<any>}
+   * @memberof JobAttributes
+   */
+  subscriptions?: Array<any>;
+  /**
+   * Job tags
+   * @type {Array<string>}
+   * @memberof JobAttributes
+   */
+  tags?: Array<string>;
+}
+
+/**
  * @export
  * @interface TapisApp
  */
@@ -125,10 +452,10 @@ export interface TapisApp {
   strictFileInputs?: boolean;
   /**
    * Job attributes
-   * @type {object}
+   * @type {JobAttributes}
    * @memberof TapisApp
    */
-  jobAttributes?: object;
+  jobAttributes?: JobAttributes;
   /**
    * Application tags
    * @type {Array<string>}
