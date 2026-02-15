@@ -171,12 +171,70 @@ export interface ParameterSet {
 }
 
 /**
- * File input definition for jobs
+ * Enumeration of input modes for file inputs
+ * @export
+ * @enum {string}
+ */
+export enum InputModeEnum {
+  REQUIRED = 'REQUIRED',
+  OPTIONAL = 'OPTIONAL',
+  FIXED = 'FIXED',
+}
+
+/**
+ * File input for job execution
  * @export
  * @interface FileInput
  */
 export interface FileInput {
-  // File input properties would be defined here
+  /**
+   * File input name
+   * @type {string}
+   * @memberof FileInput
+   */
+  name: string;
+  /**
+   * File input description
+   * @type {string}
+   * @memberof FileInput
+   */
+  description?: string;
+  /**
+   * Input mode for the file input
+   * @type {InputModeEnum}
+   * @memberof FileInput
+   */
+  inputMode?: InputModeEnum;
+  /**
+   * Whether to automatically mount the file locally
+   * @type {boolean}
+   * @memberof FileInput
+   */
+  autoMountLocal?: boolean;
+  /**
+   * Environment variable key for the file input
+   * @type {string}
+   * @memberof FileInput
+   */
+  envKey?: string;
+  /**
+   * Additional notes about the file input
+   * @type {object}
+   * @memberof FileInput
+   */
+  notes?: object;
+  /**
+   * Source URL for the file input
+   * @type {string}
+   * @memberof FileInput
+   */
+  sourceUrl?: string;
+  /**
+   * Target path for the file input
+   * @type {string}
+   * @memberof FileInput
+   */
+  targetPath?: string;
 }
 
 /**
