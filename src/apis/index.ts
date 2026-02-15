@@ -45,3 +45,4 @@ export * from './UnitApi';
 export * from './VariableApi';
 export * from './VariablePresentationApi';
 export * from './VisualizationApi';
+export * from './TapisAppApi';
