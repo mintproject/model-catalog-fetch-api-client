@@ -116,6 +116,12 @@ export interface DatasetSpecification {
      */
     position?: Array<number> | null;
     /**
+     * When true, this input is optional for the configuration. Ensemble manager will skip it during Tapis job submission if no dataset is bound, rather than failing with an error.
+     * @type {boolean}
+     * @memberof DatasetSpecification
+     */
+    isOptional?: boolean | null;
+    /**
      * identifier
      * @type {string}
      * @memberof DatasetSpecification
@@ -146,6 +152,7 @@ export function DatasetSpecificationFromJSONTyped(json: any, ignoreDiscriminator
         'isTransformedFrom': !exists(json, 'isTransformedFrom') ? undefined : (json['isTransformedFrom'] as Array<any>).map(DatasetSpecificationFromJSON),
         'hasDataTransformationSetup': !exists(json, 'hasDataTransformationSetup') ? undefined : (json['hasDataTransformationSetup'] as Array<any>).map(DataTransformationSetupFromJSON),
         'position': !exists(json, 'position') ? undefined : json['position'],
+        'isOptional': !exists(json, 'isOptional') ? undefined : json['isOptional'],
         'id': !exists(json, 'id') ? undefined : json['id'],
     };
 
@@ -182,6 +189,7 @@ export function DatasetSpecificationToJSON(value?: DatasetSpecification): any {
         'isTransformedFrom': value.isTransformedFrom === undefined ? undefined : (value.isTransformedFrom as Array<any>).map(DatasetSpecificationToJSON),
         'hasDataTransformationSetup': value.hasDataTransformationSetup === undefined ? undefined : (value.hasDataTransformationSetup as Array<any>).map(DataTransformationSetupToJSON),
         'position': value.position,
+        'isOptional': value.isOptional,
         'id': value.id,
     };
 }
