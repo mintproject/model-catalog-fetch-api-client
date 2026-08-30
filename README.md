@@ -1,8 +1,9 @@
 ## @mintproject/modelcatalog_client@8.0.1
 
 > **This repository is read-only history.** The generated client is no longer
-> maintained, and the npm package `@mintproject/modelcatalog_client` is
-> deprecated. Use the REST API in
+> maintained. The npm package `@mintproject/modelcatalog_client` stays
+> published, because `mintproject/mint-ui-lit` still depends on it. Use the
+> REST API in
 > [`mintproject/monorepo`](https://github.com/mintproject/monorepo), in the
 > `model-catalog-api/` directory.
 
