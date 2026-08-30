@@ -1,5 +1,11 @@
 ## @mintproject/modelcatalog_client@8.0.1
 
+> **This repository is read-only history.** The generated client is no longer
+> maintained, and the npm package `@mintproject/modelcatalog_client` is
+> deprecated. Use the REST API in
+> [`mintproject/monorepo`](https://github.com/mintproject/monorepo), in the
+> `model-catalog-api/` directory.
+
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
 Environment
